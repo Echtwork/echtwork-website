@@ -38,23 +38,12 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      animation: starPulse 2s infinite ease-in-out;
     }
     header h1::before {
       left: -35px;
     }
     header h1::after {
       right: -35px;
-    }
-    @keyframes starPulse {
-      0%, 100% {
-        text-shadow: 0 0 4px rgba(212,175,55,0.6), 0 0 8px rgba(212,175,55,0.3);
-        transform: translateY(-50%) scale(1);
-      }
-      50% {
-        text-shadow: 0 0 8px rgba(212,175,55,0.9), 0 0 15px rgba(212,175,55,0.5);
-        transform: translateY(-50%) scale(1.2);
-      }
     }
     header p {
       font-size: 22px;
@@ -82,6 +71,20 @@
       border-left: 5px solid #111;
       font-size: 18px;
       transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+    .sublist {
+      list-style: disc;
+      margin-top: 8px;
+      margin-left: 25px;
+      color: #555;
+      font-size: 16px;
+    }
+    .subtext {
+      margin-top: 8px;
+      margin-left: 25px;
+      font-size: 15px;
+      color: #666;
+      line-height: 1.5;
     }
     form {
       background: #f9f9f9;
@@ -111,18 +114,17 @@
       background-color: #D4AF37;
       color: #111;
     }
-    .form-status {
-      margin-top: 15px;
-      font-size: 16px;
+    .success-message {
       display: none;
-      opacity: 1;
+      margin-top: 15px;
+      padding: 12px;
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+      border-radius: 4px;
+      font-size: 16px;
+      opacity: 0;
       transition: opacity 0.5s ease;
-    }
-    .success {
-      color: green;
-    }
-    .error {
-      color: red;
     }
     footer {
       text-align: center;
@@ -149,6 +151,12 @@
         background: #1e1e1e;
         border-color: #D4AF37;
       }
+      .sublist {
+        color: #ccc;
+      }
+      .subtext {
+        color: #bbb;
+      }
       form {
         background: #1e1e1e;
         border-color: #555;
@@ -166,6 +174,11 @@
         background-color: #fff3cd;
         color: #111;
       }
+      .success-message {
+        background-color: #1e4620;
+        color: #d4edda;
+        border-color: #155724;
+      }
       footer {
         color: #aaa;
       }
@@ -182,7 +195,20 @@
   <section class="angebot">
     <h2>Was ich dir biete</h2>
     <ul>
-      <li>Individuelle Trainingspläne – 100% auf dich zugeschnitten <strong>(ab 79€)</strong></li>
+      <li>
+        Individuelle Trainingspläne – 100% auf dich zugeschnitten <strong>(ab 79€)</strong>
+        <ul class="sublist">
+          <li>Krafttraining</li>
+          <li>Ausdauertraining</li>
+          <li>Functional Fitness</li>
+          <li>Mobility & Flexibilität</li>
+          <li>Calisthenics & Bodyweight-Training</li>
+        </ul>
+        <p class="subtext">
+          Und viele andere Trainingsarten – individuell auf dich zugeschnitten.  
+          Schreib mir, was dein Ziel ist, und wir passen den Plan perfekt an dich an.
+        </p>
+      </li>
       <li>Ernährungs- und Lifestyle-Empfehlungen (optional) <strong>(ab 49€)</strong></li>
       <li>Ehrlicher Support – keine Bullshit-Versprechen</li>
     </ul>
@@ -191,14 +217,13 @@
   <section>
     <h2>Kontakt aufnehmen</h2>
     <p>Du willst starten oder hast Fragen? Schreib mir einfach:</p>
-    <form id="contact-form" action="https://formspree.io/f/mqalgjzw" method="POST">
+    <form id="contactForm" action="https://formspree.io/f/mqalgjzw" method="POST">
       <input type="text" name="name" placeholder="Dein Name" required />
       <input type="email" name="email" placeholder="Deine E-Mail-Adresse" required />
       <textarea name="nachricht" rows="5" placeholder="Worum geht’s?" required></textarea>
-      <!-- Honeypot für Spam-Schutz -->
       <input type="text" name="_gotcha" style="display:none" />
       <button type="submit">Absenden</button>
-      <p id="form-status" class="form-status"></p>
+      <div class="success-message" id="successMessage">Nachricht gesendet!</div>
     </form>
   </section>
 
@@ -207,51 +232,33 @@
   </footer>
 
   <script>
-    const form = document.getElementById('contact-form');
-    const statusMessage = document.getElementById('form-status');
+    const form = document.getElementById('contactForm');
+    const successMessage = document.getElementById('successMessage');
 
-    form.addEventListener('submit', async function(event) {
-      event.preventDefault();
-      const data = new FormData(form);
-      const action = form.getAttribute('action');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = new FormData(form);
 
-      statusMessage.style.display = 'none';
-      statusMessage.style.opacity = '1';
-
-      try {
-        const response = await fetch(action, {
-          method: 'POST',
-          body: data,
-          headers: { 'Accept': 'application/json' }
-        });
-
+      fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
         if (response.ok) {
-          statusMessage.textContent = "✅ Danke! Deine Nachricht wurde gesendet.";
-          statusMessage.className = "form-status success";
-          showStatusMessage();
           form.reset();
+          successMessage.style.display = 'block';
+          setTimeout(() => successMessage.style.opacity = '1', 10);
+          setTimeout(() => {
+            successMessage.style.opacity = '0';
+            setTimeout(() => successMessage.style.display = 'none', 500);
+          }, 3000);
         } else {
-          statusMessage.textContent = "❌ Fehler beim Senden. Bitte versuche es später erneut.";
-          statusMessage.className = "form-status error";
-          showStatusMessage();
+          alert('Es gab ein Problem beim Senden der Nachricht.');
         }
-      } catch (error) {
-        statusMessage.textContent = "❌ Netzwerkfehler. Bitte später erneut versuchen.";
-        statusMessage.className = "form-status error";
-        showStatusMessage();
-      }
+      }).catch(() => {
+        alert('Es gab ein Problem beim Senden der Nachricht.');
+      });
     });
-
-    function showStatusMessage() {
-      statusMessage.style.display = 'block';
-      setTimeout(() => {
-        statusMessage.style.opacity = '0';
-        setTimeout(() => {
-          statusMessage.style.display = 'none';
-          statusMessage.style.opacity = '1';
-        }, 500);
-      }, 5000);
-    }
   </script>
 
 </body>
