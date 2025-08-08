@@ -8,13 +8,14 @@
   <style>
     body {
       font-family: 'Oswald', Arial, sans-serif;
-      background-color: #111; /* ciemne tło */
+      background-color: #111; /* stałe ciemne tło */
       color: #f0f0f0;
       margin: 0;
       padding: 0;
     }
     header {
       background: linear-gradient(135deg, #000000, #222222);
+      color: #fff;
       text-align: center;
       padding: 60px 20px;
     }
@@ -33,7 +34,7 @@
     header p {
       font-size: 22px;
       margin-top: 10px;
-      color: #ccc;
+      color: #ddd;
     }
     section {
       padding: 40px 20px;
@@ -41,27 +42,23 @@
       margin: auto;
       background-color: #1a1a1a;
       border-radius: 8px;
-      border: 1px solid rgba(212, 175, 55, 0.4); /* delikatne złote obramowanie */
-      box-shadow: 0 0 12px rgba(212, 175, 55, 0.15);
     }
     .angebot h2 {
       font-size: 32px;
-      margin-bottom: 20px;
-      color: #fff;
+      margin-bottom: 10px;
     }
     .shiny {
-      background: linear-gradient(90deg, #FFD700, #FFF8DC, #FFD700);
-      background-size: 200% auto;
+      font-size: 20px;
+      font-weight: bold;
+      background: linear-gradient(90deg, #FFD700, #D4AF37, #B8860B, #FFD700);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: shine 2.5s linear infinite;
-      font-weight: bold;
-      font-size: 18px;
-      margin-left: 10px;
+      animation: shine 2s infinite linear;
+      margin-right: 8px;
     }
     @keyframes shine {
-      0% { background-position: 200% center; }
-      100% { background-position: 0% center; }
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
     }
     .angebot ul {
       list-style: none;
@@ -73,17 +70,12 @@
       margin-bottom: 10px;
       border-left: 5px solid #D4AF37;
       font-size: 18px;
-      transition: background-color 0.3s ease;
     }
     .toggle-title {
       cursor: pointer;
-      user-select: none;
       display: flex;
       align-items: center;
       justify-content: space-between;
-    }
-    .toggle-title:hover {
-      color: #D4AF37;
     }
     .toggle-arrow {
       transition: transform 0.3s ease;
@@ -95,7 +87,6 @@
     .toggle-item .toggle-content {
       max-height: 0;
       overflow: hidden;
-      margin-top: 0;
       opacity: 0;
       transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease;
     }
@@ -106,22 +97,10 @@
     .toggle-item.open .toggle-arrow {
       transform: rotate(90deg);
     }
-    .sublist li {
-      background: none;
-      border: none;
-      padding: 5px 0;
-      color: #ddd;
-    }
-    .subtext {
-      color: #bbb;
-      font-size: 16px;
-      margin-top: 10px;
-    }
     form {
       background: #222;
       padding: 30px;
       border: 1px solid #444;
-      border-radius: 8px;
     }
     form input, form textarea {
       width: 100%;
@@ -148,7 +127,7 @@
       text-align: center;
       padding: 20px;
       font-size: 14px;
-      color: #777;
+      color: #999;
       background-color: #000;
     }
   </style>
@@ -165,7 +144,7 @@
     <ul>
       <li class="toggle-item">
         <div class="toggle-title">
-          <span>Individuelle Trainingspläne – 100% auf dich zugeschnitten <strong>(80€)</strong> <span class="shiny">PREMIUM</span></span>
+          <span><span class="shiny">PREMIUM</span> Individuelle Trainingspläne – 100% auf dich zugeschnitten <strong>(80€)</strong></span>
           <span class="toggle-arrow">➤</span>
         </div>
         <div class="toggle-content">
@@ -183,7 +162,7 @@
         </div>
       </li>
       <li>Standard-Trainingspläne <strong>(50€)</strong></li>
-      <li>Ernährungs- und Lifestyle-Empfehlungen (optional) <strong>(40€)</strong></li>
+      <li>Ernährungs- und Lifestyle-Empfehlungen <strong>(40€)</strong></li>
       <li>Ehrlicher Support – keine Bullshit-Versprechen</li>
     </ul>
   </section>
@@ -208,7 +187,6 @@
       title.addEventListener('click', () => {
         const item = title.parentElement;
         const content = item.querySelector('.toggle-content');
-
         if (item.classList.contains('open')) {
           content.style.maxHeight = content.scrollHeight + "px";
           requestAnimationFrame(() => {
