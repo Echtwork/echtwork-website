@@ -8,7 +8,7 @@
   <style>
     body {
       font-family: 'Oswald', Arial, sans-serif;
-      background-color: #111 !important;
+      background-color: #111;
       color: #eee;
       margin: 0;
       padding: 0;
@@ -23,7 +23,7 @@
       font-size: 56px;
       margin: 0;
       color: #D4AF37;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.6), 0 6px 18px rgba(212,175,55,0.25);
       letter-spacing: 1.5px;
     }
     header .stars {
@@ -45,13 +45,17 @@
       font-size: 32px;
       margin-bottom: 10px;
     }
-    .premium-label {
+    .shiny {
       font-size: 20px;
       font-weight: bold;
-      background: linear-gradient(90deg, #FFD700, #D4AF37, #B8860B);
+      background: linear-gradient(90deg, #FFD700, #D4AF37, #B8860B, #FFD700);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 20px;
+      animation: shine 2s infinite linear;
+      background-size: 200% auto;
+    }
+    @keyframes shine {
+      to { background-position: 200% center; }
     }
     .angebot ul {
       list-style: none;
@@ -66,6 +70,7 @@
     }
     .toggle-title {
       cursor: pointer;
+      user-select: none;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -74,17 +79,18 @@
       color: #D4AF37;
     }
     .toggle-arrow {
+      transition: transform 0.3s ease;
       font-size: 18px;
       background: linear-gradient(90deg, #FFD700, #D4AF37, #B8860B);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      transition: transform 0.3s ease;
     }
     .toggle-item .toggle-content {
       max-height: 0;
       overflow: hidden;
+      margin-top: 0;
       opacity: 0;
-      transition: max-height 0.4s ease, opacity 0.3s ease;
+      transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease;
     }
     .toggle-item.open .toggle-content {
       opacity: 1;
@@ -105,6 +111,7 @@
       background-color: #222;
       color: #eee;
       border: 1px solid #555;
+      border-radius: 4px;
     }
     form button {
       background-color: #D4AF37;
@@ -117,6 +124,13 @@
     }
     form button:hover {
       background-color: #fff3cd;
+      color: #111;
+    }
+    .formspree-message {
+      color: #D4AF37; /* złoty komunikat */
+      font-weight: bold;
+      display: none;
+      margin-top: 10px;
     }
     footer {
       text-align: center;
@@ -124,21 +138,19 @@
       font-size: 14px;
       color: #aaa;
     }
-    .return-message {
-      color: #D4AF37;
-      font-weight: bold;
-      text-align: center;
-      margin-top: 20px;
-    }
+    /* Responsywność */
     @media (max-width: 768px) {
       header h1 { font-size: 38px; }
       header p { font-size: 18px; }
       section { padding: 20px 15px; }
       .angebot h2 { font-size: 26px; }
       .angebot li { font-size: 16px; padding: 12px; }
-      .premium-label { font-size: 18px; }
+      .shiny { font-size: 18px; }
       .toggle-title { flex-direction: column; align-items: flex-start; }
       .toggle-arrow { align-self: flex-end; margin-top: 5px; }
+      form { padding: 20px; }
+      form input, form textarea { font-size: 16px; padding: 10px; }
+      form button { font-size: 16px; padding: 12px; }
     }
     @media (max-width: 480px) {
       header h1 { font-size: 30px; }
@@ -160,7 +172,7 @@
     <ul>
       <li class="toggle-item">
         <div class="toggle-title">
-          <span><span class="premium-label">PREMIUM</span> Individuelle Trainingspläne – 100% auf dich zugeschnitten <strong>(80€)</strong></span>
+          <span><span class="shiny">PREMIUM</span> Individuelle Trainingspläne – 100% auf dich zugeschnitten <strong>(80€)</strong></span>
           <span class="toggle-arrow">➤</span>
         </div>
         <div class="toggle-content">
@@ -185,13 +197,14 @@
 
   <section>
     <h2>Kontakt aufnehmen</h2>
-    <form action="https://formspree.io/f/mqalgjzw" method="POST">
+    <p>Du willst starten oder hast Fragen? Schreib mir einfach:</p>
+    <form id="kontaktformular" action="https://formspree.io/f/mqalgjzw" method="POST">
       <input type="text" name="name" placeholder="Dein Name" required />
       <input type="email" name="email" placeholder="Deine E-Mail-Adresse" required />
       <textarea name="nachricht" rows="5" placeholder="Worum geht’s?" required></textarea>
       <button type="submit">Absenden</button>
+      <p class="formspree-message">Nachricht erfolgreich gesendet!</p>
     </form>
-    <p class="return-message">Zur ursprünglichen Seite zurückkehren</p>
   </section>
 
   <footer>
@@ -199,6 +212,7 @@
   </footer>
 
   <script>
+    // Toggle rozwijanych sekcji
     document.querySelectorAll('.toggle-title').forEach(title => {
       title.addEventListener('click', () => {
         const item = title.parentElement;
@@ -206,21 +220,28 @@
 
         if (item.classList.contains('open')) {
           content.style.maxHeight = content.scrollHeight + "px";
-          requestAnimationFrame(() => {
-            content.style.maxHeight = "0";
-          });
+          requestAnimationFrame(() => { content.style.maxHeight = "0"; });
           item.classList.remove('open');
         } else {
           content.style.maxHeight = content.scrollHeight + "px";
           item.classList.add('open');
           content.addEventListener('transitionend', function handler() {
-            if (item.classList.contains('open')) {
-              content.style.maxHeight = "none";
-            }
+            if (item.classList.contains('open')) content.style.maxHeight = "none";
             content.removeEventListener('transitionend', handler);
           });
         }
       });
+    });
+
+    // Pokazywanie komunikatu po wysłaniu formularza i automatyczne ukrywanie
+    document.getElementById('kontaktformular').addEventListener('submit', function(e) {
+      const message = this.querySelector('.formspree-message');
+      setTimeout(() => {
+        message.style.display = 'block';
+        setTimeout(() => {
+          message.style.display = 'none';
+        }, 5000);
+      }, 500);
     });
   </script>
 
