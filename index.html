@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
@@ -139,7 +139,7 @@
       section { padding: 20px 15px; }
       .angebot h2 { font-size: 26px; }
       .angebot li { font-size: 16px; padding: 12px; }
-      .shiny { font-size: 20px; }
+      .shiny { font-size: 18px; }
       .toggle-title { flex-direction: column; align-items: flex-start; }
       .toggle-arrow { align-self: flex-end; margin-top: 5px; }
       form { padding: 20px; }
@@ -192,7 +192,7 @@
   <section>
     <h2>Kontakt aufnehmen</h2>
     <p>Du willst starten oder hast Fragen? Schreib mir einfach:</p>
-    <form action="https://formspree.io/f/mqalgjzw?redirect=https://echtwork.de/danke.html" method="POST">
+    <form id="contactForm">
       <input type="text" name="name" placeholder="Dein Name" required />
       <input type="email" name="email" placeholder="Deine E-Mail-Adresse" required />
       <textarea name="nachricht" rows="5" placeholder="Worum geht’s?" required></textarea>
@@ -205,11 +205,11 @@
   </footer>
 
   <script>
+    // Rozwijanie listy
     document.querySelectorAll('.toggle-title').forEach(title => {
       title.addEventListener('click', () => {
         const item = title.parentElement;
         const content = item.querySelector('.toggle-content');
-
         if (item.classList.contains('open')) {
           content.style.maxHeight = content.scrollHeight + "px";
           requestAnimationFrame(() => { content.style.maxHeight = "0"; });
@@ -223,6 +223,26 @@
           });
         }
       });
+    });
+
+    // Formularz z przekierowaniem
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      const action = "https://formspree.io/f/mqalgjzw";
+
+      const response = await fetch(action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        window.location.href = "https://echtwork.de/danke.html";
+      } else {
+        alert("Fehler beim Senden. Bitte versuche es erneut.");
+      }
     });
   </script>
 
