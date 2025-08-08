@@ -132,6 +132,7 @@
       font-size: 14px;
       color: #aaa;
     }
+    /* Responsywność */
     @media (max-width: 768px) {
       header h1 { font-size: 38px; }
       header p { font-size: 18px; }
@@ -177,7 +178,7 @@
             <li>Calisthenics & Bodyweight-Training</li>
           </ul>
           <p class="subtext">
-            Und viele andere Trainingsarten – individuell auf dich zugeschnitten.<br>
+            Und viele andere Trainingsarten – individuell auf dich zugeschnitten.  
             Schreib mir, was dein Ziel ist, und wir passen den Plan perfekt an dich an.
           </p>
         </div>
@@ -191,11 +192,10 @@
   <section>
     <h2>Kontakt aufnehmen</h2>
     <p>Du willst starten oder hast Fragen? Schreib mir einfach:</p>
-    <form action="https://formspree.io/f/mqalgjzw" method="POST">
+    <form action="https://formspree.io/f/mqalgjzw?redirect=https://echtwork.de/danke.html" method="POST">
       <input type="text" name="name" placeholder="Dein Name" required />
       <input type="email" name="email" placeholder="Deine E-Mail-Adresse" required />
       <textarea name="nachricht" rows="5" placeholder="Worum geht’s?" required></textarea>
-      <input type="hidden" name="_redirect" value="https://echtwork.de/danke.html" />
       <button type="submit">Absenden</button>
     </form>
   </section>
@@ -209,6 +209,7 @@
       title.addEventListener('click', () => {
         const item = title.parentElement;
         const content = item.querySelector('.toggle-content');
+
         if (item.classList.contains('open')) {
           content.style.maxHeight = content.scrollHeight + "px";
           requestAnimationFrame(() => { content.style.maxHeight = "0"; });
