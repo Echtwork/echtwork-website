@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
@@ -27,6 +27,34 @@
       text-shadow: 0 2px 4px rgba(0,0,0,0.6), 0 6px 18px rgba(212,175,55,0.25);
       letter-spacing: 1.5px;
       transition: color 0.3s ease;
+      position: relative;
+      display: inline-block;
+    }
+    header h1::before,
+    header h1::after {
+      content: "★";
+      font-size: 24px;
+      color: #D4AF37;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      animation: starPulse 2s infinite ease-in-out;
+    }
+    header h1::before {
+      left: -35px;
+    }
+    header h1::after {
+      right: -35px;
+    }
+    @keyframes starPulse {
+      0%, 100% {
+        text-shadow: 0 0 4px rgba(212,175,55,0.6), 0 0 8px rgba(212,175,55,0.3);
+        transform: translateY(-50%) scale(1);
+      }
+      50% {
+        text-shadow: 0 0 8px rgba(212,175,55,0.9), 0 0 15px rgba(212,175,55,0.5);
+        transform: translateY(-50%) scale(1.2);
+      }
     }
     header p {
       font-size: 22px;
@@ -82,6 +110,19 @@
     form button:hover {
       background-color: #D4AF37;
       color: #111;
+    }
+    .form-status {
+      margin-top: 15px;
+      font-size: 16px;
+      display: none;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+    .success {
+      color: green;
+    }
+    .error {
+      color: red;
     }
     footer {
       text-align: center;
@@ -150,11 +191,14 @@
   <section>
     <h2>Kontakt aufnehmen</h2>
     <p>Du willst starten oder hast Fragen? Schreib mir einfach:</p>
-    <form action="mailto:echtwork@gmail.com" method="post" enctype="text/plain">
+    <form id="contact-form" action="https://formspree.io/f/mqalgjzw" method="POST">
       <input type="text" name="name" placeholder="Dein Name" required />
       <input type="email" name="email" placeholder="Deine E-Mail-Adresse" required />
       <textarea name="nachricht" rows="5" placeholder="Worum geht’s?" required></textarea>
+      <!-- Honeypot für Spam-Schutz -->
+      <input type="text" name="_gotcha" style="display:none" />
       <button type="submit">Absenden</button>
+      <p id="form-status" class="form-status"></p>
     </form>
   </section>
 
@@ -162,7 +206,53 @@
     &copy; 2025 ECHTWORK. Keine Ausreden. Nur Ergebnisse.
   </footer>
 
+  <script>
+    const form = document.getElementById('contact-form');
+    const statusMessage = document.getElementById('form-status');
+
+    form.addEventListener('submit', async function(event) {
+      event.preventDefault();
+      const data = new FormData(form);
+      const action = form.getAttribute('action');
+
+      statusMessage.style.display = 'none';
+      statusMessage.style.opacity = '1';
+
+      try {
+        const response = await fetch(action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          statusMessage.textContent = "✅ Danke! Deine Nachricht wurde gesendet.";
+          statusMessage.className = "form-status success";
+          showStatusMessage();
+          form.reset();
+        } else {
+          statusMessage.textContent = "❌ Fehler beim Senden. Bitte versuche es später erneut.";
+          statusMessage.className = "form-status error";
+          showStatusMessage();
+        }
+      } catch (error) {
+        statusMessage.textContent = "❌ Netzwerkfehler. Bitte später erneut versuchen.";
+        statusMessage.className = "form-status error";
+        showStatusMessage();
+      }
+    });
+
+    function showStatusMessage() {
+      statusMessage.style.display = 'block';
+      setTimeout(() => {
+        statusMessage.style.opacity = '0';
+        setTimeout(() => {
+          statusMessage.style.display = 'none';
+          statusMessage.style.opacity = '1';
+        }, 500);
+      }, 5000);
+    }
+  </script>
+
 </body>
 </html>
-
-
