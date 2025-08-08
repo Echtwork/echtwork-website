@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
@@ -14,15 +14,12 @@
       padding: 0;
       transition: background-color 0.3s ease, color 0.3s ease;
     }
-
     header {
       background: linear-gradient(135deg, #000000, #222222);
       color: #fff;
       text-align: center;
       padding: 60px 20px;
-      overflow: hidden;
     }
-
     header h1 {
       font-size: 56px;
       margin: 0;
@@ -33,50 +30,25 @@
       justify-content: center;
       align-items: center;
       gap: 15px;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 1s ease forwards;
-      animation-delay: 0.2s;
     }
-
     header h1::before,
     header h1::after {
       content: "★";
       color: #D4AF37;
       font-size: 24px;
     }
-
     header p {
       font-size: 22px;
       margin-top: 10px;
       color: #ddd;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 1s ease forwards;
-      animation-delay: 0.5s;
+      transition: color 0.3s ease;
     }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
     section {
       padding: 40px 20px;
       max-width: 800px;
       margin: auto;
     }
-
-    .angebot h2 {
-      font-size: 32px;
-      margin-bottom: 10px;
-    }
-
     .premium-label {
-      position: relative;
-      display: inline-block;
       font-size: 22px;
       font-weight: bold;
       background: linear-gradient(90deg, #FFD700, #D4AF37, #B8860B);
@@ -85,63 +57,60 @@
       margin-bottom: 20px;
       text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
       animation: glow 2s ease-in-out infinite alternate;
-      overflow: hidden;
     }
-
-    .premium-label::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -75%;
-      width: 50%;
-      height: 100%;
-      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.6), transparent);
-      transform: skewX(-25deg);
-      animation: shine 3s ease-in-out infinite;
+    @keyframes glow {
+      0% {
+        text-shadow: 0 0 8px rgba(255, 215, 0, 0.6), 0 0 12px rgba(255, 215, 0, 0.4);
+      }
+      100% {
+        text-shadow: 0 0 14px rgba(255, 215, 0, 0.9), 0 0 18px rgba(255, 215, 0, 0.6);
+      }
     }
-
-    @keyframes shine {
-      0% { left: -75%; }
-      50% { left: 125%; }
-      100% { left: 125%; }
+    .angebot h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
     }
-
     .angebot ul {
       list-style: none;
       padding-left: 0;
     }
-
     .angebot li {
       background: #f2f2f2;
       padding: 15px;
       margin-bottom: 10px;
       border-left: 5px solid #111;
       font-size: 18px;
-      cursor: pointer;
       transition: background-color 0.3s ease, border-color 0.3s ease;
+      cursor: pointer;
+      position: relative;
     }
-
     .angebot li:hover {
       background-color: #fffbe6;
       border-color: #D4AF37;
     }
-
-    .hidden-content {
-      display: none;
-      padding: 10px 15px;
-      background: #fafafa;
-      border-left: 5px solid #D4AF37;
-      font-size: 16px;
-      line-height: 1.5;
+    .toggle-title::after {
+      content: "▼";
+      position: absolute;
+      right: 15px;
+      transition: transform 0.3s ease;
     }
-
+    .open .toggle-title::after {
+      transform: rotate(180deg);
+    }
+    .toggle-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+      background: #f9f9f9;
+      padding-left: 15px;
+      margin-top: 5px;
+    }
     form {
       background: #f9f9f9;
       padding: 30px;
       border: 1px solid #ccc;
       transition: background-color 0.3s ease, border-color 0.3s ease;
     }
-
     form input, form textarea {
       width: 100%;
       padding: 12px;
@@ -151,7 +120,6 @@
       font-family: Arial, sans-serif;
       transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
     }
-
     form button {
       background-color: #111;
       color: #fff;
@@ -161,12 +129,10 @@
       cursor: pointer;
       transition: background 0.3s ease, color 0.3s ease;
     }
-
     form button:hover {
       background-color: #D4AF37;
       color: #111;
     }
-
     footer {
       text-align: center;
       padding: 20px;
@@ -174,7 +140,6 @@
       color: #777;
       transition: color 0.3s ease;
     }
-
     @media (max-width: 600px) {
       header h1 {
         font-size: 40px;
@@ -183,8 +148,6 @@
         font-size: 18px;
       }
     }
-
-    /* Dark mode */
     @media (prefers-color-scheme: dark) {
       body {
         background-color: #111;
@@ -215,17 +178,6 @@
         color: #aaa;
       }
     }
-
-    /* Fade-in for sections */
-    .fade-section {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .fade-section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
   </style>
 </head>
 <body>
@@ -235,24 +187,26 @@
     <p>Keine Ausreden. Nur Ergebnisse.</p>
   </header>
 
-  <section class="angebot fade-section">
+  <section class="angebot">
     <h2>Was ich dir biete</h2>
     <div class="premium-label">PREMIUM</div>
     <ul>
-      <li id="toggleTrainings">Individuelle Trainingspläne – 100% auf dich zugeschnitten <strong>(ab 79€)</strong></li>
-      <div id="trainingsList" class="hidden-content">
-        <ul>
-          <li>Calisthenics & Bodyweight-Training</li>
-        </ul>
-        <p>Und viele andere Trainingsarten, individuell auf dich zugeschnitten. Schreib mir dein Ziel, und wir passen den Trainingsplan an dich an.</p>
-      </div>
+      <li>
+        <div class="toggle-title">Individuelle Trainingspläne – 100% auf dich zugeschnitten <strong>(ab 79€)</strong></div>
+        <div class="toggle-content">
+          <ul>
+            <li>Calisthenics & Bodyweight-Training</li>
+            <li>Und viele andere Trainingsformen, individuell auf dich abgestimmt. Schreib mir dein Ziel und wir passen den Plan perfekt an dich an.</li>
+          </ul>
+        </div>
+      </li>
       <li>Standard-Trainingspläne <strong>(ab 50€)</strong></li>
       <li>Ernährungs- und Lifestyle-Empfehlungen (optional) <strong>(ab 49€)</strong></li>
       <li>Ehrlicher Support – keine Bullshit-Versprechen</li>
     </ul>
   </section>
 
-  <section class="fade-section">
+  <section>
     <h2>Kontakt aufnehmen</h2>
     <p>Du willst starten oder hast Fragen? Schreib mir einfach:</p>
     <form action="https://formspree.io/f/mqalgjzw" method="POST">
@@ -263,28 +217,34 @@
     </form>
   </section>
 
-  <footer class="fade-section">
+  <footer>
     &copy; 2025 ECHTWORK. Keine Ausreden. Nur Ergebnisse.
   </footer>
 
   <script>
-    // Toggle training list
-    document.getElementById("toggleTrainings").addEventListener("click", function() {
-      const list = document.getElementById("trainingsList");
-      list.style.display = (list.style.display === "block") ? "none" : "block";
-    });
+    document.querySelectorAll('.toggle-title').forEach(title => {
+      title.addEventListener('click', () => {
+        const item = title.parentElement;
+        const content = item.querySelector('.toggle-content');
 
-    // Fade-in on scroll
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+        if (item.classList.contains('open')) {
+          content.style.maxHeight = content.scrollHeight + "px";
+          requestAnimationFrame(() => {
+            content.style.maxHeight = "0";
+          });
+          item.classList.remove('open');
+        } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+          item.classList.add('open');
+          content.addEventListener('transitionend', function handler() {
+            if (item.classList.contains('open')) {
+              content.style.maxHeight = "none";
+              item.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+            content.removeEventListener('transitionend', handler);
+          });
         }
       });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.fade-section').forEach(section => {
-      observer.observe(section);
     });
   </script>
 
