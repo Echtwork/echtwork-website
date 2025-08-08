@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Danke – ECHTWORK</title>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&display=swap" rel="stylesheet">
   <style>
@@ -10,36 +10,64 @@
       font-family: 'Oswald', Arial, sans-serif;
       background-color: #111;
       color: #eee;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
       margin: 0;
+      padding: 0;
       text-align: center;
-      opacity: 0;
-      animation: fadeIn 1s ease forwards;
     }
-    h1 { font-size: 40px; color: #D4AF37; margin-bottom: 15px; }
-    p  { font-size: 18px; color: #ddd; margin-bottom: 30px; }
+    header {
+      padding: 50px 20px;
+      background: linear-gradient(135deg, #000000, #222222);
+    }
+    h1 {
+      color: #D4AF37;
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 20px;
+      color: #ccc;
+      max-width: 600px;
+      margin: auto;
+    }
     a {
-      display:inline-block;
-      padding:12px 20px;
-      background:#D4AF37;
-      color:#111;
-      text-decoration:none;
-      font-size:18px;
-      border-radius:5px;
-      transition:background-color .25s ease;
+      display: inline-block;
+      margin-top: 30px;
+      padding: 14px 28px;
+      font-size: 18px;
+      color: #111;
+      background-color: #D4AF37;
+      text-decoration: none;
+      border-radius: 4px;
     }
-    a:hover { background:#fff3cd; color:#111; }
-    @keyframes fadeIn { to { opacity: 1; } }
+    a:hover {
+      background-color: #fff3cd;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: #aaa;
+      margin-top: 50px;
+    }
+    @media (max-width: 600px) {
+      h1 { font-size: 32px; }
+      p { font-size: 18px; }
+      a { font-size: 16px; padding: 12px 20px; }
+    }
   </style>
 </head>
 <body>
-  <div>
+
+  <header>
     <h1>Danke für deine Nachricht!</h1>
-    <p>Ich werde mich so schnell wie möglich bei dir melden.</p>
-    <a href="https://echtwork.de">Zur Startseite</a>
-  </div>
+    <p>Ich melde mich so schnell wie möglich bei dir.  
+    Gemeinsam erreichen wir deine Ziele – keine Ausreden, nur Ergebnisse.</p>
+    <a href="index.html">Zurück zur Startseite</a>
+  </header>
+
+  <footer>
+    &copy; 2025 ECHTWORK. Keine Ausreden. Nur Ergebnisse.
+  </footer>
+
 </body>
 </html>
