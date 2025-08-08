@@ -8,14 +8,13 @@
   <style>
     body {
       font-family: 'Oswald', Arial, sans-serif;
-      background-color: #ffffff;
-      color: #111;
+      background-color: #111; /* ciemne tło */
+      color: #f0f0f0;
       margin: 0;
       padding: 0;
     }
     header {
       background: linear-gradient(135deg, #000000, #222222);
-      color: #fff;
       text-align: center;
       padding: 60px 20px;
     }
@@ -34,28 +33,47 @@
     header p {
       font-size: 22px;
       margin-top: 10px;
-      color: #ddd;
+      color: #ccc;
     }
     section {
       padding: 40px 20px;
       max-width: 800px;
       margin: auto;
+      background-color: #1a1a1a;
+      border-radius: 8px;
+      border: 1px solid rgba(212, 175, 55, 0.4); /* delikatne złote obramowanie */
+      box-shadow: 0 0 12px rgba(212, 175, 55, 0.15);
     }
     .angebot h2 {
       font-size: 32px;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+    .shiny {
+      background: linear-gradient(90deg, #FFD700, #FFF8DC, #FFD700);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 2.5s linear infinite;
+      font-weight: bold;
+      font-size: 18px;
+      margin-left: 10px;
+    }
+    @keyframes shine {
+      0% { background-position: 200% center; }
+      100% { background-position: 0% center; }
     }
     .angebot ul {
       list-style: none;
       padding-left: 0;
     }
     .angebot li {
-      background: #f2f2f2;
+      background: #222;
       padding: 15px;
       margin-bottom: 10px;
-      border-left: 5px solid #111;
+      border-left: 5px solid #D4AF37;
       font-size: 18px;
-      transition: background-color 0.3s ease, border-color 0.3s ease;
+      transition: background-color 0.3s ease;
     }
     .toggle-title {
       cursor: pointer;
@@ -88,40 +106,42 @@
     .toggle-item.open .toggle-arrow {
       transform: rotate(90deg);
     }
-    .shiny {
-      background: linear-gradient(90deg, #FFD700, #FFF8DC, #FFD700);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: shine 2.5s linear infinite;
-      font-weight: bold;
+    .sublist li {
+      background: none;
+      border: none;
+      padding: 5px 0;
+      color: #ddd;
     }
-    @keyframes shine {
-      0% { background-position: 200% center; }
-      100% { background-position: 0% center; }
+    .subtext {
+      color: #bbb;
+      font-size: 16px;
+      margin-top: 10px;
     }
     form {
-      background: #f9f9f9;
+      background: #222;
       padding: 30px;
-      border: 1px solid #ccc;
+      border: 1px solid #444;
+      border-radius: 8px;
     }
     form input, form textarea {
       width: 100%;
       padding: 12px;
       margin-bottom: 15px;
-      border: 1px solid #aaa;
+      background-color: #111;
+      color: #fff;
+      border: 1px solid #555;
       border-radius: 4px;
     }
     form button {
-      background-color: #111;
-      color: #fff;
+      background-color: #D4AF37;
+      color: #111;
       padding: 14px 20px;
       border: none;
       font-size: 18px;
       cursor: pointer;
     }
     form button:hover {
-      background-color: #D4AF37;
+      background-color: #fff3cd;
       color: #111;
     }
     footer {
@@ -129,10 +149,7 @@
       padding: 20px;
       font-size: 14px;
       color: #777;
-    }
-    @media (max-width: 600px) {
-      header h1 { font-size: 40px; }
-      header p { font-size: 18px; }
+      background-color: #000;
     }
   </style>
 </head>
@@ -148,7 +165,7 @@
     <ul>
       <li class="toggle-item">
         <div class="toggle-title">
-          <span>Individuelle Trainingspläne – 100% auf dich zugeschnitten <strong>(ab 79€)</strong> <span class="shiny">PREMIUM</span></span>
+          <span>Individuelle Trainingspläne – 100% auf dich zugeschnitten <strong>(80€)</strong> <span class="shiny">PREMIUM</span></span>
           <span class="toggle-arrow">➤</span>
         </div>
         <div class="toggle-content">
@@ -159,14 +176,14 @@
             <li>Mobility & Flexibilität</li>
             <li>Calisthenics & Bodyweight-Training</li>
           </ul>
-          <p>
+          <p class="subtext">
             Und viele andere Trainingsarten – individuell auf dich zugeschnitten.  
             Schreib mir, was dein Ziel ist, und wir passen den Plan perfekt an dich an.
           </p>
         </div>
       </li>
-      <li>Standard-Trainingspläne <strong>(ab 50€)</strong></li>
-      <li>Ernährungs- und Lifestyle-Empfehlungen (optional) <strong>(ab 40€)</strong></li>
+      <li>Standard-Trainingspläne <strong>(50€)</strong></li>
+      <li>Ernährungs- und Lifestyle-Empfehlungen (optional) <strong>(40€)</strong></li>
       <li>Ehrlicher Support – keine Bullshit-Versprechen</li>
     </ul>
   </section>
