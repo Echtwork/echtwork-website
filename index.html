@@ -8,8 +8,8 @@
   <style>
     body {
       font-family: 'Oswald', Arial, sans-serif;
-      background-color: #111; /* stałe ciemne tło */
-      color: #f0f0f0;
+      background-color: #111;
+      color: #eee;
       margin: 0;
       padding: 0;
     }
@@ -40,8 +40,6 @@
       padding: 40px 20px;
       max-width: 800px;
       margin: auto;
-      background-color: #1a1a1a;
-      border-radius: 8px;
     }
     .angebot h2 {
       font-size: 32px;
@@ -54,18 +52,17 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: shine 2s infinite linear;
-      margin-right: 8px;
+      background-size: 200% auto;
     }
     @keyframes shine {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 200% 50%; }
+      to { background-position: 200% center; }
     }
     .angebot ul {
       list-style: none;
       padding-left: 0;
     }
     .angebot li {
-      background: #222;
+      background: #1e1e1e;
       padding: 15px;
       margin-bottom: 10px;
       border-left: 5px solid #D4AF37;
@@ -73,9 +70,13 @@
     }
     .toggle-title {
       cursor: pointer;
+      user-select: none;
       display: flex;
       align-items: center;
       justify-content: space-between;
+    }
+    .toggle-title:hover {
+      color: #D4AF37;
     }
     .toggle-arrow {
       transition: transform 0.3s ease;
@@ -87,6 +88,7 @@
     .toggle-item .toggle-content {
       max-height: 0;
       overflow: hidden;
+      margin-top: 0;
       opacity: 0;
       transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease;
     }
@@ -98,16 +100,16 @@
       transform: rotate(90deg);
     }
     form {
-      background: #222;
+      background: #1e1e1e;
       padding: 30px;
-      border: 1px solid #444;
+      border: 1px solid #555;
     }
     form input, form textarea {
       width: 100%;
       padding: 12px;
       margin-bottom: 15px;
-      background-color: #111;
-      color: #fff;
+      background-color: #222;
+      color: #eee;
       border: 1px solid #555;
       border-radius: 4px;
     }
@@ -118,6 +120,7 @@
       border: none;
       font-size: 18px;
       cursor: pointer;
+      width: 100%;
     }
     form button:hover {
       background-color: #fff3cd;
@@ -127,8 +130,27 @@
       text-align: center;
       padding: 20px;
       font-size: 14px;
-      color: #999;
-      background-color: #000;
+      color: #aaa;
+    }
+    /* Responsywność */
+    @media (max-width: 768px) {
+      header h1 { font-size: 38px; }
+      header p { font-size: 18px; }
+      section { padding: 20px 15px; }
+      .angebot h2 { font-size: 26px; }
+      .angebot li { font-size: 16px; padding: 12px; }
+      .shiny { font-size: 18px; }
+      .toggle-title { flex-direction: column; align-items: flex-start; }
+      .toggle-arrow { align-self: flex-end; margin-top: 5px; }
+      form { padding: 20px; }
+      form input, form textarea { font-size: 16px; padding: 10px; }
+      form button { font-size: 16px; padding: 12px; }
+    }
+    @media (max-width: 480px) {
+      header h1 { font-size: 30px; }
+      header p { font-size: 16px; }
+      .angebot h2 { font-size: 22px; }
+      .angebot li { font-size: 15px; padding: 10px; }
     }
   </style>
 </head>
@@ -187,19 +209,16 @@
       title.addEventListener('click', () => {
         const item = title.parentElement;
         const content = item.querySelector('.toggle-content');
+
         if (item.classList.contains('open')) {
           content.style.maxHeight = content.scrollHeight + "px";
-          requestAnimationFrame(() => {
-            content.style.maxHeight = "0";
-          });
+          requestAnimationFrame(() => { content.style.maxHeight = "0"; });
           item.classList.remove('open');
         } else {
           content.style.maxHeight = content.scrollHeight + "px";
           item.classList.add('open');
           content.addEventListener('transitionend', function handler() {
-            if (item.classList.contains('open')) {
-              content.style.maxHeight = "none";
-            }
+            if (item.classList.contains('open')) content.style.maxHeight = "none";
             content.removeEventListener('transitionend', handler);
           });
         }
