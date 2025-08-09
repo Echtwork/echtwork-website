@@ -26,6 +26,11 @@
       margin: 0 auto 20px;
       filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.8)); /* złoty cień */
     }
+    header p {
+      font-size: 22px;
+      margin-top: 10px;
+      color: #ddd;
+    }
     header .stars {
       color: #D4AF37;
       font-size: 50px; /* większe gwiazdki */
@@ -34,7 +39,11 @@
     header p {
       font-size: 22px;
       margin-top: 10px;
-      color: #ddd;
+      color: #DDD;
+      display: inline;
+    }
+    header .gold-text {
+      color: #D4AF37;
     }
     section {
       padding: 40px 20px;
@@ -157,10 +166,8 @@
 <body>
 
   <header>
-    <span class="stars">★</span>
     <img src="EchtWorkLogo.PNG" alt="ECHTWORK Logo">
-    <span class="stars">★</span>
-    <p>Keine Ausreden. Nur Ergebnisse.</p>
+    <p><span class="gold-text">★</span> Keine Ausreden. Nur Ergebnisse. <span class="gold-text">★</span></p>
   </header>
 
   <section class="angebot">
@@ -208,44 +215,3 @@
   <script>
     // Rozwijanie listy
     document.querySelectorAll('.toggle-title').forEach(title => {
-      title.addEventListener('click', () => {
-        const item = title.parentElement;
-        const content = item.querySelector('.toggle-content');
-        if (item.classList.contains('open')) {
-          content.style.maxHeight = content.scrollHeight + "px";
-          requestAnimationFrame(() => { content.style.maxHeight = "0"; });
-          item.classList.remove('open');
-        } else {
-          content.style.maxHeight = content.scrollHeight + "px";
-          item.classList.add('open');
-          content.addEventListener('transitionend', function handler() {
-            if (item.classList.contains('open')) content.style.maxHeight = "none";
-            content.removeEventListener('transitionend', handler);
-          });
-        }
-      });
-    });
-
-    // Formularz z przekierowaniem
-    document.getElementById('contactForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const form = e.target;
-      const data = new FormData(form);
-      const action = "https://formspree.io/f/mqalgjzw";
-
-      const response = await fetch(action, {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if (response.ok) {
-        window.location.href = "https://echtwork.de/danke.html";
-      } else {
-        alert("Fehler beim Senden. Bitte versuche es erneut.");
-      }
-    });
-  </script>
-
-</body>
-</html>
