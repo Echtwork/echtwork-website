@@ -20,23 +20,16 @@
       padding: 60px 20px;
     }
     header img {
-      max-width: 200px;
+      max-width: 300px; /* powiększone logo */
       height: auto;
       display: block;
       margin: 0 auto 20px;
       filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.8)); /* złoty cień */
     }
-    header h1 {
-      font-size: 56px;
-      margin: 0;
-      color: #D4AF37;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.6), 0 6px 18px rgba(212,175,55,0.25);
-      letter-spacing: 1.5px;
-    }
     header .stars {
       color: #D4AF37;
-      font-size: 28px;
-      margin: 0 8px;
+      font-size: 50px; /* większe gwiazdki */
+      margin: 0 15px;
     }
     header p {
       font-size: 22px;
@@ -164,17 +157,19 @@
 <body>
 
   <header>
+    <span class="stars">★</span>
     <img src="EchtWorkLogo.PNG" alt="ECHTWORK Logo">
-    <h1><span class="stars">★</span> ECHTWORK <span class="stars">★</span></h1>
+    <span class="stars">★</span>
     <p>Keine Ausreden. Nur Ergebnisse.</p>
   </header>
 
   <section class="angebot">
     <h2>Was ich dir biete</h2>
     <ul>
+      <li>Ernährungs- und Lifestyle-Empfehlungen <strong>(40€)</strong></li>
       <li class="toggle-item">
         <div class="toggle-title">
-          <span><span class="shiny">PREMIUM</span> Individuelle Trainingspläne – 100% auf dich zugeschnitten <strong>(80€)</strong></span>
+          <span>Standard-Trainingspläne <strong>(50€)</strong></span>
           <span class="toggle-arrow">➤</span>
         </div>
         <div class="toggle-content">
@@ -185,15 +180,10 @@
             <li>Mobility & Flexibilität</li>
             <li>Calisthenics & Bodyweight-Training</li>
           </ul>
-          <p class="subtext">
-            Und viele andere Trainingsarten – individuell auf dich zugeschnitten.  
-            Schreib mir, was dein Ziel ist, und wir passen den Plan perfekt an dich an.
-          </p>
         </div>
       </li>
-      <li>Standard-Trainingspläne <strong>(50€)</strong></li>
-      <li>Ernährungs- und Lifestyle-Empfehlungen <strong>(40€)</strong></li>
-      <li>Ehrlicher Support – keine Bullshit-Versprechen</li>
+      <li><span class="shiny">PREMIUM</span> Individuelle Trainingspläne – 100% auf dich zugeschnitten <strong>(80€)</strong></li>
+      <p style="font-size: 14px; color: #ddd;">Schreib mir, was dein Ziel ist, und wir passen den Plan perfekt an dich an.</p>
     </ul>
   </section>
 
