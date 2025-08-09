@@ -192,38 +192,28 @@
           <p>Schreib mir, was dein Ziel ist, und wir passen den Plan perfekt an dich an.</p>
         </div>
       </li>
-      <!-- Sekcja bez rozwijania -->
       <li>
         <div class="toggle-title">
-          <span><span class="gold-text">Ehrlicher Support</span> – keine Bullshit-Versprechen</span>
+          <span><span class="gold-text">Ehrlicher Support</span> – deine Ziele ohne falsche Versprechungen</span>
         </div>
         <div class="toggle-content">
-          <p>Ich biete echten, ehrlichen Support ohne leere Versprechungen. Dein Erfolg ist meine Priorität, und ich werde dich auf deinem Weg begleiten – immer mit klaren Zielen und realistischen Erwartungen.</p>
+          <p>Ich unterstütze dich mit ehrlicher Beratung und transparenten Zielen. Kein leeres Gelaber – nur praktische Unterstützung, die dir hilft, deine Ergebnisse zu erreichen.</p>
         </div>
       </li>
     </ul>
   </section>
 
   <section>
-    <h2>Kontakt aufnehmen</h2>
-    <p>Du willst starten oder hast Fragen? Schreib mir einfach:</p>
-    <form id="contactForm">
+    <h2>Kontakt aufnehmen und Bestellung aufgeben</h2>
+    <p>Du willst starten oder hast Fragen? Schreib mir einfach oder wähle deinen Trainingsplan aus:</p>
+
+    <form id="orderForm">
+      <label for="plan">Wähle deinen Plan:</label>
+      <select name="plan" id="plan" required>
+        <option value="ernahrung">Ernährungs- und Lifestyle-Empfehlungen (40€)</option>
+        <option value="standard">Standard-Trainingspläne (50€)</option>
+        <option value="premium">Premium-Trainingsplan (80€)</option>
+      </select>
+
       <input type="text" name="name" placeholder="Dein Name" required />
-      <input type="email" name="email" placeholder="Deine E-Mail-Adresse" required />
-      <textarea name="nachricht" rows="5" placeholder="Worum geht’s?" required></textarea>
-      <button type="submit">Absenden</button>
-    </form>
-  </section>
-
-  <footer>
-    &copy; 2025 ECHTWORK. Keine Ausreden. Nur Ergebnisse.<br>
-    <a href="impressum.html">Impressum</a> | 
-    <a href="datenschutz.html">Datenschutz</a> | 
-    <a href="widerruf.html">Widerrufsbelehrung</a>
-  </footer>
-
-  <script>
-    // Rozwijanie listy
-    document.querySelectorAll('.toggle-title').forEach(title => {
-      title.addEventListener('click', () => {
-        const item = title
+      <input type
