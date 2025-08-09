@@ -15,7 +15,6 @@
     }
 
     header {
-      background: linear-gradient(135deg, #000000, #222222);
       color: #fff;
       text-align: center;
       padding: 60px 20px;
@@ -23,8 +22,11 @@
       align-items: center;
       justify-content: center;
       flex-direction: column;
+      position: relative; /* Pozycjonowanie dla gwiazdek */
+      background-color: transparent; /* Usuń szary gradient */
     }
 
+    /* Wspólne style dla gwiazdek */
     header .stars {
       color: #FFD700; /* Złoty kolor gwiazdek */
       font-size: 60px;
@@ -47,11 +49,11 @@
     }
 
     header img {
-      max-width: 300px;
+      max-width: 300px; /* Powiększone logo */
       height: auto;
       display: block;
       margin: 10px 0;
-      filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.8));
+      filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.8)); /* Złoty cień */
       z-index: 2;
     }
 
