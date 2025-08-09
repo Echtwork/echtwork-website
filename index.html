@@ -192,6 +192,15 @@
           <p>Schreib mir, was dein Ziel ist, und wir passen den Plan perfekt an dich an.</p>
         </div>
       </li>
+      <!-- Sekcja bez rozwijania -->
+      <li>
+        <div class="toggle-title">
+          <span><span class="gold-text">Ehrlicher Support</span> – keine Bullshit-Versprechen</span>
+        </div>
+        <div class="toggle-content">
+          <p>Ich biete echten, ehrlichen Support ohne leere Versprechungen. Dein Erfolg ist meine Priorität, und ich werde dich auf deinem Weg begleiten – immer mit klaren Zielen und realistischen Erwartungen.</p>
+        </div>
+      </li>
     </ul>
   </section>
 
@@ -207,4 +216,14 @@
   </section>
 
   <footer>
-    &copy; 2025
+    &copy; 2025 ECHTWORK. Keine Ausreden. Nur Ergebnisse.<br>
+    <a href="impressum.html">Impressum</a> | 
+    <a href="datenschutz.html">Datenschutz</a> | 
+    <a href="widerruf.html">Widerrufsbelehrung</a>
+  </footer>
+
+  <script>
+    // Rozwijanie listy
+    document.querySelectorAll('.toggle-title').forEach(title => {
+      title.addEventListener('click', () => {
+        const item = title
