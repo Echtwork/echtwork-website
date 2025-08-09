@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
@@ -14,22 +14,17 @@
       padding: 0;
     }
     header {
-      background: linear-gradient(135deg, #000000, #222222);
+      background-color: #111;
       color: #fff;
       text-align: center;
       padding: 60px 20px;
     }
     header img {
-      max-width: 300px; /* powiększone logo */
+      max-width: 300px;
       height: auto;
       display: block;
       margin: 0 auto 20px;
-      filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.8)); /* złoty cień */
-    }
-    header .stars {
-      color: #D4AF37;
-      font-size: 50px; /* większe gwiazdki */
-      margin: 0 15px;
+      filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.8));
     }
     header p {
       font-size: 22px;
@@ -152,14 +147,32 @@
       .angebot h2 { font-size: 22px; }
       .angebot li { font-size: 15px; padding: 10px; }
     }
+    /* Now for the new section */
+    .ehrlicher-support {
+      background-color: #333;
+      padding: 40px 20px;
+      margin-top: 40px;
+    }
+    .ehrlicher-support h2 {
+      font-size: 28px;
+      color: #FFD700;
+      margin-bottom: 20px;
+    }
+    .ehrlicher-support p {
+      font-size: 18px;
+      color: #eee;
+      line-height: 1.6;
+    }
+    .ehrlicher-support .highlight {
+      font-weight: bold;
+      color: #D4AF37;
+    }
   </style>
 </head>
 <body>
 
   <header>
-    <span class="stars">★</span>
     <img src="EchtWorkLogo.PNG" alt="ECHTWORK Logo">
-    <span class="stars">★</span>
     <p>Keine Ausreden. Nur Ergebnisse.</p>
   </header>
 
@@ -188,20 +201,23 @@
           <span class="toggle-arrow">➤</span>
         </div>
         <div class="toggle-content">
-          <ul class="sublist">
-            <li>Krafttraining</li>
-            <li>Ausdauertraining</li>
-            <li>Functional Fitness</li>
-            <li>Mobility & Flexibilität</li>
-            <li>Calisthenics & Bodyweight-Training</li>
-          </ul>
-          <p class="subtext">
-            Und viele andere Trainingsarten – individuell auf dich zugeschnitten.  
+          <p class="subtext" style="font-size: 14px; color: #bbb;">
             Schreib mir, was dein Ziel ist, und wir passen den Plan perfekt an dich an.
           </p>
         </div>
       </li>
     </ul>
+  </section>
+
+  <section class="ehrlicher-support">
+    <h2>Ehrlicher Support – keine Bullshit-Versprechen</h2>
+    <p>
+      Bei <span class="highlight">ECHTWORK</span> bekommst du keinen leeren Versprechungen. Wir setzen uns realistische Ziele und arbeiten konstant daran, diese zu erreichen. 
+      <span class="highlight">Es geht nicht darum, schnelle Lösungen zu finden, sondern nachhaltige Ergebnisse zu erzielen</span>.
+    </p>
+    <p>
+      Dein Fortschritt wird stetig überwacht, und wir passen den Plan an, wenn es nötig ist. Bei Fragen stehe ich dir jederzeit zur Verfügung. Es ist kein leeres Versprechen, sondern der echte Weg zu deinem Erfolg.
+    </p>
   </section>
 
   <section>
@@ -216,47 +232,3 @@
   </section>
 
   <footer>
-    &copy; 2025 ECHTWORK. Keine Ausreden. Nur Ergebnisse.<br>
-    <a href="impressum.html" style="color:#D4AF37; text-decoration:none;">Impressum</a> | 
-    <a href="datenschutz.html" style="color:#D4AF37; text-decoration:none;">Datenschutz</a> | 
-    <a href="widerruf.html" style="color:#D4AF37; text-decoration:none;">Widerrufsbelehrung</a>
-  </footer>
-
-  <script>
-    // Rozwijanie listy
-    document.querySelectorAll('.toggle-title').forEach(title => {
-      title.addEventListener('click', () => {
-        const item = title.parentElement;
-        const content = item.querySelector('.toggle-content');
-        if (item.classList.contains('open')) {
-          content.style.maxHeight = content.scrollHeight + "px";
-          requestAnimationFrame(() => { content.style.maxHeight = "0"; });
-          item.classList.remove('open');
-        } else {
-          content.style.maxHeight = content.scrollHeight + "px";
-          item.classList.add('open');
-          content.addEventListener('transitionend', function handler() {
-            if (item.classList.contains('open')) content.style.maxHeight = "none";
-            content.removeEventListener('transitionend', handler);
-          });
-        }
-      });
-    });
-
-    // Formularz z przekierowaniem
-    document.getElementById('contactForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const form = e.target;
-      const data = new FormData(form);
-      const action = "https://formspree.io/f/mqalgjzw";
-
-      const response = await fetch(action, {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if (response.ok) {
-        window.location.href = "https://echtwork.de/danke.html";
-      } else {
-        alert("Fehler beim Senden. Bitte versuche ​:contentReference[oaicite:0]{index=0}​
