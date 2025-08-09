@@ -31,17 +31,6 @@
       margin-top: 10px;
       color: #ddd;
     }
-    header .stars {
-      color: #D4AF37;
-      font-size: 50px; /* większe gwiazdki */
-      margin: 0 15px;
-    }
-    header p {
-      font-size: 22px;
-      margin-top: 10px;
-      color: #DDD;
-      display: inline;
-    }
     header .gold-text {
       color: #D4AF37;
     }
@@ -104,7 +93,7 @@
     .toggle-item.open .toggle-content {
       opacity: 1;
       margin-top: 10px;
-      max-height: 1000px; /* Możesz dostosować tę wartość w zależności od treści */
+      max-height: 500px; /* Wartość maksymalna dla rozwoju */
     }
     .toggle-item.open .toggle-arrow {
       transform: rotate(90deg);
@@ -141,6 +130,10 @@
       padding: 20px;
       font-size: 14px;
       color: #aaa;
+    }
+    footer a {
+      color: #D4AF37;
+      text-decoration: none;
     }
     /* Responsywność */
     @media (max-width: 768px) {
@@ -215,6 +208,13 @@
 
   <footer>
     &copy; 2025 ECHTWORK. Keine Ausreden. Nur Ergebnisse.<br>
-    <a href="impressum.html" style="color:#D4AF37; text-decoration:none;">Impressum</a> | 
-    <a href="datenschutz.html" style="color:#D4AF37; text-decoration:none;">Datenschutz</a> | 
-    <a href="widerruf.html" style
+    <a href="impressum.html">Impressum</a> | 
+    <a href="datenschutz.html">Datenschutz</a> | 
+    <a href="widerruf.html">Widerrufsbelehrung</a>
+  </footer>
+
+  <script>
+    // Rozwijanie sekcji
+    document.querySelectorAll('.toggle-title').forEach(title => {
+      title.addEventListener('click', () => {
+        const item = title.parentElement
