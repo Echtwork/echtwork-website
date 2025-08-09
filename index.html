@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
@@ -19,18 +19,17 @@
       text-align: center;
       padding: 60px 20px;
     }
-    header h1 {
-      font-size: 56px;
-      margin: 0;
-      color: #D4AF37;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.6), 0 6px 18px rgba(212,175,55,0.25);
-      letter-spacing: 1.5px;
+    header img {
+      max-width: 300px; /* powiększone logo */
+      height: auto;
+      display: block;
+      margin: 0 auto 20px;
+      filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.8)); /* złoty cień */
     }
     header .stars {
       color: #D4AF37;
-      font-size: 32px;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6), 0 0 10px rgba(212, 175, 55, 0.7);
-      animation: shine 1.5s infinite alternate;
+      font-size: 50px; /* większe gwiazdki */
+      margin: 0 15px;
     }
     header p {
       font-size: 22px;
@@ -158,13 +157,31 @@
 <body>
 
   <header>
-    <h1><span class="stars">★</span> ECHTWORK <span class="stars">★</span></h1>
-    <p>★ Keine Ausreden. Nur Ergebnisse. ★</p>
+    <span class="stars">★</span>
+    <img src="EchtWorkLogo.PNG" alt="ECHTWORK Logo">
+    <span class="stars">★</span>
+    <p>Keine Ausreden. Nur Ergebnisse.</p>
   </header>
 
   <section class="angebot">
     <h2>Was ich dir biete</h2>
     <ul>
+      <li>Ernährungs- und Lifestyle-Empfehlungen <strong>(40€)</strong></li>
+      <li class="toggle-item">
+        <div class="toggle-title">
+          <span>Standard-Trainingspläne <strong>(50€)</strong></span>
+          <span class="toggle-arrow">➤</span>
+        </div>
+        <div class="toggle-content">
+          <ul class="sublist">
+            <li>Krafttraining</li>
+            <li>Ausdauertraining</li>
+            <li>Functional Fitness</li>
+            <li>Mobility & Flexibilität</li>
+            <li>Calisthenics & Bodyweight-Training</li>
+          </ul>
+        </div>
+      </li>
       <li class="toggle-item">
         <div class="toggle-title">
           <span><span class="shiny">PREMIUM</span> Individuelle Trainingspläne – 100% auf dich zugeschnitten <strong>(80€)</strong></span>
@@ -184,9 +201,6 @@
           </p>
         </div>
       </li>
-      <li>Standard-Trainingspläne <strong>(50€)</strong></li>
-      <li>Ernährungs- und Lifestyle-Empfehlungen <strong>(40€)</strong></li>
-      <li>Ehrlicher Support – keine Bullshit-Versprechen</li>
     </ul>
   </section>
 
@@ -197,4 +211,52 @@
       <input type="text" name="name" placeholder="Dein Name" required />
       <input type="email" name="email" placeholder="Deine E-Mail-Adresse" required />
       <textarea name="nachricht" rows="5" placeholder="Worum geht’s?" required></textarea>
-      <button type="submit">Absenden
+      <button type="submit">Absenden</button>
+    </form>
+  </section>
+
+  <footer>
+    &copy; 2025 ECHTWORK. Keine Ausreden. Nur Ergebnisse.<br>
+    <a href="impressum.html" style="color:#D4AF37; text-decoration:none;">Impressum</a> | 
+    <a href="datenschutz.html" style="color:#D4AF37; text-decoration:none;">Datenschutz</a> | 
+    <a href="widerruf.html" style="color:#D4AF37; text-decoration:none;">Widerrufsbelehrung</a>
+  </footer>
+
+  <script>
+    // Rozwijanie listy
+    document.querySelectorAll('.toggle-title').forEach(title => {
+      title.addEventListener('click', () => {
+        const item = title.parentElement;
+        const content = item.querySelector('.toggle-content');
+        if (item.classList.contains('open')) {
+          content.style.maxHeight = content.scrollHeight + "px";
+          requestAnimationFrame(() => { content.style.maxHeight = "0"; });
+          item.classList.remove('open');
+        } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+          item.classList.add('open');
+          content.addEventListener('transitionend', function handler() {
+            if (item.classList.contains('open')) content.style.maxHeight = "none";
+            content.removeEventListener('transitionend', handler);
+          });
+        }
+      });
+    });
+
+    // Formularz z przekierowaniem
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      const action = "https://formspree.io/f/mqalgjzw";
+
+      const response = await fetch(action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        window.location.href = "https://echtwork.de/danke.html";
+      } else {
+        alert("Fehler beim Senden. Bitte versuche ​:contentReference[oaicite:0]{index=0}​
