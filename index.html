@@ -104,6 +104,7 @@
     .toggle-item.open .toggle-content {
       opacity: 1;
       margin-top: 10px;
+      max-height: 1000px; /* Możesz dostosować tę wartość w zależności od treści */
     }
     .toggle-item.open .toggle-arrow {
       transform: rotate(90deg);
@@ -189,8 +190,15 @@
           </ul>
         </div>
       </li>
-      <li><span class="shiny">PREMIUM</span> Individuelle Trainingspläne – 100% auf dich zugeschnitten <strong>(80€)</strong></li>
-      <p style="font-size: 14px; color: #ddd;">Schreib mir, was dein Ziel ist, und wir passen den Plan perfekt an dich an.</p>
+      <li class="toggle-item">
+        <div class="toggle-title">
+          <span><span class="shiny">PREMIUM</span> Individuelle Trainingspläne – 100% auf dich zugeschnitten <strong>(80€)</strong></span>
+          <span class="toggle-arrow">➤</span>
+        </div>
+        <div class="toggle-content">
+          <p>Schreib mir, was dein Ziel ist, und wir passen den Plan perfekt an dich an.</p>
+        </div>
+      </li>
     </ul>
   </section>
 
@@ -209,9 +217,4 @@
     &copy; 2025 ECHTWORK. Keine Ausreden. Nur Ergebnisse.<br>
     <a href="impressum.html" style="color:#D4AF37; text-decoration:none;">Impressum</a> | 
     <a href="datenschutz.html" style="color:#D4AF37; text-decoration:none;">Datenschutz</a> | 
-    <a href="widerruf.html" style="color:#D4AF37; text-decoration:none;">Widerrufsbelehrung</a>
-  </footer>
-
-  <script>
-    // Rozwijanie listy
-    document.querySelectorAll('.toggle-title').forEach(title => {
+    <a href="widerruf.html" style
