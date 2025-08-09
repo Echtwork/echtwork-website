@@ -27,14 +27,25 @@
     header .stars {
       color: #D4AF37;
       font-size: 60px; /* większe gwiazdki */
-      margin: 0 15px; /* gwiazdki z obu stron logo */
       text-shadow: 0 2px 4px rgba(0,0,0,0.6), 0 6px 18px rgba(212,175,55,0.25); /* premium styl gwiazdek */
+    }
+    header .left-stars {
+      margin-right: 10px;
+    }
+    header .right-stars {
+      margin-left: 10px;
+    }
+    header .top-stars {
+      margin-bottom: 10px;
+    }
+    header .bottom-stars {
+      margin-top: 10px;
     }
     header img {
       max-width: 300px; /* powiększone logo */
       height: auto;
       display: block;
-      margin: 0 10px;
+      margin: 10px 0;
       filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.8)); /* złoty cień */
     }
     header p {
@@ -163,11 +174,11 @@
 <body>
 
   <header>
-    <span class="stars">★</span>
-    <span class="stars">★</span>
+    <span class="stars top-stars">★</span>
+    <span class="stars left-stars">★</span>
     <img src="EchtWorkLogo.PNG" alt="ECHTWORK Logo">
-    <span class="stars">★</span>
-    <span class="stars">★</span>
+    <span class="stars right-stars">★</span>
+    <span class="stars bottom-stars">★</span>
     <p>Keine Ausreden. Nur Ergebnisse.</p>
   </header>
 
