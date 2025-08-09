@@ -1,247 +1,145 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="ECHTWORK - Keine Ausreden. Nur Ergebnisse. Personal Training, maßgeschneiderte Pläne und echte Resultate.">
+  <title>ECHTWORK</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Oswald', sans-serif;
+      background-color: #070707;
+      color: white;
+    }
+    header {
+      background-color: black;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 10px 20px;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav a {
+      color: #D4AF37;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h1, h2 {
+      color: #D4AF37;
+    }
+    .btn {
+      background-color: #D4AF37;
+      color: black;
+      padding: 10px 20px;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      margin-top: 20px;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: black;
+      color: #aaa;
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
 
-// ECHTWORK - Single-file React landing page component
-// Tailwind CSS required. Drop into a Next.js or CRA project with Tailwind configured.
-// Usage: import EchtworkLanding from './EchtworkLanding'; then render <EchtworkLanding />
-
-const brand = {
-  name: "ECHTWORK",
-  tagline: "Keine Ausreden. Nur Ergebnisse.",
-  colors: {
-    black: "#070707",
-    gold: "#D4AF37", // classic gold
-    goldDark: "#b88f2c",
-  },
-};
-
-export default function EchtworkLanding() {
-  const [open, setOpen] = React.useState(false);
-
-  return (
-    <div className="min-h-screen bg-[#070707] text-white antialiased">
-      {/* Container */}
-      <header className="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <div
-            className="font-extrabold tracking-wider text-2xl"
-            style={{ color: brand.colors.gold }}
-          >
-            {brand.name}
-          </div>
-          <div className="text-sm opacity-80">{brand.tagline}</div>
-        </div>
-
-        <nav className="hidden md:flex gap-6 items-center text-sm opacity-90">
-          <a href="#programs" className="hover:underline">
-            Programs
-          </a>
-          <a href="#about" className="hover:underline">
-            About
-          </a>
-          <a href="#contact" className="hover:underline">
-            Kontakt
-          </a>
-          <a
-            href="#signup"
-            className="ml-4 px-4 py-2 rounded-xl font-semibold"
-            style={{ background: "linear-gradient(90deg, #d4af37 0%, #b88f2c 100%)", color: "#070707" }}
-          >
-            Join Now
-          </a>
-        </nav>
-
-        <button className="md:hidden" onClick={() => setOpen(!open)} aria-label="menu">
-          {open ? <X /> : <Menu />}
-        </button>
-      </header>
-
-      {/* Mobile menu */}
-      {open && (
-        <motion.div
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="md:hidden px-6 pb-6"
-        >
-          <div className="flex flex-col gap-3">
-            <a href="#programs" onClick={() => setOpen(false)}>
-              Programs
-            </a>
-            <a href="#about" onClick={() => setOpen(false)}>
-              About
-            </a>
-            <a href="#contact" onClick={() => setOpen(false)}>
-              Kontakt
-            </a>
-            <a href="#signup" onClick={() => setOpen(false)} className="mt-2 inline-block px-4 py-2 rounded-xl font-semibold" style={{ background: brand.colors.gold, color: brand.colors.black }}>
-              Join Now
-            </a>
-          </div>
-        </motion.div>
-      )}
-
-      {/* Hero */}
-      <main className="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center gap-10">
-        <div className="flex-1">
-          <motion.h1
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-4xl md:text-6xl font-extrabold leading-tight"
-          >
-            Kein Blabla. <span style={{ color: brand.colors.gold }}>Echte</span> Arbeit.
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="mt-6 text-lg max-w-xl opacity-85"
-          >
-            Programy treningowe i mindset zaprojektowane tak, żeby przynosić realne wyniki. Bez wymówek — tylko konsekwencja.
-          </motion.p>
-
-          <div className="mt-8 flex gap-4">
-            <a href="#signup" className="px-6 py-3 rounded-xl font-semibold inline-block" style={{ background: "linear-gradient(90deg, #d4af37 0%, #b88f2c 100%)", color: brand.colors.black }}>
-              Zacznij teraz
-            </a>
-
-            <a href="#programs" className="px-6 py-3 rounded-xl border border-gray-700 inline-block opacity-90">
-              Zobacz programy
-            </a>
-          </div>
-
-          <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-md">
-            <Stat title="5x" label="Trening siłowy / tydz." />
-            <Stat title="12+" label="Tygodniowy planów" />
-            <Stat title="100%" label="Naturalne metody" />
-          </div>
-        </div>
-
-        <div className="flex-1 w-full">
-          <CardMockup />
-        </div>
-      </main>
-
-      {/* Programs */}
-      <section id="programs" className="max-w-6xl mx-auto px-6 py-12">
-        <h2 className="text-2xl font-bold" style={{ color: brand.colors.gold }}>
-          Programy
-        </h2>
-        <p className="mt-2 max-w-2xl opacity-80">Skoncentrowane programy siłowe, kondycyjne i regeneracyjne — prosto, skutecznie.</p>
-
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-          <ProgramCard title="Strength" desc="Plan siłowy 12 tygodni. Progresja, wzorce, siła." />
-          <ProgramCard title="Hybrid" desc="Siła + kondycja (HIIT + lifting)." />
-          <ProgramCard title="Recovery" desc="Mobilność, stretching i regeneracja." />
-        </div>
-      </section>
-
-      {/* About */}
-      <section id="about" className="max-w-6xl mx-auto px-6 py-12">
-        <div className="md:flex md:items-center md:gap-8">
-          <div className="flex-1">
-            <h3 className="text-2xl font-bold">O ECHTWORK</h3>
-            <p className="mt-4 opacity-80 max-w-2xl">
-              ECHTWORK to marka dla ludzi, którzy chcą rezultatów bez ściemy. Programy tworzone są z myślą o prostocie, trwałym nawyku i wynikach.
-            </p>
-
-            <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 opacity-90">
-              <li>Sprawdzone metody treningowe</li>
-              <li>Praktyczne wskazówki żywieniowe</li>
-              <li>Wsparcie mindsetowe</li>
-              <li>Jasne, mierzalne cele</li>
-            </ul>
-          </div>
-
-          <div className="flex-1 mt-6 md:mt-0">
-            <div className="rounded-2xl p-6 border border-gray-800">
-              <h4 className="font-semibold">Nasze podejście</h4>
-              <p className="mt-2 opacity-80">Krótkie, brutalnie uczciwe instrukcje. Śledzimy progres i poprawiamy każdy detal, żebyś mógł robić więcej z mniejszym wysiłkiem.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA / Signup */}
-      <section id="signup" className="max-w-6xl mx-auto px-6 py-12">
-        <div className="rounded-2xl p-8" style={{ background: "linear-gradient(180deg, rgba(212,175,55,0.06), rgba(0,0,0,0.0))" }}>
-          <div className="md:flex md:items-center md:justify-between">
-            <div>
-              <h3 className="text-2xl font-bold">Gotowy zacząć?</h3>
-              <p className="mt-2 opacity-80">Dołącz do ECHTWORK i przestań szukać wymówek. Zacznij budować wyniki już dziś.</p>
-            </div>
-
-            <div className="mt-6 md:mt-0">
-              <a href="#contact" className="px-6 py-3 rounded-xl font-semibold inline-block" style={{ background: brand.colors.gold, color: brand.colors.black }}>
-                Skontaktuj się
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact / Footer */}
-      <footer id="contact" className="max-w-6xl mx-auto px-6 py-12 border-t border-gray-800">
-        <div className="md:flex md:justify-between md:items-center">
-          <div>
-            <div className="font-bold text-lg" style={{ color: brand.colors.gold }}>
-              {brand.name}
-            </div>
-            <div className="mt-2 opacity-80">info@echtwork.example</div>
-          </div>
-
-          <div className="mt-6 md:mt-0 opacity-80">© {new Date().getFullYear()} ECHTWORK — Keine Ausreden. Nur Ergebnisse.</div>
-        </div>
-      </footer>
+<header>
+  <nav>
+    <div class="logo"><a href="#home">ECHTWORK</a></div>
+    <div class="menu">
+      <a href="#angebot">Angebot</a>
+      <a href="#kontakt">Kontakt</a>
     </div>
-  );
-}
+  </nav>
+</header>
 
-/* Small presentational components */
-function Stat({ title, label }) {
-  return (
-    <div className="p-4 rounded-xl border border-gray-800">
-      <div className="text-2xl font-bold" style={{ color: brand.colors.gold }}>{title}</div>
-      <div className="text-sm opacity-80">{label}</div>
-    </div>
-  );
-}
+<section id="home" data-aos="fade-up">
+  <h1>Keine Ausreden. Nur Ergebnisse.</h1>
+  <p>Starte jetzt dein persönliches Fitnessprogramm.</p>
+  <a href="#kontakt" class="btn">Jetzt starten</a>
+</section>
 
-function ProgramCard({ title, desc }) {
-  return (
-    <div className="rounded-2xl p-6 border border-gray-800 hover:scale-[1.02] transition-transform">
-      <div className="font-semibold text-lg">{title}</div>
-      <div className="mt-2 opacity-80">{desc}</div>
-      <div className="mt-4">
-        <a className="inline-block px-4 py-2 rounded-lg font-semibold" style={{ background: brand.colors.gold, color: brand.colors.black }} href="#signup">Wybierz</a>
-      </div>
-    </div>
-  );
-}
+<section id="angebot" data-aos="fade-up">
+  <h2>Premium Coaching</h2>
+  <p>Schreib mir, was dein Ziel ist, und wir passen den Plan perfekt an dich an.</p>
+</section>
 
-function CardMockup() {
-  return (
-    <div className="w-full rounded-2xl border border-gray-800 p-6 bg-gradient-to-br from-[#0b0b0b] to-[#0a0a0a]">
-      <div className="h-56 rounded-xl p-4 bg-black/40 border border-gray-900 flex flex-col justify-between">
-        <div>
-          <div className="text-sm opacity-80">Program</div>
-          <div className="text-xl font-bold mt-2">12-Week Strength</div>
-          <div className="mt-2 opacity-75">Progresja | Technika | Wynik</div>
-        </div>
+<section id="kontakt" data-aos="fade-up">
+  <h2>Kontakt</h2>
+  <form id="contactForm" action="https://formspree.io/f/xzbnjvdv" method="POST">
+    <input type="text" name="name" placeholder="Dein Name" required>
+    <input type="email" name="email" placeholder="Deine E-Mail" required>
+    <textarea name="message" placeholder="Deine Nachricht" required></textarea>
+    <button type="submit" class="btn">Senden</button>
+  </form>
+</section>
 
-        <div className="flex items-center justify-between">
-          <div className="text-sm opacity-80">Status: Active</div>
-          <div className="px-3 py-1 rounded-md font-semibold text-sm" style={{ background: brand.colors.gold, color: brand.colors.black }}>Start</div>
-        </div>
-      </div>
+<footer>
+  <p>© 2025 ECHTWORK. Alle Rechte vorbehalten.</p>
+</footer>
 
-      <div className="mt-4 grid grid-cols-3 gap-2 text-xs opacity-80">
-        <div className="p-2 rounded-md border border-gray-800">Day 1</div>
-        <div className="p-2 rounded-md border border-gray-800">Day 2</div>
-        <div className="p-2 rounded-md border border-gray-800">Day 3</div>
-      </div>
-    </div>
-  );
-}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+  // Init animations
+  AOS.init({
+    duration: 1000,
+    once: true
+  });
+
+  // Smooth scrolling
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function(e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute("href")).scrollIntoView({
+        behavior: "smooth"
+      });
+    });
+  });
+
+  // Form validation & submit
+  document.getElementById("contactForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const email = this.email.value;
+    const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+    if (!emailPattern.test(email)) {
+      alert("Bitte eine gültige E-Mail-Adresse eingeben.");
+      return;
+    }
+
+    const formData = new FormData(this);
+    const response = await fetch(this.action, {
+      method: "POST",
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+      window.location.href = "https://echtwork.de/danke.html";
+    } else {
+      alert("Fehler beim Senden. Bitte versuche es erneut.");
+    }
+  });
+</script>
+</body>
+</html>
