@@ -1,5 +1,4 @@
-
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
@@ -14,6 +13,7 @@
       margin: 0;
       padding: 0;
     }
+
     header {
       background: linear-gradient(135deg, #000000, #222222);
       color: #fff;
@@ -24,44 +24,55 @@
       justify-content: center;
       flex-direction: column;
     }
+
     header .stars {
-      color: #D4AF37;
-      font-size: 60px; /* większe gwiazdki */
-      text-shadow: 0 2px 4px rgba(0,0,0,0.6), 0 6px 18px rgba(212,175,55,0.25); /* premium styl gwiazdek */
+      color: #FFD700; /* Złoty kolor gwiazdek */
+      font-size: 60px;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.6); /* Lekko świecące gwiazdki */
+      position: absolute;
+      z-index: 1;
     }
-    header .left-stars {
-      margin-right: 10px;
+
+    /* Gwiazdki na początku i końcu tekstu */
+    header .left-star {
+      left: -70px;
+      top: 50%;
+      transform: translateY(-50%);
     }
-    header .right-stars {
-      margin-left: 10px;
+
+    header .right-star {
+      right: -70px;
+      top: 50%;
+      transform: translateY(-50%);
     }
-    header .top-stars {
-      margin-bottom: 10px;
-    }
-    header .bottom-stars {
-      margin-top: 10px;
-    }
+
     header img {
-      max-width: 300px; /* powiększone logo */
+      max-width: 300px;
       height: auto;
       display: block;
       margin: 10px 0;
-      filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.8)); /* złoty cień */
+      filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.8));
+      z-index: 2;
     }
+
     header p {
       font-size: 22px;
       margin-top: 10px;
       color: #ddd;
+      z-index: 2;
     }
+
     section {
       padding: 40px 20px;
       max-width: 800px;
       margin: auto;
     }
+
     .angebot h2 {
       font-size: 32px;
       margin-bottom: 10px;
     }
+
     .shiny {
       font-size: 22px;
       font-weight: bold;
@@ -71,13 +82,16 @@
       animation: shine 2s infinite linear;
       background-size: 200% auto;
     }
+
     @keyframes shine {
       to { background-position: 200% center; }
     }
+
     .angebot ul {
       list-style: none;
       padding-left: 0;
     }
+
     .angebot li {
       background: #1e1e1e;
       padding: 15px;
@@ -85,6 +99,7 @@
       border-left: 5px solid #D4AF37;
       font-size: 18px;
     }
+
     .toggle-title {
       cursor: pointer;
       user-select: none;
@@ -92,9 +107,11 @@
       align-items: center;
       justify-content: space-between;
     }
+
     .toggle-title:hover {
       color: #D4AF37;
     }
+
     .toggle-arrow {
       transition: transform 0.3s ease;
       font-size: 18px;
@@ -102,6 +119,7 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+
     .toggle-item .toggle-content {
       max-height: 0;
       overflow: hidden;
@@ -109,18 +127,22 @@
       opacity: 0;
       transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease;
     }
+
     .toggle-item.open .toggle-content {
       opacity: 1;
       margin-top: 10px;
     }
+
     .toggle-item.open .toggle-arrow {
       transform: rotate(90deg);
     }
+
     form {
       background: #1e1e1e;
       padding: 30px;
       border: 1px solid #555;
     }
+
     form input, form textarea {
       width: 100%;
       padding: 12px;
@@ -130,6 +152,7 @@
       border: 1px solid #555;
       border-radius: 4px;
     }
+
     form button {
       background-color: #D4AF37;
       color: #111;
@@ -139,16 +162,19 @@
       cursor: pointer;
       width: 100%;
     }
+
     form button:hover {
       background-color: #fff3cd;
       color: #111;
     }
+
     footer {
       text-align: center;
       padding: 20px;
       font-size: 14px;
       color: #aaa;
     }
+
     /* Responsywność */
     @media (max-width: 768px) {
       header h1 { font-size: 38px; }
@@ -163,6 +189,7 @@
       form input, form textarea { font-size: 16px; padding: 10px; }
       form button { font-size: 16px; padding: 12px; }
     }
+
     @media (max-width: 480px) {
       header h1 { font-size: 30px; }
       header p { font-size: 16px; }
@@ -174,12 +201,13 @@
 <body>
 
   <header>
-    <span class="stars top-stars">★</span>
-    <span class="stars left-stars">★</span>
+    <!-- Gwiazdki przed i po tekście -->
+    <span class="stars left-star">★</span>
     <img src="EchtWorkLogo.PNG" alt="ECHTWORK Logo">
-    <span class="stars right-stars">★</span>
-    <span class="stars bottom-stars">★</span>
-    <p>Keine Ausreden. Nur Ergebnisse.</p>
+    <span class="stars right-star">★</span>
+
+    <!-- Tekst bez kropki na końcu -->
+    <p>Keine Ausreden Nur Ergebnisse</p>
   </header>
 
   <section class="angebot">
@@ -225,53 +253,11 @@
   </section>
 
   <footer>
-    &copy; 2025 ECHTWORK. Keine Ausreden. Nur Ergebnisse.<br>
+    &copy; 2025 ECHTWORK. Keine Ausreden Nur Ergebnisse<br>
     <a href="impressum.html" style="color:#D4AF37; text-decoration:none;">Impressum</a> | 
     <a href="datenschutz.html" style="color:#D4AF37; text-decoration:none;">Datenschutz</a> | 
     <a href="widerruf.html" style="color:#D4AF37; text-decoration:none;">Widerrufsbelehrung</a>
   </footer>
-
-  <script>
-    // Rozwijanie listy
-    document.querySelectorAll('.toggle-title').forEach(title => {
-      title.addEventListener('click', () => {
-        const item = title.parentElement;
-        const content = item.querySelector('.toggle-content');
-        if (item.classList.contains('open')) {
-          content.style.maxHeight = content.scrollHeight + "px";
-          requestAnimationFrame(() => { content.style.maxHeight = "0"; });
-          item.classList.remove('open');
-        } else {
-          content.style.maxHeight = content.scrollHeight + "px";
-          item.classList.add('open');
-          content.addEventListener('transitionend', function handler() {
-            if (item.classList.contains('open')) content.style.maxHeight = "none";
-            content.removeEventListener('transitionend', handler);
-          });
-        }
-      });
-    });
-
-    // Formularz z przekierowaniem
-    document.getElementById('contactForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const form = e.target;
-      const data = new FormData(form);
-      const action = "https://formspree.io/f/mqalgjzw";
-
-      const response = await fetch(action, {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if (response.ok) {
-        window.location.href = "https://echtwork.de/danke.html";
-      } else {
-        alert("Fehler beim Senden. Bitte versuche es erneut.");
-      }
-    });
-  </script>
 
 </body>
 </html>
