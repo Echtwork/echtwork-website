@@ -1,4 +1,3 @@
-
 <!DOCTYPE html> 
 <html lang="de">
 <head>
@@ -22,24 +21,33 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-direction: column;
+      position: relative; /* Umożliwia użycie absolute do pozycjonowania gwiazdek */
     }
     header .stars {
       color: #D4AF37;
       font-size: 60px; /* większe gwiazdki */
       text-shadow: 0 2px 4px rgba(0,0,0,0.6), 0 6px 18px rgba(212,175,55,0.25); /* premium styl gwiazdek */
-    }
-    header .left-stars {
-      margin-right: 10px;
-    }
-    header .right-stars {
-      margin-left: 10px;
+      position: absolute;
     }
     header .top-stars {
-      margin-bottom: 10px;
+      top: -20px; /* Ustawienie gwiazdki na górze */
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    header .left-stars {
+      left: -20px; /* Ustawienie gwiazdki po lewej stronie */
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    header .right-stars {
+      right: -20px; /* Ustawienie gwiazdki po prawej stronie */
+      top: 50%;
+      transform: translateY(-50%);
     }
     header .bottom-stars {
-      margin-top: 10px;
+      bottom: -20px; /* Ustawienie gwiazdki na dole */
+      left: 50%;
+      transform: translateX(-50%);
     }
     header img {
       max-width: 300px; /* powiększone logo */
@@ -217,61 +225,3 @@
     <h2>Kontakt aufnehmen</h2>
     <p>Du willst starten oder hast Fragen? Schreib mir einfach:</p>
     <form id="contactForm">
-      <input type="text" name="name" placeholder="Dein Name" required />
-      <input type="email" name="email" placeholder="Deine E-Mail-Adresse" required />
-      <textarea name="nachricht" rows="5" placeholder="Worum geht’s?" required></textarea>
-      <button type="submit">Absenden</button>
-    </form>
-  </section>
-
-  <footer>
-    &copy; 2025 ECHTWORK. Keine Ausreden. Nur Ergebnisse.<br>
-    <a href="impressum.html" style="color:#D4AF37; text-decoration:none;">Impressum</a> | 
-    <a href="datenschutz.html" style="color:#D4AF37; text-decoration:none;">Datenschutz</a> | 
-    <a href="widerruf.html" style="color:#D4AF37; text-decoration:none;">Widerrufsbelehrung</a>
-  </footer>
-
-  <script>
-    // Rozwijanie listy
-    document.querySelectorAll('.toggle-title').forEach(title => {
-      title.addEventListener('click', () => {
-        const item = title.parentElement;
-        const content = item.querySelector('.toggle-content');
-        if (item.classList.contains('open')) {
-          content.style.maxHeight = content.scrollHeight + "px";
-          requestAnimationFrame(() => { content.style.maxHeight = "0"; });
-          item.classList.remove('open');
-        } else {
-          content.style.maxHeight = content.scrollHeight + "px";
-          item.classList.add('open');
-          content.addEventListener('transitionend', function handler() {
-            if (item.classList.contains('open')) content.style.maxHeight = "none";
-            content.removeEventListener('transitionend', handler);
-          });
-        }
-      });
-    });
-
-    // Formularz z przekierowaniem
-    document.getElementById('contactForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const form = e.target;
-      const data = new FormData(form);
-      const action = "https://formspree.io/f/mqalgjzw";
-
-      const response = await fetch(action, {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if (response.ok) {
-        window.location.href = "https://echtwork.de/danke.html";
-      } else {
-        alert("Fehler beim Senden. Bitte versuche es erneut.");
-      }
-    });
-  </script>
-
-</body>
-</html>
