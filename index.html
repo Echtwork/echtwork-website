@@ -18,43 +18,13 @@
       color: #fff;
       text-align: center;
       padding: 60px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative; /* Kluczowe dla pozycjonowania gwiazdek wokół logo */
-    }
-    header .stars {
-      color: #D4AF37;
-      font-size: 60px; /* Większe gwiazdki */
-      text-shadow: 0 2px 4px rgba(0,0,0,0.6), 0 6px 18px rgba(212,175,55,0.25); /* Premium efekt gwiazdek */
-      position: absolute;
-    }
-    header .top-stars {
-      top: -70px; /* Ustawienie gwiazdki na górze */
-      left: 50%;
-      transform: translateX(-50%);
-    }
-    header .left-stars {
-      left: -70px; /* Ustawienie gwiazdki po lewej stronie */
-      top: 50%;
-      transform: translateY(-50%);
-    }
-    header .right-stars {
-      right: -70px; /* Ustawienie gwiazdki po prawej stronie */
-      top: 50%;
-      transform: translateY(-50%);
-    }
-    header .bottom-stars {
-      bottom: -70px; /* Ustawienie gwiazdki na dole */
-      left: 50%;
-      transform: translateX(-50%);
     }
     header img {
-      max-width: 300px; /* Powiększone logo */
+      max-width: 300px; /* powiększone logo */
       height: auto;
       display: block;
       margin: 10px 0;
-      filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.8)); /* Złoty cień na logo */
+      filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.8)); /* złoty cień */
     }
     header p {
       font-size: 22px;
@@ -182,11 +152,7 @@
 <body>
 
   <header>
-    <span class="stars top-stars">★</span>
-    <span class="stars left-stars">★</span>
     <img src="EchtWorkLogo.PNG" alt="ECHTWORK Logo">
-    <span class="stars right-stars">★</span>
-    <span class="stars bottom-stars">★</span>
     <p>Keine Ausreden. Nur Ergebnisse.</p>
   </header>
 
@@ -223,4 +189,35 @@
 
   <section>
     <h2>Kontakt aufnehmen</h2>
-    <p>Du
+    <p>Du willst starten oder hast Fragen? Schreib mir einfach:</p>
+    <form id="contactForm">
+      <input type="text" name="name" placeholder="Dein Name" required />
+      <input type="email" name="email" placeholder="Deine E-Mail-Adresse" required />
+      <textarea name="nachricht" rows="5" placeholder="Worum geht’s?" required></textarea>
+      <button type="submit">Absenden</button>
+    </form>
+  </section>
+
+  <footer>
+    &copy; 2025 ECHTWORK. Keine Ausreden. Nur Ergebnisse.<br>
+    <a href="impressum.html" style="color:#D4AF37; text-decoration:none;">Impressum</a> | 
+    <a href="datenschutz.html" style="color:#D4AF37; text-decoration:none;">Datenschutz</a> | 
+    <a href="widerruf.html" style="color:#D4AF37; text-decoration:none;">Widerrufsbelehrung</a>
+  </footer>
+
+  <script>
+    // Rozwijanie listy
+    document.querySelectorAll('.toggle-title').forEach(title => {
+      title.addEventListener('click', () => {
+        const item = title.parentElement;
+        const content = item.querySelector('.toggle-content');
+        if (item.classList.contains('open')) {
+          content.style.maxHeight = content.scrollHeight + "px";
+          requestAnimationFrame(() => { content.style.maxHeight = "0"; });
+          item.classList.remove('open');
+        } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+          item.classList.add('open');
+          content.addEventListener('transitionend', function handler() {
+            if (item.classList.contains('open')) content.style.maxHeight = "none";
+            content.removeEvent
