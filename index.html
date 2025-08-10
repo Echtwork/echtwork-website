@@ -1,291 +1,460 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EchtWork</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>EchtWork — Pläne</title>
+
   <style>
-    :root {
+    /* -------------------------
+       COLORS & RESET
+       ------------------------- */
+    :root{
       --gold: #d4af37;
       --gold-bright: #ffcc4d;
       --gold-dark: #b88a28;
-      --black: #000;
-      --black-light: #111;
-      --white: #fff;
+      --black: #000000;
+      --black-2: #0f0f0f;
+      --white: #ffffff;
     }
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background-color: var(--black);
-      color: var(--white);
-      margin: 0;
-      padding: 0;
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: Inter, system-ui, Arial, sans-serif;
+      background:var(--black);
+      color:var(--white);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding-bottom:60px;
     }
-    header {
-      text-align: center;
-      padding: 20px;
-      background-color: var(--black-light);
-      border-bottom: 2px solid var(--gold);
+
+    /* -------------------------
+       HEADER
+       ------------------------- */
+    header{
+      text-align:center;
+      padding:28px 18px;
+      background:linear-gradient(180deg,var(--black-2),#070707);
+      border-bottom:2px solid var(--gold);
     }
-    header img {
-      max-width: 200px;
-      margin-bottom: 10px;
+    header img{max-width:160px;height:auto;display:block;margin:0 auto 10px}
+    header h1{color:var(--gold);font-size:1.25rem;letter-spacing:0.5px}
+
+    /* -------------------------
+       SECTIONS & TITLES
+       ------------------------- */
+    section{padding:36px 18px}
+    h2{
+      text-align:center;
+      margin-bottom:20px;
+      font-size:1.2rem;
+      text-shadow:0 0 8px rgba(184,138,40,0.25);
+      color:var(--gold);
     }
-    header h1 {
-      color: var(--gold);
+    /* uwaga: jaśniejsze nagłówki dla Standardpläne i Ernährungspläne */
+    h2.bright{ color: var(--gold-bright); text-shadow: 0 0 12px rgba(255,204,77,0.22); }
+
+    /* -------------------------
+       CARD LAYOUT
+       ------------------------- */
+    .card-container{
+      display:flex;
+      flex-wrap:wrap;
+      gap:18px;
+      justify-content:center;
     }
-    section {
-      padding: 40px 20px;
+    .card{
+      width:320px;
+      background:var(--black-2);
+      border:2px solid var(--gold);
+      border-radius:12px;
+      padding:18px;
+      text-align:center;
+      transition:transform .25s ease, box-shadow .25s ease;
+      position:relative;
     }
-    section h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      text-shadow: 0 0 8px var(--gold-dark);
-    }
-    section h2.bright {
-      color: var(--gold-bright);
-      text-shadow: 0 0 10px var(--gold-bright), 0 0 20px var(--gold-dark);
-    }
-    section h2.glow {
-      color: var(--gold);
-      text-shadow: 0 0 10px var(--gold), 0 0 20px var(--gold-dark);
-    }
-    .card-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-    }
-    .card {
-      background-color: var(--black-light);
-      border: 2px solid var(--gold);
-      border-radius: 10px;
-      padding: 20px;
-      max-width: 300px;
-      text-align: center;
-    }
-    .card h3 {
-      color: var(--gold);
-      margin-bottom: 10px;
-    }
-    .card p {
-      margin-bottom: 15px;
-    }
+    .card:hover{ transform:translateY(-6px); box-shadow:0 8px 30px rgba(0,0,0,0.6); }
+    .card h3{ color:var(--gold); margin-bottom:8px; font-size:1.05rem; }
+    .card p{ margin-bottom:12px; color:#eaeaea; font-size:0.95rem; }
+
+    /* -------------------------
+       BUTTONS
+       ------------------------- */
     .order-btn {
-      display: inline-block;
-      background-color: var(--gold);
-      color: var(--black);
-      padding: 10px 20px;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: all 0.3s ease-in-out;
-      cursor: pointer;
+      display:inline-block;
+      background:var(--gold);
+      color:var(--black);
+      padding:10px 16px;
+      border-radius:8px;
+      text-decoration:none;
+      font-weight:700;
+      border:0;
+      cursor:pointer;
+      transition:transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+      user-select:none;
+      -webkit-user-select:none;
     }
-    .order-btn:hover {
-      background-color: var(--gold-dark);
+    .order-btn:hover{ transform:translateY(-2px); box-shadow:0 6px 18px rgba(184,138,40,0.15); }
+    .order-btn:active{ transform:translateY(0) }
+
+    .order-btn[disabled]{
+      opacity:.5;
+      cursor:not-allowed;
+      transform:scale(.995);
+      box-shadow:none;
     }
-    .checkbox-text {
-      font-size: 0.9em;
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      margin-top: 15px;
-      text-align: left;
+
+    /* -------------------------
+       CONSENT AREA (hidden -> revealed)
+       ------------------------- */
+    .consent-area{
+      overflow:hidden;
+      max-height:0;
+      transition:max-height .36s cubic-bezier(.2,.9,.2,1), padding .28s ease;
+      padding:0 0;
+      margin-top:0;
+      text-align:left;
     }
-    .hidden {
-      display: none;
+    .consent-area.revealed{
+      padding:12px 0 0 0;
+      max-height:260px; /* enough for the content + textarea */
     }
-    .about {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      align-items: center;
-      justify-content: center;
+    .checkbox-text{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      font-size:0.92rem;
+      color:#eee;
+      margin-bottom:12px;
     }
-    .about-photo {
-      width: 200px;
-      height: 200px;
-      background-size: cover;
-      background-position: center;
-      border-radius: 50%;
-      border: 2px solid var(--gold);
+    .checkbox-text input[type="checkbox"]{
+      margin-top:4px;
+      width:18px;
+      height:18px;
+      accent-color: var(--gold);
     }
-    .about-text {
-      max-width: 500px;
+
+    /* -------------------------
+       PREMIUM FORM STYLING
+       ------------------------- */
+    .premium-form textarea{
+      width:100%;
+      min-height:90px;
+      resize:vertical;
+      padding:10px;
+      border-radius:8px;
+      border:1px solid rgba(212,175,55,0.25);
+      background:#0b0b0b;
+      color:var(--white);
+      margin-top:8px;
+      margin-bottom:12px;
+      font-size:0.95rem;
     }
-    footer a {
-      color: var(--gold);
-      text-decoration: none;
+
+    /* small helper for centered actions */
+    .center-row{ display:flex; justify-content:center; gap:12px; align-items:center; flex-wrap:wrap; }
+
+    /* -------------------------
+       ABOUT + FOOTER
+       ------------------------- */
+    .about{ display:flex; gap:18px; align-items:center; justify-content:center; flex-wrap:wrap; padding:22px 18px 0 }
+    .about-photo{
+      width:160px;height:160px;border-radius:50%;background-size:cover;background-position:center;border:2px solid var(--gold);
     }
-    footer a:hover {
-      text-decoration: underline;
+    footer{
+      position:fixed; bottom:0; left:0; right:0;
+      background:linear-gradient(0deg,#060606,transparent);
+      text-align:center; padding:10px 8px; font-size:0.9rem;
+    }
+    footer a{ color:var(--gold); text-decoration:none; margin:0 8px; }
+    footer a:hover{text-decoration:underline}
+
+    /* responsive */
+    @media (max-width:760px){
+      .card{ width:92%; max-width:420px; }
+      header img{ max-width:120px }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <img src="EchtWorkLogo.PNG" alt="EchtWork Logo">
+    <img src="EchtWorkLogo.PNG" alt="EchtWork Logo" />
     <h1>Keine Ausreden – nur Ergebnisse!</h1>
   </header>
 
-  <!-- Standardpläne -->
-  <section>
-    <h2 class="bright">Standardpläne</h2>
+  <!-- STANDARD PLANS -->
+  <section aria-labelledby="standard-title">
+    <h2 id="standard-title" class="bright">Standardpläne</h2>
+
     <div class="card-container">
-      <div class="card">
+      <!-- Card: Krafttraining -->
+      <article class="card" data-plan="Krafttraining" aria-label="Krafttraining">
         <h3>Krafttraining</h3>
         <p>Ein effektiver Plan für Muskelaufbau und Kraftsteigerung, ideal für Anfänger und Fortgeschrittene.</p>
-        <div class="initial-btn">
-          <span class="order-btn">Plan erhalten</span>
-        </div>
-        <div class="consent-area hidden">
-          <label class="checkbox-text">
-            <input type="checkbox" class="consent-checkbox">
-            Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird. 
-            Mir ist bekannt, dass ich dadurch mein Widerrufsrecht verliere.
-          </label>
-          <a href="#" class="order-btn final-btn" disabled>Plan bestellen</a>
-        </div>
-      </div>
 
-      <div class="card">
+        <div class="center-row">
+          <button class="order-btn js-show-consent" type="button" aria-expanded="false">Plan erhalten</button>
+        </div>
+
+        <div class="consent-area" aria-hidden="true">
+          <label class="checkbox-text">
+            <input type="checkbox" class="consent-checkbox" />
+            Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird. Mir ist bekannt, dass ich dadurch mein Widerrufsrecht verliere.
+          </label>
+
+          <div class="center-row">
+            <button class="order-btn js-final-btn" type="button" disabled>Plan bestellen</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card: Ausdauertraining -->
+      <article class="card" data-plan="Ausdauertraining" aria-label="Ausdauertraining">
         <h3>Ausdauertraining</h3>
         <p>Optimiere Deine Kondition mit gezielten Einheiten, die Deine Ausdauer steigern.</p>
-        <div class="initial-btn">
-          <span class="order-btn">Plan erhalten</span>
-        </div>
-        <div class="consent-area hidden">
-          <label class="checkbox-text">
-            <input type="checkbox" class="consent-checkbox">
-            Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird. 
-            Mir ist bekannt, dass ich dadurch mein Widerrufsrecht verliere.
-          </label>
-          <a href="#" class="order-btn final-btn" disabled>Plan bestellen</a>
-        </div>
-      </div>
 
-      <div class="card">
+        <div class="center-row">
+          <button class="order-btn js-show-consent" type="button" aria-expanded="false">Plan erhalten</button>
+        </div>
+
+        <div class="consent-area" aria-hidden="true">
+          <label class="checkbox-text">
+            <input type="checkbox" class="consent-checkbox" />
+            Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird. Mir ist bekannt, dass ich dadurch mein Widerrufsrecht verliere.
+          </label>
+
+          <div class="center-row">
+            <button class="order-btn js-final-btn" type="button" disabled>Plan bestellen</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card: Functional Training -->
+      <article class="card" data-plan="Functional Training" aria-label="Functional Training">
         <h3>Functional Training</h3>
         <p>Ganzkörpertraining zur Verbesserung von Kraft, Beweglichkeit und Koordination.</p>
-        <div class="initial-btn">
-          <span class="order-btn">Plan erhalten</span>
+
+        <div class="center-row">
+          <button class="order-btn js-show-consent" type="button" aria-expanded="false">Plan erhalten</button>
         </div>
-        <div class="consent-area hidden">
+
+        <div class="consent-area" aria-hidden="true">
           <label class="checkbox-text">
-            <input type="checkbox" class="consent-checkbox">
-            Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird. 
-            Mir ist bekannt, dass ich dadurch mein Widerrufsrecht verliere.
+            <input type="checkbox" class="consent-checkbox" />
+            Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird. Mir ist bekannt, dass ich dadurch mein Widerrufsrecht verliere.
           </label>
-          <a href="#" class="order-btn final-btn" disabled>Plan bestellen</a>
+
+          <div class="center-row">
+            <button class="order-btn js-final-btn" type="button" disabled>Plan bestellen</button>
+          </div>
         </div>
-      </div>
+      </article>
     </div>
   </section>
 
-  <!-- Ernährungspläne -->
-  <section>
-    <h2 class="bright">Ernährungspläne</h2>
+  <!-- NUTRITION PLANS -->
+  <section aria-labelledby="nutrition-title">
+    <h2 id="nutrition-title" class="bright">Ernährungspläne</h2>
+
     <div class="card-container">
-      <div class="card">
+      <!-- Muskelaufbau -->
+      <article class="card" data-plan="Muskelaufbau Ernährung" aria-label="Muskelaufbau Ernährung">
         <h3>Muskelaufbau Ernährung</h3>
         <p>Ein Plan, der Dich mit den richtigen Nährstoffen für maximales Wachstum versorgt.</p>
-        <div class="initial-btn">
-          <span class="order-btn">Plan erhalten</span>
-        </div>
-        <div class="consent-area hidden">
-          <label class="checkbox-text">
-            <input type="checkbox" class="consent-checkbox">
-            Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird. 
-            Mir ist bekannt, dass ich dadurch mein Widerrufsrecht verliere.
-          </label>
-          <a href="#" class="order-btn final-btn" disabled>Plan bestellen</a>
-        </div>
-      </div>
 
-      <div class="card">
+        <div class="center-row">
+          <button class="order-btn js-show-consent" type="button" aria-expanded="false">Plan erhalten</button>
+        </div>
+
+        <div class="consent-area" aria-hidden="true">
+          <label class="checkbox-text">
+            <input type="checkbox" class="consent-checkbox" />
+            Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird. Mir ist bekannt, dass ich dadurch mein Widerrufsrecht verliere.
+          </label>
+
+          <div class="center-row">
+            <button class="order-btn js-final-btn" type="button" disabled>Plan bestellen</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Abnehmen -->
+      <article class="card" data-plan="Abnehmen Ernährung" aria-label="Abnehmen Ernährung">
         <h3>Abnehmen Ernährung</h3>
         <p>Kalorienbewusste Rezepte und Tipps für gesunde Gewichtsreduktion.</p>
-        <div class="initial-btn">
-          <span class="order-btn">Plan erhalten</span>
+
+        <div class="center-row">
+          <button class="order-btn js-show-consent" type="button" aria-expanded="false">Plan erhalten</button>
         </div>
-        <div class="consent-area hidden">
+
+        <div class="consent-area" aria-hidden="true">
           <label class="checkbox-text">
-            <input type="checkbox" class="consent-checkbox">
-            Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird. 
-            Mir ist bekannt, dass ich dadurch mein Widerrufsrecht verliere.
+            <input type="checkbox" class="consent-checkbox" />
+            Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird. Mir ist bekannt, dass ich dadurch mein Widerrufsrecht verliere.
           </label>
-          <a href="#" class="order-btn final-btn" disabled>Plan bestellen</a>
+
+          <div class="center-row">
+            <button class="order-btn js-final-btn" type="button" disabled>Plan bestellen</button>
+          </div>
         </div>
-      </div>
+      </article>
     </div>
   </section>
 
-  <!-- Premium Plan -->
-  <section>
-    <h2 class="glow">Premium Plan</h2>
+  <!-- PREMIUM PLAN -->
+  <section aria-labelledby="premium-title">
+    <h2 id="premium-title" class="glow">Premium Plan</h2>
+
     <div class="card-container">
-      <div class="card" style="max-width: 800px;">
+      <article class="card" data-plan="Premium Plan" aria-label="Premium Plan" style="max-width:800px;">
         <h3>Individuell für Dich erstellt</h3>
         <p>Der Premium Plan wird von mir persönlich erstellt – basierend auf Deinen Zielen, Deinem Fitnesslevel und Deinen individuellen Bedürfnissen.</p>
-        <div class="initial-btn">
-          <span class="order-btn">Premium Plan anfragen</span>
+
+        <div class="center-row">
+          <button class="order-btn js-show-consent" type="button" aria-expanded="false">Premium Plan anfragen</button>
         </div>
-        <div class="consent-area hidden">
+
+        <div class="consent-area" aria-hidden="true">
           <label class="checkbox-text">
-            <input type="checkbox" class="consent-checkbox">
-            Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird. 
-            Mir ist bekannt, dass ich dadurch mein Widerrufsrecht verliere.
+            <input type="checkbox" class="consent-checkbox" />
+            Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird. Mir ist bekannt, dass ich dadurch mein Widerrufsrecht verliere.
           </label>
-          <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-            <label>Beschreibe Deine Erwartungen:</label>
-            <textarea name="message" required></textarea>
-            <button type="submit" class="order-btn final-btn" disabled>Absenden</button>
+
+          <form class="premium-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+            <label for="premium-name" style="display:block;font-weight:600;margin-bottom:6px">Dein Name</label>
+            <input id="premium-name" name="name" type="text" required style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(212,175,55,0.16);background:#070707;color:var(--white);margin-bottom:8px">
+
+            <label for="premium-email" style="display:block;font-weight:600;margin-bottom:6px">Deine E-Mail</label>
+            <input id="premium-email" name="email" type="email" required style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(212,175,55,0.16);background:#070707;color:var(--white);margin-bottom:8px">
+
+            <label for="premium-message" style="display:block;font-weight:600;margin-bottom:6px">Beschreibe Deine Erwartungen</label>
+            <textarea id="premium-message" name="message" rows="5" required style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(212,175,55,0.16);background:#070707;color:var(--white);margin-bottom:12px"></textarea>
+
+            <div class="center-row">
+              <button class="order-btn js-final-btn" type="submit" disabled>Absenden</button>
+            </div>
           </form>
         </div>
-      </div>
+      </article>
     </div>
   </section>
 
-  <!-- Über mich -->
-  <section>
-    <h2>Über mich</h2>
+  <!-- ABOUT -->
+  <section aria-labelledby="about-title">
+    <h2 id="about-title">Über mich</h2>
     <div class="about">
-      <div class="about-photo" style="background-image: url('profilfoto.jpg');"></div>
-      <div class="about-text">
-        Bei <strong>EchtWork</strong> steht Qualität an erster Stelle. Jeder Kunde ist für mich einzigartig.
+      <div class="about-photo" style="background-image:url('profilfoto.jpg');"></div>
+      <div style="max-width:520px;color:#e9e9e9">
+        Bei <strong>EchtWork</strong> steht Qualität an erster Stelle. Jeder Kunde ist für mich einzigartig, und ich lege großen Wert auf ein individuelles Trainingserlebnis.
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer style="text-align:center; padding:20px; font-size:14px;">
-    <a href="impressum.html">Impressum</a> | 
-    <a href="datenschutz.html">Datenschutz</a> | 
+  <footer>
+    <a href="impressum.html">Impressum</a> |
+    <a href="datenschutz.html">Datenschutz</a> |
     <a href="widerruf.html">Widerruf</a>
   </footer>
 
   <script>
-    document.querySelectorAll('.card').forEach(card => {
-      const initialBtn = card.querySelector('.initial-btn .order-btn');
-      const consentArea = card.querySelector('.consent-area');
-      const consentCheckbox = card.querySelector('.consent-checkbox');
-      const finalBtn = card.querySelector('.final-btn');
-
-      if (initialBtn && consentArea) {
-        initialBtn.addEventListener('click', () => {
-          consentArea.classList.remove('hidden');
-          initialBtn.parentElement.classList.add('hidden');
-        });
+    (function(){
+      // helper: encode mailto body
+      function makeMailto(planName){
+        const subject = encodeURIComponent('Anfrage: ' + planName);
+        const body = encodeURIComponent(
+          'Hallo%0A%0Ich interessiere mich für den Plan: ' + planName +
+          '%0A%0ABitte um weitere Informationen und Preise.%0A%0AMit freundlichen Grüßen,%0A'
+        );
+        return 'mailto:deine-email@example.com?subject=' + subject + '&body=' + body;
       }
 
-      if (consentCheckbox && finalBtn) {
-        consentCheckbox.addEventListener('change', () => {
-          finalBtn.disabled = !consentCheckbox.checked;
+      // Find all cards
+      const cards = Array.from(document.querySelectorAll('.card'));
+      cards.forEach(card => {
+        const showBtn = card.querySelector('.js-show-consent');
+        const consentArea = card.querySelector('.consent-area');
+        const consentCheckbox = card.querySelector('.consent-checkbox');
+        const finalBtn = card.querySelector('.js-final-btn');
+
+        // Guard checks
+        if(!showBtn || !consentArea) return;
+
+        // Reveal consent area when clicking initial button
+        showBtn.addEventListener('click', (e) => {
+          // prevent repeated clicks
+          showBtn.setAttribute('aria-expanded','true');
+          consentArea.classList.add('revealed');
+          consentArea.setAttribute('aria-hidden','false');
+          showBtn.disabled = true;
+          showBtn.style.opacity = '0.6';
+          // focus first interactive element in consent area (checkbox)
+          const cb = consentArea.querySelector('.consent-checkbox');
+          if(cb) cb.focus();
         });
-      }
-    });
+
+        // If consent area present with checkbox and final button:
+        if(consentCheckbox && finalBtn){
+          // When checkbox changes, toggle final button enabled state
+          consentCheckbox.addEventListener('change', (e) => {
+            if(consentCheckbox.checked){
+              finalBtn.disabled = false;
+              finalBtn.classList.add('enabled');
+            } else {
+              finalBtn.disabled = true;
+              finalBtn.classList.remove('enabled');
+            }
+          });
+
+          // Behavior for clicking final button:
+          // - For premium (contains a form submit), the button is a submit inside the form (handled by browser)
+          // - For standard plans, finalBtn is type="button" and here we build a mailto link to open email client
+          if(finalBtn.type === 'button'){
+            finalBtn.addEventListener('click', (e) => {
+              if(finalBtn.disabled) return;
+              const planName = card.dataset.plan || 'Plan';
+              // build mailto
+              const href = makeMailto(planName);
+              // open mail client in same tab (recommended) - using location.href
+              window.location.href = href;
+            });
+          } else {
+            // submit buttons inside forms will be handled automatically by HTML
+            // But ensure disabled state respected: prevent submit if disabled
+            finalBtn.addEventListener('click', (e) => {
+              if(finalBtn.disabled){
+                e.preventDefault();
+                return;
+              }
+            });
+          }
+        }
+      });
+
+      // Accessibility: allow ESC to close revealed consent areas (optional UX)
+      document.addEventListener('keydown', (e) => {
+        if(e.key === 'Escape'){
+          document.querySelectorAll('.consent-area.revealed').forEach(area => {
+            area.classList.remove('revealed');
+            area.setAttribute('aria-hidden','true');
+            const card = area.closest('.card');
+            const showBtn = card && card.querySelector('.js-show-consent');
+            if(showBtn){
+              showBtn.disabled = false;
+              showBtn.setAttribute('aria-expanded','false');
+              showBtn.style.opacity = '';
+              showBtn.focus();
+            }
+            // uncheck checkbox and disable final button
+            const cb = area.querySelector('.consent-checkbox');
+            const finalBtn = area.querySelector('.js-final-btn');
+            if(cb) cb.checked = false;
+            if(finalBtn) finalBtn.disabled = true;
+          });
+        }
+      });
+    })();
   </script>
-
 </body>
 </html>
