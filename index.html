@@ -18,9 +18,9 @@
 
   <!-- Hero -->
   <section class="text-center py-20 bg-gradient-to-b from-black to-gray-900">
+    <img src="echtwork_logo_transparent.png" alt="echtwork.de Logo" class="mx-auto w-48 md:w-64 mb-6">
     <h1 class="text-4xl md:text-5xl font-bold mb-4">Dein Körper. Dein Plan. Dein Erfolg.</h1>
-    <p class="text-gray-300 max-w-xl mx-auto mb-8">Individuelle und standardisierte Trainingspläne sowie Ernährungsempfehlungen – direkt zu dir.</p>
-    <img src="logo-ohne-hintergrund.png" alt="echtwork.de Logo" class="mx-auto w-40 md:w-52" />
+    <p class="text-gray-300 max-w-xl mx-auto">Individuelle und standardisierte Trainingspläne sowie Ernährungsempfehlungen – direkt zu dir.</p>
   </section>
 
   <!-- Plans -->
@@ -30,30 +30,48 @@
       <h2 class="text-2xl font-bold mb-4">Ernährungsplan</h2>
       <p class="text-gray-300 mb-6">Sofort-Download als PDF, Ernährungsempfehlungen für optimale Resultate.</p>
       <div class="text-3xl font-bold text-yellow-500 mb-6">25€</div>
-      <a href="#checkout" class="mt-auto bg-yellow-500 text-black text-center py-3 rounded-xl hover:bg-yellow-400 transition">Jetzt kaufen</a>
+      <label class="text-sm text-gray-400 flex items-start mb-4">
+        <input type="checkbox" class="mt-1 mr-2 consent-checkbox">
+        Ich stimme zu, dass die Ausführung des Vertrags beginnt, sobald ich den Plan per E-Mail erhalte, und dass mein Widerrufsrecht dadurch erlischt.
+      </label>
+      <button disabled class="buy-btn mt-auto bg-yellow-500 text-black text-center py-3 rounded-xl opacity-50 cursor-not-allowed">Jetzt kaufen</button>
     </div>
 
     <!-- Standardplan -->
     <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col">
       <h2 class="text-2xl font-bold mb-4">Standardplan</h2>
-      <p class="text-gray-300 mb-4">Sofort-Download als PDF, optimiert für schnelle Ergebnisse. Wähle deinen Trainingsfokus:</p>
-      <ul class="list-disc list-inside text-gray-300 mb-6 space-y-2">
-        <li><strong>Muskelaufbau & Kraft</strong> – Gezieltes Krafttraining für maximale Muskelmasse und Stärke.</li>
-        <li><strong>Ausdauer & Fettverbrennung</strong> – Intensives Cardio-Programm für bessere Kondition und effektive Fettverbrennung.</li>
-        <li><strong>Funktionelle Fitness & Core</strong> – Ganzkörperübungen für Beweglichkeit, Stabilität und eine starke Körpermitte.</li>
-        <li><strong>Regeneration & Flexibilität</strong> – Stretching- und Mobilitätsroutinen für schnelle Erholung und mehr Bewegungsfreiheit.</li>
-      </ul>
+      <p class="text-gray-300 mb-4">Kompletter Trainingsplan – bereit zum Start. Sofort-Download als PDF.</p>
+      <div class="mb-4">
+        <label class="block mb-1 text-sm text-gray-400">Wähle deinen Trainingsfokus:</label>
+        <select class="w-full p-2 rounded bg-gray-800 text-white mb-2">
+          <option>Krafttraining (Muskelaufbau)</option>
+          <option>Cardio (Ausdauer & Fettverbrennung)</option>
+          <option>Funktionales Training (Beweglichkeit & Stabilität)</option>
+          <option>Stretching & Mobilität</option>
+        </select>
+        <label class="flex items-center text-sm text-gray-400">
+          <input type="checkbox" class="mr-2 add-bundle"> +10€ Ernährungsplan hinzufügen
+        </label>
+      </div>
       <div class="text-3xl font-bold text-yellow-500 mb-6">60€</div>
-      <a href="#checkout" class="mt-auto bg-yellow-500 text-black text-center py-3 rounded-xl hover:bg-yellow-400 transition">Jetzt kaufen</a>
+      <label class="text-sm text-gray-400 flex items-start mb-4">
+        <input type="checkbox" class="mt-1 mr-2 consent-checkbox">
+        Ich stimme zu, dass die Ausführung des Vertrags beginnt, sobald ich den Plan per E-Mail erhalte, und dass mein Widerrufsrecht dadurch erlischt.
+      </label>
+      <button disabled class="buy-btn mt-auto bg-yellow-500 text-black text-center py-3 rounded-xl opacity-50 cursor-not-allowed">Jetzt kaufen</button>
     </div>
 
     <!-- Premium individuell -->
     <div class="bg-gray-900 border-2 border-yellow-500 rounded-2xl p-6 flex flex-col shadow-[0_0_20px_rgba(255,215,0,0.5)]">
       <div class="bg-yellow-500 text-black text-xs font-bold uppercase px-3 py-1 rounded-full self-start mb-4">Premium</div>
       <h2 class="text-2xl font-bold mb-4">Premium Individuell</h2>
-      <p class="text-gray-300 mb-6">Plan, der genau auf deine Anforderungen und Bedürfnisse zugeschnitten ist, basierend auf den Angaben im Formular.</p>
+      <p class="text-gray-300 mb-6">💎 Höchster Wert: Individueller Plan + persönliche Beratung. Vollständige Anpassung an deine Ziele, Gesundheit und Bedürfnisse. Direkter Kontakt mit deinem Trainer für optimale Ergebnisse.</p>
       <div class="text-3xl font-bold text-yellow-500 mb-6">99€</div>
-      <a href="#kontakt" class="mt-auto bg-yellow-500 text-black text-center py-3 rounded-xl hover:bg-yellow-400 transition">Individuell anfragen</a>
+      <label class="text-sm text-gray-400 flex items-start mb-4">
+        <input type="checkbox" class="mt-1 mr-2 consent-checkbox">
+        Ich stimme zu, dass die Ausführung des Vertrags beginnt, sobald ich den Plan per E-Mail erhalte, und dass mein Widerrufsrecht dadurch erlischt.
+      </label>
+      <button disabled class="buy-btn mt-auto bg-yellow-500 text-black text-center py-3 rounded-xl opacity-50 cursor-not-allowed">Individuell anfragen</button>
     </div>
   </section>
 
@@ -67,5 +85,16 @@
     </div>
     <p class="mt-4">© 2025 echtwork.de – Alle Rechte vorbehalten</p>
   </footer>
+
+  <script>
+    document.querySelectorAll('.buy-btn').forEach((btn, index) => {
+      const consent = document.querySelectorAll('.consent-checkbox')[index];
+      consent.addEventListener('change', () => {
+        btn.disabled = !consent.checked;
+        btn.classList.toggle('opacity-50', !consent.checked);
+        btn.classList.toggle('cursor-not-allowed', !consent.checked);
+      });
+    });
+  </script>
 </body>
 </html>
