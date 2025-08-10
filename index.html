@@ -20,63 +20,42 @@
   <section class="text-center py-20 bg-gradient-to-b from-black to-gray-900">
     <h1 class="text-4xl md:text-5xl font-bold mb-4">Dein Körper. Dein Plan. Dein Erfolg.</h1>
     <p class="text-gray-300 max-w-xl mx-auto mb-8">Individuelle und standardisierte Trainingspläne sowie Ernährungsempfehlungen – direkt zu dir.</p>
-    <img src="echtwork_logo_transparent.png" alt="Echtwork Logo" class="mx-auto w-48 md:w-56">
+    <img src="logo-ohne-hintergrund.png" alt="echtwork.de Logo" class="mx-auto w-40 md:w-52" />
   </section>
 
   <!-- Plans -->
   <section id="plaene" class="py-16 px-6 max-w-6xl mx-auto grid gap-8 md:grid-cols-3">
     <!-- Ernährungsplan -->
     <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col">
-      <h2 class="text-2xl font-bold mb-2">Ernährungsplan</h2>
-      <p class="text-gray-400 text-sm mb-4">Perfekt zum Start</p>
+      <h2 class="text-2xl font-bold mb-4">Ernährungsplan</h2>
       <p class="text-gray-300 mb-6">Sofort-Download als PDF, Ernährungsempfehlungen für optimale Resultate.</p>
-      <div class="text-3xl font-bold text-yellow-500 mb-6">29€</div>
+      <div class="text-3xl font-bold text-yellow-500 mb-6">25€</div>
       <a href="#checkout" class="mt-auto bg-yellow-500 text-black text-center py-3 rounded-xl hover:bg-yellow-400 transition">Jetzt kaufen</a>
     </div>
 
-    <!-- Standardplan (Meistgewählt) -->
-    <div class="bg-gray-900 border-2 border-yellow-500 rounded-2xl p-6 flex flex-col shadow-[0_0_20px_rgba(255,215,0,0.5)]">
-      <div class="bg-yellow-500 text-black text-xs font-bold uppercase px-3 py-1 rounded-full self-start mb-2">Meistgewählt</div>
-      <h2 class="text-2xl font-bold mb-2">Standardplan</h2>
-      <p class="text-gray-400 text-sm mb-4">Komplett & sofort startklar</p>
-      <p class="text-gray-300 mb-4">Sofort-Download als PDF, optimiert für schnelle Ergebnisse.</p>
-      <form class="mb-6 space-y-2" id="standardForm">
-        <label class="flex items-center space-x-2"><input type="radio" name="plan" value="kraft" class="accent-yellow-500"><span>Krafttraining</span></label>
-        <label class="flex items-center space-x-2"><input type="radio" name="plan" value="cardio" class="accent-yellow-500"><span>Cardio</span></label>
-        <label class="flex items-center space-x-2"><input type="radio" name="plan" value="funktional" class="accent-yellow-500"><span>Funktionaltraining</span></label>
-        <label class="flex items-center space-x-2"><input type="radio" name="plan" value="stretching" class="accent-yellow-500"><span>Stretching</span></label>
-      </form>
+    <!-- Standardplan -->
+    <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col">
+      <h2 class="text-2xl font-bold mb-4">Standardplan</h2>
+      <p class="text-gray-300 mb-4">Sofort-Download als PDF, optimiert für schnelle Ergebnisse. Wähle deinen Trainingsfokus:</p>
+      <ul class="list-disc list-inside text-gray-300 mb-6 space-y-2">
+        <li><strong>Muskelaufbau & Kraft</strong> – Gezieltes Krafttraining für maximale Muskelmasse und Stärke.</li>
+        <li><strong>Ausdauer & Fettverbrennung</strong> – Intensives Cardio-Programm für bessere Kondition und effektive Fettverbrennung.</li>
+        <li><strong>Funktionelle Fitness & Core</strong> – Ganzkörperübungen für Beweglichkeit, Stabilität und eine starke Körpermitte.</li>
+        <li><strong>Regeneration & Flexibilität</strong> – Stretching- und Mobilitätsroutinen für schnelle Erholung und mehr Bewegungsfreiheit.</li>
+      </ul>
       <div class="text-3xl font-bold text-yellow-500 mb-6">60€</div>
-      <button id="standardBuy" disabled class="mt-auto bg-yellow-700 text-black text-center py-3 rounded-xl cursor-not-allowed transition">Jetzt kaufen</button>
+      <a href="#checkout" class="mt-auto bg-yellow-500 text-black text-center py-3 rounded-xl hover:bg-yellow-400 transition">Jetzt kaufen</a>
     </div>
 
     <!-- Premium individuell -->
-    <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col">
-      <div class="bg-yellow-500 text-black text-xs font-bold uppercase px-3 py-1 rounded-full self-start mb-2">Premium</div>
-      <h2 class="text-2xl font-bold mb-2">Premium Individuell</h2>
-      <p class="text-gray-400 text-sm mb-4">Für ambitionierte Ziele</p>
-      <p class="text-gray-300 mb-6">Plan wird exakt nach deinen Angaben im Formular auf deine Bedürfnisse und Ziele abgestimmt.</p>
+    <div class="bg-gray-900 border-2 border-yellow-500 rounded-2xl p-6 flex flex-col shadow-[0_0_20px_rgba(255,215,0,0.5)]">
+      <div class="bg-yellow-500 text-black text-xs font-bold uppercase px-3 py-1 rounded-full self-start mb-4">Premium</div>
+      <h2 class="text-2xl font-bold mb-4">Premium Individuell</h2>
+      <p class="text-gray-300 mb-6">Plan, der genau auf deine Anforderungen und Bedürfnisse zugeschnitten ist, basierend auf den Angaben im Formular.</p>
       <div class="text-3xl font-bold text-yellow-500 mb-6">99€</div>
       <a href="#kontakt" class="mt-auto bg-yellow-500 text-black text-center py-3 rounded-xl hover:bg-yellow-400 transition">Individuell anfragen</a>
     </div>
   </section>
-
-  <script>
-    const standardForm = document.getElementById('standardForm');
-    const standardBuy = document.getElementById('standardBuy');
-
-    standardForm.addEventListener('change', () => {
-      const selected = standardForm.querySelector('input[name="plan"]:checked');
-      if (selected) {
-        standardBuy.disabled = false;
-        standardBuy.classList.remove('bg-yellow-700', 'cursor-not-allowed');
-        standardBuy.classList.add('bg-yellow-500', 'hover:bg-yellow-400');
-        standardBuy.onclick = () => {
-          window.location.href = `checkout.html?plan=${selected.value}`;
-        };
-      }
-    });
-  </script>
 
   <!-- Footer -->
   <footer class="bg-black border-t border-gray-800 py-6 text-center text-gray-500 text-sm">
