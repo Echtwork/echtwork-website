@@ -2,208 +2,202 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ECHTWORK – Keine Ausreden. Nur Ergebnisse.</title>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EchtWork</title>
   <style>
     body {
-      font-family: 'Oswald', Arial, sans-serif;
+      font-family: Arial, sans-serif;
       background-color: #111;
-      color: #eee;
+      color: #f5f5f5;
       margin: 0;
       padding: 0;
     }
     header {
-      background: linear-gradient(135deg, #000000, #222222);
-      color: #fff;
       text-align: center;
-      padding: 60px 20px;
-      font-size: 22px;
-    }
-    header .stars {
-      color: #D4AF37;
-      font-size: 50px;
-      margin: 0 15px;
-      vertical-align: middle;
-      user-select: none;
+      padding: 30px 20px 10px 20px;
     }
     header img {
-      max-width: 300px;
+      max-width: 200px;
       height: auto;
-      display: block;
-      margin: 20px auto 20px;
-      filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.8));
+      margin-bottom: 10px;
+    }
+    h1, h2, h3 {
+      color: #d4af37;
+      text-align: center;
     }
     section {
-      padding: 40px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-    h2 {
-      color: #D4AF37;
+      padding: 50px 20px;
       text-align: center;
-      font-size: 2rem;
-      margin-bottom: 30px;
     }
     .card-container {
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
       justify-content: center;
+      gap: 20px;
     }
     .card {
-      background: #1a1a1a;
-      border: 1px solid #D4AF37;
-      border-radius: 8px;
+      background-color: #1c1c1c;
+      border: 1px solid #d4af37;
+      border-radius: 10px;
       padding: 20px;
-      text-align: center;
-      flex: 1;
-      min-width: 250px;
-      max-width: 300px;
+      width: 300px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
     }
     .card h3 {
-      color: #FFD700;
-      margin-bottom: 10px;
-    }
-    .card p {
-      font-size: 16px;
-      color: #ccc;
+      color: #d4af37;
     }
     .card a {
       display: inline-block;
       margin-top: 15px;
       padding: 10px 20px;
-      background-color: #D4AF37;
+      background-color: #d4af37;
       color: #111;
       text-decoration: none;
       border-radius: 5px;
       font-weight: bold;
+      transition: background 0.3s ease;
     }
     .card a:hover {
       background-color: #fff3cd;
     }
-    /* Über mich */
     .about {
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
       align-items: center;
       gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: left;
     }
     .about-photo {
-      flex: 1;
-      min-width: 250px;
+      flex: 1 1 250px;
       height: 250px;
-      background-color: #1e1e1e;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #888;
-      border: 1px solid #333;
+      background-color: #333;
+      border-radius: 10px;
+      background-size: cover;
+      background-position: center;
     }
     .about-text {
-      flex: 2;
-      min-width: 250px;
-      font-size: 1.1rem;
+      flex: 2 1 300px;
+      font-size: 16px;
       line-height: 1.6;
     }
-    /* Formularz */
     form {
-      background: #1e1e1e;
-      padding: 30px;
-      border: 1px solid #555;
-      border-radius: 8px;
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
     }
-    form input, form textarea {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 15px;
-      background-color: #222;
-      color: #eee;
-      border: 1px solid #555;
-      border-radius: 4px;
-    }
-    form button {
-      background-color: #D4AF37;
-      color: #111;
-      padding: 14px 20px;
+    input, textarea {
+      padding: 10px;
+      border-radius: 5px;
       border: none;
-      font-size: 18px;
-      cursor: pointer;
-      width: 100%;
+      font-size: 14px;
     }
-    form button:hover {
+    button {
+      padding: 12px;
+      background-color: #d4af37;
+      border: none;
+      color: #111;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+    button:hover {
       background-color: #fff3cd;
     }
     footer {
       text-align: center;
       padding: 20px;
+      border-top: 1px solid #d4af37;
       font-size: 14px;
-      color: #aaa;
-      border-top: 1px solid #333;
-      margin-top: 40px;
+      background-color: #1c1c1c;
     }
     footer a {
-      color: #D4AF37;
+      color: #d4af37;
       text-decoration: none;
+      margin: 0 10px;
     }
     footer a:hover {
       text-decoration: underline;
     }
-    /* Responsywność */
     @media (max-width: 768px) {
-      header { font-size: 18px; }
-      .about { flex-direction: column; }
+      .card { width: 90%; }
+      .about { flex-direction: column; text-align: center; }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <img src="EchtWorkLogo.PNG" alt="ECHTWORK Logo">
-    <p><span class="stars">★</span> Keine Ausreden. Nur Ergebnisse. <span class="stars">★</span></p>
+    <img src="EchtWorkLogo.PNG" alt="EchtWork Logo">
+    <h1>Willkommen bei EchtWork</h1>
   </header>
 
+  <!-- Standardpläne -->
   <section>
     <h2>Standardpläne</h2>
     <div class="card-container">
       <div class="card">
-        <h3>Muskelaufbau Plan</h3>
-        <p>Effektiver Plan für schnellen Muskelaufbau mit gezielten Übungen.</p>
+        <h3>Krafttraining</h3>
+        <p>Ein effektiver Plan für Muskelaufbau und Kraftsteigerung, ideal für Anfänger und Fortgeschrittene.</p>
         <a href="#">Plan erhalten</a>
       </div>
       <div class="card">
-        <h3>Fatburn Plan</h3>
-        <p>Intensives Training zur Fettverbrennung und Konditionssteigerung.</p>
+        <h3>Ausdauertraining</h3>
+        <p>Optimiere Deine Kondition mit gezielten Einheiten, die Deine Ausdauer steigern.</p>
         <a href="#">Plan erhalten</a>
       </div>
       <div class="card">
-        <h3>Ganzkörper Fitness</h3>
-        <p>Ausgewogener Plan für allgemeine Fitness und Gesundheit.</p>
+        <h3>Functional Training</h3>
+        <p>Ganzkörpertraining zur Verbesserung von Kraft, Beweglichkeit und Koordination.</p>
         <a href="#">Plan erhalten</a>
       </div>
     </div>
   </section>
 
+  <!-- Ernährungspläne -->
   <section>
     <h2>Ernährungspläne</h2>
     <div class="card-container">
       <div class="card">
         <h3>Muskelaufbau Ernährung</h3>
-        <p>Ernährungsplan zur Unterstützung des Muskelwachstums.</p>
+        <p>Ein Plan, der Dich mit den richtigen Nährstoffen für maximales Wachstum versorgt.</p>
         <a href="#">Plan erhalten</a>
       </div>
       <div class="card">
-        <h3>Abnehm Ernährung</h3>
-        <p>Strukturierter Plan für gesundes und nachhaltiges Abnehmen.</p>
+        <h3>Abnehmen Ernährung</h3>
+        <p>Kalorienbewusste Rezepte und Tipps für gesunde Gewichtsreduktion.</p>
         <a href="#">Plan erhalten</a>
       </div>
     </div>
   </section>
 
+  <!-- Premium Plan -->
+  <section>
+    <h2>Premium Plan</h2>
+    <div class="card-container">
+      <div class="card" style="max-width: 800px;">
+        <h3>Individuell für Dich erstellt</h3>
+        <p>Der Premium Plan wird von mir persönlich erstellt – basierend auf Deinen Zielen, Deinem Fitnesslevel und Deinen individuellen Bedürfnissen. 
+        So erhältst Du ein einzigartiges Trainingserlebnis, das Dich optimal unterstützt.</p>
+        <a href="#contactForm">Premium Plan anfragen</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Über mich -->
   <section>
     <h2>Über mich</h2>
     <div class="about">
-      <div class="about-photo">[Dein Foto]</div>
+      <div class="about-photo" style="background-image: url('profilfoto.jpg');"></div>
       <div class="about-text">
         Bei <strong>EchtWork</strong> steht Qualität an erster Stelle. Jeder Kunde ist für mich einzigartig, 
         und ich lege großen Wert auf ein individuelles Trainingserlebnis. 
@@ -213,43 +207,26 @@
     </div>
   </section>
 
+  <!-- Kontakt -->
   <section>
     <h2>Kontakt aufnehmen</h2>
     <form id="contactForm">
       <input type="text" name="name" placeholder="Dein Name" required />
       <input type="email" name="email" placeholder="Deine E-Mail-Adresse" required />
-      <textarea name="nachricht" rows="5" placeholder="Worum geht’s?" required></textarea>
+      <input type="text" name="ziel" placeholder="Dein Ziel / Wunsch" required />
+      <textarea name="nachricht" rows="5" placeholder="Weitere Details" required></textarea>
       <button type="submit">Absenden</button>
     </form>
   </section>
 
+  <!-- Footer -->
   <footer>
-    &copy; 2025 ECHTWORK. Keine Ausreden. Nur Ergebnisse.<br>
-    <a href="impressum.html">Impressum</a> | 
-    <a href="datenschutz.html">Datenschutz</a> | 
-    <a href="widerruf.html">Widerrufsbelehrung</a>
+    <p>
+      <a href="impressum.html">Impressum</a> | 
+      <a href="datenschutz.html">Datenschutz</a>
+    </p>
+    <p>&copy; 2025 EchtWork – Alle Rechte vorbehalten.</p>
   </footer>
-
-  <script>
-    document.getElementById('contactForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const form = e.target;
-      const data = new FormData(form);
-      const action = "https://formspree.io/f/mqalgjzw";
-
-      const response = await fetch(action, {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if (response.ok) {
-        window.location.href = "https://echtwork.de/danke.html";
-      } else {
-        alert("Fehler beim Senden. Bitte versuche es erneut.");
-      }
-    });
-  </script>
 
 </body>
 </html>
