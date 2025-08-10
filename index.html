@@ -17,8 +17,8 @@
   </header>
 
   <!-- Hero -->
-  <section class="text-center py-20 bg-gradient-to-b from-black to-gray-900">
-    <img src="echtwork_logo_transparent.png" alt="echtwork.de Logo" class="mx-auto w-48 md:w-64 mb-6">
+  <section class="text-center py-20 bg-gradient-to-b from-black to-gray-900 flex flex-col items-center">
+    <img src="echtwork_logo_transparent.png" alt="Echtwork Logo" class="w-48 h-auto mb-6">
     <h1 class="text-4xl md:text-5xl font-bold mb-4">Dein Körper. Dein Plan. Dein Erfolg.</h1>
     <p class="text-gray-300 max-w-xl mx-auto">Individuelle und standardisierte Trainingspläne sowie Ernährungsempfehlungen – direkt zu dir.</p>
   </section>
@@ -53,7 +53,7 @@
           <input type="checkbox" class="mr-2 add-bundle"> +10€ Ernährungsplan hinzufügen
         </label>
       </div>
-      <div class="text-3xl font-bold text-yellow-500 mb-6">60€</div>
+      <div class="text-3xl font-bold text-yellow-500 mb-6 price-standard">60€</div>
       <label class="text-sm text-gray-400 flex items-start mb-4">
         <input type="checkbox" class="mt-1 mr-2 consent-checkbox">
         Ich stimme zu, dass die Ausführung des Vertrags beginnt, sobald ich den Plan per E-Mail erhalte, und dass mein Widerrufsrecht dadurch erlischt.
@@ -65,7 +65,7 @@
     <div class="bg-gray-900 border-2 border-yellow-500 rounded-2xl p-6 flex flex-col shadow-[0_0_20px_rgba(255,215,0,0.5)]">
       <div class="bg-yellow-500 text-black text-xs font-bold uppercase px-3 py-1 rounded-full self-start mb-4">Premium</div>
       <h2 class="text-2xl font-bold mb-4">Premium Individuell</h2>
-      <p class="text-gray-300 mb-6">💎 Höchster Wert: Individueller Plan + persönliche Beratung. Vollständige Anpassung an deine Ziele, Gesundheit und Bedürfnisse. Direkter Kontakt mit deinem Trainer für optimale Ergebnisse.</p>
+      <p class="text-gray-300 mb-6">Unsere höchste Wertigkeit: Individueller Trainings- und Ernährungsplan inkl. persönlicher Beratung. Vollständig auf deine Ziele, Gesundheit und Bedürfnisse abgestimmt – inklusive direktem Kontakt zum Trainer.</p>
       <div class="text-3xl font-bold text-yellow-500 mb-6">99€</div>
       <label class="text-sm text-gray-400 flex items-start mb-4">
         <input type="checkbox" class="mt-1 mr-2 consent-checkbox">
@@ -87,6 +87,7 @@
   </footer>
 
   <script>
+    // Obsługa odblokowania przycisków po zaznaczeniu zgody
     document.querySelectorAll('.buy-btn').forEach((btn, index) => {
       const consent = document.querySelectorAll('.consent-checkbox')[index];
       consent.addEventListener('change', () => {
@@ -94,6 +95,17 @@
         btn.classList.toggle('opacity-50', !consent.checked);
         btn.classList.toggle('cursor-not-allowed', !consent.checked);
       });
+    });
+
+    // Dynamiczna zmiana ceny w Standardplan
+    const bundleCheckbox = document.querySelector('.add-bundle');
+    const priceElement = document.querySelector('.price-standard');
+    bundleCheckbox.addEventListener('change', () => {
+      if (bundleCheckbox.checked) {
+        priceElement.textContent = '70€';
+      } else {
+        priceElement.textContent = '60€';
+      }
     });
   </script>
 </body>
