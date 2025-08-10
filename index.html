@@ -55,21 +55,11 @@
                 Nach Zahlungseingang erhältst Du Deinen individuellen Plan innerhalb von 5 Werktagen.
             </p>
             
-            <form action="https://formspree.io/f/DEIN_FORM_ID" method="POST" class="premium-form">
-                <label for="name">Dein Name:</label><br>
-                <input type="text" id="name" name="name" required><br>
-
-                <label for="email">Deine E-Mail:</label><br>
-                <input type="email" id="email" name="_replyto" required><br>
-
-                <label for="details">Deine Erwartungen an den Plan:</label><br>
-                <textarea id="details" name="details" rows="6" placeholder="Beschreibe hier Deine Ziele, Trainingspräferenzen und andere wichtige Details..." required></textarea><br>
-                
-                <input type="checkbox" id="premium-checkbox" name="zustimmung" required>
-                <label for="premium-checkbox">
-                    Ich stimme zu, dass der Plan nach Erhalt nicht widerrufbar ist.
-                </label><br>
-                
+            <form action="mailto:twoj@email.com" method="post" enctype="text/plain">
+                <label for="premium-details">Deine Erwartungen:</label><br>
+                <textarea id="premium-details" name="premium-details" rows="6" required></textarea><br>
+                <input type="checkbox" id="premium-checkbox" required>
+                <label for="premium-checkbox">Ich stimme zu, dass der Plan nach Erhalt nicht widerrufbar ist.</label><br>
                 <button type="submit">Formular absenden</button>
             </form>
         </section>
@@ -77,9 +67,9 @@
         <!-- Kontaktformular -->
         <section>
             <h2>Kontakt</h2>
-            <form action="https://formspree.io/f/DEIN_FORM_ID" method="POST" class="contact-form">
+            <form action="mailto:twoj@email.com" method="post" enctype="text/plain">
                 <input type="text" name="name" placeholder="Dein Name" required>
-                <input type="email" name="_replyto" placeholder="Deine E-Mail" required>
+                <input type="email" name="email" placeholder="Deine E-Mail" required>
                 <textarea name="message" placeholder="Deine Nachricht" rows="5" required></textarea>
                 <button type="submit">Nachricht senden</button>
             </form>
@@ -88,8 +78,13 @@
 
     <!-- Impressum -->
     <footer>
-        <p><a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a> | <a href="widerruf.html">Widerruf</a></p>
+        <p>
+            <a href="impressum.html">Impressum</a> | 
+            <a href="datenschutz.html">Datenschutz</a> | 
+            <a href="widerruf.html">Widerruf</a>
+        </p>
         <p>© 2025 EchtWork – Alle Rechte vorbehalten</p>
     </footer>
 </body>
 </html>
+
