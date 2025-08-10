@@ -4,7 +4,123 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EchtWork</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    :root {
+      --gold: #d4af37;
+      --gold-bright: #ffcc4d;
+      --gold-dark: #b88a28;
+      --black: #000;
+      --black-light: #111;
+      --white: #fff;
+    }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: var(--black);
+      color: var(--white);
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      text-align: center;
+      padding: 20px;
+      background-color: var(--black-light);
+      border-bottom: 2px solid var(--gold);
+    }
+    header img {
+      max-width: 200px;
+      margin-bottom: 10px;
+    }
+    header h1 {
+      color: var(--gold);
+    }
+    section {
+      padding: 40px 20px;
+    }
+    section h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      text-shadow: 0 0 8px var(--gold-dark);
+    }
+    section h2.bright {
+      color: var(--gold-bright);
+      text-shadow: 0 0 10px var(--gold-bright), 0 0 20px var(--gold-dark);
+    }
+    section h2.glow {
+      color: var(--gold);
+      text-shadow: 0 0 10px var(--gold), 0 0 20px var(--gold-dark);
+    }
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .card {
+      background-color: var(--black-light);
+      border: 2px solid var(--gold);
+      border-radius: 10px;
+      padding: 20px;
+      max-width: 300px;
+      text-align: center;
+    }
+    .card h3 {
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .card p {
+      margin-bottom: 15px;
+    }
+    .order-btn {
+      display: inline-block;
+      background-color: var(--gold);
+      color: var(--black);
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease-in-out;
+      cursor: pointer;
+    }
+    .order-btn:hover {
+      background-color: var(--gold-dark);
+    }
+    .checkbox-text {
+      font-size: 0.9em;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-top: 15px;
+      text-align: left;
+    }
+    .hidden {
+      display: none;
+    }
+    .about {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: center;
+      justify-content: center;
+    }
+    .about-photo {
+      width: 200px;
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+    }
+    .about-text {
+      max-width: 500px;
+    }
+    footer a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
 
@@ -20,32 +136,49 @@
       <div class="card">
         <h3>Krafttraining</h3>
         <p>Ein effektiver Plan für Muskelaufbau und Kraftsteigerung, ideal für Anfänger und Fortgeschrittene.</p>
-        <label class="checkbox-text">
-          <input type="checkbox" class="consent-checkbox">
-          Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird. 
-          Mir ist bekannt, dass ich dadurch mein Widerrufsrecht verliere.
-        </label>
-        <a href="#" class="order-btn" disabled>Plan erhalten</a>
+        <div class="initial-btn">
+          <span class="order-btn">Plan erhalten</span>
+        </div>
+        <div class="consent-area hidden">
+          <label class="checkbox-text">
+            <input type="checkbox" class="consent-checkbox">
+            Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird. 
+            Mir ist bekannt, dass ich dadurch mein Widerrufsrecht verliere.
+          </label>
+          <a href="#" class="order-btn final-btn" disabled>Plan bestellen</a>
+        </div>
       </div>
+
       <div class="card">
         <h3>Ausdauertraining</h3>
         <p>Optimiere Deine Kondition mit gezielten Einheiten, die Deine Ausdauer steigern.</p>
-        <label class="checkbox-text">
-          <input type="checkbox" class="consent-checkbox">
-          Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird. 
-          Mir ist bekannt, dass ich dadurch mein Widerrufsrecht verliere.
-        </label>
-        <a href="#" class="order-btn" disabled>Plan erhalten</a>
+        <div class="initial-btn">
+          <span class="order-btn">Plan erhalten</span>
+        </div>
+        <div class="consent-area hidden">
+          <label class="checkbox-text">
+            <input type="checkbox" class="consent-checkbox">
+            Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird. 
+            Mir ist bekannt, dass ich dadurch mein Widerrufsrecht verliere.
+          </label>
+          <a href="#" class="order-btn final-btn" disabled>Plan bestellen</a>
+        </div>
       </div>
+
       <div class="card">
         <h3>Functional Training</h3>
         <p>Ganzkörpertraining zur Verbesserung von Kraft, Beweglichkeit und Koordination.</p>
-        <label class="checkbox-text">
-          <input type="checkbox" class="consent-checkbox">
-          Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird. 
-          Mir ist bekannt, dass ich dadurch mein Widerrufsrecht verliere.
-        </label>
-        <a href="#" class="order-btn" disabled>Plan erhalten</a>
+        <div class="initial-btn">
+          <span class="order-btn">Plan erhalten</span>
+        </div>
+        <div class="consent-area hidden">
+          <label class="checkbox-text">
+            <input type="checkbox" class="consent-checkbox">
+            Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird. 
+            Mir ist bekannt, dass ich dadurch mein Widerrufsrecht verliere.
+          </label>
+          <a href="#" class="order-btn final-btn" disabled>Plan bestellen</a>
+        </div>
       </div>
     </div>
   </section>
@@ -57,22 +190,33 @@
       <div class="card">
         <h3>Muskelaufbau Ernährung</h3>
         <p>Ein Plan, der Dich mit den richtigen Nährstoffen für maximales Wachstum versorgt.</p>
-        <label class="checkbox-text">
-          <input type="checkbox" class="consent-checkbox">
-          Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird. 
-          Mir ist bekannt, dass ich dadurch mein Widerrufsrecht verliere.
-        </label>
-        <a href="#" class="order-btn" disabled>Plan erhalten</a>
+        <div class="initial-btn">
+          <span class="order-btn">Plan erhalten</span>
+        </div>
+        <div class="consent-area hidden">
+          <label class="checkbox-text">
+            <input type="checkbox" class="consent-checkbox">
+            Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird. 
+            Mir ist bekannt, dass ich dadurch mein Widerrufsrecht verliere.
+          </label>
+          <a href="#" class="order-btn final-btn" disabled>Plan bestellen</a>
+        </div>
       </div>
+
       <div class="card">
         <h3>Abnehmen Ernährung</h3>
         <p>Kalorienbewusste Rezepte und Tipps für gesunde Gewichtsreduktion.</p>
-        <label class="checkbox-text">
-          <input type="checkbox" class="consent-checkbox">
-          Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird. 
-          Mir ist bekannt, dass ich dadurch mein Widerrufsrecht verliere.
-        </label>
-        <a href="#" class="order-btn" disabled>Plan erhalten</a>
+        <div class="initial-btn">
+          <span class="order-btn">Plan erhalten</span>
+        </div>
+        <div class="consent-area hidden">
+          <label class="checkbox-text">
+            <input type="checkbox" class="consent-checkbox">
+            Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird. 
+            Mir ist bekannt, dass ich dadurch mein Widerrufsrecht verliere.
+          </label>
+          <a href="#" class="order-btn final-btn" disabled>Plan bestellen</a>
+        </div>
       </div>
     </div>
   </section>
@@ -81,30 +225,24 @@
   <section>
     <h2 class="glow">Premium Plan</h2>
     <div class="card-container">
-      <div class="card gold-black-style" style="max-width: 800px;">
+      <div class="card" style="max-width: 800px;">
         <h3>Individuell für Dich erstellt</h3>
-        <p>Der Premium Plan wird von mir persönlich erstellt – basierend auf Deinen Zielen, Deinem Fitnesslevel und Deinen individuellen Bedürfnissen. 
-        So erhältst Du ein einzigartiges Trainingserlebnis, das Dich optimal unterstützt.</p>
-
-        <!-- Formular -->
-        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-          <label for="name">Dein Name:</label>
-          <input type="text" id="name" name="name" required>
-
-          <label for="email">Deine E-Mail:</label>
-          <input type="email" id="email" name="email" required>
-
-          <label for="expectations">Beschreibe Deine Erwartungen:</label>
-          <textarea id="expectations" name="expectations" rows="5" required></textarea>
-
+        <p>Der Premium Plan wird von mir persönlich erstellt – basierend auf Deinen Zielen, Deinem Fitnesslevel und Deinen individuellen Bedürfnissen.</p>
+        <div class="initial-btn">
+          <span class="order-btn">Premium Plan anfragen</span>
+        </div>
+        <div class="consent-area hidden">
           <label class="checkbox-text">
-            <input type="checkbox" id="premium-consent" required>
+            <input type="checkbox" class="consent-checkbox">
             Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird. 
             Mir ist bekannt, dass ich dadurch mein Widerrufsrecht verliere.
           </label>
-
-          <button type="submit" id="premium-btn" disabled>Premium Plan anfragen</button>
-        </form>
+          <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <label>Beschreibe Deine Erwartungen:</label>
+            <textarea name="message" required></textarea>
+            <button type="submit" class="order-btn final-btn" disabled>Absenden</button>
+          </form>
+        </div>
       </div>
     </div>
   </section>
@@ -115,15 +253,12 @@
     <div class="about">
       <div class="about-photo" style="background-image: url('profilfoto.jpg');"></div>
       <div class="about-text">
-        Bei <strong>EchtWork</strong> steht Qualität an erster Stelle. Jeder Kunde ist für mich einzigartig, 
-        und ich lege großen Wert auf ein individuelles Trainingserlebnis. 
-        Mein Ziel ist es, dich bestmöglich zu unterstützen, damit du dich motiviert, sicher und besonders fühlst – 
-        auf jedem Schritt deiner Fitnessreise.
+        Bei <strong>EchtWork</strong> steht Qualität an erster Stelle. Jeder Kunde ist für mich einzigartig.
       </div>
     </div>
   </section>
 
-  <!-- Navigation zu Rechtstexten -->
+  <!-- Footer -->
   <footer style="text-align:center; padding:20px; font-size:14px;">
     <a href="impressum.html">Impressum</a> | 
     <a href="datenschutz.html">Datenschutz</a> | 
@@ -131,33 +266,23 @@
   </footer>
 
   <script>
-    // Standardowe plany
     document.querySelectorAll('.card').forEach(card => {
-      const checkbox = card.querySelector('.consent-checkbox');
-      const button = card.querySelector('.order-btn');
-      if (checkbox && button) {
-        checkbox.addEventListener('change', () => {
-          if (checkbox.checked) {
-            button.removeAttribute('disabled');
-            button.classList.add('enabled');
-          } else {
-            button.setAttribute('disabled', true);
-            button.classList.remove('enabled');
-          }
+      const initialBtn = card.querySelector('.initial-btn .order-btn');
+      const consentArea = card.querySelector('.consent-area');
+      const consentCheckbox = card.querySelector('.consent-checkbox');
+      const finalBtn = card.querySelector('.final-btn');
+
+      if (initialBtn && consentArea) {
+        initialBtn.addEventListener('click', () => {
+          consentArea.classList.remove('hidden');
+          initialBtn.parentElement.classList.add('hidden');
         });
       }
-    });
 
-    // Premium Plan
-    const premiumCheckbox = document.getElementById('premium-consent');
-    const premiumBtn = document.getElementById('premium-btn');
-    premiumCheckbox.addEventListener('change', () => {
-      if (premiumCheckbox.checked) {
-        premiumBtn.disabled = false;
-        premiumBtn.classList.add('enabled');
-      } else {
-        premiumBtn.disabled = true;
-        premiumBtn.classList.remove('enabled');
+      if (consentCheckbox && finalBtn) {
+        consentCheckbox.addEventListener('change', () => {
+          finalBtn.disabled = !consentCheckbox.checked;
+        });
       }
     });
   </script>
