@@ -1,138 +1,83 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EchtWork</title>
-  <link rel="stylesheet" href="style.css">
-  <script>
-    function showCheckbox(id) {
-      const checkbox = document.getElementById(id);
-      checkbox.style.display = "block";
-    }
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EchtWork – Keine Ausreden, nur Ergebnisse</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <h1>Keine Ausreden – Nur Ergebnisse</h1>
+    </header>
 
-  <header>
-    <img src="EchtWorkLogo.PNG" alt="EchtWork Logo">
-    <h1>Keine Ausreden – nur Ergebnisse!</h1>
-  </header>
+    <main>
+        <!-- Standard Pläne -->
+        <section>
+            <h2>Standardpläne</h2>
+            <div class="plan">
+                <h3>Krafttraining Plan</h3>
+                <input type="checkbox" id="krafttraining-checkbox"> 
+                <label for="krafttraining-checkbox">Ich stimme zu, dass der Plan nach Erhalt nicht widerrufbar ist.</label>
+                <button>Plan erhalten (PDF)</button>
+            </div>
+            <div class="plan">
+                <h3>Cardio Plan</h3>
+                <input type="checkbox" id="cardio-checkbox"> 
+                <label for="cardio-checkbox">Ich stimme zu, dass der Plan nach Erhalt nicht widerrufbar ist.</label>
+                <button>Plan erhalten (PDF)</button>
+            </div>
+        </section>
 
-  <!-- Standardpläne -->
-  <section>
-    <h2>Standardpläne</h2>
-    <div class="card-container">
-      <div class="card">
-        <h3>Krafttraining</h3>
-        <p>Ein effektiver Plan für Muskelaufbau und Kraftsteigerung, ideal für Anfänger und Fortgeschrittene.</p>
-        <a href="javascript:void(0)" onclick="showCheckbox('cb1')">Plan erhalten</a>
-        <div id="cb1" class="checkbox-container">
-          <label><input type="checkbox"> Ich stimme zu, dass mein Widerrufsrecht nach Erhalt des Plans erlischt.</label>
-        </div>
-      </div>
-      <div class="card">
-        <h3>Ausdauertraining</h3>
-        <p>Optimiere Deine Kondition mit gezielten Einheiten, die Deine Ausdauer steigern.</p>
-        <a href="javascript:void(0)" onclick="showCheckbox('cb2')">Plan erhalten</a>
-        <div id="cb2" class="checkbox-container">
-          <label><input type="checkbox"> Ich stimme zu, dass mein Widerrufsrecht nach Erhalt des Plans erlischt.</label>
-        </div>
-      </div>
-      <div class="card">
-        <h3>Functional Training</h3>
-        <p>Ganzkörpertraining zur Verbesserung von Kraft, Beweglichkeit und Koordination.</p>
-        <a href="javascript:void(0)" onclick="showCheckbox('cb3')">Plan erhalten</a>
-        <div id="cb3" class="checkbox-container">
-          <label><input type="checkbox"> Ich stimme zu, dass mein Widerrufsrecht nach Erhalt des Plans erlischt.</label>
-        </div>
-      </div>
-    </div>
-  </section>
+        <!-- Ernährungspläne -->
+        <section>
+            <h2>Ernährungspläne</h2>
+            <div class="plan">
+                <h3>Muskelaufbau Ernährung</h3>
+                <input type="checkbox" id="muskel-checkbox"> 
+                <label for="muskel-checkbox">Ich stimme zu, dass der Plan nach Erhalt nicht widerrufbar ist.</label>
+                <button>Plan erhalten (PDF)</button>
+            </div>
+            <div class="plan">
+                <h3>Abnehm Ernährung</h3>
+                <input type="checkbox" id="abnehm-checkbox"> 
+                <label for="abnehm-checkbox">Ich stimme zu, dass der Plan nach Erhalt nicht widerrufbar ist.</label>
+                <button>Plan erhalten (PDF)</button>
+            </div>
+        </section>
 
-  <!-- Ernährungspläne -->
-  <section>
-    <h2>Ernährungspläne</h2>
-    <div class="card-container">
-      <div class="card">
-        <h3>Muskelaufbau Ernährung</h3>
-        <p>Ein Plan, der Dich mit den richtigen Nährstoffen für maximales Wachstum versorgt.</p>
-        <a href="javascript:void(0)" onclick="showCheckbox('cb4')">Plan erhalten</a>
-        <div id="cb4" class="checkbox-container">
-          <label><input type="checkbox"> Ich stimme zu, dass mein Widerrufsrecht nach Erhalt des Plans erlischt.</label>
-        </div>
-      </div>
-      <div class="card">
-        <h3>Abnehmen Ernährung</h3>
-        <p>Kalorienbewusste Rezepte und Tipps für gesunde Gewichtsreduktion.</p>
-        <a href="javascript:void(0)" onclick="showCheckbox('cb5')">Plan erhalten</a>
-        <div id="cb5" class="checkbox-container">
-          <label><input type="checkbox"> Ich stimme zu, dass mein Widerrufsrecht nach Erhalt des Plans erlischt.</label>
-        </div>
-      </div>
-    </div>
-  </section>
+        <!-- Premium Plan -->
+        <section>
+            <h2 class="premium-title">Premium Plan</h2>
+            <p>Individuell für Dich erstellt. Der Premium Plan wird von mir persönlich erstellt – basierend auf Deinen Zielen, Deinem Fitnesslevel und Deinen individuellen Bedürfnissen. 
+            Bitte beschreibe im Formular genau, was Du erwartest. Nach dem Absenden des Formulars erhältst Du per E-Mail einen Link oder Zahlungsinformationen. 
+            Nach Zahlungseingang erhältst Du Deinen individuellen Plan innerhalb von 5 Werktagen.</p>
+            
+            <form action="mailto:twoj@email.com" method="post" enctype="text/plain">
+                <label for="premium-details">Deine Erwartungen:</label><br>
+                <textarea id="premium-details" name="premium-details" rows="6" required></textarea><br>
+                <input type="checkbox" id="premium-checkbox" required>
+                <label for="premium-checkbox">Ich stimme zu, dass der Plan nach Erhalt nicht widerrufbar ist.</label><br>
+                <button type="submit">Formular absenden</button>
+            </form>
+        </section>
 
-  <!-- Premium Plan -->
-<section>
-  <h2 class="premium-title">Premium Plan</h2>
-  <div class="card-container">
-    <div class="card" style="max-width: 800px;">
-      <h3>Individuell für Dich erstellt</h3>
-      <p>
-        Der Premium Plan wird von mir persönlich und individuell für Dich erstellt – basierend auf Deinen Zielen, Deinem Fitnesslevel und Deinen speziellen Bedürfnissen. 
-        Bitte beschreibe im Kontaktformular so genau wie möglich, welche Ergebnisse Du Dir wünschst und welche Trainings- oder Ernährungsschwerpunkte Dir wichtig sind.  
-        Nach dem Absenden des Formulars erhältst Du per E-Mail einen Link oder die Zahlungsinformationen.  
-        Nach dem Zahlungseingang wird Dein individueller Trainingsplan innerhalb von 5 Werktagen erstellt und an Dich gesendet.
-      </p>
-      <a href="#contactForm">Jetzt Premium Plan anfragen</a>
-    </div>
-  </div>
-</section>
+        <!-- Kontaktformular -->
+        <section>
+            <h2>Kontakt</h2>
+            <form action="mailto:twoj@email.com" method="post" enctype="text/plain">
+                <input type="text" name="name" placeholder="Dein Name" required>
+                <input type="email" name="email" placeholder="Deine E-Mail" required>
+                <textarea name="message" placeholder="Deine Nachricht" rows="5" required></textarea>
+                <button type="submit">Nachricht senden</button>
+            </form>
+        </section>
+    </main>
 
-  <!-- Über mich -->
-  <section>
-    <h2>Über mich</h2>
-    <div class="about">
-      <div class="about-photo" style="background-image: url('profilfoto.jpg');"></div>
-      <div class="about-text">
-        Bei <strong>EchtWork</strong> steht Qualität an erster Stelle. Jeder Kunde ist für mich einzigartig, 
-        und ich lege großen Wert auf ein individuelles Trainingserlebnis. 
-        Mein Ziel ist es, dich bestmöglich zu unterstützen, damit du dich motiviert, sicher und besonders fühlst – 
-        auf jedem Schritt deiner Fitnessreise.
-      </div>
-    </div>
-  </section>
-
-  <!-- Kontakt -->
-  <section>
-    <h2>Kontakt aufnehmen</h2>
-    <form id="contactForm">
-      <input type="text" name="name" placeholder="Dein Name" required />
-      <input type="email" name="email" placeholder="Deine E-Mail-Adresse" required />
-      <input type="text" name="ziel" placeholder="Dein Ziel / Wunsch" required />
-      <textarea name="nachricht" rows="5" placeholder="Weitere Details" required></textarea>
-      <button type="submit">Absenden</button>
-    </form>
-  </section>
-
-  <!-- Stopka -->
-  
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-<footer style="background-color: #000; padding: 20px 0; text-align: center; border-top: 1px solid #FFD700;">
-  <p style="color: #FFD700; margin: 0;">
-    © 2025 EchtWork – Alle Rechte vorbehalten | 
-    <a href="impressum.html" style="color: #FFD700; text-decoration: none;">Impressum</a> | 
-    <a href="datenschutz.html" style="color: #FFD700; text-decoration: none;">Datenschutz</a> | 
-    <a href="widerruf.html" style="color: #FFD700; text-decoration: none;">Widerruf</a>
-  </p>
-</footer>
-
+    <!-- Impressum -->
+    <footer>
+        <p><a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a> | <a href="widerruf.html">Widerruf</a></p>
+        <p>© 2025 EchtWork – Alle Rechte vorbehalten</p>
+    </footer>
 </body>
 </html>
-
-
-
-
