@@ -6,90 +6,83 @@
   <title>EchtWork</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    h2 {
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #000;
       color: #fff;
+      margin: 0;
+    }
+    h2 {
+      color: gold;
       text-align: center;
-    }
-    section h2 {
-      font-size: 2em;
-      margin-bottom: 20px;
-    }
-    section:nth-of-type(1) h2, section:nth-of-type(2) h2 {
-      color: #FFD700;
     }
     .card-container {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
       justify-content: center;
+      padding: 20px;
     }
     .card {
-      background: #000;
-      color: #FFD700;
+      background-color: #111;
+      border: 1px solid gold;
+      border-radius: 10px;
       padding: 20px;
-      border-radius: 10px;
-      max-width: 300px;
-      text-align: center;
-      box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+      width: 300px;
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
     }
-    .glow {
-      color: #FFD700;
-      text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+    .card h3 {
+      color: gold;
     }
-    .order-form {
-      background: #111;
-      padding: 15px;
-      border-radius: 10px;
-      margin-top: 15px;
-      display: none;
-      overflow: hidden;
-      max-height: 0;
-      transition: max-height 0.5s ease, opacity 0.5s ease;
-      opacity: 0;
+    .order-form, .premium-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 10px;
     }
-    .order-form.show {
-      display: block;
-      max-height: 500px;
-      opacity: 1;
-    }
-    .order-form label {
-      display: block;
-      color: #FFD700;
-      margin: 10px 0 5px;
-      text-align: left;
-    }
-    .order-form input, .order-form textarea {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 10px;
-      border: none;
+    input, textarea, button {
+      padding: 10px;
+      border: 1px solid gold;
       border-radius: 5px;
+      background: #000;
+      color: #fff;
     }
-    .order-form button {
-      background: #FFD700;
-      color: #000;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
+    textarea {
+      min-height: 120px;
+    }
+    button {
+      background-color: #333;
+      cursor: not-allowed;
+      transition: all 0.3s ease;
+    }
+    button.glow {
+      background-color: gold;
+      color: black;
       cursor: pointer;
-      font-weight: bold;
+      box-shadow: 0 0 15px gold;
     }
     .show-form-btn {
-      background: #FFD700;
-      color: #000;
-      padding: 10px 20px;
+      background-color: gold;
+      color: black;
+      padding: 10px;
       border: none;
-      border-radius: 5px;
       cursor: pointer;
-      font-weight: bold;
+      border-radius: 5px;
       margin-top: 10px;
+    }
+    .premium-form-container {
+      max-width: 800px;
+      margin: auto;
+    }
+    .hidden {
+      display: none;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <img src="EchtWorkLogo.PNG" alt="EchtWork Logo">
+  <header style="text-align:center; padding:20px;">
+    <img src="EchtWorkLogo.PNG" alt="EchtWork Logo" style="max-width:150px;">
     <h1>Keine Ausreden – nur Ergebnisse!</h1>
   </header>
 
@@ -99,18 +92,30 @@
     <div class="card-container">
       <div class="card">
         <h3>Krafttraining</h3>
-        <p>Ein effektiver Plan für Muskelaufbau und Kraftsteigerung.</p>
-        <a href="#">Plan erhalten</a>
+        <p>Effektiver Plan für Muskelaufbau und Kraftsteigerung.</p>
+        <form action="https://formspree.io/f/IHR_FORM_ID" method="POST" class="order-form">
+          <input type="email" name="email" placeholder="E-Mail" required>
+          <label><input type="checkbox" class="agree"> Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird und ich dadurch mein Widerrufsrecht verliere.</label>
+          <button type="submit" disabled>Bestellen</button>
+        </form>
       </div>
       <div class="card">
         <h3>Ausdauertraining</h3>
-        <p>Optimiere Deine Kondition mit gezielten Einheiten.</p>
-        <a href="#">Plan erhalten</a>
+        <p>Optimiere deine Kondition mit gezielten Einheiten.</p>
+        <form action="https://formspree.io/f/IHR_FORM_ID" method="POST" class="order-form">
+          <input type="email" name="email" placeholder="E-Mail" required>
+          <label><input type="checkbox" class="agree"> Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird und ich dadurch mein Widerrufsrecht verliere.</label>
+          <button type="submit" disabled>Bestellen</button>
+        </form>
       </div>
       <div class="card">
         <h3>Functional Training</h3>
         <p>Ganzkörpertraining für Kraft, Beweglichkeit und Koordination.</p>
-        <a href="#">Plan erhalten</a>
+        <form action="https://formspree.io/f/IHR_FORM_ID" method="POST" class="order-form">
+          <input type="email" name="email" placeholder="E-Mail" required>
+          <label><input type="checkbox" class="agree"> Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird und ich dadurch mein Widerrufsrecht verliere.</label>
+          <button type="submit" disabled>Bestellen</button>
+        </form>
       </div>
     </div>
   </section>
@@ -121,13 +126,21 @@
     <div class="card-container">
       <div class="card">
         <h3>Muskelaufbau Ernährung</h3>
-        <p>Plan mit den richtigen Nährstoffen für maximales Wachstum.</p>
-        <a href="#">Plan erhalten</a>
+        <p>Optimale Nährstoffversorgung für maximales Wachstum.</p>
+        <form action="https://formspree.io/f/IHR_FORM_ID" method="POST" class="order-form">
+          <input type="email" name="email" placeholder="E-Mail" required>
+          <label><input type="checkbox" class="agree"> Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird und ich dadurch mein Widerrufsrecht verliere.</label>
+          <button type="submit" disabled>Bestellen</button>
+        </form>
       </div>
       <div class="card">
         <h3>Abnehmen Ernährung</h3>
         <p>Kalorienbewusste Rezepte für gesunde Gewichtsreduktion.</p>
-        <a href="#">Plan erhalten</a>
+        <form action="https://formspree.io/f/IHR_FORM_ID" method="POST" class="order-form">
+          <input type="email" name="email" placeholder="E-Mail" required>
+          <label><input type="checkbox" class="agree"> Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird und ich dadurch mein Widerrufsrecht verliere.</label>
+          <button type="submit" disabled>Bestellen</button>
+        </form>
       </div>
     </div>
   </section>
@@ -136,61 +149,41 @@
   <section>
     <h2 class="glow">Premium Plan</h2>
     <div class="card-container">
-      <div class="card" style="max-width: 800px;">
-        <h3>Individuell für Dich erstellt</h3>
-        <p>
-          Der Premium Plan wird von mir persönlich erstellt – basierend auf Deinen Zielen und Bedürfnissen. 
-          Nach dem Ausfüllen des Formulars erhältst Du die Zahlungsinformationen. 
-          Nach erfolgter Zahlung erhältst Du Deinen individuellen Premium Plan innerhalb von 5 Werktagen.
-        </p>
-        <button class="show-form-btn">Plan erhalten</button>
-
-        <form action="https://formspree.io/f/TWOJ_FORM_ID" method="POST" class="order-form">
-          <label for="name">Imię (opcjonalne):</label>
-          <input type="text" name="name" id="name">
-
-          <label for="email">E-mail:</label>
-          <input type="email" name="email" id="email" required>
-
-          <label for="description">Opisz swoje oczekiwania:</label>
+      <div class="card premium-form-container">
+        <h3>Individuell für dich erstellt</h3>
+        <p>Nach dem Ausfüllen des Formulars erhältst du die Zahlungsdaten. Innerhalb von 5 Werktagen nach Zahlungseingang bekommst du deinen individuell erstellten Premium-Plan.</p>
+        <button class="show-form-btn">Premium Plan anfragen</button>
+        <form action="https://formspree.io/f/IHR_FORM_ID" method="POST" class="premium-form hidden">
+          <input type="text" name="name" placeholder="Name (optional)">
+          <input type="email" name="email" placeholder="E-Mail" required>
+          <label for="description">Beschreibe deine Erwartungen:</label>
           <textarea name="description" id="description" required></textarea>
-
-          <label class="checkbox-text">
-            <input type="checkbox" name="withdrawal" required>
-            Potwierdzam, że tracę prawo odstąpienia od umowy po rozpoczęciu realizacji.
-          </label>
-
-          <button type="submit">Bestellen</button>
+          <label><input type="checkbox" class="agree"> Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird und ich dadurch mein Widerrufsrecht verliere.</label>
+          <button type="submit" disabled>Bestellen</button>
         </form>
       </div>
     </div>
   </section>
 
-  <!-- Über mich -->
-  <section>
-    <h2>Über mich</h2>
-    <div class="about">
-      <div class="about-photo" style="background-image: url('profilfoto.jpg');"></div>
-      <div class="about-text">
-        Bei <strong>EchtWork</strong> steht Qualität an erster Stelle.
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer style="text-align:center; padding:20px; font-size:14px;">
-    <a href="impressum.html">Impressum</a> | 
-    <a href="datenschutz.html">Datenschutz</a> | 
-    <a href="widerruf.html">Widerruf</a>
-  </footer>
-
   <script>
-    document.querySelectorAll('.show-form-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        const form = this.nextElementSibling;
-        form.classList.add('show');
-        this.style.display = 'none';
+    document.querySelectorAll('.agree').forEach(checkbox => {
+      checkbox.addEventListener('change', function() {
+        const btn = this.closest('form').querySelector('button[type="submit"]');
+        if (this.checked) {
+          btn.disabled = false;
+          btn.classList.add('glow');
+        } else {
+          btn.disabled = true;
+          btn.classList.remove('glow');
+        }
       });
+    });
+
+    document.querySelector('.show-form-btn').addEventListener('click', function() {
+      this.style.display = 'none';
+      const form = document.querySelector('.premium-form');
+      form.classList.remove('hidden');
+      form.style.animation = 'slideDown 0.5s ease';
     });
   </script>
 
