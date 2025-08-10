@@ -19,9 +19,8 @@ h1, h2, h3 {
 .plan {
     background-color: #222;
     padding: 15px;
-    margin: 10px auto;
+    margin: 10px;
     border-radius: 10px;
-    max-width: 500px;
 }
 
 button {
@@ -44,11 +43,6 @@ textarea, input[type="text"], input[type="email"] {
     padding: 10px;
     border-radius: 5px;
     border: none;
-    box-sizing: border-box;
-}
-
-input[type="checkbox"] {
-    margin-top: 10px;
 }
 
 footer {
@@ -66,4 +60,75 @@ footer {
 
 .premium-title {
   animation: goldGlow 2s infinite ease-in-out;
+}
+
+/* Premium formularz */
+.premium-form {
+    background-color: #222;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 15px;
+    text-align: left;
+    display: inline-block;
+    color: #d4af37;
+    max-width: 500px;
+    width: 90%;
+}
+
+.premium-form input[type="text"],
+.premium-form input[type="email"],
+.premium-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 5px;
+}
+
+.premium-form button {
+    background-color: #d4af37;
+    color: black;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.premium-form button:hover {
+    background-color: #ffea85;
+}
+
+/* Kontaktformular */
+.contact-form {
+    background-color: #222;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 15px;
+    display: inline-block;
+    max-width: 500px;
+    width: 90%;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 5px;
+}
+
+.contact-form button {
+    background-color: #d4af37;
+    color: black;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.contact-form button:hover {
+    background-color: #ffea85;
 }
