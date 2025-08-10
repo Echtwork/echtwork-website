@@ -1,42 +1,379 @@
-// server.js (przykład minimalny)
-const express = require('express');
-const app = express();
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY); // ustaw w env
-app.use(express.json());
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>EchtWork — Trainingspläne</title>
+  <meta name="description" content="EchtWork — individuell erstellte Trainings- und Ernährungspläne. Jetzt online bestellen.">
+  <link rel="icon" href="EchtWorkLogo.PNG">
+  <style>
+    :root{
+      --bg:#000;
+      --card:#0f0f0f;
+      --accent:#d4af37; /* gold */
+      --muted:#bbb;
+      --radius:12px;
+      --max-width:1100px;
+      --container-pad:20px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Inter, Roboto, Arial, sans-serif;
+      background:var(--bg);
+      color:#fff;
+      -webkit-font-smoothing:antialiased;
+    }
+    header{padding:28px 16px;text-align:center}
+    header img{max-width:140px;display:block;margin:0 auto 10px}
+    h1{margin:0;font-size:1.6rem}
+    main{max-width:var(--max-width);margin:0 auto;padding:var(--container-pad)}
+    section{margin:28px 0}
+    h2{color:var(--accent);text-align:center;margin-bottom:14px}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+      gap:18px;
+      align-items:start;
+    }
+    .card{
+      background:var(--card);
+      border:1px solid rgba(212,175,55,0.18);
+      padding:18px;
+      border-radius:var(--radius);
+      box-shadow:0 6px 18px rgba(0,0,0,0.6);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .card:hover{transform:translateY(-6px);box-shadow:0 14px 32px rgba(0,0,0,0.7)}
+    .card h3{color:var(--accent);margin:0 0 8px;font-size:1.15rem}
+    .card p{color:var(--muted);margin:0 0 12px;line-height:1.4}
+    label.consent{display:flex;gap:10px;align-items:flex-start;color:#ddd;font-size:0.9rem}
+    input[type="email"], input[type="text"], textarea{
+      width:100%;padding:10px;border-radius:8px;border:1px solid rgba(212,175,55,0.15);
+      background:#050505;color:#fff;font-size:0.95rem;
+    }
+    textarea{min-height:110px;resize:vertical}
+    .muted{color:var(--muted);font-size:0.9rem}
+    .primary-btn{
+      display:inline-block;padding:11px 16px;border-radius:8px;border:none;
+      background:var(--accent);color:#000;font-weight:600;cursor:pointer;
+      box-shadow:0 6px 18px rgba(212,175,55,0.12);
+    }
+    .secondary{
+      background:#222;color:#fff;border:1px solid rgba(255,255,255,0.05)
+    }
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .hidden{display:none}
+    footer{padding:18px;text-align:center;color:var(--muted);font-size:0.9rem}
+    .legal-links{display:flex;gap:12px;justify-content:center;margin-top:6px}
+    /* responsywność */
+    @media (max-width:520px){
+      header{padding:18px}
+      .primary-btn{width:100%}
+    }
+    /* małe ułatwienie wizualne dla paybox */
+    .paybox{display:flex;flex-direction:column;gap:10px}
+    .info-note{font-size:0.9rem;color:var(--muted)}
+  </style>
 
-app.post('/create-checkout-session', async (req, res) => {
-  const { price, email, product } = req.body;
-  // przelicz na grosze
-  const amount = Math.round(parseFloat(price) * 100);
-
-  try {
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
-      mode: 'payment',
-      line_items: [{
-        price_data: {
-          currency: 'eur',
-          product_data: { name: product },
-          unit_amount: amount
-        },
-        quantity: 1
-      }],
-      customer_email: email,
-      success_url: 'https://twojadomena.de/danke.html?session_id={CHECKOUT_SESSION_ID}',
-      cancel_url: 'https://twojadomena.de/abbruch.html',
-    });
-    res.json({ url: session.url });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Stripe error' });
+  <!-- JSON-LD dla SEO / rich snippets -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Product",
+    "name":"Krafttraining Standardplan",
+    "description":"Effektiver Krafttrainingsplan für Muskelaufbau",
+    "brand":"EchtWork",
+    "offers":{
+      "@type":"Offer",
+      "priceCurrency":"EUR",
+      "price":"29.99",
+      "availability":"https://schema.org/InStock"
+    }
   }
-});
+  </script>
+</head>
+<body>
+  <header>
+    <img src="EchtWorkLogo.PNG" alt="EchtWork Logo">
+    <h1>Keine Ausreden — nur Ergebnisse!</h1>
+    <p class="muted">Individuelle Trainings- und Ernährungspläne • Lieferung digital per E-Mail</p>
+  </header>
 
-app.post('/fulfil-order', (req, res) => {
-  // endpoint do obsługi powiadomień z klienta po PayPal (opcjonalny)
-  console.log('Fulfil order', req.body);
-  // wyślij e-mail z plikiem, zapisz w DB, itd.
-  res.sendStatus(200);
-});
+  <main>
+    <!-- Standardpläne -->
+    <section aria-labelledby="standard-title">
+      <h2 id="standard-title">Standardpläne</h2>
+      <div class="grid">
+        <!-- przykładowa karta produktu -->
+        <article class="card" data-product-id="kraft-stand" data-price="29.99" aria-labelledby="p1">
+          <h3 id="p1">Krafttraining — Standard</h3>
+          <p>Effektiver Plan für Muskelaufbau und Kraftsteigerung — als PDF + kurze Anleitung.</p>
+          <p class="muted">Preis: <strong>29,99 €</strong></p>
 
-app.listen(4242, () => console.log('Server running on 4242'));
+          <form class="order-form" onsubmit="return false;">
+            <label class="muted">E-Mail (Erhalt des Plans):</label>
+            <input type="email" name="email" placeholder="deine@email.de" required>
+
+            <label class="consent">
+              <input type="checkbox" class="agree" aria-required="true">
+              <span>Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird und ich dadurch mein Widerrufsrecht verliere.</span>
+            </label>
+
+            <p class="info-note">Mit dem Klick auf einen der Bezahlbuttons bestätigst du eine zahlungspflichtige Bestellung.</p>
+
+            <div class="actions paybox">
+              <!-- PayPal container -->
+              <div class="paypal-container" data-ready="false"></div>
+
+              <!-- Stripe: przekierowanie do serwera create-checkout-session -->
+              <button class="primary-btn stripe-btn hidden" data-price="29.99">Zahlungspflichtig bestellen (Stripe)</button>
+            </div>
+          </form>
+        </article>
+
+        <!-- druga karta (inny produkt) -->
+        <article class="card" data-product-id="ausdauer-stand" data-price="24.99">
+          <h3>Ausdauertraining — Standard</h3>
+          <p>Gezieltes Cardio- und Intervallprogramm für bessere Kondition.</p>
+          <p class="muted">Preis: <strong>24,99 €</strong></p>
+
+          <form class="order-form" onsubmit="return false;">
+            <label class="muted">E-Mail (Erhalt des Plans):</label>
+            <input type="email" name="email" placeholder="deine@email.de" required>
+
+            <label class="consent">
+              <input type="checkbox" class="agree" aria-required="true">
+              <span>Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird und ich dadurch mein Widerrufsrecht verliere.</span>
+            </label>
+
+            <p class="info-note">Mit dem Klick auf einen der Bezahlbuttons bestätigst du eine zahlungspflichtige Bestellung.</p>
+
+            <div class="actions paybox">
+              <div class="paypal-container" data-ready="false"></div>
+              <button class="primary-btn stripe-btn hidden" data-price="24.99">Zahlungspflichtig bestellen (Stripe)</button>
+            </div>
+          </form>
+        </article>
+
+        <!-- Dodaj kolejne karty analogicznie -->
+      </div>
+    </section>
+
+    <!-- Premium Plan (formular + wybór płatności) -->
+    <section aria-labelledby="premium-title">
+      <h2 id="premium-title">Premium Plan — individuell</h2>
+      <div class="card">
+        <p>Individuell erstellter Plan nach Angaben. Du erhältst Zahlungsdaten bzw. Bezahl-Checkout und innerhalb von 5 Werktagen nach Zahlungseingang deinen Plan per E-Mail.</p>
+
+        <form id="premium-form" class="order-form" onsubmit="return false;">
+          <input type="text" name="name" placeholder="Name (optional)">
+          <label class="muted">E-Mail (für Rückfragen & Lieferung):</label>
+          <input type="email" name="email" required placeholder="deine@email.de">
+          <label for="info">Beschreibe kurz deine Ziele / Einschränkungen:</label>
+          <textarea name="description" id="info" required></textarea>
+
+          <label class="consent">
+            <input type="checkbox" id="premium-agree" aria-required="true">
+            <span>Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird und ich dadurch mein Widerrufsrecht verliere.</span>
+          </label>
+
+          <p class="muted">Preis Premium (Beispiel): <strong>79,99 €</strong></p>
+
+          <div class="actions paybox">
+            <div class="paypal-container" data-product="premium" data-price="79.99"></div>
+            <button id="stripe-premium" class="primary-btn stripe-btn hidden" data-price="79.99">Zahlungspflichtig bestellen (Stripe)</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Legal / links -->
+    <footer>
+      <div>© <span id="year"></span> EchtWork</div>
+      <div class="legal-links">
+        <a href="/impressum.html" style="color:var(--accent)">Impressum</a>
+        <a href="/datenschutz.html" style="color:var(--accent)">Datenschutzerklärung</a>
+        <a href="/agb.html" style="color:var(--accent)">AGB</a>
+      </div>
+      <p class="muted" style="margin-top:10px">Hinweis: Diese Seite ist ein Template. Rechtliche Texte (Impressum, Datenschutz, AGB) müssen von dir / Anwalt angepasst werden.</p>
+    </footer>
+  </main>
+
+  <!-- PayPal SDK - Wstaw swój CLIENT ID -->
+  <script src="https://www.paypal.com/sdk/js?client-id=PAYPAL_CLIENT_ID&currency=EUR" defer></script>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* --- Funkcje pomocnicze --- */
+    // Znajdź wszystkie karty i dodaj logikę aktywacji przycisków tylko po wpisaniu email i zgodzie
+    function initOrderCards() {
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        const form = card.querySelector('.order-form');
+        if (!form) return;
+        const email = form.querySelector('input[type="email"]');
+        const agree = form.querySelector('.agree');
+        const paypalBox = form.querySelector('.paypal-container');
+        const stripeBtn = form.querySelector('.stripe-btn');
+
+        // helper: enable/disable pay buttons
+        function updateButtons() {
+          const ready = email && email.value.trim() !== '' && agree && agree.checked;
+          if (stripeBtn) stripeBtn.classList.toggle('hidden', !ready);
+          if (paypalBox) paypalBox.dataset.ready = ready ? "true" : "false";
+          // jeśli PayPal JS jest załadowany i gotowy, wyświetl przycisk
+          // (inicjalizacja przycisków PayPal jest wykonana poniżej)
+        }
+
+        // eventy
+        if (email) email.addEventListener('input', updateButtons);
+        if (agree) agree.addEventListener('change', updateButtons);
+
+        // inicjalne
+        updateButtons();
+      });
+    }
+
+    /* --- Inicjalizacja PayPal buttons dynamicznie dla każdego paybox --- */
+    function createPaypalButtonsWhenReady() {
+      // czekaj aż SDK załaduje się
+      function waitForPaypal(cb) {
+        if (window.paypal) return cb();
+        setTimeout(() => waitForPaypal(cb), 100);
+      }
+
+      waitForPaypal(() => {
+        // dla każdego kontenera paypal stwórz dedykowany przycisk
+        document.querySelectorAll('.paypal-container').forEach((container, idx) => {
+          // jeśli już zainicjowano, pomiń
+          if (container.dataset.inited === "true") return;
+
+          const productCard = container.closest('.card');
+          const price = container.dataset.price || productCard?.dataset.price || "0.00";
+          // znajdź powiązany email i opis
+          const form = container.closest('form');
+          const emailInput = form ? form.querySelector('input[type="email"]') : null;
+          const agree = form ? form.querySelector('.agree') : null;
+
+          // renderuj przycisk PayPal
+          paypal.Buttons({
+            style: { layout: 'vertical', color: 'gold', shape:'rect', label:'pay' },
+            onClick: function(data, actions) {
+              // walidacja przed utworzeniem zamówienia
+              if (!emailInput || emailInput.value.trim() === "") {
+                alert('Bitte gib deine E-Mail ein, damit wir deinen Plan liefern können.');
+                return actions.reject();
+              }
+              if (!agree || !agree.checked) {
+                alert('Du musst der Ausführung vor Ablauf der Widerrufsfrist zustimmen.');
+                return actions.reject();
+              }
+              return actions.resolve();
+            },
+            createOrder: function(data, actions) {
+              // product name — spróbuj pobrać tytuł
+              const title = productCard ? (productCard.querySelector('h3')?.textContent || 'Training Plan') : 'Training Plan';
+              return actions.order.create({
+                purchase_units: [{
+                  amount: { value: price },
+                  description: title
+                }],
+                application_context: {
+                  shipping_preference: 'NO_SHIPPING' // dostawa cyfrowa
+                }
+              });
+            },
+            onApprove: function(data, actions) {
+              return actions.order.capture().then(function(details) {
+                // Po pomyślnej płatności — wyślij dane do Twojego endpointu fulfilment (webhook / endpoint)
+                const payer = details.payer || {};
+                const formElem = container.closest('form');
+                const emailVal = formElem.querySelector('input[type="email"]')?.value || '';
+                // Przykładowe wysłanie POST (musisz mieć backend do przyjmowania)
+                fetch('/fulfil-order', {
+                  method:'POST',
+                  headers: {'Content-Type':'application/json'},
+                  body: JSON.stringify({
+                    provider: 'paypal',
+                    orderId: details.id || data.orderID,
+                    payerName: (payer.name && (payer.name.given_name + ' ' + payer.name.surname)) || '',
+                    payerEmail: payer.email_address || emailVal,
+                    product: productCard?.querySelector('h3')?.textContent || '',
+                    amount: price
+                  })
+                }).catch(()=>{/* jeśli brak backend - to ok, informuj admina ręcznie */});
+
+                // pokaż potwierdzenie klientowi
+                alert('Danke! Die Zahlung war erfolgreich. Du erhältst den Plan per E-Mail.');
+                // opcjonalnie: przekieruj na stronę z potwierdzeniem
+                window.location.href = '/danke.html';
+              });
+            },
+            onError: function(err){
+              console.error('PayPal error', err);
+              alert('Fehler bei der Zahlung. Bitte versuche es erneut oder kontaktiere uns.');
+            }
+          }).render(container);
+
+          container.dataset.inited = "true";
+        });
+      });
+    }
+
+    /* --- Stripe flow: redirect to server (create checkout session) --- */
+    // Naciśnięcie przycisku Stripe przekierowuje do endpointu serwera, który tworzy sesję
+    function initStripeButtons() {
+      document.querySelectorAll('.stripe-btn').forEach(btn=>{
+        btn.addEventListener('click', async (e)=>{
+          const price = btn.dataset.price || '0.00';
+          const form = btn.closest('form');
+          const email = form.querySelector('input[type="email"]')?.value || '';
+          const agreeChecked = form.querySelector('.agree')?.checked;
+          if (!email || !agreeChecked) {
+            alert('Bitte E-Mail eintragen und der Zustimmung zustimmen.');
+            return;
+          }
+          // Wyślij request do serwera, który stworzy session i zwróci URL
+          try {
+            const resp = await fetch('/create-checkout-session', {
+              method:'POST',
+              headers:{'Content-Type':'application/json'},
+              body: JSON.stringify({
+                price: price,
+                email: email,
+                product: form.closest('.card')?.querySelector('h3')?.textContent || 'EchtWork Plan'
+              })
+            });
+            const data = await resp.json();
+            if (data.url) {
+              window.location.href = data.url; // przekierowanie do Stripe Checkout
+            } else {
+              alert('Fehler beim Erstellen der Checkout-Session.');
+            }
+          } catch(err){
+            console.error(err);
+            alert('Serverfehler. Bitte versuche es später.');
+          }
+        });
+      });
+
+      // premium
+      const prem = document.getElementById('stripe-premium');
+      if (prem) prem.addEventListener('click', (e)=> {
+        // ten przycisk też obsługuje standardowy handler wyżej
+      });
+    }
+
+    // inicjalizacja po DOM ready
+    document.addEventListener('DOMContentLoaded', function(){
+      initOrderCards();
+      createPaypalButtonsWhenReady();
+      initStripeButtons();
+    });
+  </script>
+
+  <!-- UWAGI: Aby Stripe działał, musisz mieć endpoint /create-checkout-session (przykład poniżej) -->
+</body>
+</html>
