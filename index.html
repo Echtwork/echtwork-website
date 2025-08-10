@@ -1,191 +1,42 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EchtWork</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #000;
-      color: #fff;
-      margin: 0;
-    }
-    h2 {
-      color: gold;
-      text-align: center;
-    }
-    .card-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-      padding: 20px;
-    }
-    .card {
-      background-color: #111;
-      border: 1px solid gold;
-      border-radius: 10px;
-      padding: 20px;
-      width: 300px;
-      box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-    }
-    .card h3 {
-      color: gold;
-    }
-    .order-form, .premium-form {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 10px;
-    }
-    input, textarea, button {
-      padding: 10px;
-      border: 1px solid gold;
-      border-radius: 5px;
-      background: #000;
-      color: #fff;
-    }
-    textarea {
-      min-height: 120px;
-    }
-    button {
-      background-color: #333;
-      cursor: not-allowed;
-      transition: all 0.3s ease;
-    }
-    button.glow {
-      background-color: gold;
-      color: black;
-      cursor: pointer;
-      box-shadow: 0 0 15px gold;
-    }
-    .show-form-btn {
-      background-color: gold;
-      color: black;
-      padding: 10px;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
-      margin-top: 10px;
-    }
-    .premium-form-container {
-      max-width: 800px;
-      margin: auto;
-    }
-    .hidden {
-      display: none;
-    }
-  </style>
-</head>
-<body>
+// server.js (przykład minimalny)
+const express = require('express');
+const app = express();
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY); // ustaw w env
+app.use(express.json());
 
-  <header style="text-align:center; padding:20px;">
-    <img src="EchtWorkLogo.PNG" alt="EchtWork Logo" style="max-width:150px;">
-    <h1>Keine Ausreden – nur Ergebnisse!</h1>
-  </header>
+app.post('/create-checkout-session', async (req, res) => {
+  const { price, email, product } = req.body;
+  // przelicz na grosze
+  const amount = Math.round(parseFloat(price) * 100);
 
-  <!-- Standardpläne -->
-  <section>
-    <h2>Standardpläne</h2>
-    <div class="card-container">
-      <div class="card">
-        <h3>Krafttraining</h3>
-        <p>Effektiver Plan für Muskelaufbau und Kraftsteigerung.</p>
-        <form action="https://formspree.io/f/IHR_FORM_ID" method="POST" class="order-form">
-          <input type="email" name="email" placeholder="E-Mail" required>
-          <label><input type="checkbox" class="agree"> Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird und ich dadurch mein Widerrufsrecht verliere.</label>
-          <button type="submit" disabled>Bestellen</button>
-        </form>
-      </div>
-      <div class="card">
-        <h3>Ausdauertraining</h3>
-        <p>Optimiere deine Kondition mit gezielten Einheiten.</p>
-        <form action="https://formspree.io/f/IHR_FORM_ID" method="POST" class="order-form">
-          <input type="email" name="email" placeholder="E-Mail" required>
-          <label><input type="checkbox" class="agree"> Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird und ich dadurch mein Widerrufsrecht verliere.</label>
-          <button type="submit" disabled>Bestellen</button>
-        </form>
-      </div>
-      <div class="card">
-        <h3>Functional Training</h3>
-        <p>Ganzkörpertraining für Kraft, Beweglichkeit und Koordination.</p>
-        <form action="https://formspree.io/f/IHR_FORM_ID" method="POST" class="order-form">
-          <input type="email" name="email" placeholder="E-Mail" required>
-          <label><input type="checkbox" class="agree"> Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird und ich dadurch mein Widerrufsrecht verliere.</label>
-          <button type="submit" disabled>Bestellen</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- Ernährungspläne -->
-  <section>
-    <h2>Ernährungspläne</h2>
-    <div class="card-container">
-      <div class="card">
-        <h3>Muskelaufbau Ernährung</h3>
-        <p>Optimale Nährstoffversorgung für maximales Wachstum.</p>
-        <form action="https://formspree.io/f/IHR_FORM_ID" method="POST" class="order-form">
-          <input type="email" name="email" placeholder="E-Mail" required>
-          <label><input type="checkbox" class="agree"> Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird und ich dadurch mein Widerrufsrecht verliere.</label>
-          <button type="submit" disabled>Bestellen</button>
-        </form>
-      </div>
-      <div class="card">
-        <h3>Abnehmen Ernährung</h3>
-        <p>Kalorienbewusste Rezepte für gesunde Gewichtsreduktion.</p>
-        <form action="https://formspree.io/f/IHR_FORM_ID" method="POST" class="order-form">
-          <input type="email" name="email" placeholder="E-Mail" required>
-          <label><input type="checkbox" class="agree"> Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird und ich dadurch mein Widerrufsrecht verliere.</label>
-          <button type="submit" disabled>Bestellen</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- Premium Plan -->
-  <section>
-    <h2 class="glow">Premium Plan</h2>
-    <div class="card-container">
-      <div class="card premium-form-container">
-        <h3>Individuell für dich erstellt</h3>
-        <p>Nach dem Ausfüllen des Formulars erhältst du die Zahlungsdaten. Innerhalb von 5 Werktagen nach Zahlungseingang bekommst du deinen individuell erstellten Premium-Plan.</p>
-        <button class="show-form-btn">Premium Plan anfragen</button>
-        <form action="https://formspree.io/f/IHR_FORM_ID" method="POST" class="premium-form hidden">
-          <input type="text" name="name" placeholder="Name (optional)">
-          <input type="email" name="email" placeholder="E-Mail" required>
-          <label for="description">Beschreibe deine Erwartungen:</label>
-          <textarea name="description" id="description" required></textarea>
-          <label><input type="checkbox" class="agree"> Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird und ich dadurch mein Widerrufsrecht verliere.</label>
-          <button type="submit" disabled>Bestellen</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <script>
-    document.querySelectorAll('.agree').forEach(checkbox => {
-      checkbox.addEventListener('change', function() {
-        const btn = this.closest('form').querySelector('button[type="submit"]');
-        if (this.checked) {
-          btn.disabled = false;
-          btn.classList.add('glow');
-        } else {
-          btn.disabled = true;
-          btn.classList.remove('glow');
-        }
-      });
+  try {
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      mode: 'payment',
+      line_items: [{
+        price_data: {
+          currency: 'eur',
+          product_data: { name: product },
+          unit_amount: amount
+        },
+        quantity: 1
+      }],
+      customer_email: email,
+      success_url: 'https://twojadomena.de/danke.html?session_id={CHECKOUT_SESSION_ID}',
+      cancel_url: 'https://twojadomena.de/abbruch.html',
     });
+    res.json({ url: session.url });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Stripe error' });
+  }
+});
 
-    document.querySelector('.show-form-btn').addEventListener('click', function() {
-      this.style.display = 'none';
-      const form = document.querySelector('.premium-form');
-      form.classList.remove('hidden');
-      form.style.animation = 'slideDown 0.5s ease';
-    });
-  </script>
+app.post('/fulfil-order', (req, res) => {
+  // endpoint do obsługi powiadomień z klienta po PayPal (opcjonalny)
+  console.log('Fulfil order', req.body);
+  // wyślij e-mail z plikiem, zapisz w DB, itd.
+  res.sendStatus(200);
+});
 
-</body>
-</html>
+app.listen(4242, () => console.log('Server running on 4242'));
