@@ -142,4 +142,15 @@ footer {
     flex-direction: column;
     text-align: center;
   }
+  /* Animacja migotania nagłówka Premium Plan */
+@keyframes goldGlow {
+  0% { text-shadow: 0 0 5px #d4af37, 0 0 10px #d4af37; }
+  50% { text-shadow: 0 0 15px #ffea85, 0 0 30px #ffea85; }
+  100% { text-shadow: 0 0 5px #d4af37, 0 0 10px #d4af37; }
+}
+
+.premium-title {
+  animation: goldGlow 2s infinite ease-in-out;
+}
+
 }
