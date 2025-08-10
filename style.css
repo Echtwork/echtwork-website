@@ -5,39 +5,29 @@ body {
   margin: 0;
   padding: 0;
 }
-
 header {
   text-align: center;
   padding: 30px 20px 10px 20px;
 }
-
 header img {
   max-width: 200px;
   height: auto;
   margin-bottom: 10px;
 }
-
 h1, h2, h3 {
   color: #d4af37;
   text-align: center;
 }
-
-.glow {
-  text-shadow: 0 0 10px #d4af37, 0 0 20px #d4af37;
-}
-
 section {
   padding: 50px 20px;
   text-align: center;
 }
-
 .card-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
 }
-
 .card {
   background-color: #1c1c1c;
   border: 1px solid #d4af37;
@@ -47,28 +37,13 @@ section {
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
   transition: transform 0.3s ease;
 }
-
 .card:hover {
   transform: translateY(-5px);
 }
-
 .card h3 {
   color: #d4af37;
 }
-
-.card p {
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.checkbox-text {
-  font-size: 12px;
-  text-align: left;
-  margin-top: 10px;
-  color: #bbb;
-}
-
-.card a, button {
+.card a {
   display: inline-block;
   margin-top: 15px;
   padding: 10px 20px;
@@ -79,9 +54,17 @@ section {
   font-weight: bold;
   transition: background 0.3s ease;
 }
-
-.card a:hover, button:hover {
+.card a:hover {
   background-color: #fff3cd;
+}
+.checkbox-container {
+  display: none;
+  margin-top: 10px;
+  font-size: 12px;
+  text-align: left;
+}
+.checkbox-container input {
+  margin-right: 5px;
 }
 
 .about {
@@ -94,7 +77,6 @@ section {
   margin: 0 auto;
   text-align: left;
 }
-
 .about-photo {
   flex: 1 1 250px;
   height: 250px;
@@ -103,7 +85,6 @@ section {
   background-size: cover;
   background-position: center;
 }
-
 .about-text {
   flex: 2 1 300px;
   font-size: 16px;
@@ -117,12 +98,40 @@ form {
   flex-direction: column;
   gap: 15px;
 }
-
 input, textarea {
   padding: 10px;
   border-radius: 5px;
   border: none;
   font-size: 14px;
+}
+button {
+  padding: 12px;
+  background-color: #d4af37;
+  border: none;
+  color: #111;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+button:hover {
+  background-color: #fff3cd;
+}
+
+footer {
+  background-color: #000;
+  padding: 15px;
+  text-align: center;
+  font-size: 14px;
+  border-top: 1px solid #d4af37;
+}
+
+.glow-text {
+  animation: glow 2s infinite alternate;
+}
+@keyframes glow {
+  from { text-shadow: 0 0 5px #d4af37, 0 0 10px #d4af37; }
+  to { text-shadow: 0 0 15px #ffdd55, 0 0 30px #d4af37; }
 }
 
 @media (max-width: 768px) {
