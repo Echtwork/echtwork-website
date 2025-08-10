@@ -10,17 +10,24 @@ body {
 header {
     padding: 20px;
     background-color: #000;
+    border-bottom: 2px solid #d4af37;
 }
 
 h1, h2, h3 {
     color: #d4af37;
 }
 
+section {
+    padding: 20px;
+}
+
 .plan {
     background-color: #222;
     padding: 15px;
-    margin: 10px;
+    margin: 10px auto;
     border-radius: 10px;
+    border: 1px solid #d4af37;
+    max-width: 500px;
 }
 
 button {
@@ -31,20 +38,39 @@ button {
     color: black;
     font-weight: bold;
     border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
-textarea, input[type="text"], input[type="email"] {
+button:hover {
+    background-color: #ffcc66;
+}
+
+textarea, 
+input[type="text"], 
+input[type="email"] {
     width: 80%;
     margin: 5px 0;
     padding: 10px;
     border-radius: 5px;
-    border: none;
+    border: 1px solid #d4af37;
+    background-color: #1a1a1a;
+    color: #fff;
 }
 
 footer {
     padding: 20px;
     background-color: #000;
     font-size: 14px;
+    border-top: 2px solid #d4af37;
+}
+
+footer a {
+    color: #ffcc66;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
 }
 
 /* Animacja Premium Plan */
