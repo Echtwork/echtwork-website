@@ -5,6 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EchtWork</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Styl złoto-czarny dla formularza */
+    .gold-black-style {
+      background-color: #000;
+      color: #d4af37;
+      border: 2px solid #d4af37;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    .gold-black-style input,
+    .gold-black-style textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      margin-bottom: 15px;
+      border: 1px solid #d4af37;
+      border-radius: 5px;
+      background-color: #111;
+      color: #fff;
+    }
+    .gold-black-style button {
+      background-color: #d4af37;
+      color: #000;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .gold-black-style button:hover {
+      background-color: #b88a28;
+    }
+    .checkbox-text {
+      font-size: 0.9em;
+    }
+  </style>
 </head>
 <body>
 
@@ -20,28 +56,16 @@
       <div class="card">
         <h3>Krafttraining</h3>
         <p>Ein effektiver Plan für Muskelaufbau und Kraftsteigerung, ideal für Anfänger und Fortgeschrittene.</p>
-        <label class="checkbox-text">
-          <input type="checkbox" required>
-          Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird. Mir ist bekannt, dass ich dadurch mein Widerrufsrecht verliere.
-        </label>
         <a href="#">Plan erhalten</a>
       </div>
       <div class="card">
         <h3>Ausdauertraining</h3>
         <p>Optimiere Deine Kondition mit gezielten Einheiten, die Deine Ausdauer steigern.</p>
-        <label class="checkbox-text">
-          <input type="checkbox" required>
-          Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird. Mir ist bekannt, dass ich dadurch mein Widerrufsrecht verliere.
-        </label>
         <a href="#">Plan erhalten</a>
       </div>
       <div class="card">
         <h3>Functional Training</h3>
         <p>Ganzkörpertraining zur Verbesserung von Kraft, Beweglichkeit und Koordination.</p>
-        <label class="checkbox-text">
-          <input type="checkbox" required>
-          Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird. Mir ist bekannt, dass ich dadurch mein Widerrufsrecht verliere.
-        </label>
         <a href="#">Plan erhalten</a>
       </div>
     </div>
@@ -54,19 +78,11 @@
       <div class="card">
         <h3>Muskelaufbau Ernährung</h3>
         <p>Ein Plan, der Dich mit den richtigen Nährstoffen für maximales Wachstum versorgt.</p>
-        <label class="checkbox-text">
-          <input type="checkbox" required>
-          Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird. Mir ist bekannt, dass ich dadurch mein Widerrufsrecht verliere.
-        </label>
         <a href="#">Plan erhalten</a>
       </div>
       <div class="card">
         <h3>Abnehmen Ernährung</h3>
         <p>Kalorienbewusste Rezepte und Tipps für gesunde Gewichtsreduktion.</p>
-        <label class="checkbox-text">
-          <input type="checkbox" required>
-          Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird. Mir ist bekannt, dass ich dadurch mein Widerrufsrecht verliere.
-        </label>
         <a href="#">Plan erhalten</a>
       </div>
     </div>
@@ -76,15 +92,30 @@
   <section>
     <h2 class="glow">Premium Plan</h2>
     <div class="card-container">
-      <div class="card" style="max-width: 800px;">
+      <div class="card gold-black-style" style="max-width: 800px;">
         <h3>Individuell für Dich erstellt</h3>
         <p>Der Premium Plan wird von mir persönlich erstellt – basierend auf Deinen Zielen, Deinem Fitnesslevel und Deinen individuellen Bedürfnissen. 
         So erhältst Du ein einzigartiges Trainingserlebnis, das Dich optimal unterstützt.</p>
-        <label class="checkbox-text">
-          <input type="checkbox" required>
-          Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird. Mir ist bekannt, dass ich dadurch mein Widerrufsrecht verliere.
-        </label>
-        <a href="#">Premium Plan anfragen</a>
+
+        <!-- Formular -->
+        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <label for="name">Dein Name:</label>
+          <input type="text" id="name" name="name" required>
+
+          <label for="email">Deine E-Mail:</label>
+          <input type="email" id="email" name="email" required>
+
+          <label for="expectations">Beschreibe Deine Erwartungen:</label>
+          <textarea id="expectations" name="expectations" rows="5" required></textarea>
+
+          <label class="checkbox-text">
+            <input type="checkbox" name="widerruf" required>
+            Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird. 
+            Mir ist bekannt, dass ich dadurch mein Widerrufsrecht verliere.
+          </label>
+
+          <button type="submit">Premium Plan anfragen</button>
+        </form>
       </div>
     </div>
   </section>
