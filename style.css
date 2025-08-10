@@ -1,20 +1,19 @@
-/* Reset stylów */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Kolory główne */
 :root {
   --gold: #d4af37;
+  --gold-bright: #ffcc4d;
   --gold-dark: #b88a28;
   --black: #000;
   --black-light: #111;
   --white: #fff;
 }
 
-/* Tło i fonty */
 body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: var(--black);
@@ -42,15 +41,20 @@ section {
   padding: 40px 20px;
 }
 section h2 {
-  color: var(--gold);
   text-align: center;
   margin-bottom: 20px;
+  text-shadow: 0 0 8px var(--gold-dark);
 }
 section h2.glow {
+  color: var(--gold);
   text-shadow: 0 0 10px var(--gold), 0 0 20px var(--gold-dark);
 }
+section h2.bright {
+  color: var(--gold-bright);
+  text-shadow: 0 0 10px var(--gold-bright), 0 0 20px var(--gold-dark);
+}
 
-/* Karty planów */
+/* Karty */
 .card-container {
   display: flex;
   flex-wrap: wrap;
@@ -64,6 +68,11 @@ section h2.glow {
   padding: 20px;
   max-width: 300px;
   text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 15px var(--gold-dark);
 }
 .card h3 {
   color: var(--gold);
@@ -72,7 +81,9 @@ section h2.glow {
 .card p {
   margin-bottom: 15px;
 }
-.card a {
+
+/* Przycisk zamówienia */
+.order-btn {
   display: inline-block;
   background-color: var(--gold);
   color: var(--black);
@@ -80,12 +91,25 @@ section h2.glow {
   border-radius: 5px;
   text-decoration: none;
   font-weight: bold;
+  transition: all 0.3s ease-in-out;
 }
-.card a:hover {
+.order-btn:hover {
   background-color: var(--gold-dark);
 }
+.order-btn[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: scale(0.98);
+}
+.order-btn.enabled {
+  animation: unlock 0.3s ease-in-out forwards;
+}
+@keyframes unlock {
+  0% { opacity: 0.5; transform: scale(0.98); }
+  100% { opacity: 1; transform: scale(1); }
+}
 
-/* Styl złoto-czarny formularza Premium Plan */
+/* Formularz Premium */
 .gold-black-style {
   background-color: var(--black-light);
   color: var(--gold);
@@ -115,10 +139,20 @@ section h2.glow {
   border-radius: 5px;
   font-weight: bold;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.gold-black-style button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: scale(0.98);
+}
+.gold-black-style button.enabled {
+  animation: unlock 0.3s ease-in-out forwards;
 }
 .gold-black-style button:hover {
   background-color: var(--gold-dark);
 }
+
 .checkbox-text {
   font-size: 0.9em;
   display: flex;
@@ -127,7 +161,7 @@ section h2.glow {
   margin-bottom: 15px;
 }
 
-/* Sekcja "O mnie" */
+/* Sekcja O mnie */
 .about {
   display: flex;
   flex-wrap: wrap;
