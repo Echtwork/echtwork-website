@@ -9,7 +9,10 @@
 <body class="bg-black text-white font-sans">
   <!-- Header -->
   <header class="flex justify-between items-center px-6 py-4 border-b border-yellow-600">
-    <div class="text-2xl font-bold text-yellow-500">echtwork.de</div>
+    <div class="flex items-center space-x-4">
+      <img src="echtwork_logo_transparent.png" alt="Echtwork Logo" class="h-12">
+      <span class="text-2xl font-bold text-yellow-500">echtwork.de</span>
+    </div>
     <nav class="space-x-6">
       <a href="#plaene" class="hover:text-yellow-400">Pläne</a>
       <a href="#kontakt" class="hover:text-yellow-400">Kontakt</a>
@@ -17,10 +20,10 @@
   </header>
 
   <!-- Hero -->
-  <section class="text-center py-20 bg-gradient-to-b from-black to-gray-900 flex flex-col items-center">
-    <img src="echtwork_logo_transparent.png" alt="Echtwork Logo" class="w-48 h-auto mb-6">
+  <section class="text-center py-20 bg-gradient-to-b from-black to-gray-900">
     <h1 class="text-4xl md:text-5xl font-bold mb-4">Dein Körper. Dein Plan. Dein Erfolg.</h1>
-    <p class="text-gray-300 max-w-xl mx-auto">Individuelle und standardisierte Trainingspläne sowie Ernährungsempfehlungen – direkt zu dir.</p>
+    <p class="text-gray-300 max-w-xl mx-auto mb-8">Individuelle und standardisierte Trainingspläne sowie Ernährungsempfehlungen – direkt zu dir.</p>
+    <img src="echtwork_logo_transparent.png" alt="Echtwork Logo" class="h-24 mx-auto">
   </section>
 
   <!-- Plans -->
@@ -30,48 +33,41 @@
       <h2 class="text-2xl font-bold mb-4">Ernährungsplan</h2>
       <p class="text-gray-300 mb-6">Sofort-Download als PDF, Ernährungsempfehlungen für optimale Resultate.</p>
       <div class="text-3xl font-bold text-yellow-500 mb-6">25€</div>
-      <label class="text-sm text-gray-400 flex items-start mb-4">
-        <input type="checkbox" class="mt-1 mr-2 consent-checkbox">
-        Ich stimme zu, dass die Ausführung des Vertrags beginnt, sobald ich den Plan per E-Mail erhalte, und dass mein Widerrufsrecht dadurch erlischt.
-      </label>
-      <button disabled class="buy-btn mt-auto bg-yellow-500 text-black text-center py-3 rounded-xl opacity-50 cursor-not-allowed">Jetzt kaufen</button>
+      <a href="#checkout" class="mt-auto bg-yellow-500 text-black text-center py-3 rounded-xl hover:bg-yellow-400 transition">Jetzt kaufen</a>
     </div>
 
     <!-- Standardplan -->
     <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col">
       <h2 class="text-2xl font-bold mb-4">Standardplan</h2>
-      <p class="text-gray-300 mb-4">Kompletter Trainingsplan – bereit zum Start. Sofort-Download als PDF.</p>
-      <div class="mb-4">
-        <label class="block mb-1 text-sm text-gray-400">Wähle deinen Trainingsfokus:</label>
-        <select class="w-full p-2 rounded bg-gray-800 text-white mb-2">
-          <option>Krafttraining (Muskelaufbau)</option>
-          <option>Cardio (Ausdauer & Fettverbrennung)</option>
-          <option>Funktionales Training (Beweglichkeit & Stabilität)</option>
-          <option>Stretching & Mobilität</option>
+      <p class="text-gray-300 mb-4">Komplett & sofort startklar – Sofort-Download als PDF.</p>
+      <p class="text-gray-400 mb-4">Optional: +10€ für Ernährungsplan im Bundle.</p>
+      <form action="#checkout" method="GET" class="space-y-4">
+        <select name="plan" class="w-full bg-gray-800 text-white border border-gray-600 rounded-lg p-2">
+          <option value="">Bitte Trainingsart wählen</option>
+          <option value="kraft">Krafttraining</option>
+          <option value="cardio">Cardio</option>
+          <option value="funktional">Funktional</option>
+          <option value="stretching">Stretching</option>
         </select>
-        <label class="flex items-center text-sm text-gray-400">
-          <input type="checkbox" class="mr-2 add-bundle"> +10€ Ernährungsplan hinzufügen
-        </label>
-      </div>
-      <div class="text-3xl font-bold text-yellow-500 mb-6 price-standard">60€</div>
-      <label class="text-sm text-gray-400 flex items-start mb-4">
-        <input type="checkbox" class="mt-1 mr-2 consent-checkbox">
-        Ich stimme zu, dass die Ausführung des Vertrags beginnt, sobald ich den Plan per E-Mail erhalte, und dass mein Widerrufsrecht dadurch erlischt.
-      </label>
-      <button disabled class="buy-btn mt-auto bg-yellow-500 text-black text-center py-3 rounded-xl opacity-50 cursor-not-allowed">Jetzt kaufen</button>
+        <div class="text-3xl font-bold text-yellow-500">60€</div>
+        <button type="submit" class="w-full bg-yellow-500 text-black py-3 rounded-xl hover:bg-yellow-400 transition">Jetzt kaufen</button>
+      </form>
     </div>
 
-    <!-- Premium individuell -->
-    <div class="bg-gray-900 border-2 border-yellow-500 rounded-2xl p-6 flex flex-col shadow-[0_0_20px_rgba(255,215,0,0.5)]">
-      <div class="bg-yellow-500 text-black text-xs font-bold uppercase px-3 py-1 rounded-full self-start mb-4">Premium</div>
-      <h2 class="text-2xl font-bold mb-4">Premium Individuell</h2>
-      <p class="text-gray-300 mb-6">Unsere höchste Wertigkeit: Individueller Trainings- und Ernährungsplan inkl. persönlicher Beratung. Vollständig auf deine Ziele, Gesundheit und Bedürfnisse abgestimmt – inklusive direktem Kontakt zum Trainer.</p>
-      <div class="text-3xl font-bold text-yellow-500 mb-6">99€</div>
-      <label class="text-sm text-gray-400 flex items-start mb-4">
-        <input type="checkbox" class="mt-1 mr-2 consent-checkbox">
-        Ich stimme zu, dass die Ausführung des Vertrags beginnt, sobald ich den Plan per E-Mail erhalte, und dass mein Widerrufsrecht dadurch erlischt.
-      </label>
-      <button disabled class="buy-btn mt-auto bg-yellow-500 text-black text-center py-3 rounded-xl opacity-50 cursor-not-allowed">Individuell anfragen</button>
+    <!-- Premium Individuell -->
+    <div class="bg-gray-900 border-4 border-yellow-500 rounded-2xl shadow-[0_0_20px_rgba(255,215,0,0.6)] p-8 flex flex-col justify-between">
+      <h3 class="text-3xl font-bold text-yellow-500 mb-4 text-center">Premium Individuell</h3>
+      <p class="text-gray-300 mb-4 text-center">
+        <strong>Höchster Wert:</strong> Dein individueller Plan + persönliche Beratung.<br>
+        Vollständig auf dich abgestimmt – basierend auf deinen Angaben im Formular.<br>
+        Berücksichtigung deiner Ziele, Gesundheit & Trainingsmöglichkeiten.<br>
+        Lieferung innerhalb von <strong>1–5 Werktagen</strong> als PDF per E-Mail.
+      </p>
+      <div class="text-center text-4xl font-bold text-yellow-400 mb-6">99€</div>
+      <a href="premium-formular.html" 
+         class="bg-yellow-500 text-black font-semibold py-3 px-6 rounded-xl hover:bg-yellow-400 transition text-center block">
+        Individuell anfragen
+      </a>
     </div>
   </section>
 
@@ -85,28 +81,5 @@
     </div>
     <p class="mt-4">© 2025 echtwork.de – Alle Rechte vorbehalten</p>
   </footer>
-
-  <script>
-    // Obsługa odblokowania przycisków po zaznaczeniu zgody
-    document.querySelectorAll('.buy-btn').forEach((btn, index) => {
-      const consent = document.querySelectorAll('.consent-checkbox')[index];
-      consent.addEventListener('change', () => {
-        btn.disabled = !consent.checked;
-        btn.classList.toggle('opacity-50', !consent.checked);
-        btn.classList.toggle('cursor-not-allowed', !consent.checked);
-      });
-    });
-
-    // Dynamiczna zmiana ceny w Standardplan
-    const bundleCheckbox = document.querySelector('.add-bundle');
-    const priceElement = document.querySelector('.price-standard');
-    bundleCheckbox.addEventListener('change', () => {
-      if (bundleCheckbox.checked) {
-        priceElement.textContent = '70€';
-      } else {
-        priceElement.textContent = '60€';
-      }
-    });
-  </script>
 </body>
 </html>
