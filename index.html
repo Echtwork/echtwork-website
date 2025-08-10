@@ -1,4 +1,4 @@
-<!DOCTYPE html>  
+<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
@@ -28,84 +28,90 @@
       user-select: none;
     }
     header img {
-      max-width: 300px; /* powiększone logo */
+      max-width: 300px;
       height: auto;
       display: block;
       margin: 20px auto 20px;
-      filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.8)); /* złoty cień */
+      filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.8));
     }
     section {
       padding: 40px 20px;
-      max-width: 800px;
+      max-width: 1000px;
       margin: auto;
     }
-    .angebot h2 {
-      font-size: 32px;
-      margin-bottom: 10px;
-    }
-    .shiny {
-      font-size: 22px;
-      font-weight: bold;
-      background: linear-gradient(90deg, #FFD700, #D4AF37, #B8860B, #FFD700);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: shine 2s infinite linear;
-      background-size: 200% auto;
-    }
-    @keyframes shine {
-      to { background-position: 200% center; }
-    }
-    .angebot ul {
-      list-style: none;
-      padding-left: 0;
-    }
-    .angebot li {
-      background: #1e1e1e;
-      padding: 15px;
-      margin-bottom: 10px;
-      border-left: 5px solid #D4AF37;
-      font-size: 18px;
-    }
-    .toggle-title {
-      cursor: pointer;
-      user-select: none;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .toggle-title:hover {
+    h2 {
       color: #D4AF37;
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 30px;
     }
-    .toggle-arrow {
-      transition: transform 0.3s ease;
-      font-size: 18px;
-      background: linear-gradient(90deg, #FFD700, #D4AF37, #B8860B);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
     }
-    .toggle-item .toggle-content {
-      max-height: 0;
-      overflow: hidden;
-      margin-top: 0;
-      opacity: 0;
-      transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease;
+    .card {
+      background: #1a1a1a;
+      border: 1px solid #D4AF37;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      flex: 1;
+      min-width: 250px;
+      max-width: 300px;
     }
-    .toggle-item.open .toggle-content {
-      opacity: 1;
-      margin-top: 10px;
+    .card h3 {
+      color: #FFD700;
+      margin-bottom: 10px;
     }
-    .toggle-item.open .toggle-arrow {
-      transform: rotate(90deg);
-    }
-    .subtext {
+    .card p {
       font-size: 16px;
       color: #ccc;
-      padding-left: 10px;
     }
+    .card a {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #D4AF37;
+      color: #111;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+    .card a:hover {
+      background-color: #fff3cd;
+    }
+    /* Über mich */
+    .about {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 20px;
+    }
+    .about-photo {
+      flex: 1;
+      min-width: 250px;
+      height: 250px;
+      background-color: #1e1e1e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #888;
+      border: 1px solid #333;
+    }
+    .about-text {
+      flex: 2;
+      min-width: 250px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    /* Formularz */
     form {
       background: #1e1e1e;
       padding: 30px;
       border: 1px solid #555;
+      border-radius: 8px;
     }
     form input, form textarea {
       width: 100%;
@@ -127,31 +133,26 @@
     }
     form button:hover {
       background-color: #fff3cd;
-      color: #111;
     }
     footer {
       text-align: center;
       padding: 20px;
       font-size: 14px;
       color: #aaa;
+      border-top: 1px solid #333;
+      margin-top: 40px;
+    }
+    footer a {
+      color: #D4AF37;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
     }
     /* Responsywność */
     @media (max-width: 768px) {
       header { font-size: 18px; }
-      section { padding: 20px 15px; }
-      .angebot h2 { font-size: 26px; }
-      .angebot li { font-size: 16px; padding: 12px; }
-      .shiny { font-size: 18px; }
-      .toggle-title { flex-direction: column; align-items: flex-start; }
-      .toggle-arrow { align-self: flex-end; margin-top: 5px; }
-      form { padding: 20px; }
-      form input, form textarea { font-size: 16px; padding: 10px; }
-      form button { font-size: 16px; padding: 12px; }
-    }
-    @media (max-width: 480px) {
-      header { font-size: 16px; }
-      .angebot h2 { font-size: 22px; }
-      .angebot li { font-size: 15px; padding: 10px; }
+      .about { flex-direction: column; }
     }
   </style>
 </head>
@@ -162,76 +163,58 @@
     <p><span class="stars">★</span> Keine Ausreden. Nur Ergebnisse. <span class="stars">★</span></p>
   </header>
 
-  <section class="angebot">
-    <h2>Was ich dir biete</h2>     
+  <section>
+    <h2>Standardpläne</h2>
+    <div class="card-container">
+      <div class="card">
+        <h3>Muskelaufbau Plan</h3>
+        <p>Effektiver Plan für schnellen Muskelaufbau mit gezielten Übungen.</p>
+        <a href="#">Plan erhalten</a>
+      </div>
+      <div class="card">
+        <h3>Fatburn Plan</h3>
+        <p>Intensives Training zur Fettverbrennung und Konditionssteigerung.</p>
+        <a href="#">Plan erhalten</a>
+      </div>
+      <div class="card">
+        <h3>Ganzkörper Fitness</h3>
+        <p>Ausgewogener Plan für allgemeine Fitness und Gesundheit.</p>
+        <a href="#">Plan erhalten</a>
+      </div>
+    </div>
   </section>
 
-  <footer>
-<!-- === Punkt 4: Standardpläne === -->
-<section style="padding: 50px 20px; background-color: #fafafa; font-family: Arial, sans-serif;">
-  <h2 style="text-align:center; font-size: 2rem; margin-bottom: 40px;">Standardpläne</h2>
-  <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
-    <div style="flex: 1; min-width: 250px; max-width: 300px; background-color: white; border: 1px solid #ddd; border-radius: 8px; padding: 20px; text-align: center;">
-      <h3>Muskelaufbau Plan</h3>
-      <p>Ein effektiver Plan für schnellen Muskelaufbau mit gezielten Übungen.</p>
-      <a href="#" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: red; color: white; text-decoration: none; border-radius: 5px;">Plan erhalten</a>
+  <section>
+    <h2>Ernährungspläne</h2>
+    <div class="card-container">
+      <div class="card">
+        <h3>Muskelaufbau Ernährung</h3>
+        <p>Ernährungsplan zur Unterstützung des Muskelwachstums.</p>
+        <a href="#">Plan erhalten</a>
+      </div>
+      <div class="card">
+        <h3>Abnehm Ernährung</h3>
+        <p>Strukturierter Plan für gesundes und nachhaltiges Abnehmen.</p>
+        <a href="#">Plan erhalten</a>
+      </div>
     </div>
-    <div style="flex: 1; min-width: 250px; max-width: 300px; background-color: white; border: 1px solid #ddd; border-radius: 8px; padding: 20px; text-align: center;">
-      <h3>Fatburn Plan</h3>
-      <p>Intensives Training zur Fettverbrennung und Konditionssteigerung.</p>
-      <a href="#" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: red; color: white; text-decoration: none; border-radius: 5px;">Plan erhalten</a>
-    </div>
-    <div style="flex: 1; min-width: 250px; max-width: 300px; background-color: white; border: 1px solid #ddd; border-radius: 8px; padding: 20px; text-align: center;">
-      <h3>Ganzkörper Fitness</h3>
-      <p>Ein ausgewogener Plan für allgemeine Fitness und Gesundheit.</p>
-      <a href="#" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: red; color: white; text-decoration: none; border-radius: 5px;">Plan erhalten</a>
-    </div>
-  </div>
-
-<!-- === Punkt 5: Ernährungspläne === -->
-<section style="padding: 50px 20px; font-family: Arial, sans-serif;">
-  <h2 style="text-align:center; font-size: 2rem; margin-bottom: 40px;">Ernährungspläne</h2>
-  <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
-    <div style="flex: 1; min-width: 250px; max-width: 300px; background-color: white; border: 1px solid #ddd; border-radius: 8px; padding: 20px; text-align: center;">
-      <h3>Muskelaufbau Ernährung</h3>
-      <p>Ein Ernährungsplan zur Unterstützung des Muskelwachstums.</p>
-      <a href="#" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: red; color: white; text-decoration: none; border-radius: 5px;">Plan erhalten</a>
-    </div>
-    <div style="flex: 1; min-width: 250px; max-width: 300px; background-color: white; border: 1px solid #ddd; border-radius: 8px; padding: 20px; text-align: center;">
-      <h3>Abnehm Ernährung</h3>
-      <p>Ein strukturierter Ernährungsplan für gesundes und nachhaltiges Abnehmen.</p>
-      <a href="#" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: red; color: white; text-decoration: none; border-radius: 5px;">Plan erhalten</a>
-    </div>
-  </div>
-</section>
-    <span><span class="shiny">PREMIUM</span> Individuelle Trainingspläne – 100% auf dich zugeschnitten <strong>(80€)</strong></span>
-        </div>
-        <div class="toggle-content">
-          <p class="subtext">Schreib mir, was dein Ziel ist, und wir passen den Plan perfekt an dich an.</p>
-        </div>
-      </li>
-    </ul>
   </section>
- <!-- === Punkt 1: Über mich === -->
-<section style="padding: 50px 20px; max-width: 1000px; margin: auto; font-family: Arial, sans-serif;">
-  <h2 style="text-align:center; font-size: 2rem; margin-bottom: 20px;">Über mich</h2>
-  <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 20px;">
-    <div style="flex: 1; min-width: 250px; background-color: #f0f0f0; height: 250px; display: flex; align-items: center; justify-content: center;">
-      <!-- Tutaj wstawisz swoje zdjęcie -->
-      <span style="color: #888;">[Dein Foto]</span>
-    </div>
-    <div style="flex: 2; min-width: 250px;">
-      <p style="font-size: 1.1rem; line-height: 1.6;">
+
+  <section>
+    <h2>Über mich</h2>
+    <div class="about">
+      <div class="about-photo">[Dein Foto]</div>
+      <div class="about-text">
         Bei <strong>EchtWork</strong> steht Qualität an erster Stelle. Jeder Kunde ist für mich einzigartig, 
-        und ich lege großen Wert auf ein individuelles Trainingserlebnis. Mein Ziel ist es, dich bestmöglich zu unterstützen, 
-        damit du dich motiviert, sicher und besonders fühlst – auf jedem Schritt deiner Fitnessreise.
-      </p>
+        und ich lege großen Wert auf ein individuelles Trainingserlebnis. 
+        Mein Ziel ist es, dich bestmöglich zu unterstützen, damit du dich motiviert, sicher und besonders fühlst – 
+        auf jedem Schritt deiner Fitnessreise.
+      </div>
     </div>
-  </div>
-</section>
-    <section>
+  </section>
+
+  <section>
     <h2>Kontakt aufnehmen</h2>
-    <p>Du willst starten oder hast Fragen? Schreib mir einfach:</p>
     <form id="contactForm">
       <input type="text" name="name" placeholder="Dein Name" required />
       <input type="email" name="email" placeholder="Deine E-Mail-Adresse" required />
@@ -239,34 +222,15 @@
       <button type="submit">Absenden</button>
     </form>
   </section>
+
+  <footer>
     &copy; 2025 ECHTWORK. Keine Ausreden. Nur Ergebnisse.<br>
-    <a href="impressum.html" style="color:#D4AF37; text-decoration:none;">Impressum</a> | 
-    <a href="datenschutz.html" style="color:#D4AF37; text-decoration:none;">Datenschutz</a> | 
-    <a href="widerruf.html" style="color:#D4AF37; text-decoration:none;">Widerrufsbelehrung</a>
+    <a href="impressum.html">Impressum</a> | 
+    <a href="datenschutz.html">Datenschutz</a> | 
+    <a href="widerruf.html">Widerrufsbelehrung</a>
   </footer>
 
   <script>
-    // Rozwijanie listy
-    document.querySelectorAll('.toggle-title').forEach(title => {
-      title.addEventListener('click', () => {
-        const item = title.parentElement;
-        const content = item.querySelector('.toggle-content');
-        if (item.classList.contains('open')) {
-          content.style.maxHeight = content.scrollHeight + "px";
-          requestAnimationFrame(() => { content.style.maxHeight = "0"; });
-          item.classList.remove('open');
-        } else {
-          content.style.maxHeight = content.scrollHeight + "px";
-          item.classList.add('open');
-          content.addEventListener('transitionend', function handler() {
-            if (item.classList.contains('open')) content.style.maxHeight = "none";
-            content.removeEventListener('transitionend', handler);
-          });
-        }
-      });
-    });
-
-    // Formularz z przekierowaniem
     document.getElementById('contactForm').addEventListener('submit', async function(e) {
       e.preventDefault();
       const form = e.target;
@@ -289,9 +253,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
