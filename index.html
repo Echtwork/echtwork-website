@@ -49,14 +49,14 @@
 
       <!-- Checkbox -->
       <label class="flex items-start mb-4">
-        <input type="checkbox" id="accept-ernaehrung" class="mt-1 mr-3">
+        <input type="checkbox" id="accept-ernaehrung" class="mt-1 mr-3" onchange="toggleButton('accept-ernaehrung','btn-ernaehrung')">
         <span class="text-sm text-gray-300">
           Ich stimme ausdrücklich zu, dass die Ausführung des Vertrags vor Ablauf der Widerrufsfrist beginnt
           und mir bewusst ist, dass ich mit Erhalt der Datei (<strong>PDF-Plan</strong>) mein Widerrufsrecht verliere.
         </span>
       </label>
 
-      <a href="#checkout" onclick="return validateCheckbox('accept-ernaehrung')" class="mt-auto bg-yellow-500 text-black text-center py-3 rounded-xl hover:bg-yellow-400 transition">Jetzt kaufen</a>
+      <button id="btn-ernaehrung" disabled class="mt-auto bg-yellow-500 text-black text-center py-3 rounded-xl opacity-50 cursor-not-allowed">Jetzt kaufen</button>
     </div>
 
     <!-- Standardplan -->
@@ -83,14 +83,14 @@
 
       <!-- Checkbox akceptacji -->
       <label class="flex items-start mb-4">
-        <input type="checkbox" id="accept-standard" class="mt-1 mr-3">
+        <input type="checkbox" id="accept-standard" class="mt-1 mr-3" onchange="toggleButton('accept-standard','btn-standard')">
         <span class="text-sm text-gray-300">
           Ich stimme ausdrücklich zu, dass die Ausführung des Vertrags vor Ablauf der Widerrufsfrist beginnt
           und mir bewusst ist, dass ich mit Erhalt der Datei (<strong>PDF-Plan</strong>) mein Widerrufsrecht verliere.
         </span>
       </label>
 
-      <a href="#checkout" onclick="return validateCheckbox('accept-standard')" class="mt-auto bg-yellow-500 text-black text-center py-3 rounded-xl hover:bg-yellow-400 transition">Plan auswählen</a>
+      <button id="btn-standard" disabled class="mt-auto bg-yellow-500 text-black text-center py-3 rounded-xl opacity-50 cursor-not-allowed">Plan auswählen</button>
     </div>
 
     <!-- Premium individuell -->
@@ -116,20 +116,25 @@
 
   <!-- Skrypty -->
   <script>
-    function validateCheckbox(id) {
-      const checkbox = document.getElementById(id);
-      if (!checkbox.checked) {
-        alert("Bitte bestätige die Zustimmung, bevor du fortfährst.");
-        return false;
-      }
-      return true;
-    }
-
     function updateStandardPrice() {
       const basePrice = 60;
       const bundle = document.getElementById("bundle-option").checked;
       const priceEl = document.getElementById("standard-price");
       priceEl.textContent = bundle ? (basePrice + 10) + "€" : basePrice + "€";
+    }
+
+    function toggleButton(checkboxId, buttonId) {
+      const checkbox = document.getElementById(checkboxId);
+      const button = document.getElementById(buttonId);
+      if (checkbox.checked) {
+        button.disabled = false;
+        button.classList.remove("opacity-50", "cursor-not-allowed");
+        button.classList.add("hover:bg-yellow-400", "transition");
+      } else {
+        button.disabled = true;
+        button.classList.add("opacity-50", "cursor-not-allowed");
+        button.classList.remove("hover:bg-yellow-400", "transition");
+      }
     }
   </script>
 </body>
