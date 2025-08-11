@@ -24,6 +24,8 @@
     </p>
 
     <form action="https://formspree.io/f/mqalgjzw" method="POST" class="space-y-6 bg-gray-900 p-6 rounded-2xl border border-yellow-500 shadow-[0_0_20px_rgba(255,215,0,0.3)]">
+      <input type="hidden" name="plan-typ" value="Premium Individuell">
+
       <div>
         <label for="name" class="block text-sm font-medium mb-2">Name*</label>
         <input type="text" id="name" name="name" required class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white">
@@ -51,14 +53,11 @@
 
       <!-- Checkbox Akzeptanz -->
       <div class="flex items-start">
-        <input type="checkbox" id="widerruf" name="widerruf" required class="mt-1 mr-3">
-        <label for="widerruf" class="text-sm text-gray-300">
-          Ich stimme ausdrücklich zu, dass die Ausführung des Vertrags vor Ablauf der Widerrufsfrist beginnt
-          und mir bewusst ist, dass ich mit Erhalt der Datei (<strong>PDF-Plan</strong>) mein Widerrufsrecht verliere.
-        </label>
+        <input type="checkbox" id="widerruf" name="widerruf" required class="mt-1 mr-3" onchange="validatePremiumButton()">
+        <label for="widerruf" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
       </div>
 
-      <button type="submit" class="w-full bg-yellow-500 text-black py-3 rounded-xl font-semibold hover:bg-yellow-400 transition">
+      <button id="premium-btn" type="submit" class="w-full bg-yellow-500 text-black py-3 rounded-xl font-semibold hover:bg-yellow-400 transition opacity-50 pointer-events-none">
         Anfrage absenden
       </button>
     </form>
@@ -68,5 +67,17 @@
   <footer class="bg-black border-t border-gray-800 py-6 text-center text-gray-500 text-sm">
     <p>© 2025 echtwork.de – Alle Rechte vorbehalten</p>
   </footer>
+
+  <script>
+    function validatePremiumButton() {
+      let checkbox = document.getElementById("widerruf").checked;
+      let btn = document.getElementById("premium-btn");
+      if (checkbox) {
+        btn.classList.remove("opacity-50", "pointer-events-none");
+      } else {
+        btn.classList.add("opacity-50", "pointer-events-none");
+      }
+    }
+  </script>
 </body>
 </html>
