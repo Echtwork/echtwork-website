@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>echtwork.de – Trainingspläne</title>
+  <title>Premium Individuell Anfrage – echtwork.de</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-black text-white font-sans">
@@ -11,108 +11,70 @@
   <header class="flex justify-between items-center px-6 py-4 border-b border-yellow-600">
     <div class="text-2xl font-bold text-yellow-500">echtwork.de</div>
     <nav class="space-x-6">
-      <a href="#plaene" class="hover:text-yellow-400">Pläne</a>
-      <a href="#kontakt" class="hover:text-yellow-400">Kontakt</a>
+      <a href="index.html" class="hover:text-yellow-400">Zurück zur Startseite</a>
     </nav>
   </header>
 
-  <!-- Hero -->
-  <section class="text-center py-16 bg-gradient-to-b from-black to-gray-900">
-    <img src="images/echtwork_logo_transparent.png" alt="Echtwork Logo" class="mx-auto w-48 md:w-64 lg:w-72 mb-6">
-    <h1 class="text-4xl md:text-5xl font-bold mb-4">Dein Körper. Dein Plan. Dein Erfolg.</h1>
-    <p class="text-gray-300 max-w-xl mx-auto">Individuelle und standardisierte Trainingspläne sowie Ernährungsempfehlungen – direkt zu dir.</p>
-  </section>
+  <!-- Formular -->
+  <section class="py-16 px-6 max-w-2xl mx-auto">
+    <h1 class="text-3xl font-bold mb-6 text-yellow-500">Premium Individuell – Anfrage</h1>
+    <p class="text-gray-300 mb-8">
+      Bitte fülle das Formular mit möglichst vielen Details aus, damit wir deinen individuellen Plan optimal erstellen können.
+      Du erhältst deinen PDF-Plan innerhalb von <span class="font-semibold">1–5 Werktagen</span> nach Zahlungseingang per E-Mail.
+    </p>
 
-  <!-- Plans -->
-  <section id="plaene" class="py-16 px-6 max-w-6xl mx-auto grid gap-8 md:grid-cols-3">
-    <!-- Ernährungsplan -->
-    <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col">
-      <h2 class="text-2xl font-bold mb-4">Ernährungsplan</h2>
-      <p class="text-gray-300 mb-6">Sofort-Download als PDF, Ernährungsempfehlungen für optimale Resultate.</p>
-      <div class="text-3xl font-bold text-yellow-500 mb-6">25€</div>
-      <div class="flex items-start mb-4">
-        <input type="checkbox" id="check-ernaehrung" class="mt-1 mr-2" onchange="togglePayPalButtonErnaehrung()">
-        <label for="check-ernaehrung" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
+    <form action="https://formspree.io/f/mqalgjzw" method="POST" class="space-y-6 bg-gray-900 p-6 rounded-2xl border border-yellow-500 shadow-[0_0_20px_rgba(255,215,0,0.3)]">
+      <input type="hidden" name="plan-typ" value="Premium Individuell">
+
+      <div>
+        <label for="name" class="block text-sm font-medium mb-2">Name*</label>
+        <input type="text" id="name" name="name" required class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white">
       </div>
 
-      <!-- PayPal Button Form für Ernährungsplan -->
-      <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
-        <input type="hidden" name="cmd" value="_s-xclick" />
-        <input type="hidden" name="hosted_button_id" value="PUVJF99CA2LLL" />
-        <input type="hidden" name="currency_code" value="EUR" />
-        
-        <!-- Przycisk PayPal -->
-        <input type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" border="0" name="submit" title="PayPal – Einfacher und sicherer online bezahlen." alt="Jetzt kaufen" />
-        
-        <input type="hidden" name="return" value="https://echtwork.github.io/echtwork-website/premium-formular.html" />  <!-- URL formularza -->
-        <input type="hidden" name="cancel_return" value="https://twojastrona.pl/fehler" />  <!-- URL na wypadek anulowania płatności -->
-      </form>
-
-    </div>
-
-    <!-- Standardplan -->
-    <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col">
-      <h2 class="text-2xl font-bold mb-4">Standardplan</h2>
-      <p class="text-gray-300 mb-4">Sofort-Download als PDF, Kompletter Trainingsplan, sofort startklar. Optional: +10€ für Ernährungsplan.</p>
-      <div class="mb-4 space-y-2 text-gray-300" onchange="updateStandardPrice(); togglePayPalButtonStandard();">
-        <label class="flex items-center"><input type="radio" name="plan-type" value="60" class="mr-2"> Krafttraining (Muskelaufbau) </label>
-        <label class="flex items-center"><input type="radio" name="plan-type" value="60" class="mr-2"> Cardio (Ausdauer & Fettverbrennung) </label>
-        <label class="flex items-center"><input type="radio" name="plan-type" value="60" class="mr-2"> Funktional (Beweglichkeit & Stabilität) </label>
-        <label class="flex items-center"><input type="radio" name="plan-type" value="60" class="mr-2"> Stretching (Erholung & Flexibilität) </label>
-      </div>
-      <div class="flex items-center mb-4">
-        <input type="checkbox" id="bundle" value="10" class="mr-2" onchange="updateStandardPrice();">
-        <label for="bundle" class="text-sm text-gray-300">+10€ für Ernährungsplan (Bundle)</label>
-      </div>
-      <div class="text-3xl font-bold text-yellow-500 mb-6" id="standard-price">60€</div>
-      <div class="flex items-start mb-4">
-        <input type="checkbox" id="check-standard" class="mt-1 mr-2" onchange="togglePayPalButtonStandard()">
-        <label for="check-standard" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
+      <div>
+        <label for="email" class="block text-sm font-medium mb-2">E-Mail*</label>
+        <input type="email" id="email" name="_replyto" required class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white">
       </div>
 
-      <!-- PayPal Button Form für Standardplan -->
-      <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
-        <input type="hidden" name="cmd" value="_s-xclick" />
-        <input type="hidden" name="hosted_button_id" value="96DX79QQS3QXS" />
-        <input type="hidden" name="currency_code" value="EUR" />
-        
-        <!-- Przycisk PayPal -->
-        <input type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" border="0" name="submit" title="PayPal – Einfacher und sicherer online bezahlen." alt="Jetzt kaufen" />
-        
-        <input type="hidden" name="return" value="https://echtwork.github.io/echtwork-website/premium-formular.html" />  <!-- URL formularza -->
-        <input type="hidden" name="cancel_return" value="https://twojastrona.pl/fehler" />  <!-- URL na wypadek anulowania płatności -->
-      </form>
-
-    </div>
-
-    <!-- Premium Individuell -->
-    <div class="bg-gray-900 border-2 border-yellow-500 rounded-2xl p-6 flex flex-col shadow-[0_0_20px_rgba(255,215,0,0.5)]">
-      <div class="bg-yellow-500 text-black text-xs font-bold uppercase px-3 py-1 rounded-full self-start mb-4">Premium</div>
-      <h2 class="text-2xl font-bold mb-4">Premium Individuell</h2>
-      <p class="text-gray-300 mb-6">Höchster Wert: Individueller Plan + persönliche Beratung. Vollständige Anpassung an deine Ziele, Gesundheit und Bedürfnisse. Lieferung als PDF innerhalb von 1–5 Werktagen nach Zahlung. <strong>Nach der Zahlung wirst du automatisch zu einem Formular weitergeleitet, in dem du uns alle wichtigen Informationen für deinen individuellen Plan mitteilen kannst.</strong></p>
-      <div class="text-3xl font-bold text-yellow-500 mb-6">99€</div>
-
-      <!-- Checkbox für Premium -->
-      <div class="flex items-start mb-4">
-        <input type="checkbox" id="check-premium" class="mt-1 mr-2" onchange="togglePayPalButtonPremium()">
-        <label for="check-premium" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
+      <div>
+        <label for="ziele" class="block text-sm font-medium mb-2">Deine Ziele*</label>
+        <textarea id="ziele" name="ziele" rows="3" required class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white"></textarea>
       </div>
 
-      <!-- PayPal Button Form für Premium -->
+      <div>
+        <label for="gesundheit" class="block text-sm font-medium mb-2">Gesundheitliche Voraussetzungen / Einschränkungen</label>
+        <textarea id="gesundheit" name="gesundheit" rows="3" class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white"></textarea>
+      </div>
+
+      <div>
+        <label for="wuensche" class="block text-sm font-medium mb-2">Besondere Wünsche</label>
+        <textarea id="wuensche" name="wuensche" rows="3" class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white"></textarea>
+      </div>
+
+      <!-- Checkbox Akzeptanz -->
+      <div class="flex items-start">
+        <input type="checkbox" id="widerruf" name="widerruf" required class="mt-1 mr-3" onchange="validatePremiumButton()">
+        <label for="widerruf" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
+      </div>
+
+      <button id="premium-btn" type="submit" class="w-full bg-yellow-500 text-black py-3 rounded-xl font-semibold hover:bg-yellow-400 transition opacity-50 pointer-events-none">
+        Anfrage absenden
+      </button>
+    </form>
+
+    <!-- PayPal Button -->
+    <section class="mt-12">
       <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
         <input type="hidden" name="cmd" value="_s-xclick" />
         <input type="hidden" name="hosted_button_id" value="PV6WNVYUSV9NN" />
         <input type="hidden" name="currency_code" value="EUR" />
         
-        <!-- Przycisk PayPal -->
-        <input type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" border="0" name="submit" title="PayPal – Einfacher und sicherer online bezahlen." alt="Jetzt kaufen" />
+        <input id="paypal-submit-premium" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" border="0" name="submit" title="PayPal – Einfacher und sicherer online bezahlen." alt="Jetzt kaufen" disabled />
         
-        <!-- Przekierowanie po płatności -->
-        <input type="hidden" name="return" value="https://echtwork.github.io/echtwork-website/premium-formular.html" />  <!-- URL formularza -->
-        <input type="hidden" name="cancel_return" value="https://twojastrona.pl/fehler" />  <!-- URL na wypadek anulowania płatności -->
+        <input type="hidden" name="return" value="https://echtwork.de/premium-formular.html" /> <!-- URL formularza -->
+        <input type="hidden" name="cancel_return" value="https://echtwork.de/fehler" /> <!-- URL na wypadek anulowania płatności -->
       </form>
-
-    </div>
+    </section>
   </section>
 
   <!-- Footer -->
@@ -120,5 +82,16 @@
     <p>© 2025 echtwork.de – Alle Rechte vorbehalten</p>
   </footer>
 
+  <script>
+    function validatePremiumButton() {
+      let checkbox = document.getElementById("widerruf").checked;
+      let btn = document.getElementById("premium-btn");
+      if (checkbox) {
+        btn.classList.remove("opacity-50", "pointer-events-none");
+      } else {
+        btn.classList.add("opacity-50", "pointer-events-none");
+      }
+    }
+  </script>
 </body>
 </html>
