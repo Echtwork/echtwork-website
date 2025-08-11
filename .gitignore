@@ -1,0 +1,9 @@
+# Ignorowanie pliku .env (zawiera wrażliwe dane, np. klucze API, hasła)
+.env
+
+# Ignorowanie plików kompilacji Pythona
+__pycache__/
+*.pyc
+
+# Ignorowanie innych plików, które mogą być niepotrzebne
+*.log
