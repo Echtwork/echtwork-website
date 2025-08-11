@@ -18,6 +18,29 @@
         submitButton.disabled = true;
       }
     }
+    function togglePayPalButtonErnaehrung() {
+      var checkbox = document.getElementById("check-ernaehrung");
+      var submitButton = document.getElementById("paypal-submit-ernaehrung");
+
+      // Jeśli checkbox jest zaznaczony, przycisk PayPal staje się aktywny
+      if (checkbox.checked) {
+        submitButton.disabled = false;
+      } else {
+        submitButton.disabled = true;
+      }
+    }
+
+    function togglePayPalButtonStandard() {
+      var checkbox = document.getElementById("check-standard");
+      var submitButton = document.getElementById("paypal-submit-standard");
+
+      // Jeśli checkbox jest zaznaczony, przycisk PayPal staje się aktywny
+      if (checkbox.checked) {
+        submitButton.disabled = false;
+      } else {
+        submitButton.disabled = true;
+      }
+    }
   </script>
 </head>
 <body class="bg-black text-white font-sans">
@@ -39,6 +62,66 @@
 
   <!-- Plans -->
   <section id="plaene" class="py-16 px-6 max-w-6xl mx-auto grid gap-8 md:grid-cols-3">
+    <!-- Ernährungsplan -->
+    <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col">
+      <h2 class="text-2xl font-bold mb-4">Ernährungsplan</h2>
+      <p class="text-gray-300 mb-6">Sofort-Download als PDF, Ernährungsempfehlungen für optimale Resultate.</p>
+      <div class="text-3xl font-bold text-yellow-500 mb-6">25€</div>
+      <div class="flex items-start mb-4">
+        <input type="checkbox" id="check-ernaehrung" class="mt-1 mr-2" onchange="togglePayPalButtonErnaehrung()">
+        <label for="check-ernaehrung" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
+      </div>
+
+      <!-- PayPal Button Form für Ernährungsplan -->
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <input type="hidden" name="cmd" value="_s-xclick" />
+        <input type="hidden" name="hosted_button_id" value="PUVJF99CA2LLL" />
+        <input type="hidden" name="currency_code" value="EUR" />
+        
+        <!-- Przycisk PayPal z atrybutem disabled na początku -->
+        <input id="paypal-submit-ernaehrung" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" border="0" name="submit" title="PayPal – Einfacher und sicherer online bezahlen." alt="Jetzt kaufen" disabled />
+        
+        <input type="hidden" name="return" value="https://echtwork.github.io/echtwork-website/premium-formular.html" />  <!-- URL formularza -->
+        <input type="hidden" name="cancel_return" value="https://twojastrona.pl/fehler" />  <!-- URL na wypadek anulowania płatności -->
+      </form>
+
+    </div>
+
+    <!-- Standardplan -->
+    <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col">
+      <h2 class="text-2xl font-bold mb-4">Standardplan</h2>
+      <p class="text-gray-300 mb-4">Sofort-Download als PDF, Kompletter Trainingsplan, sofort startklar. Optional: +10€ für Ernährungsplan.</p>
+      <div class="mb-4 space-y-2 text-gray-300" onchange="updateStandardPrice(); validateStandardButton();">
+        <label class="flex items-center"><input type="radio" name="plan-type" value="60" class="mr-2"> Krafttraining (Muskelaufbau) </label>
+        <label class="flex items-center"><input type="radio" name="plan-type" value="60" class="mr-2"> Cardio (Ausdauer & Fettverbrennung) </label>
+        <label class="flex items-center"><input type="radio" name="plan-type" value="60" class="mr-2"> Funktional (Beweglichkeit & Stabilität) </label>
+        <label class="flex items-center"><input type="radio" name="plan-type" value="60" class="mr-2"> Stretching (Erholung & Flexibilität) </label>
+      </div>
+      <div class="flex items-center mb-4">
+        <input type="checkbox" id="bundle" value="10" class="mr-2" onchange="updateStandardPrice();">
+        <label for="bundle" class="text-sm text-gray-300">+10€ für Ernährungsplan (Bundle)</label>
+      </div>
+      <div class="text-3xl font-bold text-yellow-500 mb-6" id="standard-price">60€</div>
+      <div class="flex items-start mb-4">
+        <input type="checkbox" id="check-standard" class="mt-1 mr-2" onchange="togglePayPalButtonStandard()">
+        <label for="check-standard" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
+      </div>
+
+      <!-- PayPal Button Form für Standardplan -->
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <input type="hidden" name="cmd" value="_s-xclick" />
+        <input type="hidden" name="hosted_button_id" value="96DX79QQS3QXS" /> <!-- ID przycisku Standardplan -->
+        <input type="hidden" name="currency_code" value="EUR" />
+        
+        <!-- Przycisk PayPal z atrybutem disabled na początku -->
+        <input id="paypal-submit-standard" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" border="0" name="submit" title="PayPal – Einfacher und sicherer online bezahlen." alt="Jetzt kaufen" disabled />
+        
+        <input type="hidden" name="return" value="https://echtwork.github.io/echtwork-website/premium-formular.html" />  <!-- URL formularza -->
+        <input type="hidden" name="cancel_return" value="https://twojastrona.pl/fehler" />  <!-- URL na wypadek anulowania płatności -->
+      </form>
+
+    </div>
+
     <!-- Premium Individuell -->
     <div class="bg-gray-900 border-2 border-yellow-500 rounded-2xl p-6 flex flex-col shadow-[0_0_20px_rgba(255,215,0,0.5)]">
       <div class="bg-yellow-500 text-black text-xs font-bold uppercase px-3 py-1 rounded-full self-start mb-4">Premium</div>
@@ -62,7 +145,7 @@
         <input id="paypal-submit-premium" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" border="0" name="submit" title="PayPal – Einfacher und sicherer online bezahlen." alt="Jetzt kaufen" disabled />
 
         <!-- Przekierowanie po płatności -->
-        <input type="hidden" name="return" value="https://echtwork.github.io/echtwork-website/premium-formular.html" />  <!-- URL formularza na GitHubie -->
+        <input type="hidden" name="return" value="https://echtwork.github.io/echtwork-website/premium-formular.html" />  <!-- URL formularza -->
         <input type="hidden" name="cancel_return" value="https://twojastrona.pl/fehler" />  <!-- URL na wypadek anulowania płatności -->
       </form>
 
