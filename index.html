@@ -31,6 +31,24 @@
         submitButton.disabled = true;
       }
     }
+
+    // Funkcja do aktualizacji ceny standardowego planu
+    function updateStandardPrice() {
+      let planPrice = parseInt(document.querySelector('input[name="plan-type"]:checked')?.value || 60);
+      let bundle = document.getElementById("bundle").checked ? parseInt(document.getElementById("bundle").value) : 0;
+      document.getElementById("standard-price").textContent = (planPrice + bundle) + "€";
+    }
+
+    function validateStandardButton() {
+      let planSelected = document.querySelector('input[name="plan-type"]:checked') !== null;
+      let checkbox = document.getElementById("check-standard").checked;
+      let btn = document.getElementById("paypal-submit-standard");
+      if (planSelected && checkbox) {
+        btn.disabled = false;
+      } else {
+        btn.disabled = true;
+      }
+    }
   </script>
 </head>
 <body class="bg-black text-white font-sans">
@@ -78,14 +96,27 @@
     <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col">
       <h2 class="text-2xl font-bold mb-4">Standardplan</h2>
       <p class="text-gray-300 mb-4">Sofort-Download als PDF, Kompletter Trainingsplan, sofort startklar. Optional: +10€ für Ernährungsplan.</p>
+
+      <!-- Opcje planu -->
       <div class="mb-4 space-y-2 text-gray-300" onchange="updateStandardPrice(); validateStandardButton();">
         <label class="flex items-center"><input type="radio" name="plan-type" value="60" class="mr-2"> Krafttraining (Muskelaufbau) </label>
         <label class="flex items-center"><input type="radio" name="plan-type" value="60" class="mr-2"> Cardio (Ausdauer & Fettverbrennung) </label>
         <label class="flex items-center"><input type="radio" name="plan-type" value="60" class="mr-2"> Funktional (Beweglichkeit & Stabilität) </label>
         <label class="flex items-center"><input type="radio" name="plan-type" value="60" class="mr-2"> Stretching (Erholung & Flexibilität) </label>
       </div>
+
+      <!-- Opcja bundle -->
       <div class="flex items-center mb-4">
-        <input type="checkbox" id="check-standard" class="mr-2" onchange="togglePayPalButtonStandard()">
+        <input type="checkbox" id="bundle" value="10" class="mr-2" onchange="updateStandardPrice();">
+        <label for="bundle" class="text-sm text-gray-300">+10€ für Ernährungsplan (Bundle)</label>
+      </div>
+
+      <!-- Cena -->
+      <div class="text-3xl font-bold text-yellow-500 mb-6" id="standard-price">60€</div>
+
+      <!-- Checkbox dla zgody -->
+      <div class="flex items-start mb-4">
+        <input type="checkbox" id="check-standard" class="mt-1 mr-2" onchange="togglePayPalButtonStandard()">
         <label for="check-standard" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
       </div>
 
