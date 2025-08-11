@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
@@ -34,7 +34,15 @@
         <input type="checkbox" id="check-ernaehrung" class="mt-1 mr-2" onchange="validateErnaehrungButton()">
         <label for="check-ernaehrung" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
       </div>
-      <a href="#checkout" id="btn-ernaehrung" class="mt-auto bg-yellow-500 text-black text-center py-3 rounded-xl hover:bg-yellow-400 transition opacity-50 pointer-events-none">Jetzt kaufen</a>
+      
+      <!-- PayPal Button Form -->
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <input type="hidden" name="cmd" value="_s-xclick" />
+        <input type="hidden" name="hosted_button_id" value="PUVJF99CA2LLL" />
+        <input type="hidden" name="currency_code" value="EUR" />
+        <input type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" border="0" name="submit" title="PayPal – Einfacher und sicherer online bezahlen." alt="Jetzt kaufen" />
+      </form>
+
     </div>
 
     <!-- Standardplan -->
@@ -80,39 +88,5 @@
     <p class="mt-4">© 2025 echtwork.de – Alle Rechte vorbehalten</p>
   </footer>
 
-  <script>
-    function updateStandardPrice() {
-      let planPrice = parseInt(document.querySelector('input[name="plan-type"]:checked')?.value || 60);
-      let bundle = document.getElementById("bundle").checked ? parseInt(document.getElementById("bundle").value) : 0;
-      document.getElementById("standard-price").textContent = (planPrice + bundle) + "€";
-    }
-
-    function validateErnaehrungButton() {
-      let checkbox = document.getElementById("check-ernaehrung").checked;
-      let btn = document.getElementById("btn-ernaehrung");
-      if (checkbox) {
-        btn.classList.remove("opacity-50", "pointer-events-none");
-      } else {
-        btn.classList.add("opacity-50", "pointer-events-none");
-      }
-    }
-
-    function validateStandardButton() {
-      let planSelected = document.querySelector('input[name="plan-type"]:checked') !== null;
-      let checkbox = document.getElementById("check-standard").checked;
-      let btn = document.getElementById("btn-standard");
-      if (planSelected && checkbox) {
-        btn.classList.remove("opacity-50", "pointer-events-none");
-      } else {
-        btn.classList.add("opacity-50", "pointer-events-none");
-      }
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      updateStandardPrice();
-      validateStandardButton();
-      validateErnaehrungButton();
-    });
-  </script>
 </body>
 </html>
