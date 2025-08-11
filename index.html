@@ -4,12 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>echtwork.de – Trainingspläne</title>
-  <meta name="description" content="Individuelle und standardisierte Trainingspläne sowie Ernährungsempfehlungen – direkt zu dir. Starte jetzt mit echtwork.de.">
-  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-black text-white font-sans">
-
   <!-- Header -->
   <header class="flex justify-between items-center px-6 py-4 border-b border-yellow-600">
     <div class="text-2xl font-bold text-yellow-500">echtwork.de</div>
@@ -28,54 +25,46 @@
 
   <!-- Plans -->
   <section id="plaene" class="py-16 px-6 max-w-6xl mx-auto grid gap-8 md:grid-cols-3">
-
     <!-- Ernährungsplan -->
     <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col">
       <h2 class="text-2xl font-bold mb-4">Ernährungsplan</h2>
       <p class="text-gray-300 mb-6">Sofort-Download als PDF, Ernährungsempfehlungen für optimale Resultate.</p>
+      <div class="flex items-start mb-4">
+        <input type="checkbox" id="checkbox-ernaehrung" class="mt-1 mr-3" onchange="validateErnaehrungButton()">
+        <label for="checkbox-ernaehrung" class="text-sm text-gray-300">Ich akzeptiere die Bedingungen.</label>
+      </div>
       <div class="text-3xl font-bold text-yellow-500 mb-6">25€</div>
-      <label class="flex items-start mb-4">
-        <input type="checkbox" id="accept-ernaehrung" class="mt-1 mr-3" onchange="toggleButton('accept-ernaehrung','btn-ernaehrung')">
-        <span class="text-sm text-gray-300">
-          Ich stimme ausdrücklich zu, dass die Ausführung des Vertrags vor Ablauf der Widerrufsfrist beginnt
-          und mir bewusst ist, dass ich mit Erhalt der Datei (<strong>PDF-Plan</strong>) mein Widerrufsrecht verliere.
-        </span>
-      </label>
-      <button id="btn-ernaehrung" disabled class="mt-auto bg-yellow-500 text-black text-center py-3 rounded-xl opacity-50 cursor-not-allowed">Jetzt kaufen</button>
+      <a href="#checkout" id="btn-ernaehrung" class="mt-auto bg-yellow-500 text-black text-center py-3 rounded-xl hover:bg-yellow-400 transition pointer-events-none opacity-50">Jetzt kaufen</a>
     </div>
 
     <!-- Standardplan -->
     <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col">
       <h2 class="text-2xl font-bold mb-4">Standardplan</h2>
-      <p class="text-gray-300 mb-4">Wähle deinen Trainingsplan. Optional: +10€ für Ernährungsplan.</p>
+      <p class="text-gray-300 mb-4">Kompletter Trainingsplan, sofort startklar. Optional: +10€ für Ernährungsplan.</p>
 
-      <!-- Plany do wyboru (radio) -->
+      <!-- Plany do wyboru -->
       <div class="mb-4 space-y-2 text-gray-300" onchange="updateStandardPrice(); validateStandardButton();">
-        <label class="flex items-center"><input type="radio" name="plan-type" value="60" class="mr-2"> Krafttraining (Muskelaufbau) – 60€</label>
+        <label class="flex items-center"><input type="radio" name="plan-type" value="60" class="mr-2" checked> Krafttraining (Muskelaufbau) – 60€</label>
         <label class="flex items-center"><input type="radio" name="plan-type" value="60" class="mr-2"> Cardio (Ausdauer & Fettverbrennung) – 60€</label>
         <label class="flex items-center"><input type="radio" name="plan-type" value="60" class="mr-2"> Funktional (Beweglichkeit & Stabilität) – 60€</label>
         <label class="flex items-center"><input type="radio" name="plan-type" value="60" class="mr-2"> Stretching (Erholung & Flexibilität) – 60€</label>
       </div>
 
-      <!-- Bundle +10€ -->
-      <label class="flex items-center text-gray-300 mb-6">
-        <input type="checkbox" id="bundle-option" class="mr-2" onchange="updateStandardPrice()">
-        Bundle +10€ für Ernährungsplan
-      </label>
-
-      <!-- Dynamiczna cena -->
-      <div id="standard-price" class="text-3xl font-bold text-yellow-500 mb-6">0€</div>
+      <!-- Bundle -->
+      <div class="mb-4">
+        <label class="flex items-center text-sm text-gray-300">
+          <input type="checkbox" id="bundle" class="mr-2" onchange="updateStandardPrice()"> Bundle +10€ für Ernährungsplan
+        </label>
+      </div>
 
       <!-- Checkbox akceptacji -->
-      <label class="flex items-start mb-4">
-        <input type="checkbox" id="accept-standard" class="mt-1 mr-3" onchange="validateStandardButton()">
-        <span class="text-sm text-gray-300">
-          Ich stimme ausdrücklich zu, dass die Ausführung des Vertrags vor Ablauf der Widerrufsfrist beginnt
-          und mir bewusst ist, dass ich mit Erhalt der Datei (<strong>PDF-Plan</strong>) mein Widerrufsrecht verliere.
-        </span>
-      </label>
+      <div class="flex items-start mb-4">
+        <input type="checkbox" id="checkbox-standard" class="mt-1 mr-3" onchange="validateStandardButton()">
+        <label for="checkbox-standard" class="text-sm text-gray-300">Ich akzeptiere die Bedingungen.</label>
+      </div>
 
-      <button id="btn-standard" disabled class="mt-auto bg-yellow-500 text-black text-center py-3 rounded-xl opacity-50 cursor-not-allowed">Plan auswählen</button>
+      <div id="standard-price" class="text-3xl font-bold text-yellow-500 mb-6">60€</div>
+      <a href="#checkout" id="btn-standard" class="mt-auto bg-yellow-500 text-black text-center py-3 rounded-xl hover:bg-yellow-400 transition pointer-events-none opacity-50">Plan auswählen</a>
     </div>
 
     <!-- Premium individuell -->
@@ -99,36 +88,39 @@
     <p class="mt-4">© 2025 echtwork.de – Alle Rechte vorbehalten</p>
   </footer>
 
-  <!-- Skrypty -->
   <script>
-    function updateStandardPrice() {
-      const planRadios = document.querySelectorAll('input[name="plan-type"]');
-      let selectedPrice = 0;
-      for (const radio of planRadios) {
-        if (radio.checked) {
-          selectedPrice = parseInt(radio.value);
-          break;
-        }
-      }
-      const bundle = document.getElementById("bundle-option").checked;
-      const totalPrice = selectedPrice + (bundle ? 10 : 0);
-      document.getElementById("standard-price").textContent = totalPrice + "€";
-    }
-
-    function toggleButton(checkboxId, buttonId) {
-      const checkbox = document.getElementById(checkboxId);
-      const button = document.getElementById(buttonId);
+    function validateErnaehrungButton() {
+      const checkbox = document.getElementById('checkbox-ernaehrung');
+      const btn = document.getElementById('btn-ernaehrung');
       if (checkbox.checked) {
-        button.disabled = false;
-        button.classList.remove("opacity-50", "cursor-not-allowed");
-        button.classList.add("hover:bg-yellow-400", "transition");
+        btn.classList.remove('pointer-events-none', 'opacity-50');
       } else {
-        button.disabled = true;
-        button.classList.add("opacity-50", "cursor-not-allowed");
-        button.classList.remove("hover:bg-yellow-400", "transition");
+        btn.classList.add('pointer-events-none', 'opacity-50');
       }
     }
 
     function validateStandardButton() {
-      const accepted = document.getElementById("accept-standard").checked;
-      const planSelected = document.querySelector('input[name="plan-type]()
+      const checkbox = document.getElementById('checkbox-standard');
+      const btn = document.getElementById('btn-standard');
+      if (checkbox.checked && document.querySelector('input[name="plan-type"]:checked')) {
+        btn.classList.remove('pointer-events-none', 'opacity-50');
+      } else {
+        btn.classList.add('pointer-events-none', 'opacity-50');
+      }
+    }
+
+    function updateStandardPrice() {
+      let basePrice = parseInt(document.querySelector('input[name="plan-type"]:checked').value);
+      if (document.getElementById('bundle').checked) {
+        basePrice += 10;
+      }
+      document.getElementById('standard-price').textContent = basePrice + '€';
+    }
+
+    // Ustawienie ceny przy starcie
+    window.addEventListener('DOMContentLoaded', () => {
+      updateStandardPrice();
+    });
+  </script>
+</body>
+</html>
