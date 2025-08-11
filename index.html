@@ -6,6 +6,40 @@
   <title>echtwork.de – Trainingspläne</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
+    // Funkcja do włączania/wyłączania przycisku PayPal dla Premium
+    function togglePayPalButtonPremium() {
+      var checkbox = document.getElementById("check-premium");
+      var submitButton = document.getElementById("paypal-submit-premium");
+
+      // Jeśli checkbox jest zaznaczony, przycisk PayPal staje się aktywny
+      if (checkbox.checked) {
+        submitButton.disabled = false;
+      } else {
+        submitButton.disabled = true;
+      }
+    }
+
+    // Funkcja do zmiany ceny Standardplan w zależności od wybranego planu i zaznaczenia Bundle
+    function updateStandardPrice() {
+      let planPrice = parseInt(document.querySelector('input[name="plan-type"]:checked')?.value || 60);
+      let bundle = document.getElementById("bundle").checked ? parseInt(document.getElementById("bundle").value) : 0;
+      let totalPrice = planPrice + bundle;
+      document.getElementById("standard-price").textContent = totalPrice + "€";
+    }
+
+    // Funkcja do włączania/wyłączania przycisku PayPal dla Standardplan
+    function togglePayPalButtonStandard() {
+      var checkbox = document.getElementById("check-standard");
+      var submitButton = document.getElementById("paypal-submit-standard");
+
+      // Jeśli checkbox jest zaznaczony, przycisk PayPal staje się aktywny
+      if (checkbox.checked) {
+        submitButton.disabled = false;
+      } else {
+        submitButton.disabled = true;
+      }
+    }
+
     // Funkcja do włączania/wyłączania przycisku PayPal dla Ernährungsplan
     function togglePayPalButtonErnaehrung() {
       var checkbox = document.getElementById("check-ernaehrung");
@@ -91,26 +125,4 @@
         <input type="hidden" name="currency_code" value="EUR" />
         
         <!-- Przycisk PayPal z atrybutem disabled na początku -->
-        <input id="paypal-submit-standard" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" border="0" name="submit" title="PayPal – Einfacher und sicherer online bezahlen." alt="Jetzt kaufen" disabled />
-        
-        <input type="hidden" name="return" value="https://echtwork.github.io/echtwork-website/premium-formular.html" />  <!-- URL formularza -->
-        <input type="hidden" name="cancel_return" value="https://twojastrona.pl/fehler" />  <!-- URL na wypadek anulowania płatności -->
-      </form>
-
-    </div>
-
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-black border-t border-gray-800 py-6 text-center text-gray-500 text-sm">
-    <div class="space-x-4">
-      <a href="#impressum" class="hover:text-yellow-400">Impressum</a>
-      <a href="#datenschutz" class="hover:text-yellow-400">Datenschutzerklärung</a>
-      <a href="#agb" class="hover:text-yellow-400">AGB</a>
-      <a href="#widerruf" class="hover:text-yellow-400">Widerrufsbelehrung</a>
-    </div>
-    <p class="mt-4">© 2025 echtwork.de – Alle Rechte vorbehalten</p>
-  </footer>
-
-</body>
-</html>
+        <input id="paypal-submit-standard" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" border="0" name="submit" title="PayPal
