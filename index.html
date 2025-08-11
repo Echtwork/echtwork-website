@@ -136,3 +136,43 @@
     <!-- Premium Individuell -->
     <div class="bg-gray-900 border-2 border-yellow-500 rounded-2xl p-6 flex flex-col shadow-[0_0_20px_rgba(255,215,0,0.5)]">
       <div class="bg-yellow-500 text-black text-xs font-bold uppercase px-3 py-1 rounded-full self-start mb-4">Premium</div>
+      <h2 class="text-2xl font-bold mb-4">Premium Individuell</h2>
+      <p class="text-gray-300 mb-6">Höchster Wert: Individueller Plan + persönliche Beratung. Vollständige Anpassung an deine Ziele, Gesundheit und Bedürfnisse. Lieferung als PDF innerhalb von 1–5 Werktagen nach Zahlung. <strong>Nach der Zahlung wirst du automatisch zu einem Formular weitergeleitet, in dem du uns alle wichtigen Informationen für deinen individuellen Plan mitteilen kannst.</strong></p>
+      <div class="text-3xl font-bold text-yellow-500 mb-6">99€</div>
+
+      <!-- Checkbox für Premium -->
+      <div class="flex items-start mb-4">
+        <input type="checkbox" id="check-premium" class="mt-1 mr-2" onchange="togglePayPalButtonPremium()">
+        <label for="check-premium" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
+      </div>
+
+      <!-- PayPal Button Form für Premium (sandbox) -->
+      <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <input type="hidden" name="cmd" value="_s-xclick" />
+        <input type="hidden" name="hosted_button_id" value="PV6WNVYUSV9NN" />
+        <input type="hidden" name="currency_code" value="EUR" />
+        
+        <!-- Przycisk PayPal z atrybutem disabled na początku -->
+        <input id="paypal-submit-premium" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" border="0" name="submit" title="PayPal – Einfacher und sicherer online bezahlen." alt="Jetzt kaufen" disabled />
+        
+        <!-- Przekierowanie po płatności -->
+        <input type="hidden" name="return" value="https://echtwork.de/premium-formular.html" />  <!-- URL formularza -->
+        <input type="hidden" name="cancel_return" value="https://echtwork.de/fehler" />  <!-- URL na wypadek anulowania płatności -->
+      </form>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-black border-t border-gray-800 py-6 text-center text-gray-500 text-sm">
+    <div class="space-x-4">
+      <a href="#impressum" class="hover:text-yellow-400">Impressum</a>
+      <a href="#datenschutz" class="hover:text-yellow-400">Datenschutzerklärung</a>
+      <a href="#agb" class="hover:text-yellow-400">AGB</a>
+      <a href="#widerruf" class="hover:text-yellow-400">Widerrufsbelehrung</a>
+    </div>
+    <p class="mt-4">© 2025 echtwork.de – Alle Rechte vorbehalten</p>
+  </footer>
+
+</body>
+</html>
