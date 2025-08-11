@@ -4,20 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>echtwork.de – Trainingspläne</title>
-
-  <!-- SEO Meta -->
   <meta name="description" content="Individuelle und standardisierte Trainingspläne sowie Ernährungsempfehlungen – direkt zu dir. Starte jetzt mit echtwork.de.">
-  <meta property="og:title" content="echtwork.de – Trainingspläne">
-  <meta property="og:description" content="Individuelle und standardisierte Trainingspläne sowie Ernährungsempfehlungen – direkt zu dir.">
-  <meta property="og:image" content="https://twoja-domena.de/images/echtwork_logo_transparent.png">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://echtwork.de/">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="echtwork.de – Trainingspläne">
-  <meta name="twitter:description" content="Individuelle und standardisierte Trainingspläne sowie Ernährungsempfehlungen – direkt zu dir.">
-  <meta name="twitter:image" content="https://twoja-domena.de/images/echtwork_logo_transparent.png">
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-black text-white font-sans">
@@ -46,8 +34,6 @@
       <h2 class="text-2xl font-bold mb-4">Ernährungsplan</h2>
       <p class="text-gray-300 mb-6">Sofort-Download als PDF, Ernährungsempfehlungen für optimale Resultate.</p>
       <div class="text-3xl font-bold text-yellow-500 mb-6">25€</div>
-
-      <!-- Checkbox -->
       <label class="flex items-start mb-4">
         <input type="checkbox" id="accept-ernaehrung" class="mt-1 mr-3" onchange="toggleButton('accept-ernaehrung','btn-ernaehrung')">
         <span class="text-sm text-gray-300">
@@ -55,21 +41,20 @@
           und mir bewusst ist, dass ich mit Erhalt der Datei (<strong>PDF-Plan</strong>) mein Widerrufsrecht verliere.
         </span>
       </label>
-
       <button id="btn-ernaehrung" disabled class="mt-auto bg-yellow-500 text-black text-center py-3 rounded-xl opacity-50 cursor-not-allowed">Jetzt kaufen</button>
     </div>
 
     <!-- Standardplan -->
     <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col">
       <h2 class="text-2xl font-bold mb-4">Standardplan</h2>
-      <p class="text-gray-300 mb-4">Kompletter Trainingsplan, sofort startklar. Optional: +10€ für Ernährungsplan.</p>
+      <p class="text-gray-300 mb-4">Wähle deinen Trainingsplan. Optional: +10€ für Ernährungsplan.</p>
 
-      <!-- Lista treningów -->
-      <div class="mb-4 space-y-2 text-gray-300">
-        <label class="flex items-center"><input type="checkbox" class="mr-2"> Krafttraining (Muskelaufbau)</label>
-        <label class="flex items-center"><input type="checkbox" class="mr-2"> Cardio (Ausdauer & Fettverbrennung)</label>
-        <label class="flex items-center"><input type="checkbox" class="mr-2"> Funktional (Beweglichkeit & Stabilität)</label>
-        <label class="flex items-center"><input type="checkbox" class="mr-2"> Stretching (Erholung & Flexibilität)</label>
+      <!-- Plany do wyboru (radio) -->
+      <div class="mb-4 space-y-2 text-gray-300" onchange="updateStandardPrice(); validateStandardButton();">
+        <label class="flex items-center"><input type="radio" name="plan-type" value="60" class="mr-2"> Krafttraining (Muskelaufbau) – 60€</label>
+        <label class="flex items-center"><input type="radio" name="plan-type" value="60" class="mr-2"> Cardio (Ausdauer & Fettverbrennung) – 60€</label>
+        <label class="flex items-center"><input type="radio" name="plan-type" value="60" class="mr-2"> Funktional (Beweglichkeit & Stabilität) – 60€</label>
+        <label class="flex items-center"><input type="radio" name="plan-type" value="60" class="mr-2"> Stretching (Erholung & Flexibilität) – 60€</label>
       </div>
 
       <!-- Bundle +10€ -->
@@ -79,11 +64,11 @@
       </label>
 
       <!-- Dynamiczna cena -->
-      <div id="standard-price" class="text-3xl font-bold text-yellow-500 mb-6">60€</div>
+      <div id="standard-price" class="text-3xl font-bold text-yellow-500 mb-6">0€</div>
 
       <!-- Checkbox akceptacji -->
       <label class="flex items-start mb-4">
-        <input type="checkbox" id="accept-standard" class="mt-1 mr-3" onchange="toggleButton('accept-standard','btn-standard')">
+        <input type="checkbox" id="accept-standard" class="mt-1 mr-3" onchange="validateStandardButton()">
         <span class="text-sm text-gray-300">
           Ich stimme ausdrücklich zu, dass die Ausführung des Vertrags vor Ablauf der Widerrufsfrist beginnt
           und mir bewusst ist, dass ich mit Erhalt der Datei (<strong>PDF-Plan</strong>) mein Widerrufsrecht verliere.
@@ -117,10 +102,17 @@
   <!-- Skrypty -->
   <script>
     function updateStandardPrice() {
-      const basePrice = 60;
+      const planRadios = document.querySelectorAll('input[name="plan-type"]');
+      let selectedPrice = 0;
+      for (const radio of planRadios) {
+        if (radio.checked) {
+          selectedPrice = parseInt(radio.value);
+          break;
+        }
+      }
       const bundle = document.getElementById("bundle-option").checked;
-      const priceEl = document.getElementById("standard-price");
-      priceEl.textContent = bundle ? (basePrice + 10) + "€" : basePrice + "€";
+      const totalPrice = selectedPrice + (bundle ? 10 : 0);
+      document.getElementById("standard-price").textContent = totalPrice + "€";
     }
 
     function toggleButton(checkboxId, buttonId) {
@@ -136,6 +128,7 @@
         button.classList.remove("hover:bg-yellow-400", "transition");
       }
     }
-  </script>
-</body>
-</html>
+
+    function validateStandardButton() {
+      const accepted = document.getElementById("accept-standard").checked;
+      const planSelected = document.querySelector('input[name="plan-type]()
