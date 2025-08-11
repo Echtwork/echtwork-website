@@ -3,81 +3,88 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Premium Individuell Anfrage – echtwork.de</title>
+  <title>Echtwork – Trainingspläne</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body class="bg-black text-white font-sans">
-  <!-- Header -->
-  <header class="flex justify-between items-center px-6 py-4 border-b border-yellow-600">
-    <div class="text-2xl font-bold text-yellow-500">echtwork.de</div>
-    <nav class="space-x-6">
-      <a href="index.html" class="hover:text-yellow-400">Zurück zur Startseite</a>
-    </nav>
-  </header>
 
-  <!-- Formular -->
-  <section class="py-16 px-6 max-w-2xl mx-auto">
-    <h1 class="text-3xl font-bold mb-6 text-yellow-500">Premium Individuell – Anfrage</h1>
-    <p class="text-gray-300 mb-8">
-      Bitte fülle das Formular mit möglichst vielen Details aus, damit wir deinen individuellen Plan optimal erstellen können.
-      Du erhältst deinen PDF-Plan innerhalb von <span class="font-semibold">1–5 Werktagen</span> nach Zahlungseingang per E-Mail.
-    </p>
+<header class="flex justify-between items-center px-6 py-4 border-b border-yellow-600">
+  <div class="text-2xl font-bold text-yellow-500">echtwork.de</div>
+</header>
 
-    <form action="https://formspree.io/f/mqalgjzw" method="POST" class="space-y-6 bg-gray-900 p-6 rounded-2xl border border-yellow-500 shadow-[0_0_20px_rgba(255,215,0,0.3)]">
-      <input type="hidden" name="plan-typ" value="Premium Individuell">
+<section class="py-12 px-6 max-w-4xl mx-auto">
+  <h1 class="text-3xl font-bold mb-8 text-yellow-500">Standardplan</h1>
+  <p class="mb-4 text-gray-300">
+    Sofort-Download als PDF – kompletter Trainingsplan, sofort einsatzbereit. Optional: +10€ für einen individuellen Ernährungsplan.
+  </p>
 
-      <div>
-        <label for="name" class="block text-sm font-medium mb-2">Name*</label>
-        <input type="text" id="name" name="name" required class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white">
-      </div>
+  <div class="grid gap-4">
+    <label class="block bg-gray-900 p-4 rounded-xl border border-yellow-500">
+      <input type="radio" name="standardplan" value="Muskelaufbau" class="mr-2">
+      <strong>Muskelaufbau</strong> – Gezieltes Training zur Steigerung der Muskelmasse mit progressiver Belastung und abwechslungsreichen Kraftübungen.
+    </label>
+    <label class="block bg-gray-900 p-4 rounded-xl border border-yellow-500">
+      <input type="radio" name="standardplan" value="Fettverbrennung">
+      <strong>Fettverbrennung</strong> – Effektiver Plan zur Reduzierung von Körperfett, Verbesserung der Kondition und Steigerung des Kalorienverbrauchs.
+    </label>
+    <label class="block bg-gray-900 p-4 rounded-xl border border-yellow-500">
+      <input type="radio" name="standardplan" value="Kraftleistung">
+      <strong>Kraft & Leistung</strong> – Training zur Erhöhung der Maximalkraft, Explosivkraft und allgemeinen Leistungsfähigkeit.
+    </label>
+    <label class="block bg-gray-900 p-4 rounded-xl border border-yellow-500">
+      <input type="radio" name="standardplan" value="Ganzkörperfitness">
+      <strong>Ganzkörper Fitness</strong> – Umfassendes Training für den ganzen Körper zur Verbesserung von Kraft, Ausdauer und allgemeiner Fitness.
+    </label>
+  </div>
 
-      <div>
-        <label for="email" class="block text-sm font-medium mb-2">E-Mail*</label>
-        <input type="email" id="email" name="_replyto" required class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white">
-      </div>
+  <div class="mt-4">
+    <label>
+      <input type="checkbox" id="bundle" class="mr-2">
+      +10€ für Ernährungsplan
+    </label>
+  </div>
 
-      <div>
-        <label for="ziele" class="block text-sm font-medium mb-2">Deine Ziele*</label>
-        <textarea id="ziele" name="ziele" rows="3" required class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white"></textarea>
-      </div>
+  <div class="mt-4">
+    <input type="checkbox" id="agb" class="mr-2">
+    Ich akzeptiere die <a href="widerruf.html" class="underline text-yellow-400">AGB & Widerrufsbelehrung</a>
+  </div>
 
-      <div>
-        <label for="gesundheit" class="block text-sm font-medium mb-2">Gesundheitliche Voraussetzungen / Einschränkungen</label>
-        <textarea id="gesundheit" name="gesundheit" rows="3" class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white"></textarea>
-      </div>
+  <button id="checkout-button" disabled class="mt-6 w-full bg-yellow-500 text-black py-3 rounded-xl font-semibold hover:bg-yellow-400 transition disabled:opacity-50 disabled:pointer-events-none">
+    Jetzt kaufen
+  </button>
+</section>
 
-      <div>
-        <label for="wuensche" class="block text-sm font-medium mb-2">Besondere Wünsche</label>
-        <textarea id="wuensche" name="wuensche" rows="3" class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white"></textarea>
-      </div>
+<script>
+  const stripe = Stripe("YOUR_STRIPE_PUBLIC_KEY"); // Öffentlicher Stripe-Schlüssel
 
-      <!-- Checkbox Akzeptanz -->
-      <div class="flex items-start">
-        <input type="checkbox" id="widerruf" name="widerruf" required class="mt-1 mr-3" onchange="validatePremiumButton()">
-        <label for="widerruf" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
-      </div>
+  const planRadios = document.querySelectorAll('input[name="standardplan"]');
+  const agbCheckbox = document.getElementById("agb");
+  const checkoutBtn = document.getElementById("checkout-button");
 
-      <button id="premium-btn" type="submit" class="w-full bg-yellow-500 text-black py-3 rounded-xl font-semibold hover:bg-yellow-400 transition opacity-50 pointer-events-none">
-        Anfrage absenden
-      </button>
-    </form>
-  </section>
+  function validateButton() {
+    const planSelected = Array.from(planRadios).some(r => r.checked);
+    const agbChecked = agbCheckbox.checked;
+    checkoutBtn.disabled = !(planSelected && agbChecked);
+  }
 
-  <!-- Footer -->
-  <footer class="bg-black border-t border-gray-800 py-6 text-center text-gray-500 text-sm">
-    <p>© 2025 echtwork.de – Alle Rechte vorbehalten</p>
-  </footer>
+  planRadios.forEach(r => r.addEventListener("change", validateButton));
+  agbCheckbox.addEventListener("change", validateButton);
 
-  <script>
-    function validatePremiumButton() {
-      let checkbox = document.getElementById("widerruf").checked;
-      let btn = document.getElementById("premium-btn");
-      if (checkbox) {
-        btn.classList.remove("opacity-50", "pointer-events-none");
-      } else {
-        btn.classList.add("opacity-50", "pointer-events-none");
-      }
-    }
-  </script>
+  checkoutBtn.addEventListener("click", async () => {
+    const selectedPlan = document.querySelector('input[name="standardplan"]:checked').value;
+    const bundle = document.getElementById("bundle").checked;
+
+    const response = await fetch("/create-checkout-session", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ plan: selectedPlan, bundle: bundle })
+    });
+
+    const session = await response.json();
+    await stripe.redirectToCheckout({ sessionId: session.id });
+  });
+</script>
+
 </body>
 </html>
