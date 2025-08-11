@@ -50,7 +50,17 @@
       <h2 class="text-2xl font-bold mb-4">Ernährungsplan</h2>
       <p class="text-gray-300 mb-6">Sofort-Download als PDF, Ernährungsempfehlungen für optimale Resultate.</p>
       <div class="text-3xl font-bold text-yellow-500 mb-6">25€</div>
-      <a href="#checkout" class="mt-auto bg-yellow-500 text-black text-center py-3 rounded-xl hover:bg-yellow-400 transition">Jetzt kaufen</a>
+
+      <!-- Checkbox -->
+      <label class="flex items-start mb-4">
+        <input type="checkbox" id="accept-ernaehrung" class="mt-1 mr-3">
+        <span class="text-sm text-gray-300">
+          Ich stimme ausdrücklich zu, dass die Ausführung des Vertrags vor Ablauf der Widerrufsfrist beginnt
+          und mir bewusst ist, dass ich mit Erhalt der Datei (<strong>PDF-Plan</strong>) mein Widerrufsrecht verliere.
+        </span>
+      </label>
+
+      <a href="#checkout" onclick="return validateCheckbox('accept-ernaehrung')" class="mt-auto bg-yellow-500 text-black text-center py-3 rounded-xl hover:bg-yellow-400 transition">Jetzt kaufen</a>
     </div>
 
     <!-- Standardplan -->
@@ -64,7 +74,17 @@
         <li>Stretching (Erholung & Flexibilität)</li>
       </ul>
       <div class="text-3xl font-bold text-yellow-500 mb-6">60€</div>
-      <a href="#checkout" class="mt-auto bg-yellow-500 text-black text-center py-3 rounded-xl hover:bg-yellow-400 transition">Plan auswählen</a>
+
+      <!-- Checkbox -->
+      <label class="flex items-start mb-4">
+        <input type="checkbox" id="accept-standard" class="mt-1 mr-3">
+        <span class="text-sm text-gray-300">
+          Ich stimme ausdrücklich zu, dass die Ausführung des Vertrags vor Ablauf der Widerrufsfrist beginnt
+          und mir bewusst ist, dass ich mit Erhalt der Datei (<strong>PDF-Plan</strong>) mein Widerrufsrecht verliere.
+        </span>
+      </label>
+
+      <a href="#checkout" onclick="return validateCheckbox('accept-standard')" class="mt-auto bg-yellow-500 text-black text-center py-3 rounded-xl hover:bg-yellow-400 transition">Plan auswählen</a>
     </div>
 
     <!-- Premium individuell -->
@@ -87,5 +107,17 @@
     </div>
     <p class="mt-4">© 2025 echtwork.de – Alle Rechte vorbehalten</p>
   </footer>
+
+  <!-- Skrypt walidacji checkboxów -->
+  <script>
+    function validateCheckbox(id) {
+      const checkbox = document.getElementById(id);
+      if (!checkbox.checked) {
+        alert("Bitte bestätige die Zustimmung, bevor du fortfährst.");
+        return false; // Blokuje przejście
+      }
+      return true; // Pozwala przejść
+    }
+  </script>
 </body>
 </html>
