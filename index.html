@@ -18,18 +18,16 @@
         submitButton.disabled = true;
       }
     }
-    function togglePayPalButtonErnaehrung() {
-      var checkbox = document.getElementById("check-ernaehrung");
-      var submitButton = document.getElementById("paypal-submit-ernaehrung");
 
-      // Jeśli checkbox jest zaznaczony, przycisk PayPal staje się aktywny
-      if (checkbox.checked) {
-        submitButton.disabled = false;
-      } else {
-        submitButton.disabled = true;
-      }
+    // Funkcja do zmiany ceny Standardplan w zależności od wybranego planu i zaznaczenia Bundle
+    function updateStandardPrice() {
+      let planPrice = parseInt(document.querySelector('input[name="plan-type"]:checked')?.value || 60);
+      let bundle = document.getElementById("bundle").checked ? parseInt(document.getElementById("bundle").value) : 0;
+      let totalPrice = planPrice + bundle;
+      document.getElementById("standard-price").textContent = totalPrice + "€";
     }
 
+    // Funkcja do włączania/wyłączania przycisku PayPal dla Standardplan
     function togglePayPalButtonStandard() {
       var checkbox = document.getElementById("check-standard");
       var submitButton = document.getElementById("paypal-submit-standard");
@@ -91,7 +89,7 @@
     <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col">
       <h2 class="text-2xl font-bold mb-4">Standardplan</h2>
       <p class="text-gray-300 mb-4">Sofort-Download als PDF, Kompletter Trainingsplan, sofort startklar. Optional: +10€ für Ernährungsplan.</p>
-      <div class="mb-4 space-y-2 text-gray-300" onchange="updateStandardPrice(); validateStandardButton();">
+      <div class="mb-4 space-y-2 text-gray-300" onchange="updateStandardPrice(); togglePayPalButtonStandard();">
         <label class="flex items-center"><input type="radio" name="plan-type" value="60" class="mr-2"> Krafttraining (Muskelaufbau) </label>
         <label class="flex items-center"><input type="radio" name="plan-type" value="60" class="mr-2"> Cardio (Ausdauer & Fettverbrennung) </label>
         <label class="flex items-center"><input type="radio" name="plan-type" value="60" class="mr-2"> Funktional (Beweglichkeit & Stabilität) </label>
