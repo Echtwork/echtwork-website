@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Premium Individuell Anfrage – echtwork.de</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-white font-sans">
+  <div class="max-w-2xl mx-auto py-12 px-6">
+    <h1 class="text-3xl font-bold text-yellow-500 mb-6">Premium Individuell – Anfrageformular</h1>
+    <p class="mb-6 text-gray-300">Fülle dieses Formular aus, um deinen maßgeschneiderten Trainings- und Ernährungsplan zu bestellen. Lieferung in 1–5 Werktagen als PDF per E-Mail.</p>
+
+    <form action="https://formspree.io/f/mqalgjzw" method="POST" class="space-y-4 bg-gray-900 p-6 rounded-xl border border-gray-700">
+      <label class="block">
+        <span>Name</span>
+        <input type="text" name="name" required class="w-full mt-1 p-2 bg-gray-800 border border-gray-600 rounded text-white">
+      </label>
+
+      <label class="block">
+        <span>E-Mail</span>
+        <input type="email" name="email" required class="w-full mt-1 p-2 bg-gray-800 border border-gray-600 rounded text-white">
+      </label>
+
+      <label class="block">
+        <span>Deine Ziele & besondere Anforderungen</span>
+        <textarea name="details" rows="5" required class="w-full mt-1 p-2 bg-gray-800 border border-gray-600 rounded text-white"></textarea>
+      </label>
+
+      <label class="flex items-start space-x-2">
+        <input type="checkbox" name="widerruf" required class="mt-1">
+        <span class="text-sm text-gray-300">Ich stimme ausdrücklich zu, dass mit der Ausführung des Vertrages vor Ablauf der Widerrufsfrist begonnen wird. Mir ist bekannt, dass ich nach vollständiger Lieferung der digitalen Inhalte (per E-Mail) kein Widerrufsrecht mehr habe.</span>
+      </label>
+
+      <div class="text-3xl font-bold text-yellow-500">99€</div>
+
+      <button type="submit" class="w-full bg-yellow-500 text-black py-3 rounded-xl hover:bg-yellow-400 transition">Kostenpflichtig bestellen</button>
+    </form>
+  </div>
+</body>
+</html>
