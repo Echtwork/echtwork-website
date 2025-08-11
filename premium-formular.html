@@ -4,26 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Premium Individuell Anfrage – echtwork.de</title>
-
-  <!-- SEO Meta -->
-  <meta name="description" content="Premium individuelle Trainingspläne mit persönlicher Beratung – angepasst an deine Ziele, Gesundheit und Bedürfnisse. Anfrage jetzt starten.">
-
-  <!-- Open Graph / Social Media -->
-  <meta property="og:title" content="Premium Individuell Anfrage – echtwork.de">
-  <meta property="og:description" content="Premium individuelle Trainingspläne mit persönlicher Beratung – angepasst an deine Ziele, Gesundheit und Bedürfnisse. Anfrage jetzt starten.">
-  <meta property="og:image" content="https://twoja-domena.de/images/echtwork_logo_transparent.png">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://echtwork.de/premium-formular.html">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Premium Individuell Anfrage – echtwork.de">
-  <meta name="twitter:description" content="Premium individuelle Trainingspläne mit persönlicher Beratung – angepasst an deine Ziele, Gesundheit und Bedürfnisse. Anfrage jetzt starten.">
-  <meta name="twitter:image" content="https://twoja-domena.de/images/echtwork_logo_transparent.png">
-
-  <!-- Favicon -->
-  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-black text-white font-sans">
@@ -71,14 +51,14 @@
 
       <!-- Checkbox Akzeptanz -->
       <div class="flex items-start">
-        <input type="checkbox" id="widerruf" name="widerruf" required class="mt-1 mr-3">
+        <input type="checkbox" id="widerruf" name="widerruf" required class="mt-1 mr-3" onchange="validatePremiumButton()">
         <label for="widerruf" class="text-sm text-gray-300">
           Ich stimme ausdrücklich zu, dass die Ausführung des Vertrags vor Ablauf der Widerrufsfrist beginnt
           und mir bewusst ist, dass ich mit Erhalt der Datei (<strong>PDF-Plan</strong>) mein Widerrufsrecht verliere.
         </label>
       </div>
 
-      <button type="submit" class="w-full bg-yellow-500 text-black py-3 rounded-xl font-semibold hover:bg-yellow-400 transition">
+      <button id="premium-btn" type="submit" class="w-full bg-yellow-500 text-black py-3 rounded-xl font-semibold hover:bg-yellow-400 transition opacity-50 pointer-events-none">
         Anfrage absenden
       </button>
     </form>
@@ -88,5 +68,17 @@
   <footer class="bg-black border-t border-gray-800 py-6 text-center text-gray-500 text-sm">
     <p>© 2025 echtwork.de – Alle Rechte vorbehalten</p>
   </footer>
+
+  <script>
+    function validatePremiumButton() {
+      let checkbox = document.getElementById("widerruf").checked;
+      let btn = document.getElementById("premium-btn");
+      if (checkbox) {
+        btn.classList.remove("opacity-50", "pointer-events-none");
+      } else {
+        btn.classList.add("opacity-50", "pointer-events-none");
+      }
+    }
+  </script>
 </body>
 </html>
