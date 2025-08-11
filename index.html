@@ -29,42 +29,34 @@
     <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col">
       <h2 class="text-2xl font-bold mb-4">Ernährungsplan</h2>
       <p class="text-gray-300 mb-6">Sofort-Download als PDF, Ernährungsempfehlungen für optimale Resultate.</p>
-      <div class="flex items-start mb-4">
-        <input type="checkbox" id="checkbox-ernaehrung" class="mt-1 mr-3" onchange="validateErnaehrungButton()">
-        <label for="checkbox-ernaehrung" class="text-sm text-gray-300">Ich akzeptiere die Bedingungen.</label>
-      </div>
       <div class="text-3xl font-bold text-yellow-500 mb-6">25€</div>
-      <a href="#checkout" id="btn-ernaehrung" class="mt-auto bg-yellow-500 text-black text-center py-3 rounded-xl hover:bg-yellow-400 transition pointer-events-none opacity-50">Jetzt kaufen</a>
+      <div class="flex items-start mb-4">
+        <input type="checkbox" id="check-ernaehrung" class="mt-1 mr-2" onchange="validateErnaehrungButton()">
+        <label for="check-ernaehrung" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
+      </div>
+      <a href="#checkout" id="btn-ernaehrung" class="mt-auto bg-yellow-500 text-black text-center py-3 rounded-xl hover:bg-yellow-400 transition opacity-50 pointer-events-none">Jetzt kaufen</a>
     </div>
 
     <!-- Standardplan -->
     <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col">
       <h2 class="text-2xl font-bold mb-4">Standardplan</h2>
-      <p class="text-gray-300 mb-4">Kompletter Trainingsplan, sofort startklar. Optional: +10€ für Ernährungsplan.</p>
-
-      <!-- Plany do wyboru -->
+      <p class="text-gray-300 mb-4">Sofort-Download als PDF, Kompletter Trainingsplan, sofort startklar. Optional: +10€ für Ernährungsplan.</p>
       <div class="mb-4 space-y-2 text-gray-300" onchange="updateStandardPrice(); validateStandardButton();">
         <label class="flex items-center"><input type="radio" name="plan-type" value="60" class="mr-2" checked> Krafttraining (Muskelaufbau) – 60€</label>
         <label class="flex items-center"><input type="radio" name="plan-type" value="60" class="mr-2"> Cardio (Ausdauer & Fettverbrennung) – 60€</label>
         <label class="flex items-center"><input type="radio" name="plan-type" value="60" class="mr-2"> Funktional (Beweglichkeit & Stabilität) – 60€</label>
         <label class="flex items-center"><input type="radio" name="plan-type" value="60" class="mr-2"> Stretching (Erholung & Flexibilität) – 60€</label>
       </div>
-
-      <!-- Bundle -->
-      <div class="mb-4">
-        <label class="flex items-center text-sm text-gray-300">
-          <input type="checkbox" id="bundle" class="mr-2" onchange="updateStandardPrice()"> Bundle +10€ für Ernährungsplan
-        </label>
+      <div class="flex items-center mb-4">
+        <input type="checkbox" id="bundle" value="10" class="mr-2" onchange="updateStandardPrice();">
+        <label for="bundle" class="text-sm text-gray-300">+10€ für Ernährungsplan (Bundle)</label>
       </div>
-
-      <!-- Checkbox akceptacji -->
+      <div class="text-3xl font-bold text-yellow-500 mb-6" id="standard-price">60€</div>
       <div class="flex items-start mb-4">
-        <input type="checkbox" id="checkbox-standard" class="mt-1 mr-3" onchange="validateStandardButton()">
-        <label for="checkbox-standard" class="text-sm text-gray-300">Ich akzeptiere die Bedingungen.</label>
+        <input type="checkbox" id="check-standard" class="mt-1 mr-2" onchange="validateStandardButton()">
+        <label for="check-standard" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
       </div>
-
-      <div id="standard-price" class="text-3xl font-bold text-yellow-500 mb-6">60€</div>
-      <a href="#checkout" id="btn-standard" class="mt-auto bg-yellow-500 text-black text-center py-3 rounded-xl hover:bg-yellow-400 transition pointer-events-none opacity-50">Plan auswählen</a>
+      <a href="#checkout" id="btn-standard" class="mt-auto bg-yellow-500 text-black text-center py-3 rounded-xl hover:bg-yellow-400 transition opacity-50 pointer-events-none">Plan auswählen</a>
     </div>
 
     <!-- Premium individuell -->
@@ -89,35 +81,32 @@
   </footer>
 
   <script>
+    function updateStandardPrice() {
+      let planPrice = parseInt(document.querySelector('input[name="plan-type"]:checked').value);
+      let bundle = document.getElementById("bundle").checked ? parseInt(document.getElementById("bundle").value) : 0;
+      document.getElementById("standard-price").textContent = (planPrice + bundle) + "€";
+    }
+
     function validateErnaehrungButton() {
-      const checkbox = document.getElementById('checkbox-ernaehrung');
-      const btn = document.getElementById('btn-ernaehrung');
-      if (checkbox.checked) {
-        btn.classList.remove('pointer-events-none', 'opacity-50');
+      let checkbox = document.getElementById("check-ernaehrung").checked;
+      let btn = document.getElementById("btn-ernaehrung");
+      if (checkbox) {
+        btn.classList.remove("opacity-50", "pointer-events-none");
       } else {
-        btn.classList.add('pointer-events-none', 'opacity-50');
+        btn.classList.add("opacity-50", "pointer-events-none");
       }
     }
 
     function validateStandardButton() {
-      const checkbox = document.getElementById('checkbox-standard');
-      const btn = document.getElementById('btn-standard');
-      if (checkbox.checked && document.querySelector('input[name="plan-type"]:checked')) {
-        btn.classList.remove('pointer-events-none', 'opacity-50');
+      let checkbox = document.getElementById("check-standard").checked;
+      let btn = document.getElementById("btn-standard");
+      if (checkbox) {
+        btn.classList.remove("opacity-50", "pointer-events-none");
       } else {
-        btn.classList.add('pointer-events-none', 'opacity-50');
+        btn.classList.add("opacity-50", "pointer-events-none");
       }
     }
 
-    function updateStandardPrice() {
-      let basePrice = parseInt(document.querySelector('input[name="plan-type"]:checked').value);
-      if (document.getElementById('bundle').checked) {
-        basePrice += 10;
-      }
-      document.getElementById('standard-price').textContent = basePrice + '€';
-    }
-
-    // Ustawienie ceny przy starcie
     window.addEventListener('DOMContentLoaded', () => {
       updateStandardPrice();
     });
