@@ -83,8 +83,8 @@
         <label for="check-ernaehrung" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
       </div>
 
-      <!-- PayPal Button Form für Ernährungsplan -->
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+      <!-- PayPal Button Form für Ernährungsplan (sandbox) -->
+      <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
         <input type="hidden" name="cmd" value="_s-xclick" />
         <input type="hidden" name="hosted_button_id" value="PUVJF99CA2LLL" />
         <input type="hidden" name="currency_code" value="EUR" />
@@ -118,8 +118,8 @@
         <label for="check-standard" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
       </div>
 
-      <!-- PayPal Button Form für Standardplan -->
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+      <!-- PayPal Button Form für Standardplan (sandbox) -->
+      <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
         <input type="hidden" name="cmd" value="_s-xclick" />
         <input type="hidden" name="hosted_button_id" value="96DX79QQS3QXS" /> <!-- ID przycisku Standardplan -->
         <input type="hidden" name="currency_code" value="EUR" />
@@ -133,34 +133,6 @@
 
     </div>
 
-    <!-- Premium Individuell -->
-    <div class="bg-gray-900 border-2 border-yellow-500 rounded-2xl p-6 flex flex-col shadow-[0_0_20px_rgba(255,215,0,0.5)]">
-      <div class="bg-yellow-500 text-black text-xs font-bold uppercase px-3 py-1 rounded-full self-start mb-4">Premium</div>
-      <h2 class="text-2xl font-bold mb-4">Premium Individuell</h2>
-      <p class="text-gray-300 mb-6">Höchster Wert: Individueller Plan + persönliche Beratung. Vollständige Anpassung an deine Ziele, Gesundheit und Bedürfnisse. Lieferung als PDF innerhalb von 1–5 Werktagen nach Zahlung. <strong>Nach der Zahlung wirst du automatisch zu einem Formular weitergeleitet, in dem du uns alle wichtigen Informationen für deinen individuellen Plan mitteilen kannst.</strong></p>
-      <div class="text-3xl font-bold text-yellow-500 mb-6">99€</div>
-
-      <!-- Checkbox dla zgody -->
-      <div class="flex items-start mb-4">
-        <input type="checkbox" id="check-premium" class="mt-1 mr-2" onchange="togglePayPalButtonPremium()">
-        <label for="check-premium" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
-      </div>
-
-      <!-- PayPal Button Form für Premium -->
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-        <input type="hidden" name="cmd" value="_s-xclick" />
-        <input type="hidden" name="hosted_button_id" value="PV6WNVYUSV9NN" /> <!-- ID przycisku Premium -->
-        <input type="hidden" name="currency_code" value="EUR" />
-        
-        <!-- Przycisk PayPal z atrybutem disabled na początku -->
-        <input id="paypal-submit-premium" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" border="0" name="submit" title="PayPal – Einfacher und sicherer online bezahlen." alt="Jetzt kaufen" disabled />
-
-        <!-- Przekierowanie po płatności -->
-        <input type="hidden" name="return" value="https://echtwork.github.io/echtwork-website/premium-formular.html" />  <!-- URL formularza -->
-        <input type="hidden" name="cancel_return" value="https://twojastrona.pl/fehler" />  <!-- URL na wypadek anulowania płatności -->
-      </form>
-
-    </div>
   </section>
 
   <!-- Footer -->
