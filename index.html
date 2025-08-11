@@ -7,26 +7,21 @@
 
   <!-- SEO Meta -->
   <meta name="description" content="Individuelle und standardisierte Trainingspläne sowie Ernährungsempfehlungen – direkt zu dir. Starte jetzt mit echtwork.de.">
-
-  <!-- Open Graph / Social Media -->
   <meta property="og:title" content="echtwork.de – Trainingspläne">
   <meta property="og:description" content="Individuelle und standardisierte Trainingspläne sowie Ernährungsempfehlungen – direkt zu dir.">
   <meta property="og:image" content="https://twoja-domena.de/images/echtwork_logo_transparent.png">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://echtwork.de/">
-
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="echtwork.de – Trainingspläne">
   <meta name="twitter:description" content="Individuelle und standardisierte Trainingspläne sowie Ernährungsempfehlungen – direkt zu dir.">
   <meta name="twitter:image" content="https://twoja-domena.de/images/echtwork_logo_transparent.png">
-
-  <!-- Favicon -->
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-black text-white font-sans">
+
   <!-- Header -->
   <header class="flex justify-between items-center px-6 py-4 border-b border-yellow-600">
     <div class="text-2xl font-bold text-yellow-500">echtwork.de</div>
@@ -45,6 +40,7 @@
 
   <!-- Plans -->
   <section id="plaene" class="py-16 px-6 max-w-6xl mx-auto grid gap-8 md:grid-cols-3">
+
     <!-- Ernährungsplan -->
     <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col">
       <h2 class="text-2xl font-bold mb-4">Ernährungsplan</h2>
@@ -67,15 +63,25 @@
     <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col">
       <h2 class="text-2xl font-bold mb-4">Standardplan</h2>
       <p class="text-gray-300 mb-4">Kompletter Trainingsplan, sofort startklar. Optional: +10€ für Ernährungsplan.</p>
-      <ul class="list-disc list-inside text-gray-300 mb-6 space-y-1">
-        <li>Krafttraining (Muskelaufbau)</li>
-        <li>Cardio (Ausdauer & Fettverbrennung)</li>
-        <li>Funktional (Beweglichkeit & Stabilität)</li>
-        <li>Stretching (Erholung & Flexibilität)</li>
-      </ul>
-      <div class="text-3xl font-bold text-yellow-500 mb-6">60€</div>
 
-      <!-- Checkbox -->
+      <!-- Lista treningów -->
+      <div class="mb-4 space-y-2 text-gray-300">
+        <label class="flex items-center"><input type="checkbox" class="mr-2"> Krafttraining (Muskelaufbau)</label>
+        <label class="flex items-center"><input type="checkbox" class="mr-2"> Cardio (Ausdauer & Fettverbrennung)</label>
+        <label class="flex items-center"><input type="checkbox" class="mr-2"> Funktional (Beweglichkeit & Stabilität)</label>
+        <label class="flex items-center"><input type="checkbox" class="mr-2"> Stretching (Erholung & Flexibilität)</label>
+      </div>
+
+      <!-- Bundle +10€ -->
+      <label class="flex items-center text-gray-300 mb-6">
+        <input type="checkbox" id="bundle-option" class="mr-2" onchange="updateStandardPrice()">
+        Bundle +10€ für Ernährungsplan
+      </label>
+
+      <!-- Dynamiczna cena -->
+      <div id="standard-price" class="text-3xl font-bold text-yellow-500 mb-6">60€</div>
+
+      <!-- Checkbox akceptacji -->
       <label class="flex items-start mb-4">
         <input type="checkbox" id="accept-standard" class="mt-1 mr-3">
         <span class="text-sm text-gray-300">
@@ -108,15 +114,22 @@
     <p class="mt-4">© 2025 echtwork.de – Alle Rechte vorbehalten</p>
   </footer>
 
-  <!-- Skrypt walidacji checkboxów -->
+  <!-- Skrypty -->
   <script>
     function validateCheckbox(id) {
       const checkbox = document.getElementById(id);
       if (!checkbox.checked) {
         alert("Bitte bestätige die Zustimmung, bevor du fortfährst.");
-        return false; // Blokuje przejście
+        return false;
       }
-      return true; // Pozwala przejść
+      return true;
+    }
+
+    function updateStandardPrice() {
+      const basePrice = 60;
+      const bundle = document.getElementById("bundle-option").checked;
+      const priceEl = document.getElementById("standard-price");
+      priceEl.textContent = bundle ? (basePrice + 10) + "€" : basePrice + "€";
     }
   </script>
 </body>
