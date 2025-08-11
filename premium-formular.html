@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="de">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Premium Formular</title>
+<script src="https://cdn.tailwindcss.com"></script></head>
+<body class="bg-black text-white font-sans">
+<header class="flex justify-between items-center px-6 py-4 border-b border-yellow-600"><div class="text-2xl font-bold text-yellow-500">echtwork.de</div></header>
+<section class="py-16 px-6 max-w-2xl mx-auto">
+  <h1 class="text-3xl font-bold mb-6 text-yellow-500">Premium Individuell – Anfrage</h1>
+  <form id="premium-form" class="space-y-6 bg-gray-900 p-6 rounded-2xl border border-yellow-500">
+    <label>Name*<input id="name" required class="w-full p-2 bg-gray-800 mt-2"></label>
+    <label>Email*<input id="email" type="email" required class="w-full p-2 bg-gray-800 mt-2"></label>
+    <label>Ziele*<textarea id="ziele" required class="w-full p-2 bg-gray-800 mt-2"></textarea></label>
+    <label>Gesundheit<textarea id="gesundheit" class="w-full p-2 bg-gray-800 mt-2"></textarea></label>
+    <label>Wünsche<textarea id="wuensche" class="w-full p-2 bg-gray-800 mt-2"></textarea></label>
+    <label class="flex items-center"><input type="checkbox" id="agb-premium" class="mr-2"> Ich stimme den Bedingungen zu</label>
+    <button id="premium-submit" class="bg-yellow-500 text-black py-3 px-6 rounded">Anfrage absenden & bezahlen (99€)</button>
+  </form>
+</section>
+<script>
+document.getElementById('premium-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const ziele = document.getElementById('ziele').value.trim();
+  const gesundheit = document.getElementById('gesundheit').value.trim();
+  const wuensche = document.getElementById('wuensche').value.trim();
+  const agb = document.getElementById('agb-premium').checked;
+  if (!name || !email || !ziele || !agb) { alert('Bitte fülle alle Pflichtfelder aus.'); return; }
+  const res = await fetch('/create-checkout-session', {
+    method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ product: 'premium', training: '', bundle: false, email, name, ziele, gesundheit, wuensche })
+  });
+  const data = await res.json();
+  if (data.url) window.location = data.url; else alert('Fehler');
+});
+</script>
+</body></html>
