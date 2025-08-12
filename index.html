@@ -101,52 +101,71 @@
 
   </section>
 
-  <!-- Vergleichstabelle -->
-  <section class="py-16 px-6 max-w-6xl mx-auto">
-    <h2 class="text-3xl font-bold text-center mb-8">Vergleich der Pläne</h2>
-    <div class="overflow-x-auto">
-      <table class="w-full border-collapse border border-gray-700 text-center">
-        <thead>
-          <tr class="bg-gray-800">
-            <th class="border border-gray-700 p-3"></th>
-            <th class="border border-gray-700 p-3">Starter</th>
-            <th class="border border-gray-700 p-3">Fit @ Home – Frauen</th>
-            <th class="border border-gray-700 p-3">Standard</th>
-            <th class="border border-gray-700 p-3">Premium</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="border border-gray-700 p-3">Individueller Plan</td>
-            <td class="border border-gray-700 p-3 text-red-500">✖</td>
-            <td class="border border-gray-700 p-3 text-red-500">✖</td>
-            <td class="border border-gray-700 p-3 text-red-500">✖</td>
-            <td class="border border-gray-700 p-3 text-yellow-500">✔</td>
-          </tr>
-          <tr>
-            <td class="border border-gray-700 p-3">Ernährungsplan</td>
-            <td class="border border-gray-700 p-3 text-red-500">✖</td>
-            <td class="border border-gray-700 p-3 text-red-500">✖</td>
-            <td class="border border-gray-700 p-3 text-red-500">✖</td>
-            <td class="border border-gray-700 p-3 text-yellow-500">✔</td>
-          </tr>
-          <tr>
-            <td class="border border-gray-700 p-3">PDF Download sofort</td>
-            <td class="border border-gray-700 p-3 text-yellow-500">✔</td>
-            <td class="border border-gray-700 p-3 text-yellow-500">✔</td>
-            <td class="border border-gray-700 p-3 text-yellow-500">✔</td>
-            <td class="border border-gray-700 p-3 text-red-500">✖</td>
-          </tr>
-          <tr>
-            <td class="border border-gray-700 p-3">Persönliche Beratung</td>
-            <td class="border border-gray-700 p-3 text-red-500">✖</td>
-            <td class="border border-gray-700 p-3 text-red-500">✖</td>
-            <td class="border border-gray-700 p-3 text-red-500">✖</td>
-            <td class="border border-gray-700 p-3 text-yellow-500">✔</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+<!-- Porównawcza tabela (4 kolumny) -->
+<div class="overflow-x-auto">
+  <table class="min-w-full border border-gray-700 text-left">
+    <thead class="bg-gray-800">
+      <tr>
+        <th class="p-3 border border-gray-700">Feature / Plan</th>
+        <th class="p-3 border border-gray-700">Starter<br><span class="text-yellow-500 font-bold">29€</span></th>
+        <th class="p-3 border border-gray-700">Fit @ Home – Frauen<br><span class="text-yellow-500 font-bold">39€</span></th>
+        <th class="p-3 border border-gray-700">Standard<br><span class="text-yellow-500 font-bold">60€</span></th>
+        <th class="p-3 border border-gray-700 bg-yellow-500 text-black font-bold">Premium<br><span class="text-lg">99€</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="p-3 border border-gray-700">Sofort-Download (PDF)</td>
+        <td class="p-3 border border-gray-700 text-yellow-500 font-bold">✔</td>
+        <td class="p-3 border border-gray-700 text-yellow-500 font-bold">✔</td>
+        <td class="p-3 border border-gray-700 text-yellow-500 font-bold">✔</td>
+        <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
+      </tr>
+      <tr>
+        <td class="p-3 border border-gray-700">Auswahl Trainingsarten</td>
+        <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
+        <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
+        <td class="p-3 border border-gray-700 text-yellow-500 font-bold">✔</td>
+        <td class="p-3 border border-gray-700 text-yellow-500 font-bold">✔</td>
+      </tr>
+      <tr>
+        <td class="p-3 border border-gray-700">Plan speziell für Frauen (Home)</td>
+        <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
+        <td class="p-3 border border-gray-700 text-yellow-500 font-bold">✔</td>
+        <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
+        <td class="p-3 border border-gray-700 text-yellow-500 font-bold">✔</td>
+      </tr>
+      <tr>
+        <td class="p-3 border border-gray-700">Individueller Ernährungsplan</td>
+        <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
+        <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
+        <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
+        <td class="p-3 border border-gray-700 text-yellow-500 font-bold">✔</td>
+      </tr>
+      <tr>
+        <td class="p-3 border border-gray-700">Persönliche Beratung / Support</td>
+        <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
+        <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
+        <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
+        <td class="p-3 border border-gray-700 text-yellow-500 font-bold">✔ (bis zu 4 Wochen)</td>
+      </tr>
+      <tr>
+        <td class="p-3 border border-gray-700">Lieferzeit</td>
+        <td class="p-3 border border-gray-700">Sofort (PDF)</td>
+        <td class="p-3 border border-gray-700">Sofort (PDF)</td>
+        <td class="p-3 border border-gray-700">Sofort (PDF)</td>
+        <td class="p-3 border border-gray-700">1–5 Werktage (PDF)</td>
+      </tr>
+      <tr>
+        <td class="p-3 border border-gray-700">Kostenlose Plan-Anpassungen</td>
+        <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
+        <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
+        <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
+        <td class="p-3 border border-gray-700 text-yellow-500 font-bold">✔ (1–2 Anpassungen)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
   </section>
 
   <!-- Footer -->
@@ -162,3 +181,4 @@
 
 </body>
 </html>
+
