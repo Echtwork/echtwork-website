@@ -27,12 +27,18 @@
     </div>
 
     <!-- Fit @ Home – Frauen -->
-    <div class="bg-gray-900 rounded-2xl shadow-lg p-6 flex flex-col">
-      <h3 class="text-xl font-bold mb-2">Fit @ Home – Frauen</h3>
-      <p class="text-gray-400 mb-4">Speziell für Frauen, die zu Hause trainieren möchten.</p>
-      <p class="text-yellow-500 font-bold text-2xl mb-4">39€</p>
-      <button class="bg-gray-600 text-white py-2 px-4 rounded opacity-50 cursor-not-allowed">Bald verfügbar</button>
-    </div>
+<div class="bg-gray-900 rounded-2xl shadow-lg p-6 flex flex-col">
+  <h3 class="text-xl font-bold mb-2">Fit @ Home – Frauen</h3>
+  <p class="text-gray-400 mb-4">Speziell für Frauen, die zu Hause trainieren möchten.</p>
+  <p class="text-yellow-500 font-bold text-2xl mb-4">39€</p>
+  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick" />
+    <input type="hidden" name="hosted_button_id" value="HIER_DEIN_BUTTON_ID" />
+    <input type="hidden" name="currency_code" value="EUR" />
+    <input type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" border="0" name="submit"
+      title="PayPal – Einfacher und sicherer online bezahlen." alt="Jetzt kaufen" />
+  </form>
+</div>
 
     <!-- Standard Plan -->
     <div class="bg-gray-900 rounded-2xl shadow-lg p-6 flex flex-col">
@@ -150,3 +156,4 @@
 
 </body>
 </html>
+
