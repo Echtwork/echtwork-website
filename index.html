@@ -1,208 +1,148 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>echtwork.de – Trainingspläne</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    // Uniwersalna funkcja do toggle przycisków PayPal
-    function togglePayPalButton(checkboxId, buttonId) {
-      const cb = document.getElementById(checkboxId);
-      const btn = document.getElementById(buttonId);
-      if (cb && btn) btn.disabled = !cb.checked;
-    }
-    // Aktualizacja ceny Standard (tu prosta, bo wszystkie warianty 60€)
-    function updateStandardPrice() {
-      // Jeżeli kiedyś dodasz różne ceny, logic tutaj
-      document.getElementById('standard-price').textContent = '60€';
+    function togglePayPalButton(idCheckbox, idButton) {
+      var checkbox = document.getElementById(idCheckbox);
+      var submitButton = document.getElementById(idButton);
+      submitButton.disabled = !checkbox.checked;
     }
   </script>
-
-  <style>
-    /* złoty akcent dla checkboxów / radio (wspiera większość nowoczesnych przeglądarek) */
-    input[type="checkbox"]:checked,
-    input[type="radio"]:checked {
-      accent-color: #FFD700;
-    }
-
-    /* delikatne poprawki estetyczne */
-    .card-hover:hover { transform: translateY(-6px); box-shadow: 0 18px 30px rgba(0,0,0,0.6); }
-    .gold-gradient {
-      background: linear-gradient(90deg, rgba(255,215,0,0.95), rgba(220,180,0,0.9));
-    }
-  </style>
 </head>
-<body class="bg-black text-white font-sans antialiased">
+<body class="bg-black text-white font-sans">
+
   <!-- Header -->
-  <header class="flex items-center justify-between px-6 py-4 border-b border-yellow-600">
+  <header class="flex justify-between items-center px-6 py-4 border-b border-yellow-600">
     <div class="text-2xl font-bold text-yellow-500">echtwork.de</div>
     <nav class="space-x-6">
       <a href="#plaene" class="hover:text-yellow-400">Pläne</a>
-      <a href="#vergleich" class="hover:text-yellow-400">Vergleich</a>
       <a href="#kontakt" class="hover:text-yellow-400">Kontakt</a>
     </nav>
   </header>
 
   <!-- Hero -->
   <section class="text-center py-16 bg-gradient-to-b from-black to-gray-900">
-    <img src="images/echtwork_logo_transparent.png" alt="Echtwork Logo" class="mx-auto w-44 md:w-64 lg:w-72 mb-6">
-    <h1 class="text-4xl md:text-5xl font-bold mb-4 text-yellow-500">Dein Körper. Dein Plan. Dein Erfolg.</h1>
-    <p class="text-gray-300 max-w-xl mx-auto">Sofort startklare Trainingspläne und individuelle Premium-Pläne mit personalisiertem Ernährungsplan.</p>
+    <img src="images/echtwork_logo_transparent.png" alt="Echtwork Logo" class="mx-auto w-48 md:w-64 lg:w-72 mb-6">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4 text-yellow-500">
+      Dein Körper - Dein Plan - Dein Erfolg - Echtwork
+    </h1>
+    <p class="text-gray-300 max-w-xl mx-auto">Individuelle und standardisierte Trainingspläne – direkt zu dir.</p>
   </section>
 
-  <!-- Plans: trzy+osobny kafel Fit@Home => siatka 4 kolumn na desktopie -->
-  <section id="plaene" class="py-16 px-6 max-w-6xl mx-auto grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+  <!-- Plans -->
+  <section id="plaene" class="py-16 px-6 max-w-6xl mx-auto grid gap-8 md:grid-cols-4">
+
     <!-- Starter -->
-    <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col card-hover transition-transform duration-200">
-      <h3 class="text-xl font-bold mb-2">Starter Plan</h3>
-      <p class="text-gray-300 mb-4">Perfekt für Einsteiger: klar strukturierter 4-Wochen-Plan, minimaler Equipment-Bedarf.</p>
-      <div class="text-3xl font-bold text-yellow-500 mb-4">25€</div>
+    <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col">
+      <h2 class="text-2xl font-bold mb-4">Starter</h2>
+      <p class="text-gray-300 mb-6">Perfekt für Einsteiger: Einfacher Trainingsplan zum sofortigen Start.</p>
+      <div class="text-3xl font-bold text-yellow-500 mb-6">29€</div>
       <div class="flex items-start mb-4">
-        <input id="check-starter" type="checkbox" class="mt-1 mr-2" onchange="togglePayPalButton('check-starter','paypal-starter')" />
+        <input type="checkbox" id="check-starter" class="mt-1 mr-2" onchange="togglePayPalButton('check-starter','paypal-submit-starter')">
         <label for="check-starter" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
       </div>
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="mt-auto">
-        <input type="hidden" name="cmd" value="_s-xclick" />
-        <!-- hosted_button_id: placeholder, zamień na swoje ID PayPal -->
-        <input type="hidden" name="hosted_button_id" value="PUVJF99CA2LLL" />
-        <input type="hidden" name="currency_code" value="EUR" />
-        <input id="paypal-starter" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" alt="Jetzt kaufen" disabled />
+      <form action="#" method="post" target="_top">
+        <input id="paypal-submit-starter" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" disabled />
       </form>
     </div>
 
-     <!-- Fit @ Home – Frauen (nowy osobny kafel) -->
-    <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col card-hover transition-transform duration-200">
-      <h3 class="text-xl font-bold mb-2">Fit @ Home – Frauen</h3>
-      <p class="text-gray-300 mb-4">Speziell für Frauen: Home-Workouts ohne (oder mit minimalem) Equipment. Fokus auf Ganzkörper, Mobilität & Feminines Krafttraining.</p>
-      <div class="text-3xl font-bold text-yellow-500 mb-4">39€</div>
+    <!-- Fit @ Home – Frauen -->
+    <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col">
+      <h2 class="text-2xl font-bold mb-4">Fit @ Home – Frauen</h2>
+      <p class="text-gray-300 mb-6">Effektives Training für Zuhause – speziell für Frauen entwickelt.</p>
+      <div class="text-3xl font-bold text-yellow-500 mb-6">39€</div>
       <div class="flex items-start mb-4">
-        <input id="check-fhome" type="checkbox" class="mt-1 mr-2" onchange="togglePayPalButton('check-fhome','paypal-fhome')" />
-        <label for="check-fhome" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
+        <input type="checkbox" id="check-fit" class="mt-1 mr-2" onchange="togglePayPalButton('check-fit','paypal-submit-fit')">
+        <label for="check-fit" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
       </div>
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="mt-auto">
-        <input type="hidden" name="cmd" value="_s-xclick" />
-        <!-- Podmień hosted_button_id na właściwe -->
-        <input type="hidden" name="hosted_button_id" value="FITWOMENBUTTONID123" />
-        <input type="hidden" name="currency_code" value="EUR" />
-        <input id="paypal-fhome" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" alt="Jetzt kaufen" disabled />
+      <form action="#" method="post" target="_top">
+        <input id="paypal-submit-fit" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" disabled />
       </form>
     </div>
-    
-    <!-- Standard -->
-    <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col card-hover transition-transform duration-200">
-      <h3 class="text-xl font-bold mb-2">Standard Plan</h3>
-      <p class="text-gray-300 mb-3">Sofort-Download als PDF. Für Sportliche, die klare Trainingsstrukturen wollen.</p>
-      <div class="mb-3 space-y-1 text-gray-300" onchange="updateStandardPrice();">
-        <label class="flex items-center"><input type="radio" name="std-plan" value="60" class="mr-2">Krafttraining (Muskelaufbau)</label>
-        <label class="flex items-center"><input type="radio" name="std-plan" value="60" class="mr-2">Cardio (Fettverbrennung)</label>
-        <label class="flex items-center"><input type="radio" name="std-plan" value="60" class="mr-2">Funktional (Mobilität & Stabilität)</label>
-        <label class="flex items-center"><input type="radio" name="std-plan" value="60" class="mr-2">Stretching & Erholung</label>
-      </div>
-      <div class="text-3xl font-bold text-yellow-500 mb-4" id="standard-price">60€</div>
+
+    <!-- Standardplan -->
+    <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col">
+      <h2 class="text-2xl font-bold mb-4">Standardplan</h2>
+      <p class="text-gray-300 mb-4">Sofort-Download als PDF, kompletter Trainingsplan, sofort startklar.</p>
+      <ul class="mb-4 text-gray-300 space-y-2">
+        <li>Krafttraining (Muskelaufbau)</li>
+        <li>Cardio (Ausdauer & Fettverbrennung)</li>
+        <li>Funktional (Beweglichkeit & Stabilität)</li>
+        <li>Stretching (Erholung & Flexibilität)</li>
+      </ul>
+      <div class="text-3xl font-bold text-yellow-500 mb-6">60€</div>
       <div class="flex items-start mb-4">
-        <input id="check-standard" type="checkbox" class="mt-1 mr-2" onchange="togglePayPalButton('check-standard','paypal-standard')" />
+        <input type="checkbox" id="check-standard" class="mt-1 mr-2" onchange="togglePayPalButton('check-standard','paypal-submit-standard')">
         <label for="check-standard" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
       </div>
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="mt-auto">
-        <input type="hidden" name="cmd" value="_s-xclick" />
-        <input type="hidden" name="hosted_button_id" value="96DX79QQS3QXS" />
-        <input type="hidden" name="currency_code" value="EUR" />
-        <input id="paypal-standard" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" alt="Jetzt kaufen" disabled />
+      <form action="#" method="post" target="_top">
+        <input id="paypal-submit-standard" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" disabled />
       </form>
     </div>
 
-    <!-- Premium -->
-    <div class="bg-gray-900 border-2 border-yellow-500 rounded-2xl p-6 flex flex-col shadow-[0_0_20px_rgba(255,215,0,0.12)] card-hover transition-transform duration-200">
-      <div class="self-start px-3 py-1 rounded-full bg-yellow-500 text-black text-xs font-bold mb-3">Premium</div>
-      <h3 class="text-xl font-bold mb-2">Premium Individuell</h3>
-      <p class="text-gray-300 mb-4">Individueller Trainingsplan + vollständiger, personalisierter Ernährungsplan + persönliche Beratung. Vollständige Anpassung an Ziele & Gesundheit.</p>
-      <p class="text-sm text-gray-400 mb-4"><strong class="text-yellow-500">Nach der Zahlung wirst du automatisch zu einem Formular weitergeleitet, in dem du deine Ziele, Vorlieben und eventuelle gesundheitliche Einschränkungen angeben kannst.</strong></p>
-      <div class="text-3xl font-bold text-yellow-500 mb-4">99€</div>
+    <!-- Premium Individuell -->
+    <div class="bg-gray-900 border-2 border-yellow-500 rounded-2xl p-6 flex flex-col shadow-[0_0_20px_rgba(255,215,0,0.5)]">
+      <div class="bg-yellow-500 text-black text-xs font-bold uppercase px-3 py-1 rounded-full self-start mb-4">Premium</div>
+      <h2 class="text-2xl font-bold mb-4">Premium Individuell</h2>
+      <p class="text-gray-300 mb-6">Individueller Plan + persönliche Beratung + Ernährungsplan. Nach der Zahlung wirst du automatisch zu einem Formular weitergeleitet, um deine Ziele und Wünsche mitzuteilen.</p>
+      <div class="text-3xl font-bold text-yellow-500 mb-6">99€</div>
       <div class="flex items-start mb-4">
-        <input id="check-premium" type="checkbox" class="mt-1 mr-2" onchange="togglePayPalButton('check-premium','paypal-premium')" />
+        <input type="checkbox" id="check-premium" class="mt-1 mr-2" onchange="togglePayPalButton('check-premium','paypal-submit-premium')">
         <label for="check-premium" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
       </div>
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="mt-auto">
-        <input type="hidden" name="cmd" value="_s-xclick" />
-        <input type="hidden" name="hosted_button_id" value="PV6WNVYUSV9NN" />
-        <input type="hidden" name="currency_code" value="EUR" />
-        <input id="paypal-premium" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" alt="Jetzt kaufen" disabled />
-        <!-- return URL do formularza (upewnij się, że formularz działa) -->
-        <input type="hidden" name="return" value="https://echtwork.github.io/echtwork-website/premium-formular.html" />
-        <input type="hidden" name="cancel_return" value="https://echtwork.github.io/echtwork-website/payment-cancel.html" />
+      <form action="#" method="post" target="_top">
+        <input id="paypal-submit-premium" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" disabled />
       </form>
     </div>
+
   </section>
 
-  <!-- Krótki sprzedażowy nagłówek nad tabelą (opcjonalnie) -->
-  <section id="vergleich" class="px-6 max-w-6xl mx-auto">
-    <div class="text-center mb-6">
-      <h2 class="text-3xl font-bold text-yellow-500">Welcher Plan passt zu dir?</h2>
-      <p class="text-gray-300 max-w-2xl mx-auto">Wähle zwischen sofort startbaren PDF-Plänen oder einem vollständig personalisierten Premium-Paket mit Ernährungsplan.</p>
-    </div>
-
-    <!-- Porównawcza tabela (4 kolumny) -->
+  <!-- Vergleichstabelle -->
+  <section class="py-16 px-6 max-w-6xl mx-auto">
+    <h2 class="text-3xl font-bold text-center mb-8">Vergleich der Pläne</h2>
     <div class="overflow-x-auto">
-      <table class="min-w-full border border-gray-700 text-left">
-        <thead class="bg-gray-800">
-          <tr>
-            <th class="p-3 border border-gray-700">Feature / Plan</th>
-            <th class="p-3 border border-gray-700">Starter<br><span class="text-yellow-500 font-bold">25€</span></th>
-            <th class="p-3 border border-gray-700">Fit @ Home – Frauen<br><span class="text-yellow-500 font-bold">39€</span></th>
-            <th class="p-3 border border-gray-700">Standard<br><span class="text-yellow-500 font-bold">60€</span></th>
-            <th class="p-3 border border-gray-700 bg-yellow-500 text-black font-bold">Premium<br><span class="text-lg">99€</span></th>
+      <table class="w-full border-collapse border border-gray-700 text-center">
+        <thead>
+          <tr class="bg-gray-800">
+            <th class="border border-gray-700 p-3"></th>
+            <th class="border border-gray-700 p-3">Starter</th>
+            <th class="border border-gray-700 p-3">Fit @ Home – Frauen</th>
+            <th class="border border-gray-700 p-3">Standard</th>
+            <th class="border border-gray-700 p-3">Premium</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class="p-3 border border-gray-700">Sofort-Download (PDF)</td>
-            <td class="p-3 border border-gray-700 text-yellow-500 font-bold">✔</td>
-            <td class="p-3 border border-gray-700 text-yellow-500 font-bold">✔</td>
-            <td class="p-3 border border-gray-700 text-yellow-500 font-bold">✔</td>
-            <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
+            <td class="border border-gray-700 p-3">Individueller Plan</td>
+            <td class="border border-gray-700 p-3 text-red-500">✖</td>
+            <td class="border border-gray-700 p-3 text-red-500">✖</td>
+            <td class="border border-gray-700 p-3 text-red-500">✖</td>
+            <td class="border border-gray-700 p-3 text-yellow-500">✔</td>
           </tr>
           <tr>
-            <td class="p-3 border border-gray-700">Auswahl Trainingsarten</td>
-            <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
-            <td class="p-3 border border-gray-700 text-yellow-500 font-bold">✔</td>
-            <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
-            <td class="p-3 border border-gray-700 text-yellow-500 font-bold">✔</td>
+            <td class="border border-gray-700 p-3">Ernährungsplan</td>
+            <td class="border border-gray-700 p-3 text-red-500">✖</td>
+            <td class="border border-gray-700 p-3 text-red-500">✖</td>
+            <td class="border border-gray-700 p-3 text-red-500">✖</td>
+            <td class="border border-gray-700 p-3 text-yellow-500">✔</td>
           </tr>
           <tr>
-            <td class="p-3 border border-gray-700">Plan speziell für Frauen (Home)</td>
-            <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
-            <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
-            <td class="p-3 border border-gray-700 text-yellow-500 font-bold">✔</td>
-            <td class="p-3 border border-gray-700 text-yellow-500 font-bold">✔</td>
+            <td class="border border-gray-700 p-3">PDF Download sofort</td>
+            <td class="border border-gray-700 p-3 text-yellow-500">✔</td>
+            <td class="border border-gray-700 p-3 text-yellow-500">✔</td>
+            <td class="border border-gray-700 p-3 text-yellow-500">✔</td>
+            <td class="border border-gray-700 p-3 text-red-500">✖</td>
           </tr>
           <tr>
-            <td class="p-3 border border-gray-700">Individueller Ernährungsplan</td>
-            <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
-            <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
-            <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
-            <td class="p-3 border border-gray-700 text-yellow-500 font-bold">✔</td>
-          </tr>
-          <tr>
-            <td class="p-3 border border-gray-700">Persönliche Beratung / Support</td>
-            <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
-            <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
-            <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
-            <td class="p-3 border border-gray-700 text-yellow-500 font-bold">✔ (bis zu 4 Wochen)</td>
-          </tr>
-          <tr>
-            <td class="p-3 border border-gray-700">Lieferzeit</td>
-            <td class="p-3 border border-gray-700">Sofort (PDF)</td>
-            <td class="p-3 border border-gray-700">Sofort (PDF)</td>
-            <td class="p-3 border border-gray-700">Sofort (PDF)</td>
-            <td class="p-3 border border-gray-700">1–5 Werktage (PDF)</td>
-          </tr>
-          <tr>
-            <td class="p-3 border border-gray-700">Kostenlose Plan-Anpassungen</td>
-            <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
-            <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
-            <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
-            <td class="p-3 border border-gray-700 text-yellow-500 font-bold">✔ (1–2 Anpassungen)</td>
+            <td class="border border-gray-700 p-3">Persönliche Beratung</td>
+            <td class="border border-gray-700 p-3 text-red-500">✖</td>
+            <td class="border border-gray-700 p-3 text-red-500">✖</td>
+            <td class="border border-gray-700 p-3 text-red-500">✖</td>
+            <td class="border border-gray-700 p-3 text-yellow-500">✔</td>
           </tr>
         </tbody>
       </table>
@@ -210,16 +150,15 @@
   </section>
 
   <!-- Footer -->
-  <footer class="bg-black border-t border-gray-800 py-6 text-center text-gray-500 text-sm mt-12">
+  <footer class="bg-black border-t border-gray-800 py-6 text-center text-gray-500 text-sm">
     <div class="space-x-4">
       <a href="#impressum" class="hover:text-yellow-400">Impressum</a>
-      <a href="#datenschutz" class="hover:text-yellow-400">Datenschutz</a>
+      <a href="#datenschutz" class="hover:text-yellow-400">Datenschutzerklärung</a>
       <a href="#agb" class="hover:text-yellow-400">AGB</a>
       <a href="#widerruf" class="hover:text-yellow-400">Widerrufsbelehrung</a>
     </div>
     <p class="mt-4">© 2025 echtwork.de – Alle Rechte vorbehalten</p>
   </footer>
+
 </body>
 </html>
-
-
