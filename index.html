@@ -72,22 +72,24 @@
     </div>
 
      <!-- Fit @ Home – Frauen (nowy osobny kafel) -->
-    <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col card-hover transition-transform duration-200">
-      <h3 class="text-xl font-bold mb-2">Fit @ Home – Frauen</h3>
-      <p class="text-gray-300 mb-4">Speziell für Frauen: Home-Workouts ohne (oder mit minimalem) Equipment. Fokus auf Ganzkörper, Mobilität & Feminines Krafttraining.</p>
-      <div class="text-3xl font-bold text-yellow-500 mb-4">39€</div>
-      <div class="flex items-start mb-4">
-        <input id="check-fhome" type="checkbox" class="mt-1 mr-2" onchange="togglePayPalButton('check-fhome','paypal-fhome')" />
-        <label for="check-fhome" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
-      </div>
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="mt-auto">
-        <input type="hidden" name="cmd" value="_s-xclick" />
-        <!-- Podmień hosted_button_id na właściwe -->
-        <input type="hidden" name="hosted_button_id" value="FITWOMENBUTTONID123" />
-        <input type="hidden" name="currency_code" value="EUR" />
-        <input id="paypal-fhome" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" alt="Jetzt kaufen" disabled />
-      </form>
-    </div>
+<div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col card-hover transition-transform duration-200">
+  <h3 class="text-xl font-bold mb-2">Fit @ Home – Frauen</h3>
+  <p class="text-gray-300 mb-4">Speziell für Frauen: Home-Workouts ohne (oder mit minimalem) Equipment. Fokus auf Ganzkörper, Mobilität & Feminines Krafttraining.</p>
+  <div class="text-3xl font-bold text-yellow-500 mb-4">39€</div>
+  <div class="flex items-start mb-4">
+    <input id="check-fhome" type="checkbox" class="mt-1 mr-2" onchange="togglePayPalButton('check-fhome','paypal-fhome')" />
+    <label for="check-fhome" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
+  </div>
+  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="mt-auto">
+    <input type="hidden" name="cmd" value="_s-xclick" />
+    <input type="hidden" name="hosted_button_id" value="595QUMFN3TKQN" />
+    <input type="hidden" name="currency_code" value="EUR" />
+    <input id="paypal-fhome" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif"
+           title="PayPal – Einfacher und sicherer online bezahlen."
+           alt="Jetzt kaufen"
+           disabled />
+  </form>
+</div>
     
     <!-- Standard -->
     <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col card-hover transition-transform duration-200">
@@ -207,6 +209,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
