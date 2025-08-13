@@ -66,24 +66,26 @@
     </div>
 
      <!-- Fit @ Home – Frauen -->
-<div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col card-hover transition-transform duration-200">
-  <h3 class="text-xl font-bold mb-2">Fit @ Home - Frauen</h3>
-  <p class="text-gray-400 mb-4">Trainingsplan für Zuhause</p>
-  <p class="text-3xl font-bold mb-4">49€</p>
-
-  <label class="inline-flex items-center mb-4">
-    <input type="checkbox" id="fitCheckbox" class="mr-2" onchange="togglePayPalButton('fitCheckbox', 'fitPayPalBtn')">
-    <span>Ich akzeptiere die AGB</span>
-  </label>
+<div class="plan-card bg-gray-800 rounded-lg shadow-lg p-6">
+  <h3 class="text-xl font-bold mb-4">Fit @ Home - Frauen</h3>
+  <p class="text-yellow-500 text-3xl font-bold mb-4">29,99 €</p>
+  <ul class="mb-6 space-y-2">
+    <li>Trainingsplan speziell für Frauen</li>
+    <li>Home-Workouts ohne Geräte</li>
+    <li>PDF-Download sofort verfügbar</li>
+  </ul>
 
   <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
     <input type="hidden" name="cmd" value="_s-xclick" />
     <input type="hidden" name="hosted_button_id" value="595QUMFN3TKQN" />
     <input type="hidden" name="currency_code" value="EUR" />
-    <input type="image" id="fitPayPalBtn" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif"
-           border="0" name="submit"
-           title="PayPal – Einfacher und sicherer online bezahlen."
-           alt="Jetzt kaufen – Fit @ Home Frauen" disabled />
+
+    <label class="block text-sm mb-2">
+      <input type="checkbox" required>
+      Ich stimme den <a href="#agb" class="underline">Bedingungen</a> zu
+    </label>
+
+    <input type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" border="0" name="submit" title="PayPal – Einfacher und sicherer online bezahlen." alt="Jetzt kaufen" />
   </form>
 </div>
     
@@ -203,5 +205,6 @@
   </footer>
 </body>
 </html>
+
 
 
