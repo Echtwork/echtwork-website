@@ -12,11 +12,6 @@
       const btn = document.getElementById(buttonId);
       if (cb && btn) btn.disabled = !cb.checked;
     }
-    // Aktualizacja ceny Standard (tu prosta, bo wszystkie warianty 60€)
-    function updateStandardPrice() {
-      // Jeżeli kiedyś dodasz różne ceny, logic tutaj
-      document.getElementById('standard-price').textContent = '60€';
-    }
   </script>
 
   <style>
@@ -27,9 +22,9 @@
     }
 
     /* delikatne poprawki estetyczne */
-    .card-hover:hover { transform: translateY(-6px); box-shadow: 0 18px 30px rgba(0,0,0,0.6); }
-    .gold-gradient {
-      background: linear-gradient(90deg, rgba(255,215,0,0.95), rgba(220,180,0,0.9));
+    .card-hover:hover { 
+      transform: translateY(-6px); 
+      box-shadow: 0 18px 30px rgba(0,0,0,0.6); 
     }
   </style>
 </head>
@@ -51,7 +46,7 @@
     <p class="text-gray-300 max-w-xl mx-auto">Sofort startklare Trainingspläne und individuelle Premium-Pläne mit personalisiertem Ernährungsplan.</p>
   </section>
 
-  <!-- Plans: trzy+osobny kafel Fit@Home => siatka 4 kolumn na desktopie -->
+  <!-- Plans -->
   <section id="plaene" class="py-16 px-6 max-w-6xl mx-auto grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
     <!-- Starter -->
     <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col card-hover transition-transform duration-200">
@@ -64,14 +59,13 @@
       </div>
       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="mt-auto">
         <input type="hidden" name="cmd" value="_s-xclick" />
-        <!-- hosted_button_id: placeholder, zamień na swoje ID PayPal -->
         <input type="hidden" name="hosted_button_id" value="PUVJF99CA2LLL" />
         <input type="hidden" name="currency_code" value="EUR" />
-        <input id="paypal-starter" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" alt="Jetzt kaufen" disabled />
+        <input id="paypal-starter" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" alt="Jetzt kaufen – Starter Plan" disabled />
       </form>
     </div>
 
-     <!-- Fit @ Home – Frauen (nowy osobny kafel) -->
+     <!-- Fit @ Home – Frauen -->
     <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col card-hover transition-transform duration-200">
       <h3 class="text-xl font-bold mb-2">Fit @ Home – Frauen</h3>
       <p class="text-gray-300 mb-4">Speziell für Frauen: Home-Workouts ohne (oder mit minimalem) Equipment. Fokus auf Ganzkörper, Mobilität & Feminines Krafttraining.</p>
@@ -82,10 +76,9 @@
       </div>
       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="mt-auto">
         <input type="hidden" name="cmd" value="_s-xclick" />
-        <!-- Podmień hosted_button_id na właściwe -->
         <input type="hidden" name="hosted_button_id" value="FITWOMENBUTTONID123" />
         <input type="hidden" name="currency_code" value="EUR" />
-        <input id="paypal-fhome" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" alt="Jetzt kaufen" disabled />
+        <input id="paypal-fhome" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" alt="Jetzt kaufen – Fit @ Home Frauen" disabled />
       </form>
     </div>
     
@@ -93,7 +86,7 @@
     <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col card-hover transition-transform duration-200">
       <h3 class="text-xl font-bold mb-2">Standard Plan</h3>
       <p class="text-gray-300 mb-3">Sofort-Download als PDF. Für Sportliche, die klare Trainingsstrukturen wollen.</p>
-      <div class="mb-3 space-y-1 text-gray-300" onchange="updateStandardPrice();">
+      <div class="mb-3 space-y-1 text-gray-300">
         <label class="flex items-center"><input type="radio" name="std-plan" value="60" class="mr-2">Krafttraining (Muskelaufbau)</label>
         <label class="flex items-center"><input type="radio" name="std-plan" value="60" class="mr-2">Cardio (Fettverbrennung)</label>
         <label class="flex items-center"><input type="radio" name="std-plan" value="60" class="mr-2">Funktional (Mobilität & Stabilität)</label>
@@ -108,7 +101,7 @@
         <input type="hidden" name="cmd" value="_s-xclick" />
         <input type="hidden" name="hosted_button_id" value="96DX79QQS3QXS" />
         <input type="hidden" name="currency_code" value="EUR" />
-        <input id="paypal-standard" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" alt="Jetzt kaufen" disabled />
+        <input id="paypal-standard" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" alt="Jetzt kaufen – Standard Plan" disabled />
       </form>
     </div>
 
@@ -127,22 +120,20 @@
         <input type="hidden" name="cmd" value="_s-xclick" />
         <input type="hidden" name="hosted_button_id" value="PV6WNVYUSV9NN" />
         <input type="hidden" name="currency_code" value="EUR" />
-        <input id="paypal-premium" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" alt="Jetzt kaufen" disabled />
-        <!-- return URL do formularza (upewnij się, że formularz działa) -->
+        <input id="paypal-premium" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" alt="Jetzt kaufen – Premium Plan" disabled />
         <input type="hidden" name="return" value="https://echtwork.github.io/echtwork-website/premium-formular.html" />
         <input type="hidden" name="cancel_return" value="https://echtwork.github.io/echtwork-website/payment-cancel.html" />
       </form>
     </div>
   </section>
 
-  <!-- Krótki sprzedażowy nagłówek nad tabelą (opcjonalnie) -->
+  <!-- Vergleich -->
   <section id="vergleich" class="px-6 max-w-6xl mx-auto">
     <div class="text-center mb-6">
       <h2 class="text-3xl font-bold text-yellow-500">Welcher Plan passt zu dir?</h2>
       <p class="text-gray-300 max-w-2xl mx-auto">Wähle zwischen sofort startbaren PDF-Plänen oder einem vollständig personalisierten Premium-Paket mit Ernährungsplan.</p>
     </div>
 
-    <!-- Porównawcza tabela (4 kolumny) -->
     <div class="overflow-x-auto">
       <table class="min-w-full border border-gray-700 text-left">
         <thead class="bg-gray-800">
@@ -165,8 +156,8 @@
           <tr>
             <td class="p-3 border border-gray-700">Auswahl Trainingsarten</td>
             <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
-            <td class="p-3 border border-gray-700 text-yellow-500 font-bold">✖</td>
-            <td class="p-3 border border-gray-700 text-red-500 font-bold">✔</td>
+            <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
+            <td class="p-3 border border-gray-700 text-yellow-500 font-bold">✔</td>
             <td class="p-3 border border-gray-700 text-yellow-500 font-bold">✔</td>
           </tr>
           <tr>
@@ -207,12 +198,3 @@
   </footer>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
