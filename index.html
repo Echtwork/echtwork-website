@@ -12,8 +12,7 @@
       const btn = document.getElementById(buttonId);
       if (cb && btn) btn.disabled = !cb.checked;
     }
-
-    // (opcjonalnie) aktualizacja ceny Standard Plan – jeśli użytkownik wybierze typ planu
+    // (opcjonalnie) aktualizacja ceny Standard Plan
     function updateStandardPrice() {
       const checked = document.querySelector('input[name="std-plan"]:checked');
       const priceEl = document.getElementById('standard-price');
@@ -23,15 +22,14 @@
         if (!isNaN(val)) priceEl.textContent = val + '€';
       }
     }
-
-    // Hamburger ARIA toggle
+    // Hamburger toggle po załadowaniu DOM
     document.addEventListener('DOMContentLoaded', function() {
       const btn = document.getElementById('menu-toggle');
       const menu = document.getElementById('menu');
       if (btn && menu) {
         btn.addEventListener('click', function () {
-          const hidden = menu.classList.toggle('hidden');
-          btn.setAttribute('aria-expanded', String(!hidden));
+          const isHidden = menu.classList.toggle('hidden');
+          btn.setAttribute('aria-expanded', String(!isHidden));
         });
       }
     });
@@ -47,7 +45,7 @@
 </head>
 <body class="bg-black text-white font-sans antialiased">
   <!-- Header -->
-  <header class="flex flex-wrap items-center justify-between px-4 py-4 border-b border-yellow-600">
+  <header class="flex flex-wrap items-center justify-between px-6 py-4 border-b border-yellow-600">
     <div class="text-2xl font-bold text-yellow-500">echtwork.de</div>
     <!-- Hamburger -->
     <button id="menu-toggle" class="md:hidden text-yellow-500 focus:outline-none text-2xl" aria-label="Menü umschalten" aria-controls="menu" aria-expanded="false">☰</button>
@@ -61,17 +59,17 @@
   </header>
 
   <!-- Hero -->
-  <section class="text-center py-12 sm:py-16 px-4 bg-gradient-to-b from-black to-gray-900">
-    <img src="images/echtwork_logo_transparent.png" alt="Echtwork Logo" class="mx-auto w-32 sm:w-44 md:w-64 lg:w-72 mb-6" loading="lazy">
-    <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-yellow-500">Dein Körper - Dein Plan - Dein Erfolg - Echtwork</h1>
-    <p class="text-gray-300 max-w-xl mx-auto text-sm sm:text-base">Sofort startklare Trainingspläne und individuelle Premium-Pläne mit personalisiertem Ernährungsplan.</p>
+  <section class="text-center py-16 bg-gradient-to-b from-black to-gray-900 px-4">
+    <img src="images/echtwork_logo_transparent.png" alt="Echtwork Logo" class="mx-auto w-44 md:w-64 lg:w-72 mb-6" loading="lazy">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4 text-yellow-500">Dein Körper - Dein Plan - Dein Erfolg - Echtwork</h1>
+    <p class="text-gray-300 max-w-xl mx-auto">Sofort startklare Trainingspläne und individuelle Premium-Pläne mit personalisiertem Ernährungsplan.</p>
   </section>
 
-  <!-- Was macht Echtwork besonders? -->
-  <section id="besonders" class="py-12 sm:py-16 px-4 bg-gradient-to-b from-gray-900 to-black border-t border-gray-800">
+  <!-- Was macht Echtwork besonders? (Punkt 1 – wersja B + jakość) -->
+  <section id="besonders" class="py-16 px-6 bg-gradient-to-b from-gray-900 to-black border-t border-gray-800">
     <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-yellow-500 mb-4">Was macht Echtwork besonders?</h2>
-      <p class="text-gray-300 leading-relaxed max-w-3xl mx-auto text-sm sm:text-base">
+      <h2 class="text-3xl md:text-4xl font-bold text-yellow-500 mb-4">Was macht Echtwork besonders?</h2>
+      <p class="text-gray-300 leading-relaxed max-w-3xl mx-auto">
         Hier geht es nicht um Trends oder schnelle Versprechen. Hier geht es um echte Veränderung.
         Du bekommst das Wissen, die Struktur – und die Motivation, die dich ans Ziel bringt.
         <span class="text-yellow-400 font-semibold">Jeder Plan ist hochwertig und klar aufgebaut</span>, damit du spürbare Ergebnisse siehst.
@@ -80,45 +78,45 @@
   </section>
 
   <!-- Wie es funktioniert -->
-  <section class="py-12 sm:py-16 px-4 bg-gradient-to-b from-gray-900 to-black">
+  <section class="py-16 px-6 bg-gradient-to-b from-gray-900 to-black">
     <div class="max-w-6xl mx-auto text-center mb-12">
-      <h2 class="text-2xl sm:text-3xl font-bold text-yellow-500 mb-4">So funktioniert's</h2>
-      <p class="text-gray-300 max-w-2xl mx-auto text-sm sm:text-base">In nur wenigen Schritten zu deinem Trainingsplan – schnell, einfach und sicher.</p>
+      <h2 class="text-3xl font-bold text-yellow-500 mb-4">So funktioniert's</h2>
+      <p class="text-gray-300 max-w-2xl mx-auto">In nur wenigen Schritten zu deinem Trainingsplan – schnell, einfach und sicher.</p>
     </div>
 
-    <div class="grid gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-4 max-w-6xl mx-auto">
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 max-w-6xl mx-auto">
       <!-- Schritt 1 -->
       <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 text-center card-hover transition-transform duration-200">
-        <div class="text-3xl sm:text-4xl text-yellow-500 font-bold mb-2">1</div>
-        <h3 class="text-base sm:text-lg font-bold mb-2">Plan auswählen</h3>
+        <div class="text-4xl text-yellow-500 font-bold mb-2">1</div>
+        <h3 class="text-lg font-bold mb-2">Plan auswählen</h3>
         <p class="text-gray-300 text-sm">Wähle den Trainingsplan, der am besten zu deinen Zielen passt.</p>
       </div>
 
       <!-- Schritt 2 -->
       <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 text-center card-hover transition-transform duration-200">
-        <div class="text-3xl sm:text-4xl text-yellow-500 font-bold mb-2">2</div>
-        <h3 class="text-base sm:text-lg font-bold mb-2">Sicher bezahlen</h3>
+        <div class="text-4xl text-yellow-500 font-bold mb-2">2</div>
+        <h3 class="text-lg font-bold mb-2">Sicher bezahlen</h3>
         <p class="text-gray-300 text-sm">Bezahle einfach und sicher über PayPal – keine versteckten Kosten.</p>
       </div>
 
       <!-- Schritt 3 -->
       <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 text-center card-hover transition-transform duration-200">
-        <div class="text-3xl sm:text-4xl text-yellow-500 font-bold mb-2">3</div>
-        <h3 class="text-base sm:text-lg font-bold mb-2">Plan erhalten</h3>
+        <div class="text-4xl text-yellow-500 font-bold mb-2">3</div>
+        <h3 class="text-lg font-bold mb-2">Plan erhalten</h3>
         <p class="text-gray-300 text-sm">Sofort-Download (PDF) oder bei Premium: individuell erstellter Plan per E-Mail.</p>
       </div>
 
       <!-- Schritt 4 -->
       <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 text-center card-hover transition-transform duration-200">
-        <div class="text-3xl sm:text-4xl text-yellow-500 font-bold mb-2">4</div>
-        <h3 class="text-base sm:text-lg font-bold mb-2">Training starten</h3>
+        <div class="text-4xl text-yellow-500 font-bold mb-2">4</div>
+        <h3 class="text-lg font-bold mb-2">Training starten</h3>
         <p class="text-gray-300 text-sm">Starte sofort mit deinem maßgeschneiderten Programm – jederzeit & überall.</p>
       </div>
     </div>
   </section>
 
   <!-- Plans: grid 3 -->
-  <section id="plaene" class="py-12 sm:py-16 px-4 max-w-6xl mx-auto grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+  <section id="plaene" class="py-16 px-6 max-w-6xl mx-auto grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
 
     <!-- Fit & Feminine -->
     <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col card-hover transition-transform duration-200">
@@ -202,7 +200,7 @@
   </section>
 
   <!-- Vergleich -->
-<section id="vergleich" class="px-6 max-w-6xl mx-auto">
+  <section id="vergleich" class="px-6 max-w-6xl mx-auto">
     <div class="text-center mb-6">
       <h2 class="text-3xl font-bold text-yellow-500">Welcher Plan passt zu dir?</h2>
       <p class="text-gray-300 max-w-2xl mx-auto">Wähle zwischen sofort startbaren PDF-Plänen oder einem vollständig personalisierten Premium-Paket mit Ernährungsplan.</p>
@@ -254,7 +252,7 @@
     </div>
   </section>
 
-  <!-- FAQ -->
+  <!-- FAQ (Punkt 2 – wersja B + krótko o dyscyplinie) -->
   <section id="faq" class="py-16 px-6 bg-gradient-to-b from-black to-gray-900">
     <div class="max-w-3xl mx-auto">
       <h2 class="text-3xl md:text-4xl font-bold text-yellow-500 text-center mb-8">FAQ</h2>
@@ -271,7 +269,7 @@
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- CTA (Punkt 3 – wersja C) -->
   <section id="cta" class="py-16 px-6 text-center bg-gradient-to-b from-gray-900 to-black">
     <div class="max-w-3xl mx-auto">
       <h2 class="text-3xl md:text-4xl font-bold mb-4 text-yellow-500">Dein Mindset entscheidet.</h2>
@@ -282,7 +280,7 @@
 
   <!-- Footer -->
   <footer class="bg-gray-900 text-gray-400 py-6 mt-12">
-    <div class="max-w-6xl mx-auto px-6 flex flex-wrap justify-center items-center gap-4 text-center">
+    <div class="max-w-6xl mx-auto px-6 flex flex-wrap justify-center items-center gap-4">
       <p class="text-sm">&copy; 2025 Echtwork. Alle Rechte vorbehalten.</p>
       <div class="flex flex-wrap justify-center gap-4">
         <a href="impressum.html" class="hover:text-yellow-500 transition-colors">Impressum</a>
@@ -294,6 +292,3 @@
   </footer>
 </body>
 </html>
-
-
-
