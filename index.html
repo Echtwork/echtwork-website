@@ -99,27 +99,6 @@
   <!-- Plans: grid 4 -->
   <section id="plaene" class="py-16 px-6 max-w-6xl mx-auto grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
 
-    <!-- Starter -->
-    <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col card-hover transition-transform duration-200">
-      <h3 class="text-xl font-bold mb-2">Starter Plan</h3>
-      <p class="text-gray-300 mb-4">
-        <span class="block">Perfekt für Einsteiger.</span>
-        <span class="block">Klar strukturierter 4-Wochen-Plan.</span>
-        <span class="block">Minimaler Equipment-Bedarf.</span>
-      </p>
-      <div class="text-3xl font-bold text-yellow-500 mb-4">29€</div>
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="mt-auto">
-        <input type="hidden" name="cmd" value="_s-xclick" />
-        <input type="hidden" name="hosted_button_id" value="PUVJF99CA2LLL" />
-        <input type="hidden" name="currency_code" value="EUR" />
-        <div class="flex items-start mb-4">
-          <input id="check-starter" type="checkbox" class="mt-1 mr-2" onchange="togglePayPalButton('check-starter','paypal-starter')" />
-          <label for="check-starter" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
-        </div>
-        <input id="paypal-starter" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" alt="Jetzt kaufen" aria-label="Jetzt kaufen – Starter Plan" disabled />
-      </form>
-    </div>
-
     <!-- Fit & Feminine -->
     <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col card-hover transition-transform duration-200">
       <h3 class="text-xl font-bold mb-2">Fit & Feminine (Turbo Burn HIIT GRATIS!)</h3>
@@ -213,7 +192,6 @@
         <thead class="bg-gray-800">
           <tr>
             <th class="p-3 border border-gray-700">Feature / Plan</th>
-            <th class="p-3 border border-gray-700">Starter<br><span class="text-yellow-500 font-bold">29€</span></th>
             <th class="p-3 border border-gray-700">Fit & Feminine <br><span class="text-yellow-500 font-bold">39€</span></th>
             <th class="p-3 border border-gray-700">Standard<br><span class="text-yellow-500 font-bold">59€</span></th>
             <th class="p-3 border border-gray-700 bg-yellow-500 text-black font-bold">Premium<br><span class="text-lg">99€</span></th>
@@ -224,12 +202,10 @@
             <td class="p-3 border border-gray-700">Sofort-Download (PDF)</td>
             <td class="p-3 border border-gray-700 text-yellow-500 font-bold">✔</td>
             <td class="p-3 border border-gray-700 text-yellow-500 font-bold">✔</td>
-            <td class="p-3 border border-gray-700 text-yellow-500 font-bold">✔</td>
             <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
           </tr>
           <tr>
             <td class="p-3 border border-gray-700">Auswahl Trainingsarten</td>
-            <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
             <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
             <td class="p-3 border border-gray-700 text-yellow-500 font-bold">✔</td>
             <td class="p-3 border border-gray-700 text-yellow-500 font-bold">✔</td>
@@ -238,19 +214,16 @@
             <td class="p-3 border border-gray-700">Individueller Ernährungsplan</td>
             <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
             <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
-            <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
             <td class="p-3 border border-gray-700 text-yellow-500 font-bold">✔</td>
           </tr>
           <tr>
             <td class="p-3 border border-gray-700">Support</td>
             <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
             <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
-            <td class="p-3 border border-gray-700 text-red-500 font-bold">✖</td>
             <td class="p-3 border border-gray-700 text-yellow-500 font-bold">✔ (bis zu 4 Wochen)</td>
           </tr>
           <tr>
             <td class="p-3 border border-gray-700">Lieferzeit</td>
-            <td class="p-3 border border-gray-700">Sofort (PDF)</td>
             <td class="p-3 border border-gray-700">Sofort (PDF)</td>
             <td class="p-3 border border-gray-700">Sofort (PDF)</td>
             <td class="p-3 border border-gray-700">1–5 Werktage (PDF)</td>
@@ -300,3 +273,4 @@
   </footer>
 </body>
 </html>
+
