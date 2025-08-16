@@ -1,37 +1,24 @@
-!DOCTYPE html
-html lang=de
-head
-  meta charset=UTF-8 
-  meta name=viewport content=width=device-width, initial-scale=1.0 
-  titleFehler - Zahlung Abgebrochentitle
-  style
-    body {
-      font-family Arial, sans-serif;
-      background-color #1f1f1f;
-      color white;
-      text-align center;
-      padding 50px;
-    }
-    .btn {
-      background-color #f7cc00;
-      color black;
-      padding 10px 20px;
-      font-size 16px;
-      border none;
-      cursor pointer;
-      text-decoration none;
-      margin-top 20px;
-    }
-    .btnhover {
-      background-color #e0b400;
-    }
-  style
-head
-body
-  h1Die Zahlung wurde abgebrochen.h1
-  pEs tut uns leid, aber die Zahlung wurde nicht erfolgreich abgeschlossen.p
-  pDu kannst es gerne später noch einmal versuchen.p
-  
-  a href=httpsechtwork.de class=btnZurück zur Startseitea
-body
-html
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zahlung abgebrochen – Echtwork</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-black text-white flex items-center justify-center min-h-screen">
+  <div class="text-center max-w-lg px-6">
+    <h1 class="text-4xl font-bold text-red-500 mb-6">Die Zahlung wurde abgebrochen</h1>
+    <p class="text-gray-300 mb-4">
+      Es tut uns leid, aber die Zahlung wurde nicht erfolgreich abgeschlossen.
+    </p>
+    <p class="text-gray-400 mb-8">
+      Du kannst es später gerne noch einmal versuchen.
+    </p>
+    <a href="https://echtwork.de" 
+       class="inline-block bg-yellow-500 text-black font-semibold py-2 px-6 rounded-xl shadow-lg hover:bg-yellow-400 transition">
+       Zur Startseite
+    </a>
+  </div>
+</body>
+</html>
