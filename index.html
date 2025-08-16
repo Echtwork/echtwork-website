@@ -1,378 +1,73 @@
+```html
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>echtwork.de – Trainingspläne</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Echtwork - Trainingspläne</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    // Uniwersalna funkcja do toggle przycisków PayPal
-    function togglePayPalButton(checkboxId, buttonId) {
-      const cb = document.getElementById(checkboxId);
-      const btn = document.getElementById(buttonId);
-      if (cb && btn) btn.disabled = !cb.checked;
-    }
-    // (opcjonalnie) aktualizacja ceny Standard Plan
-    function updateStandardPrice() {
-      const checked = document.querySelector('input[name="std-plan"]:checked');
-      const priceEl = document.getElementById('standard-price');
-      if (!priceEl) return;
-      if (checked) {
-        const val = parseInt(checked.value, 10);
-        if (!isNaN(val)) priceEl.textContent = val + '€';
-      }
-    }
-    // Hamburger toggle po załadowaniu DOM
-    document.addEventListener('DOMContentLoaded', function() {
-      const btn = document.getElementById('menu-toggle');
-      const menu = document.getElementById('menu');
-      if (btn && menu) {
-        btn.addEventListener('click', function () {
-          const isHidden = menu.classList.toggle('hidden');
-          btn.setAttribute('aria-expanded', String(!isHidden));
-        });
-      }
-    });
-  </script>
-  <style>
-    /* złoty akcent dla checkboxów / radio */
-    input[type="checkbox"]:checked,
-    input[type="radio"]:checked { accent-color: #FFD700; }
-    /* delikatne poprawki estetyczne */
-    .card-hover:hover { transform: translateY(-6px); box-shadow: 0 18px 30px rgba(0,0,0,0.6); }
-    .gold-gradient { background: linear-gradient(90deg, rgba(255,215,0,0.95), rgba(220,180,0,0.9)); }
-  </style>
 </head>
-<body class="bg-black text-white font-sans antialiased">
-  <!-- Header -->
-  <header class="flex flex-wrap items-center justify-between px-6 py-4 border-b border-yellow-600">
-    <div class="text-2xl font-bold text-yellow-500">echtwork.de</div>
-    <!-- Hamburger -->
-    <button id="menu-toggle" class="md:hidden text-yellow-500 focus:outline-none text-2xl" aria-label="Menü umschalten" aria-controls="menu" aria-expanded="false">☰</button>
-    <nav id="menu" class="hidden w-full md:flex md:w-auto md:space-x-6 mt-4 md:mt-0 flex-col md:flex-row space-y-2 md:space-y-0 text-center md:text-left">
-      <a href="#besonders" class="hover:text-yellow-400 block">Warum Echtwork?</a>
-      <a href="#plaene" class="hover:text-yellow-400 block">Pläne</a>
-      <a href="#vergleich" class="hover:text-yellow-400 block">Vergleich</a>
-      <a href="#faq" class="hover:text-yellow-400 block">FAQ</a>
-      <a href="#kontakt" class="hover:text-yellow-400 block">Kontakt</a>
-    </nav>
-  </header>
-
-  <!-- Global Trust Bar: "Sicher bezahlen mit PayPal" -->
-  <section aria-label="Sicher bezahlen mit PayPal" class="gold-gradient text-black">
-    <div class="max-w-6xl mx-auto px-6 py-3 flex flex-wrap items-center justify-center gap-3 text-sm md:text-base font-semibold">
-      <!-- Lock Icon -->
-      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c-1.657 0-3 1.343-3 3v3h6v-3c0-1.657-1.343-3-3-3zm5 3v3a2 2 0 01-2 2H9a2 2 0 01-2-2v-3a5 5 0 1110 0z"/>
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11V8a5 5 0 1110 0v3"/>
-      </svg>
-      <span>SSL-gesichert · Sicher bezahlen mit PayPal · Käuferschutz</span>
-      <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg" alt="PayPal Logo" class="h-6 md:h-8" loading="lazy" />
-    </div>
+<body class="bg-white text-gray-900">
+  <!-- Hero Section -->
+  <section class="text-center py-20 bg-yellow-400">
+    <h1 class="text-5xl font-bold mb-4">Echtwork Trainingspläne</h1>
+    <p class="text-xl mb-6">Starte dein individuelles Training noch heute</p>
+    <a href="#preise" class="bg-black text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-gray-800 transition">Jetzt starten</a>
   </section>
 
-  <!-- Hero -->
-  <section class="text-center py-16 bg-gradient-to-b from-black to-gray-900 px-4">
-    <img src="images/echtwork_logo_transparent.png" alt="Echtwork Logo" class="mx-auto w-44 md:w-64 lg:w-72 mb-6" loading="lazy">
-    <h1 class="text-4xl md:text-5xl font-bold mb-4 text-yellow-500">Dein Körper - Dein Plan - Dein Erfolg - Echtwork</h1>
-    <p class="text-gray-300 max-w-xl mx-auto">Sofort startklare Trainingspläne und individuelle Premium-Pläne mit personalisiertem Ernährungsplan.</p>
-    <!-- Microcopy unter dem Haupt-CTA -->
-    <p class="mt-4 text-sm text-gray-400 flex items-center justify-center gap-2">
-      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c-1.657 0-3 1.343-3 3v3h6v-3c0-1.657-1.343-3-3-3zM7 11V8a5 5 0 1110 0v3"/></svg>
-      Sicher bezahlen mit PayPal – sofortiger Zugang garantiert
-    </p>
-  </section>
-
-  <!-- Was macht Echtwork besonders? (Punkt 1 – wersja B + jakość) -->
-  <section id="besonders" class="py-16 px-6 bg-gradient-to-b from-gray-900 to-black border-t border-gray-800">
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-3xl md:text-4xl font-bold text-yellow-500 mb-4">Was macht Echtwork besonders?</h2>
-      <p class="text-gray-300 leading-relaxed max-w-3xl mx-auto">
-        Hier geht es nicht um Trends oder schnelle Versprechen. Hier geht es um echte Veränderung.
-        Du bekommst das Wissen, die Struktur – und die Motivation, die dich ans Ziel bringt.
-        <span class="text-yellow-400 font-semibold">Jeder Plan ist hochwertig und klar aufgebaut</span>, damit du spürbare Ergebnisse siehst.
-      </p>
-    </div>
-  </section>
-
-  <!-- So funktioniert's -->
-  <section class="py-16 px-6 bg-gradient-to-b from-gray-900 to-black">
-    <div class="max-w-6xl mx-auto text-center mb-12">
-      <h2 class="text-3xl font-bold text-yellow-500 mb-4">So funktioniert's</h2>
-      <p class="text-gray-300 max-w-2xl mx-auto">In nur wenigen Schritten zu deinem Trainingsplan – schnell, einfach und sicher.</p>
-    </div>
-
-    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 max-w-6xl mx-auto">
-      <!-- Schritt 1 -->
-      <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 text-center card-hover transition-transform duration-200">
-        <div class="text-4xl text-yellow-500 font-bold mb-2">1</div>
-        <h3 class="text-lg font-bold mb-2">Plan auswählen</h3>
-        <p class="text-gray-300 text-sm">Wähle den Trainingsplan, der am besten zu deinen Zielen passt.</p>
+  <!-- Preise Section -->
+  <section id="preise" class="py-20 px-6">
+    <h2 class="text-3xl font-bold text-center mb-12">Unsere Pläne</h2>
+    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <!-- Plan 1 -->
+      <div class="border rounded-2xl p-6 shadow hover:shadow-lg transition">
+        <h3 class="text-xl font-bold mb-4">Standard Plan</h3>
+        <p class="mb-4">Individueller Trainingsplan für dich erstellt.</p>
+        <p class="text-2xl font-bold mb-6">49€</p>
+        <button class="bg-yellow-400 px-4 py-2 rounded-lg font-semibold w-full">Jetzt kaufen</button>
       </div>
-
-      <!-- Schritt 2 -->
-      <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 text-center card-hover transition-transform duration-200">
-        <div class="text-4xl text-yellow-500 font-bold mb-2">2</div>
-        <h3 class="text-lg font-bold mb-2">Sicher bezahlen</h3>
-        <p class="text-gray-300 text-sm">Bezahle einfach und sicher über PayPal – keine versteckten Kosten.</p>
+      <!-- Plan 2 -->
+      <div class="border-4 border-yellow-400 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition">
+        <h3 class="text-xl font-bold mb-4">Premium Plan</h3>
+        <p class="mb-4">Inklusive Ernährungsplan & Chat Support.</p>
+        <p class="text-2xl font-bold mb-6">99€</p>
+        <button class="bg-yellow-400 px-4 py-2 rounded-lg font-semibold w-full">Jetzt kaufen</button>
       </div>
-
-      <!-- Schritt 3 -->
-      <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 text-center card-hover transition-transform duration-200">
-        <div class="text-4xl text-yellow-500 font-bold mb-2">3</div>
-        <h3 class="text-lg font-bold mb-2">Plan erhalten</h3>
-        <p class="text-gray-300 text-sm">Sofort-Download (PDF) oder bei Premium: individuell erstellter Plan per E-Mail.</p>
-      </div>
-
-      <!-- Schritt 4 -->
-      <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 text-center card-hover transition-transform duration-200">
-        <div class="text-4xl text-yellow-500 font-bold mb-2">4</div>
-        <h3 class="text-lg font-bold mb-2">Training starten</h3>
-        <p class="text-gray-300 text-sm">Starte sofort mit deinem maßgeschneiderten Programm – jederzeit & überall.</p>
+      <!-- Plan 3 -->
+      <div class="border rounded-2xl p-6 shadow hover:shadow-lg transition">
+        <h3 class="text-xl font-bold mb-4">Fit & Feminine</h3>
+        <p class="mb-4">Speziell für Frauen entwickelt.</p>
+        <p class="text-2xl font-bold mb-6">79€</p>
+        <button class="bg-yellow-400 px-4 py-2 rounded-lg font-semibold w-full">Jetzt kaufen</button>
       </div>
     </div>
   </section>
 
-  <!-- Utility: Trust badge under purchase forms -->
-  <template id="trust-badge-template">
-    <div class="mt-3 flex items-center gap-2 text-xs text-gray-400" aria-label="Sicher bezahlen mit PayPal">
-      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c-1.657 0-3 1.343-3 3v3h6v-3c0-1.657-1.343-3-3-3zM7 11V8a5 5 0 1110 0v3"/></svg>
-      <span>Sicher bezahlen mit PayPal – Käuferschutz</span>
-      <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg" alt="PayPal" class="h-4" loading="lazy" />
-    </div>
-  </template>
-  <script>
-    // Inject trust badges beneath each PayPal form button
-    document.addEventListener('DOMContentLoaded', function() {
-      const tpl = document.getElementById('trust-badge-template');
-      if (!tpl) return;
-      document.querySelectorAll('form[action*="paypal"]').forEach(form => {
-        const clone = tpl.content.cloneNode(true);
-        form.appendChild(clone);
-      });
-    });
-  </script>
-
-  <!-- Plans: grid 3 -->
-  <section id="plaene" class="py-16 px-6 max-w-6xl mx-auto grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-
-    <!-- Fit & Feminine -->
-    <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col card-hover transition-transform duration-200">
-      <h3 class="text-xl font-bold mb-2">Fit & Feminine (Turbo Burn HIIT GRATIS!)</h3>
-      <p class="text-gray-300 mb-4">
-        <span class="block">Fit & Feminine – Traumfigur in 6 Wochen. </span>
-        <span class="block">Dein kompletter 6-Wochen-Plan für einen straffen & femininen Body.</span>
-        <span class="block">Bauch, Beine, Po & Arme – gezielte Workouts für Frauen.</span>
-        <span class="block">Kein Fitnessstudio nötig.</span>
-        <span class="block">Sichtbare Ergebnisse in nur 6 Wochen.</span>
-        <span class="block text-yellow-500 font-semibold">Gratis dazu: Turbo Burn HIIT – kurze, intensive Fatburn-Workouts für maximale Kalorienverbrennung.</span>
-      </p>
-      <div class="text-3xl font-bold text-yellow-500 mb-4">39€</div>
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="mt-auto">
-        <input type="hidden" name="cmd" value="_s-xclick" />
-        <input type="hidden" name="hosted_button_id" value="595QUMFN3TKQN" />
-        <input type="hidden" name="currency_code" value="EUR" />
-        <div class="flex items-start mb-4">
-          <input id="check-fhome" type="checkbox" class="mt-1 mr-2" onchange="togglePayPalButton('check-fhome','paypal-fhome')" />
-          <label for="check-fhome" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
-        </div>
-        <input id="paypal-fhome" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif"
-               title="PayPal – Einfacher und sicherer online bezahlen." alt="Jetzt kaufen" aria-label="Jetzt kaufen – Fit & Feminine" disabled />
-      </form>
-    </div>
-
-    <!-- Standard -->
-    <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col card-hover transition-transform duration-200">
-      <h3 class="text-xl font-bold mb-2">Standard Plan</h3>
-      <p class="text-gray-300 mb-3">
-        <span class="block">Sofort-Download als PDF.</span>
-        <span class="block">Für alle, die klare Strukturen und schnelle Resultate wollen – ohne Ratespiele oder ständiges Überlegen.</span>
-      </p>
-      <div class="mb-3 space-y-1 text-gray-300" onchange="updateStandardPrice();">
-        <label class="flex items-center"><input type="radio" name="std-plan" value="59" class="mr-2">Krafttraining (Muskelaufbau) → Kraft & Muskulöse Figur</label>
-        <label class="flex items-center"><input type="radio" name="std-plan" value="59" class="mr-2">Cardio (Fettverbrennung) → Turbo-Fettverbrennung</label>
-        <label class="flex items-center"><input type="radio" name="std-plan" value="59" class="mr-2">Stretching & Erholung → Regeneration & Beweglichkeit</label>
+  <!-- FAQ Section -->
+  <section id="faq" class="py-20 bg-gray-100 px-6">
+    <h2 class="text-3xl font-bold text-center mb-12">Häufige Fragen</h2>
+    <div class="max-w-3xl mx-auto space-y-6">
+      <div>
+        <h3 class="font-semibold">Wie erhalte ich meinen Plan?</h3>
+        <p>Nach dem Kauf erhältst du deinen Plan sofort per E-Mail.</p>
       </div>
-      <div class="text-3xl font-bold text-yellow-500 mb-4" id="standard-price">59€</div>
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="mt-auto">
-        <input type="hidden" name="cmd" value="_s-xclick" />
-        <input type="hidden" name="hosted_button_id" value="96DX79QQS3QXS" />
-        <input type="hidden" name="currency_code" value="EUR" />
-        <div class="flex items-start mb-4">
-          <input id="check-standard" type="checkbox" class="mt-1 mr-2" onchange="togglePayPalButton('check-standard','paypal-standard')" />
-          <label for="check-standard" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
-        </div>
-        <input id="paypal-standard" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" alt="Jetzt kaufen" aria-label="Jetzt kaufen – Standard Plan" disabled />
-      </form>
-    </div>
-
-    <!-- Premium -->
-    <div class="bg-gray-900 border-2 border-yellow-500 rounded-2xl p-6 flex flex-col shadow-[0_0_20px_rgba(255,215,0,0.12)] card-hover transition-transform duration-200">
-      <div class="self-start px-3 py-1 rounded-full bg-yellow-500 text-black text-xs font-bold mb-3">Premium</div>
-      <h3 class="text-xl font-bold mb-2">Premium Individuell</h3>
-      <p class="text-gray-300 mb-4">
-        <span class="block">Individueller Trainingsplan – 100 % auf Dich abgestimmt.</span>
-        <span class="block">Vollständiger Ernährungsplan – maßgeschneidert für Deine Ziele & Vorlieben.</span>
-        <span class="block">Persönliche Beratung & Support – Du bekommst Antworten auf Deine Fragen.</span>
-        <span class="block">Komplette Anpassung an Ziele, Gesundheit & Zeitbudget.</span>
-      </p>
-      <p class="text-sm text-yellow-500 font-bold mb-4">
-        Nach der Zahlung wirst Du automatisch zu einem Formular weitergeleitet, in dem Du Deine Ziele, Vorlieben und eventuelle gesundheitliche Einschränkungen angibst.
-      </p>
-      <div class="text-3xl font-bold text-yellow-500 mb-4">nur 99€</div>
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="mt-auto">
-        <input type="hidden" name="cmd" value="_s-xclick" />
-        <input type="hidden" name="hosted_button_id" value="PV6WNVYUSV9NN" />
-        <input type="hidden" name="currency_code" value="EUR" />
-        <div class="flex items-start mb-4">
-          <input id="check-premium" type="checkbox" class="mt-1 mr-2" onchange="togglePayPalButton('check-premium','paypal-premium')" />
-          <label for="check-premium" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
-        </div>
-        <input id="paypal-premium" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" alt="Jetzt kaufen" aria-label="Jetzt kaufen – Premium Individuell" disabled />
-        <!-- return URL do formularza -->
-        <input type="hidden" name="return" value="https://echtwork.github.io/echtwork-website/premium-formular.html" />
-        <input type="hidden" name="cancel_return" value="https://echtwork.github.io/echtwork-website/payment-cancel.html" />
-      </form>
-    </div>
-
-  </section>
-
- <!-- Vergleich -->
-<section id="vergleich" class="px-6 max-w-6xl mx-auto mb-16">
-  <div class="text-center mb-6">
-    <h2 class="text-3xl font-bold text-yellow-500">Welcher Plan passt zu dir?</h2>
-    <p class="text-gray-300 max-w-2xl mx-auto">
-      Wähle zwischen sofort startbaren PDF-Plänen oder einem vollständig personalisierten Premium-Paket mit Ernährungsplan.
-    </p>
-  </div>
-
-  <!-- Desktop/Tablet: Tabelle -->
-  <div class="hidden md:block overflow-x-auto">
-    <table class="min-w-full border border-gray-700 text-left text-sm md:text-base">
-      <thead class="bg-gray-800">
-        <tr>
-          <th class="p-3 border border-gray-700">Feature / Plan</th>
-          <th class="p-3 border border-gray-700">Fit & Feminine<br><span class="text-yellow-500 font-bold">39€</span></th>
-          <th class="p-3 border border-gray-700">Standard<br><span class="text-yellow-500 font-bold">59€</span></th>
-          <th class="p-3 border border-gray-700 bg-yellow-500 text-black font-bold">Premium<br><span class="text-lg">99€</span></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="p-3 border border-gray-700">Individuelle Anpassung</td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
-        </tr>
-        <tr>
-          <td class="p-3 border border-gray-700">Auswahl Trainingsarten</td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
-        </tr>
-        <tr>
-          <td class="p-3 border border-gray-700">Individueller Ernährungsplan</td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
-        </tr>
-        <tr>
-          <td class="p-3 border border-gray-700">Support</td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
-          <td class="p-3 border border-gray-700"><div class="flex items-center gap-2"><svg class="w-6 h-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg><span class="text-sm">(bis zu 4 Wochen)</span></div></td>
-        </tr>
-        <tr>
-          <td class="p-3 border border-gray-700">Lieferzeit</td>
-          <td class="p-3 border border-gray-700">Sofort (PDF)</td>
-          <td class="p-3 border border-gray-700">Sofort (PDF)</td>
-          <td class="p-3 border border-gray-700">1–5 Werktage (PDF)</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- Mobile: Karten -->
-  <div class="grid gap-6 md:hidden">
-    <!-- Fit & Feminine -->
-    <div class="bg-gray-900 border border-gray-700 rounded-xl p-4">
-      <h3 class="text-lg font-bold text-yellow-500 mb-2">Fit & Feminine – 39€</h3>
-      <ul class="space-y-2 text-gray-300 text-sm">
-        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>Individuelle Anpassung</li>
-        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>Auswahl Trainingsarten</li>
-        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>Individueller Ernährungsplan</li>
-        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>Support</li>
-        <li><span class="font-semibold">Lieferzeit:</span> Sofort (PDF)</li>
-      </ul>
-    </div>
-
-    <!-- Standard -->
-    <div class="bg-gray-900 border border-gray-700 rounded-xl p-4">
-      <h3 class="text-lg font-bold text-yellow-500 mb-2">Standard – 59€</h3>
-      <ul class="space-y-2 text-gray-300 text-sm">
-        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>Individuelle Anpassung</li>
-        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>Auswahl Trainingsarten</li>
-        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>Individueller Ernährungsplan</li>
-        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>Support</li>
-        <li><span class="font-semibold">Lieferzeit:</span> Sofort (PDF)</li>
-      </ul>
-    </div>
-
-    <!-- Premium -->
-    <div class="bg-gray-900 border-2 border-yellow-500 rounded-xl p-4 shadow-[0_0_12px_rgba(255,215,0,0.15)]">
-      <h3 class="text-lg font-bold text-yellow-500 mb-2">Premium – 99€</h3>
-      <ul class="space-y-2 text-gray-300 text-sm">
-        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>Individuelle Anpassung</li>
-        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>Auswahl Trainingsarten</li>
-        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>Individueller Ernährungsplan</li>
-        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>Support (bis zu 4 Wochen)</li>
-        <li><span class="font-semibold">Lieferzeit:</span> 1–5 Werktage (PDF)</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-  <section id="cta" class="py-16 px-6 text-center bg-gradient-to-b from-gray-900 to-black">
-    <div class="max-w-3xl mx-auto">
-      <h2 class="text-3xl md:text-4xl font-bold mb-4 text-yellow-500">Dein Mindset entscheidet.</h2>
-      <p class="text-gray-300 mb-6">Egal, wo du heute stehst – dein Weg beginnt hier.</p>
-      <a href="#plaene" aria-label="Starte jetzt mit deinem Plan" class="inline-block px-6 py-3 font-bold rounded-2xl bg-yellow-500 text-black hover:shadow-[0_8px_30px_rgba(255,215,0,0.35)] transition">Starte jetzt →</a>
-      <div class="mt-3 text-xs text-gray-400 flex items-center gap-2 justify-center" aria-label="Sicher bezahlen mit PayPal">
-        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c-1.657 0-3 1.343-3 3v3h6v-3c0-1.657-1.343-3-3-3zM7 11V8a5 5 0 1110 0v3"/></svg>
-        <span>Sicher bezahlen mit PayPal – sofortiger Zugang garantiert</span>
+      <div>
+        <h3 class="font-semibold">Kann ich meinen Plan anpassen?</h3>
+        <p>Ja, wir erstellen ihn individuell basierend auf deinen Zielen.</p>
       </div>
     </div>
-  </section>
-  
-  <!-- FAQ -->
-  <section id="faq" class="py-16 px-6 bg-gradient-to-b from-black to-gray-900">
-    <div class="max-w-3xl mx-auto">
-      <h2 class="text-3xl md:text-4xl font-bold text-yellow-500 text-center mb-8">FAQ</h2>
 
-      <div class="space-y-4">
-        <details class="bg-gray-900 border border-gray-700 rounded-2xl p-5">
-          <summary class="cursor-pointer font-semibold text-yellow-400">Was ist das wichtigste Prinzip bei Echtwork?</summary>
-          <div class="mt-3 text-gray-300 leading-relaxed">
-            Das wichtigste Prinzip? Dranbleiben. Nicht perfekt sein, sondern konsequent. Jeder kleine Schritt zählt.
-            <span class="text-yellow-400 font-semibold">Disziplin hält dich auf Kurs – und bringt dich ans Ziel.</span>
-          </div>
-        </details>
-      </div>
+    <!-- Trust bar moved under FAQ -->
+    <div class="mt-12 text-center text-sm text-gray-600">
+      <p>🔒 SSL-gesichert · 💳 Sicher bezahlen mit PayPal · ✅ Käuferschutz</p>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-gray-400 py-6 mt-12">
-    <div class="max-w-6xl mx-auto px-6 flex flex-wrap justify-center items-center gap-4">
-      <p class="text-sm">&copy; 2025 Echtwork. Alle Rechte vorbehalten.</p>
-      <div class="flex flex-wrap justify-center gap-4">
-        <a href="impressum.html" class="hover:text-yellow-500 transition-colors">Impressum</a>
-        <a href="datenschutz.html" class="hover:text-yellow-500 transition-colors">Datenschutz</a>
-        <a href="agb.html" class="hover:text-yellow-500 transition-colors">AGB</a>
-        <a href="widerruf.html" class="hover:text-yellow-500 transition-colors">Widerrufsbelehrung</a>
-      </div>
-    </div>
-  </footer>
+  <!-- CTA Section -->
+  <section class="text-center py-20 bg-yellow-400">
+    <h2 class="text-4xl font-bold mb-6">Bist du bereit?</h2>
+    <a href="#preise" class="bg-black text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-gray-800 transition">Jetzt starten</a>
+  </section>
 </body>
 </html>
+```
