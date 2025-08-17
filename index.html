@@ -12,8 +12,8 @@
       const btn = document.getElementById(buttonId);
       if (cb && btn) btn.disabled = !cb.checked;
     }
-   
-    // Hamburger toggle po załadowaniu DOM
+
+    // Hamburger toggle + trust badge injection po załadowaniu DOM
     document.addEventListener('DOMContentLoaded', function() {
       const btn = document.getElementById('menu-toggle');
       const menu = document.getElementById('menu');
@@ -21,6 +21,15 @@
         btn.addEventListener('click', function () {
           const isHidden = menu.classList.toggle('hidden');
           btn.setAttribute('aria-expanded', String(!isHidden));
+        });
+      }
+
+      // Inject trust badges beneath each PayPal form button
+      const tpl = document.getElementById('trust-badge-template');
+      if (tpl) {
+        document.querySelectorAll('form[action*="paypal"]').forEach(form => {
+          const clone = tpl.content.cloneNode(true);
+          form.appendChild(clone);
         });
       }
     });
@@ -56,7 +65,7 @@
     <p class="text-gray-300 max-w-xl mx-auto">Sofort startklare Trainingspläne und individuelle Premium-Pläne mit personalisiertem Ernährungsplan.</p>
   </section>
 
-  <!-- Was macht Echtwork besonders? (Punkt 1 – wersja B + jakość) -->
+  <!-- Was macht Echtwork besonders? -->
   <section id="besonders" class="py-16 px-6 bg-gradient-to-b from-gray-900 to-black border-t border-gray-800">
     <div class="max-w-4xl mx-auto text-center">
       <h2 class="text-3xl md:text-4xl font-bold text-yellow-500 mb-4">Was macht Echtwork besonders?</h2>
@@ -123,17 +132,6 @@
       <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg" alt="PayPal" class="h-4" loading="lazy" />
     </div>
   </template>
-  <script>
-    // Inject trust badges beneath each PayPal form button
-    document.addEventListener('DOMContentLoaded', function() {
-      const tpl = document.getElementById('trust-badge-template');
-      if (!tpl) return;
-      document.querySelectorAll('form[action*="paypal"]').forEach(form => {
-        const clone = tpl.content.cloneNode(true);
-        form.appendChild(clone);
-      });
-    });
-  </script>
 
   <!-- Plans: grid 3 -->
   <section id="plaene" class="py-16 px-6 max-w-6xl mx-auto grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
@@ -148,7 +146,7 @@
         <span class="block">Kein Fitnessstudio nötig.</span>
         <span class="block">Sichtbare Ergebnisse in nur 6 Wochen.</span>
         <span class="block text-yellow-500 font-semibold">Gratis dazu:</span>
-        <span class="block">Turbo Burn HIIT – kurze, intensive Fatburn-Workouts für maximale Kalorienverbrennung..</span>
+        <span class="block">Turbo Burn HIIT – kurze, intensive Fatburn-Workouts für maximale Kalorienverbrennung.</span>
       </p>
       <div class="text-3xl font-bold text-yellow-500 mb-4">35€</div>
       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="mt-auto">
@@ -170,11 +168,12 @@
       <p class="text-gray-300 mb-3">
         <span class="block">Für alle, die klare Strukturen und schnelle Resultate wollen – ohne Ratespiele oder ständiges Überlegen.</span>
       </p>
-      <div class="mb-3 space-y-1 text-gray-300" onchange="updateStandardPrice();">
-        <label class="flex items-center"><input type="radio" name="std-plan" value="59" class="mr-2">Krafttraining (Muskelaufbau) → Kraft & Muskulöse Figur</label>
-        <label class="flex items-center"><input type="radio" name="std-plan" value="59" class="mr-2">Cardio (Fettverbrennung) → Turbo-Fettverbrennung</label>
-        <label class="flex items-center"><input type="radio" name="std-plan" value="59" class="mr-2">Kalistenik → Body & Power – Eigengewicht</label>
-      </div>
+      <fieldset class="mb-3 space-y-1 text-gray-300">
+        <legend class="sr-only">Trainingsart auswählen</legend>
+        <label class="flex items-center"><input type="radio" name="std-plan" value="kraft" class="mr-2">Krafttraining (Muskelaufbau) → Kraft & Muskulöse Figur</label>
+        <label class="flex items-center"><input type="radio" name="std-plan" value="cardio" class="mr-2">Cardio (Fettverbrennung) → Turbo-Fettverbrennung</label>
+        <label class="flex items-center"><input type="radio" name="std-plan" value="calisthenics" class="mr-2">Kalistenik → Body & Power – Eigengewicht</label>
+      </fieldset>
       <div class="text-3xl font-bold text-yellow-500 mb-4" id="standard-price">49€</div>
       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="mt-auto">
         <input type="hidden" name="cmd" value="_s-xclick" />
@@ -191,7 +190,7 @@
     <!-- Premium -->
     <div class="bg-gray-900 border-2 border-yellow-500 rounded-2xl p-6 flex flex-col shadow-[0_0_20px_rgba(255,215,0,0.12)] card-hover transition-transform duration-200">
       <div class="self-start px-3 py-1 rounded-full bg-yellow-500 text-black text-xs font-bold mb-3">Premium</div>
-      <h3 class="block text-yellow-500 font-semibold text-xl font-bold mb-2">Premium Individuell</h3>
+      <h3 class="text-yellow-500 font-semibold text-xl mb-2">Premium Individuell</h3>
       <p class="text-gray-300 mb-4">
         <span class="block">Individueller Trainingsplan – 100 % auf Dich abgestimmt.</span>
         <span class="block">Vollständiger Ernährungsplan – maßgeschneidert für Deine Ziele & Vorlieben.</span>
@@ -216,102 +215,102 @@
         <input type="hidden" name="cancel_return" value="https://echtwork.github.io/echtwork-website/payment-cancel.html" />
       </form>
     </div>
-</section>
+  </section>
 
- <!-- Vergleich -->
-<section id="vergleich" class="px-6 max-w-6xl mx-auto mb-16">
-  <div class="text-center mb-6">
-    <h2 class="text-3xl font-bold text-yellow-500">Welcher Plan passt zu dir?</h2>
-    <p class="text-gray-300 max-w-2xl mx-auto">
-      Wähle zwischen sofort startbaren PDF-Plänen oder einem vollständig personalisierten Premium-Paket mit Ernährungsplan.
-    </p>
-  </div>
-
-  <!-- Desktop/Tablet: Tabelle -->
-  <div class="hidden md:block overflow-x-auto">
-    <table class="min-w-full border border-gray-700 text-left text-sm md:text-base">
-      <thead class="bg-gray-800">
-        <tr>
-          <th class="p-3 border border-gray-700">Feature / Plan</th>
-          <th class="p-3 border border-gray-700">Fit & Feminine<br><span class="text-yellow-500 font-bold">35€</span></th>
-          <th class="p-3 border border-gray-700">Standard<br><span class="text-yellow-500 font-bold">49€</span></th>
-          <th class="p-3 border border-gray-700 bg-yellow-500 text-black font-bold">Premium<br><span class="text-lg">99€</span></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="p-3 border border-gray-700">Individuelle Anpassung</td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
-        </tr>
-        <tr>
-          <td class="p-3 border border-gray-700">Auswahl Trainingsarten</td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
-        </tr>
-        <tr>
-          <td class="p-3 border border-gray-700">Individueller Ernährungsplan</td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
-        </tr>
-        <tr>
-          <td class="p-3 border border-gray-700">Einmalige kostenlose Anpassung – bis zu 4 Wochen</td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
-          <td class="p-3 border border-gray-700"><div class="flex items-center gap-2"><svg class="w-6 h-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg><span class="text-sm" ></span></div></td>
-        </tr>
-        <tr>
-          <td class="p-3 border border-gray-700">Lieferzeit</td>
-          <td class="p-3 border border-gray-700">nach Zahlungseingang (PDF)</td>
-          <td class="p-3 border border-gray-700">nach Zahlungseingang (PDF)</td>
-          <td class="p-3 border border-gray-700">1–5 Werktage (PDF)</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- Mobile: Karten -->
-  <div class="grid gap-6 md:hidden">
-    <!-- Fit & Feminine -->
-    <div class="bg-gray-900 border border-gray-700 rounded-xl p-4">
-      <h3 class="text-lg font-bold text-yellow-500 mb-2">Fit & Feminine – 35€</h3>
-      <ul class="space-y-2 text-gray-300 text-sm">
-        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>Individuelle Anpassung</li>
-        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>Auswahl Trainingsarten</li>
-        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>Individueller Ernährungsplan</li>
-        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>Einmalige kostenlose Anpassung – bis zu 4 Wochen</li>
-        <li><span class="font-semibold">Lieferzeit:</span> nach Zahlungseingang (PDF)</li>
-      </ul>
+  <!-- Vergleich -->
+  <section id="vergleich" class="px-6 max-w-6xl mx-auto mb-16">
+    <div class="text-center mb-6">
+      <h2 class="text-3xl font-bold text-yellow-500">Welcher Plan passt zu dir?</h2>
+      <p class="text-gray-300 max-w-2xl mx-auto">
+        Wähle zwischen sofort startbaren PDF-Plänen oder einem vollständig personalisierten Premium-Paket mit Ernährungsplan.
+      </p>
     </div>
 
-    <!-- Standard -->
-    <div class="bg-gray-900 border border-gray-700 rounded-xl p-4">
-      <h3 class="text-lg font-bold text-yellow-500 mb-2">Standard – 49€</h3>
-      <ul class="space-y-2 text-gray-300 text-sm">
-        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>Individuelle Anpassung</li>
-        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>Auswahl Trainingsarten</li>
-        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>Individueller Ernährungsplan</li>
-        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>Einmalige kostenlose Anpassung – bis zu 4 Wochen</li>
-        <li><span class="font-semibold">Lieferzeit:</span> nach Zahlungseingang (PDF)</li>
-      </ul>
+    <!-- Desktop/Tablet: Tabelle -->
+    <div class="hidden md:block overflow-x-auto">
+      <table class="min-w-full border border-gray-700 text-left text-sm md:text-base">
+        <thead class="bg-gray-800">
+          <tr>
+            <th class="p-3 border border-gray-700">Feature / Plan</th>
+            <th class="p-3 border border-gray-700">Fit & Feminine<br><span class="text-yellow-500 font-bold">35€</span></th>
+            <th class="p-3 border border-gray-700">Standard<br><span class="text-yellow-500 font-bold">49€</span></th>
+            <th class="p-3 border border-gray-700 bg-yellow-500 text-black font-bold">Premium<br><span class="text-lg">99€</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="p-3 border border-gray-700">Individuelle Anpassung</td>
+            <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
+            <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
+            <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
+          </tr>
+          <tr>
+            <td class="p-3 border border-gray-700">Auswahl Trainingsarten</td>
+            <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
+            <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
+            <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
+          </tr>
+          <tr>
+            <td class="p-3 border border-gray-700">Individueller Ernährungsplan</td>
+            <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
+            <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
+            <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
+          </tr>
+          <tr>
+            <td class="p-3 border border-gray-700">Einmalige kostenlose Anpassung – bis zu 4 Wochen</td>
+            <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
+            <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
+            <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
+          </tr>
+          <tr>
+            <td class="p-3 border border-gray-700">Lieferzeit</td>
+            <td class="p-3 border border-gray-700">nach Zahlungseingang (PDF)</td>
+            <td class="p-3 border border-gray-700">nach Zahlungseingang (PDF)</td>
+            <td class="p-3 border border-gray-700">1–5 Werktage (PDF)</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
-    <!-- Premium -->
-    <div class="bg-gray-900 border-2 border-yellow-500 rounded-xl p-4 shadow-[0_0_12px_rgba(255,215,0,0.15)]">
-      <h3 class="text-lg font-bold text-yellow-500 mb-2">Premium – 99€</h3>
-      <ul class="space-y-2 text-gray-300 text-sm">
-        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>Individuelle Anpassung</li>
-        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>Auswahl Trainingsarten</li>
-        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>Individueller Ernährungsplan</li>
-        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>Einmalige kostenlose Anpassung – bis zu 4 Wochen</li>
-        <li><span class="font-semibold">Lieferzeit:</span> 1–5 Werktage (PDF)</li>
-      </ul>
+    <!-- Mobile: Karten -->
+    <div class="grid gap-6 md:hidden">
+      <!-- Fit & Feminine -->
+      <div class="bg-gray-900 border border-gray-700 rounded-xl p-4">
+        <h3 class="text-lg font-bold text-yellow-500 mb-2">Fit & Feminine – 35€</h3>
+        <ul class="space-y-2 text-gray-300 text-sm">
+          <li class="flex items-center gap-2"><svg class="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>Individuelle Anpassung</li>
+          <li class="flex items-center gap-2"><svg class="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>Auswahl Trainingsarten</li>
+          <li class="flex items-center gap-2"><svg class="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>Individueller Ernährungsplan</li>
+          <li class="flex items-center gap-2"><svg class="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>Einmalige kostenlose Anpassung – bis zu 4 Wochen</li>
+          <li><span class="font-semibold">Lieferzeit:</span> nach Zahlungseingang (PDF)</li>
+        </ul>
+      </div>
+
+      <!-- Standard -->
+      <div class="bg-gray-900 border border-gray-700 rounded-xl p-4">
+        <h3 class="text-lg font-bold text-yellow-500 mb-2">Standard – 49€</h3>
+        <ul class="space-y-2 text-gray-300 text-sm">
+          <li class="flex items-center gap-2"><svg class="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>Individuelle Anpassung</li>
+          <li class="flex items-center gap-2"><svg class="w-5 h-5 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>Auswahl Trainingsarten</li>
+          <li class="flex items-center gap-2"><svg class="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>Individueller Ernährungsplan</li>
+          <li class="flex items-center gap-2"><svg class="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>Einmalige kostenlose Anpassung – bis zu 4 Wochen</li>
+          <li><span class="font-semibold">Lieferzeit:</span> nach Zahlungseingang (PDF)</li>
+        </ul>
+      </div>
+
+      <!-- Premium -->
+      <div class="bg-gray-900 border-2 border-yellow-500 rounded-xl p-4 shadow-[0_0_12px_rgba(255,215,0,0.15)]">
+        <h3 class="text-lg font-bold text-yellow-500 mb-2">Premium – 99€</h3>
+        <ul class="space-y-2 text-gray-300 text-sm">
+          <li class="flex items-center gap-2"><svg class="w-5 h-5 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>Individuelle Anpassung</li>
+          <li class="flex items-center gap-2"><svg class="w-5 h-5 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>Auswahl Trainingsarten</li>
+          <li class="flex items-center gap-2"><svg class="w-5 h-5 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>Individueller Ernährungsplan</li>
+          <li class="flex items-center gap-2"><svg class="w-5 h-5 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>Einmalige kostenlose Anpassung – bis zu 4 Wochen</li>
+          <li><span class="font-semibold">Lieferzeit:</span> 1–5 Werktage (PDF)</li>
+        </ul>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
   
   <!-- FAQ -->
   <section id="faq" class="py-16 px-6 bg-gradient-to-b from-black to-gray-900">
@@ -358,20 +357,3 @@
   </footer>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
