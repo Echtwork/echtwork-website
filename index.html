@@ -3,10 +3,22 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-XXXXXXXXXX'); // <-- tutaj wstaw swój Measurement ID
+  </script>
+  
   <title>echtwork.de – Trainingspläne</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    // Uniwersalna funkcja do toggle przycisków PayPal
+</head>
+<body>
+   <script> 
+  // Uniwersalna funkcja do toggle przycisków PayPal
     function togglePayPalButton(checkboxId, buttonId) {
       const cb = document.getElementById(checkboxId);
       const btn = document.getElementById(buttonId);
@@ -357,3 +369,4 @@
   </footer>
 </body>
 </html>
+
