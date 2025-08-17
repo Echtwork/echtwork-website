@@ -12,15 +12,7 @@
       const btn = document.getElementById(buttonId);
       if (cb && btn) btn.disabled = !cb.checked;
     }
-    // (opcjonalnie) aktualizacja ceny Standard Plan
-    function updateStandardPrice() {
-      const checked = document.querySelector('input[name="std-plan"]:checked');
-      const priceEl = document.getElementById('standard-price');
-      if (!priceEl) return;
-      if (checked) {
-        const val = parseInt(checked.value, 10);
-        if (!isNaN(val)) priceEl.textContent = val + '€';
-      }
+    
     }
     // Hamburger toggle po załadowaniu DOM
     document.addEventListener('DOMContentLoaded', function() {
@@ -401,6 +393,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
