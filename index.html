@@ -237,9 +237,8 @@
     </p>
   </div>
 
-<section class="p-4 bg-gray-900 text-gray-300">
-
-  <!-- Desktop / Tablet -->
+<section>
+  <!-- Desktop / Tablet: Tabela -->
   <div class="hidden md:block overflow-x-auto">
     <table class="min-w-full border-collapse border border-gray-700 text-left">
       <thead>
@@ -253,33 +252,33 @@
       <tbody>
         <tr class="hover:bg-gray-800">
           <td class="p-3 border border-gray-700">Support</td>
-          <td class="p-3 border border-gray-700"><span class="text-yellow-500 font-bold">JA</span></td>
-          <td class="p-3 border border-gray-700"><span class="text-yellow-500 font-bold">JA</span></td>
-          <td class="p-3 border border-gray-700"><span class="text-yellow-500 font-bold">JA</span></td>
+          <td class="p-3 border border-gray-700" data-status="JA">JA</td>
+          <td class="p-3 border border-gray-700" data-status="JA">JA</td>
+          <td class="p-3 border border-gray-700" data-status="JA">JA</td>
         </tr>
         <tr class="hover:bg-gray-800">
           <td class="p-3 border border-gray-700">Auswahl Trainingsarten</td>
-          <td class="p-3 border border-gray-700"><span class="text-red-500 font-bold">NEIN</span></td>
-          <td class="p-3 border border-gray-700"><span class="text-yellow-500 font-bold">JA</span></td>
-          <td class="p-3 border border-gray-700"><span class="text-yellow-500 font-bold">JA</span></td>
+          <td class="p-3 border border-gray-700" data-status="NEIN">NEIN</td>
+          <td class="p-3 border border-gray-700" data-status="JA">JA</td>
+          <td class="p-3 border border-gray-700" data-status="JA">JA</td>
         </tr>
         <tr class="hover:bg-gray-800">
           <td class="p-3 border border-gray-700">Individuelle Anpassung</td>
-          <td class="p-3 border border-gray-700"><span class="text-red-500 font-bold">NEIN</span></td>
-          <td class="p-3 border border-gray-700"><span class="text-red-500 font-bold">NEIN</span></td>
-          <td class="p-3 border border-gray-700"><span class="text-yellow-500 font-bold">JA</span></td>
+          <td class="p-3 border border-gray-700" data-status="NEIN">NEIN</td>
+          <td class="p-3 border border-gray-700" data-status="NEIN">NEIN</td>
+          <td class="p-3 border border-gray-700" data-status="JA">JA</td>
         </tr>
         <tr class="hover:bg-gray-800">
           <td class="p-3 border border-gray-700">Individueller Ernährungsplan</td>
-          <td class="p-3 border border-gray-700"><span class="text-red-500 font-bold">NEIN</span></td>
-          <td class="p-3 border border-gray-700"><span class="text-red-500 font-bold">NEIN</span></td>
-          <td class="p-3 border border-gray-700"><span class="text-yellow-500 font-bold">JA</span></td>
+          <td class="p-3 border border-gray-700" data-status="NEIN">NEIN</td>
+          <td class="p-3 border border-gray-700" data-status="NEIN">NEIN</td>
+          <td class="p-3 border border-gray-700" data-status="JA">JA</td>
         </tr>
         <tr class="hover:bg-gray-800">
           <td class="p-3 border border-gray-700">Einmalige Anpassung bis 4 Wochen</td>
-          <td class="p-3 border border-gray-700"><span class="text-red-500 font-bold">NEIN</span></td>
-          <td class="p-3 border border-gray-700"><span class="text-red-500 font-bold">NEIN</span></td>
-          <td class="p-3 border border-gray-700"><span class="text-yellow-500 font-bold">JA</span></td>
+          <td class="p-3 border border-gray-700" data-status="NEIN">NEIN</td>
+          <td class="p-3 border border-gray-700" data-status="NEIN">NEIN</td>
+          <td class="p-3 border border-gray-700" data-status="JA">JA</td>
         </tr>
         <tr class="hover:bg-gray-800">
           <td class="p-3 border border-gray-700">Lieferzeit</td>
@@ -296,12 +295,12 @@
     <!-- Fit & Feminine -->
     <div class="bg-gray-900 border border-gray-700 rounded-xl p-4">
       <h3 class="text-lg font-bold text-yellow-500 mb-2">Fit & Feminine – 35€</h3>
-      <ul class="space-y-2 text-sm">
-        <li><span class="text-yellow-500 font-bold">JA</span> Support</li>
-        <li><span class="text-red-500 font-bold">NEIN</span> Individuelle Anpassung</li>
-        <li><span class="text-red-500 font-bold">NEIN</span> Auswahl Trainingsarten</li>
-        <li><span class="text-red-500 font-bold">NEIN</span> Individueller Ernährungsplan</li>
-        <li><span class="text-red-500 font-bold">NEIN</span> Einmalige Anpassung bis 4 Wochen</li>
+      <ul class="space-y-2 text-gray-300 text-sm">
+        <li class="flex items-center gap-2" data-status="JA">JA Support</li>
+        <li class="flex items-center gap-2" data-status="NEIN">NEIN Auswahl Trainingsarten</li>
+        <li class="flex items-center gap-2" data-status="NEIN">NEIN Individuelle Anpassung</li>
+        <li class="flex items-center gap-2" data-status="NEIN">NEIN Individueller Ernährungsplan</li>
+        <li class="flex items-center gap-2" data-status="NEIN">NEIN Einmalige Anpassung bis 4 Wochen</li>
         <li>Lieferzeit: nach Zahlungseingang (PDF)</li>
       </ul>
     </div>
@@ -309,12 +308,12 @@
     <!-- Standard -->
     <div class="bg-gray-900 border border-gray-700 rounded-xl p-4">
       <h3 class="text-lg font-bold text-yellow-500 mb-2">Standard – 49€</h3>
-      <ul class="space-y-2 text-sm">
-        <li><span class="text-yellow-500 font-bold">JA</span> Support</li>
-        <li><span class="text-yellow-500 font-bold">JA</span> Auswahl Trainingsarten</li>
-        <li><span class="text-red-500 font-bold">NEIN</span> Individuelle Anpassung</li>
-        <li><span class="text-red-500 font-bold">NEIN</span> Individueller Ernährungsplan</li>
-        <li><span class="text-red-500 font-bold">NEIN</span> Einmalige Anpassung bis 4 Wochen</li>
+      <ul class="space-y-2 text-gray-300 text-sm">
+        <li class="flex items-center gap-2" data-status="JA">JA Support</li>
+        <li class="flex items-center gap-2" data-status="JA">JA Auswahl Trainingsarten</li>
+        <li class="flex items-center gap-2" data-status="NEIN">NEIN Individuelle Anpassung</li>
+        <li class="flex items-center gap-2" data-status="NEIN">NEIN Individueller Ernährungsplan</li>
+        <li class="flex items-center gap-2" data-status="NEIN">NEIN Einmalige Anpassung bis 4 Wochen</li>
         <li>Lieferzeit: nach Zahlungseingang (PDF)</li>
       </ul>
     </div>
@@ -322,16 +321,27 @@
     <!-- Premium -->
     <div class="bg-gray-900 border border-gray-700 rounded-xl p-4">
       <h3 class="text-lg font-bold text-yellow-500 mb-2">Premium – 99€</h3>
-      <ul class="space-y-2 text-sm">
-        <li><span class="text-yellow-500 font-bold">JA</span> Support</li>
-        <li><span class="text-yellow-500 font-bold">JA</span> Auswahl Trainingsarten</li>
-        <li><span class="text-yellow-500 font-bold">JA</span> Individuelle Anpassung</li>
-        <li><span class="text-yellow-500 font-bold">JA</span> Individueller Ernährungsplan</li>
-        <li><span class="text-yellow-500 font-bold">JA</span> Einmalige Anpassung bis 4 Wochen</li>
+      <ul class="space-y-2 text-gray-300 text-sm">
+        <li class="flex items-center gap-2" data-status="JA">JA Support</li>
+        <li class="flex items-center gap-2" data-status="JA">JA Auswahl Trainingsarten</li>
+        <li class="flex items-center gap-2" data-status="JA">JA Individuelle Anpassung</li>
+        <li class="flex items-center gap-2" data-status="JA">JA Individueller Ernährungsplan</li>
+        <li class="flex items-center gap-2" data-status="JA">JA Einmalige Anpassung bis 4 Wochen</li>
         <li>Lieferzeit: 1–5 Werktage (PDF)</li>
       </ul>
     </div>
   </div>
+
+  <script>
+    // Funkcja zamienia JA/NEIN na ikonę ✔️/❌ i odpowiedni kolor
+    document.querySelectorAll('[data-status]').forEach(el => {
+      if(el.dataset.status === 'JA'){
+        el.innerHTML = '<span class="text-yellow-500">✔️</span> ' + el.textContent.replace(/JA|NEIN/,'').trim();
+      } else if(el.dataset.status === 'NEIN'){
+        el.innerHTML = '<span class="text-red-500">❌</span> ' + el.textContent.replace(/JA|NEIN/,'').trim();
+      }
+    });
+  </script>
 </section>
 
  <!-- FAQ -->
@@ -415,6 +425,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
