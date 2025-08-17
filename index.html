@@ -174,26 +174,33 @@
       </form>
     </div>
 
-    <!-- Standard --> 
+   <!-- Standard --> 
 <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col card-hover transition-transform duration-200">
   <h3 class="text-xl font-bold mb-2">Standard Plan</h3>
   <p class="text-gray-300 mb-3">
     <span class="block">Für alle, die klare Strukturen und schnelle Resultate wollen – ohne Ratespiele oder ständiges Überlegen.</span>
   </p>
-  <fieldset class="mb-3 space-y-1 text-gray-300">
+  <fieldset class="mb-3 space-y-2 text-gray-300">
     <legend class="sr-only">Trainingsart auswählen</legend>
-    <label class="flex items-center">
+    
+    <label class="flex items-center gap-2">
       <input type="radio" name="std-plan" value="kraft" class="mr-2">
-      <span class="text-yellow-500">Krafttraining</span> (Muskelaufbau) → Kraft & Muskulöse Figur
+      <span class="text-yellow-500 font-semibold">Krafttraining</span>
+      <span>(Muskelaufbau) → Kraft & Muskulöse Figur</span>
     </label>
-    <label class="flex items-center">
+    
+    <label class="flex items-center gap-2">
       <input type="radio" name="std-plan" value="cardio" class="mr-2">
-      <span class="text-yellow-500">Cardio</span> (Fettverbrennung) → Turbo-Fettverbrennung
+      <span class="text-yellow-500 font-semibold">Cardio</span>
+      <span>(Fettverbrennung) → Turbo-Fettverbrennung</span>
     </label>
-    <label class="flex items-center">
+    
+    <label class="flex items-center gap-2">
       <input type="radio" name="std-plan" value="calisthenics" class="mr-2">
-      <span class="text-yellow-500">Kalistenik</span> → Body & Power – Eigengewicht
+      <span class="text-yellow-500 font-semibold">Kalistenik</span>
+      <span>→ Body & Power – Eigengewicht</span>
     </label>
+    
   </fieldset>
   <div class="text-3xl font-bold text-yellow-500 mb-4" id="standard-price">49€</div>
   <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="mt-auto">
@@ -394,6 +401,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
