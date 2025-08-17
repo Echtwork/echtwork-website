@@ -237,7 +237,7 @@
     </p>
   </div>
 
- <!-- Desktop / Tablet: Tabela --> 
+<!-- Desktop / Tablet: Tabela --> 
 <div class="hidden md:block overflow-x-auto">
   <table class="min-w-full border-collapse border border-gray-700 text-left">
     <thead>
@@ -245,39 +245,39 @@
         <th class="p-3 border border-gray-700">Feature / Plan</th>
         <th class="p-3 border border-gray-700">Fit & Feminine<br><span class="text-yellow-500 font-bold">35€</span></th>
         <th class="p-3 border border-gray-700">Standard<br><span class="text-yellow-500 font-bold">49€</span></th>
-        <th class="p-3 border border-gray-700 bg-yellow-500 text-black font-bold">Premium<br><span class="text-lg">99€</span></th>
+        <th class="p-3 border border-gray-700">Premium<br><span class="text-yellow-500 font-bold">99€</span></th>
       </tr>
     </thead>
     <tbody>
       <tr class="hover:bg-gray-800">
         <td class="p-3 border border-gray-700">Support</td>
-        <td class="p-3 border border-gray-700" data-status="JA"></td>
-        <td class="p-3 border border-gray-700" data-status="JA"></td>
-        <td class="p-3 border border-gray-700" data-status="JA"></td>
+        <td class="p-3 border border-gray-700"><span class="status-ja">✔️</span></td>
+        <td class="p-3 border border-gray-700"><span class="status-ja">✔️</span></td>
+        <td class="p-3 border border-gray-700"><span class="status-ja">✔️</span></td>
       </tr>
       <tr class="hover:bg-gray-800">
         <td class="p-3 border border-gray-700">Auswahl Trainingsarten</td>
-        <td class="p-3 border border-gray-700" data-status="NEIN"></td>
-        <td class="p-3 border border-gray-700" data-status="JA"></td>
-        <td class="p-3 border border-gray-700" data-status="JA"></td>
+        <td class="p-3 border border-gray-700"><span class="status-nein">❌</span></td>
+        <td class="p-3 border border-gray-700"><span class="status-ja">✔️</span></td>
+        <td class="p-3 border border-gray-700"><span class="status-ja">✔️</span></td>
       </tr>
       <tr class="hover:bg-gray-800">
         <td class="p-3 border border-gray-700">Individuelle Anpassung</td>
-        <td class="p-3 border border-gray-700" data-status="NEIN"></td>
-        <td class="p-3 border border-gray-700" data-status="NEIN"></td>
-        <td class="p-3 border border-gray-700" data-status="JA"></td>
+        <td class="p-3 border border-gray-700"><span class="status-nein">❌</span></td>
+        <td class="p-3 border border-gray-700"><span class="status-nein">❌</span></td>
+        <td class="p-3 border border-gray-700"><span class="status-ja">✔️</span></td>
       </tr>
       <tr class="hover:bg-gray-800">
         <td class="p-3 border border-gray-700">Individueller Ernährungsplan</td>
-        <td class="p-3 border border-gray-700" data-status="NEIN"></td>
-        <td class="p-3 border border-gray-700" data-status="NEIN"></td>
-        <td class="p-3 border border-gray-700" data-status="JA"></td>
+        <td class="p-3 border border-gray-700"><span class="status-nein">❌</span></td>
+        <td class="p-3 border border-gray-700"><span class="status-nein">❌</span></td>
+        <td class="p-3 border border-gray-700"><span class="status-ja">✔️</span></td>
       </tr>
       <tr class="hover:bg-gray-800">
         <td class="p-3 border border-gray-700">Einmalige Anpassung bis 4 Wochen</td>
-        <td class="p-3 border border-gray-700" data-status="NEIN"></td>
-        <td class="p-3 border border-gray-700" data-status="NEIN"></td>
-        <td class="p-3 border border-gray-700" data-status="JA"></td>
+        <td class="p-3 border border-gray-700"><span class="status-nein">❌</span></td>
+        <td class="p-3 border border-gray-700"><span class="status-nein">❌</span></td>
+        <td class="p-3 border border-gray-700"><span class="status-ja">✔️</span></td>
       </tr>
       <tr class="hover:bg-gray-800">
         <td class="p-3 border border-gray-700">Lieferzeit</td>
@@ -295,14 +295,46 @@
   <div class="bg-gray-900 border border-gray-700 rounded-xl p-4">
     <h3 class="text-lg font-bold text-yellow-500 mb-2">Fit & Feminine – 35€</h3>
     <ul class="space-y-2 text-gray-300 text-sm">
-      <li class="feature" data-status="JA">Support</li>
-      <li class="feature" data-status="NEIN">Individuelle Anpassung</li>
-      <li class="feature" data-status="NEIN">Auswahl Trainingsarten</li>
-      <li class="feature" data-status="NEIN">Individueller Ernährungsplan</li>
-      <li class="feature" data-status="NEIN">Einmalige Anpassung bis 4 Wochen</li>
+      <li class="flex items-center gap-2"><span class="status-ja">✔️</span> Support</li>
+      <li class="flex items-center gap-2"><span class="status-nein">❌</span> Individuelle Anpassung</li>
+      <li class="flex items-center gap-2"><span class="status-nein">❌</span> Auswahl Trainingsarten</li>
+      <li class="flex items-center gap-2"><span class="status-nein">❌</span> Individueller Ernährungsplan</li>
+      <li class="flex items-center gap-2"><span class="status-nein">❌</span> Einmalige Anpassung bis 4 Wochen</li>
       <li>Lieferzeit: nach Zahlungseingang (PDF)</li>
     </ul>
   </div>
+
+  <!-- Standard -->
+  <div class="bg-gray-900 border border-gray-700 rounded-xl p-4">
+    <h3 class="text-lg font-bold text-yellow-500 mb-2">Standard – 49€</h3>
+    <ul class="space-y-2 text-gray-300 text-sm">
+      <li class="flex items-center gap-2"><span class="status-ja">✔️</span> Support</li>
+      <li class="flex items-center gap-2"><span class="status-ja">✔️</span> Auswahl Trainingsarten</li>
+      <li class="flex items-center gap-2"><span class="status-nein">❌</span> Individuelle Anpassung</li>
+      <li class="flex items-center gap-2"><span class="status-nein">❌</span> Individueller Ernährungsplan</li>
+      <li class="flex items-center gap-2"><span class="status-nein">❌</span> Einmalige Anpassung bis 4 Wochen</li>
+      <li>Lieferzeit: nach Zahlungseingang (PDF)</li>
+    </ul>
+  </div>
+
+  <!-- Premium -->
+  <div class="bg-gray-900 border border-gray-700 rounded-xl p-4">
+    <h3 class="text-lg font-bold text-yellow-500 mb-2">Premium – 99€</h3>
+    <ul class="space-y-2 text-gray-300 text-sm">
+      <li class="flex items-center gap-2"><span class="status-ja">✔️</span> Support</li>
+      <li class="flex items-center gap-2"><span class="status-ja">✔️</span> Auswahl Trainingsarten</li>
+      <li class="flex items-center gap-2"><span class="status-ja">✔️</span> Individuelle Anpassung</li>
+      <li class="flex items-center gap-2"><span class="status-ja">✔️</span> Individueller Ernährungsplan</li>
+      <li class="flex items-center gap-2"><span class="status-ja">✔️</span> Einmalige Anpassung bis 4 Wochen</li>
+      <li>Lieferzeit: 1–5 Werktage (PDF)</li>
+    </ul>
+  </div>
+</div>
+
+<style>
+  .status-ja { color: #facc15; }    /* żółty */
+  .status-nein { color: #f87171; }  /* czerwony */
+</style>
 
   <!-- Standard -->
   <div class="bg-gray-900 border border-gray-700 rounded-xl p-4">
@@ -440,6 +472,7 @@ td[data-status="NEIN"]::before {
   </footer>
 </body>
 </html>
+
 
 
 
