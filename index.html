@@ -288,40 +288,48 @@
     </form>
   </div>
 
-!-- PREMIUM PLAN -->
-<div class="bg-gray-900 border-2 border-yellow-500 rounded-2xl p-8 shadow-lg mt-10 col-span-full">
-  
-  <!-- Premium -->
-  <div class="flex items-center mb-6">
-    <div class="flex-grow h-px bg-yellow-500"></div>
-    <div class="px-4 py-1 mx-3 rounded-full bg-yellow-500 text-black text-sm font-bold">Premium Empfehlung</div>
-    <div class="flex-grow h-px bg-yellow-500"></div>
+<!-- Premium -->
+<div class="bg-gray-900 border-2 border-yellow-500 rounded-2xl p-6 flex flex-col 
+            shadow-[0_0_20px_rgba(255,215,0,0.12)] card-hover transition-transform duration-200 
+            max-w-4xl mx-auto">
+
+  <!-- Premium Label -->
+  <div class="flex items-center justify-center mb-6">
+    <div class="flex-1 h-px bg-gray-700"></div>
+    <span class="px-4 text-yellow-500 text-lg font-bold">Premium Empfehlung</span>
+    <div class="flex-1 h-px bg-gray-700"></div>
   </div>
 
-  <h3 class="text-2xl font-bold text-center mb-4">Premium Plan</h3>
-  <p class="text-gray-300 text-center mb-4">
-    Der exklusivste Plan – kombiniert Training + Ernährung mit maximaler Betreuung für beste Ergebnisse.
+  <h3 class="text-yellow-500 font-semibold text-2xl text-center mb-4">Premium Individuell</h3>
+
+  <p class="text-gray-300 mb-4 text-center">
+    <span class="block">Individueller Trainingsplan – 100 % auf Dich abgestimmt.</span>
+    <span class="block">Vollständiger Ernährungsplan – maßgeschneidert für Deine Ziele & Vorlieben.</span>
+    <span class="block">Persönliche Beratung & Support – Du bekommst Antworten auf Deine Fragen.</span>
+    <span class="block">Komplette Anpassung an Ziele, Gesundheit & Zeitbudget.</span>
   </p>
-  <ul class="text-gray-400 mb-6 text-sm space-y-2 text-center">
-    <li>✔ Individueller Trainingsplan</li>
-    <li>✔ Personalisiertes Ernährungskonzept</li>
-    <li>✔ Wöchentliche Anpassungen</li>
-    <li>✔ Direkter Support</li>
-  </ul>
 
-  <div class="text-3xl font-bold text-yellow-500 text-center mb-6">99€</div>
+  <p class="text-sm text-yellow-500 font-bold mb-6 text-center">
+    Nach der Zahlung wirst Du automatisch zu einem Formular weitergeleitet, 
+    in dem Du Deine Ziele, Vorlieben und eventuelle gesundheitliche Einschränkungen angibst.
+  </p>
 
-  <!-- PayPal Button z wyśrodkowaniem -->
-  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="flex justify-center">
+  <div class="text-3xl font-bold text-yellow-500 mb-6 text-center">nur 99€</div>
+
+  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="mt-auto text-center">
     <input type="hidden" name="cmd" value="_s-xclick" />
-    <input type="hidden" name="hosted_button_id" value="YOUR_PREMIUM_BUTTON_ID" />
+    <input type="hidden" name="hosted_button_id" value="PV6WNVYUSV9NN" />
     <input type="hidden" name="currency_code" value="EUR" />
-    <div class="flex items-center mb-4">
-      <input id="check-premium" type="checkbox" class="mt-1 mr-2" onchange="togglePayPalButton('check-premium','paypal-premium')" />
+    <div class="flex items-center justify-center mb-4">
+      <input id="check-premium" type="checkbox" class="mr-2" 
+             onchange="togglePayPalButton('check-premium','paypal-premium')" />
       <label for="check-premium" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
     </div>
-    <input id="paypal-premium" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif"
-           alt="Jetzt kaufen – Premium Plan" aria-label="Jetzt kaufen – Premium Plan" disabled />
+    <input id="paypal-premium" type="image" 
+           src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" 
+           alt="Jetzt kaufen" aria-label="Jetzt kaufen – Premium Individuell" disabled />
+    <input type="hidden" name="return" value="https://echtwork.github.io/echtwork-website/premium-formular.html" />
+    <input type="hidden" name="cancel_return" value="https://echtwork.github.io/echtwork-website/payment-cancel.html" />
   </form>
 </div>
   </section>
@@ -498,6 +506,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
