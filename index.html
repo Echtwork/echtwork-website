@@ -216,27 +216,31 @@
 <section id="plaene" class="py-16 px-6 max-w-6xl mx-auto grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
 
   <!-- Basic Ernährungsplan -->
-  <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col card-hover transition-transform duration-200">
-    <h3 class="text-xl font-bold mb-2">Basic Ernährungsplan</h3>
-    <p class="text-gray-300 mb-4">
-      <span class="block">7-Tage-Basic Plan, einfache Rezepte & Einkaufsliste.</span>
-      <span class="block">Perfekt als Turbo zu deinem Training – oder auch alleine nutzbar.</span>
-      <span class="block">Keine komplizierten Diäten, klare Struktur & alltagstauglich.</span>
-    </p>
-    <div class="text-3xl font-bold text-yellow-500 mb-4">14,99€</div>
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="mt-auto">
-      <input type="hidden" name="cmd" value="_s-xclick" />
-      <input type="hidden" name="hosted_button_id" value="ZAC44DWYN8V3U" />
-      <input type="hidden" name="hosted_button_id" value="REPLACE_WITH_YOUR_BASIC_NUTRITION_1499_ID" />
-      <input type="hidden" name="currency_code" value="EUR" />
-      <div class="flex items-start mb-4">
-        <input id="check-basic" type="checkbox" class="mt-1 mr-2" onchange="togglePayPalButton('check-basic','paypal-basic')" />
-        <label for="check-basic" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
-      </div>
-      <input id="paypal-basic" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif"
-             alt="Jetzt kaufen" aria-label="Jetzt kaufen – Basic Ernährungsplan" disabled />
-    </form>
-  </div>
+<div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col card-hover transition-transform duration-200">
+  <h3 class="text-xl font-bold mb-2">Basic Ernährungsplan</h3>
+  <p class="text-gray-300 mb-4">
+    <span class="block">7-Tage-Basic Plan, einfache Rezepte & Einkaufsliste.</span>
+    <span class="block">Perfekt als Turbo zu deinem Training – oder auch alleine nutzbar.</span>
+    <span class="block">Keine komplizierten Diäten, klare Struktur & alltagstauglich.</span>
+  </p>
+  <div class="text-3xl font-bold text-yellow-500 mb-4">14,99€</div>
+
+  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="mt-auto">
+    <input type="hidden" name="cmd" value="_s-xclick" />
+    <input type="hidden" name="hosted_button_id" value="ZAC44DWYN8V3U" />
+    <input type="hidden" name="currency_code" value="EUR" />
+
+    <div class="flex items-start mb-4">
+      <input id="check-basic" type="checkbox" class="mt-1 mr-2" onchange="togglePayPalButton('check-basic','paypal-basic')" />
+      <label for="check-basic" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
+    </div>
+
+    <input id="paypal-basic" type="image"
+           src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif"
+           alt="Jetzt kaufen" aria-label="Jetzt kaufen – Basic Ernährungsplan" disabled />
+  </form>
+</div>
+
 
   <!-- Fit & Feminine -->
   <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col card-hover transition-transform duration-200">
@@ -529,6 +533,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
