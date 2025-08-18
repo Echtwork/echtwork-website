@@ -289,36 +289,68 @@
   </div>
 
 <!-- Premium -->
-  <div class="bg-gray-900 border-2 border-yellow-500 rounded-2xl p-6 flex flex-col shadow-[0_0_20px_rgba(255,215,0,0.12)] card-hover transition-transform duration-200">
-    <div class="self-start px-3 py-1 rounded-full bg-yellow-500 text-black text-xs font-bold mb-3">Premium</div>
-    <h3 class="text-yellow-500 font-semibold text-xl mb-2">Premium Individuell</h3>
-    <p class="text-gray-300 mb-4">
+<section id="premium" class="px-6 mt-12 flex justify-center">
+  <div class="bg-gray-900 border-2 border-yellow-500 rounded-2xl p-10 flex flex-col 
+              shadow-[0_0_25px_rgba(255,215,0,0.15)] card-hover transition-transform duration-200 
+              text-center w-full max-w-4xl">
+
+    <!-- Premium Label -->
+    <div class="self-center px-4 py-1 rounded-full bg-yellow-500 text-black text-sm font-bold mb-6">
+      Premium
+    </div>
+
+    <!-- Premium Individuell z liniami -->
+    <div class="flex items-center justify-center mb-6">
+      <div class="flex-1 h-px bg-gray-700"></div>
+      <h3 class="text-yellow-500 font-semibold text-2xl mx-4">Premium Individuell</h3>
+      <div class="flex-1 h-px bg-gray-700"></div>
+    </div>
+
+    <!-- Beschreibung -->
+    <p class="text-gray-300 mb-6">
       <span class="block">Individueller Trainingsplan – 100 % auf Dich abgestimmt.</span>
       <span class="block">Vollständiger Ernährungsplan – maßgeschneidert für Deine Ziele & Vorlieben.</span>
       <span class="block">Persönliche Beratung & Support – Du bekommst Antworten auf Deine Fragen.</span>
       <span class="block">Komplette Anpassung an Ziele, Gesundheit & Zeitbudget.</span>
     </p>
-    <p class="text-sm text-yellow-500 font-bold mb-4">
-      Nach der Zahlung wirst Du automatisch zu einem Formular weitergeleitet, in dem Du Deine Ziele, Vorlieben und eventuelle gesundheitliche Einschränkungen angibst.
+
+    <p class="text-sm text-yellow-500 font-bold mb-6">
+      Nach der Zahlung wirst Du automatisch zu einem Formular weitergeleitet, 
+      in dem Du Deine Ziele, Vorlieben und eventuelle gesundheitliche Einschränkungen angibst.
     </p>
-    <div class="text-3xl font-bold text-yellow-500 mb-4">nur 99€</div>
+
+    <!-- Preis -->
+    <div class="text-3xl font-bold text-yellow-500 mb-6">nur 99€</div>
+
+    <!-- PayPal -->
     <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="mt-auto">
       <input type="hidden" name="cmd" value="_s-xclick" />
       <input type="hidden" name="hosted_button_id" value="PV6WNVYUSV9NN" />
       <input type="hidden" name="currency_code" value="EUR" />
-      <div class="flex items-start mb-4">
-        <input id="check-premium" type="checkbox" class="mt-1 mr-2" onchange="togglePayPalButton('check-premium','paypal-premium')" />
+
+      <!-- Checkbox -->
+      <div class="flex items-center justify-center mb-4">
+        <input id="check-premium" type="checkbox" class="mr-2" 
+               onchange="togglePayPalButton('check-premium','paypal-premium')" />
         <label for="check-premium" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
       </div>
-      <input id="paypal-premium" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" alt="Jetzt kaufen" aria-label="Jetzt kaufen – Premium Individuell" disabled />
+
+      <!-- Button + Text -->
+      <div class="flex flex-col items-center">
+        <input id="paypal-premium" type="image" 
+               src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" 
+               alt="Jetzt kaufen" aria-label="Jetzt kaufen – Premium Individuell" disabled />
+        <span class="text-xs text-gray-400 mt-2">Sicher bezahlen mit PayPal</span>
+      </div>
+
       <!-- return URL do formularza -->
       <input type="hidden" name="return" value="https://echtwork.github.io/echtwork-website/premium-formular.html" />
       <input type="hidden" name="cancel_return" value="https://echtwork.github.io/echtwork-website/payment-cancel.html" />
     </form>
   </div>
 </section>
-
-    <!-- Vergleich -->
+    
+  <!-- Vergleich -->
     <section id="vergleich" class="px-6 max-w-6xl mx-auto mb-16">
       <div class="text-center mb-6">
         <h2 class="text-3xl font-bold text-yellow-500">Welcher Plan passt zu dir?</h2>
@@ -489,6 +521,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
