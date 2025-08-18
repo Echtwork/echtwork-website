@@ -290,9 +290,9 @@
 
 <!-- Premium -->
 <div class="bg-gray-900 border-2 border-yellow-500 rounded-2xl p-8 flex flex-col 
-            shadow-[0_0_20px_rgba(255,215,0,0.12)] card-hover transition-transform duration-200 
-            mx-auto w-full max-w-4xl text-center mt-10">
-
+            shadow-[0_0_25px_rgba(255,215,0,0.2)] card-hover transition-transform duration-200 
+            mx-auto w-full max-w-4xl text-center lg:col-span-3 lg:max-w-2xl">
+            
   <div class="px-4 py-1 rounded-full bg-yellow-500 text-black text-sm font-bold mb-4 inline-block">
     Premium
   </div>
@@ -314,7 +314,8 @@
   <div class="text-3xl font-bold text-yellow-500 mb-6">nur 99€</div>
 
   <!-- Formular -->
-  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="mt-auto flex flex-col items-center">
+  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" 
+        class="mt-auto flex flex-col items-center">
     <input type="hidden" name="cmd" value="_s-xclick" />
     <input type="hidden" name="hosted_button_id" value="PV6WNVYUSV9NN" />
     <input type="hidden" name="currency_code" value="EUR" />
@@ -326,10 +327,12 @@
       <label for="check-premium" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
     </div>
 
-    <!-- PayPal Button + Hinweis -->
+    <!-- PayPal Button -->
     <input id="paypal-premium" type="image" 
            src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" 
            alt="Jetzt kaufen" aria-label="Jetzt kaufen – Premium Individuell" disabled />
+
+    <!-- napis pod przyciskiem -->
     <span class="block text-sm text-gray-400 mt-2">Sicher bezahlen mit PayPal</span>
 
     <!-- return URL -->
@@ -510,6 +513,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
