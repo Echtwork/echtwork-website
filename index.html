@@ -289,18 +289,21 @@
   </div>
 
 <!-- Premium -->
-<div class="bg-gray-900 border-2 border-yellow-500 rounded-2xl p-6 flex flex-col 
-            shadow-[0_0_20px_rgba(255,215,0,0.12)] card-hover transition-transform duration-200 
-            max-w-4xl mx-auto">
+<div class="bg-gray-900 border-2 border-yellow-500 rounded-2xl p-8 flex flex-col 
+            shadow-[0_0_20px_rgba(255,215,0,0.15)] card-hover transition-transform duration-200 
+            max-w-5xl mx-auto">
 
   <!-- Premium Label -->
-  <div class="flex items-center justify-center mb-6">
-    <div class="flex-1 h-px bg-gray-700"></div>
-    <span class="px-4 text-yellow-500 text-lg font-bold">Premium Empfehlung</span>
-    <div class="flex-1 h-px bg-gray-700"></div>
+  <div class="self-center px-4 py-1 rounded-full bg-yellow-500 text-black text-sm font-bold mb-4">
+    Premium
   </div>
 
-  <h3 class="text-yellow-500 font-semibold text-2xl text-center mb-4">Premium Individuell</h3>
+  <!-- Premium Individuell z liniami -->
+  <div class="flex items-center justify-center mb-6">
+    <div class="flex-1 h-px bg-gray-700"></div>
+    <h3 class="text-yellow-500 font-semibold text-2xl mx-4">Premium Individuell</h3>
+    <div class="flex-1 h-px bg-gray-700"></div>
+  </div>
 
   <p class="text-gray-300 mb-4 text-center">
     <span class="block">Individueller Trainingsplan – 100 % auf Dich abgestimmt.</span>
@@ -309,25 +312,30 @@
     <span class="block">Komplette Anpassung an Ziele, Gesundheit & Zeitbudget.</span>
   </p>
 
-  <p class="text-sm text-yellow-500 font-bold mb-6 text-center">
+  <p class="text-sm text-yellow-500 font-bold mb-4 text-center">
     Nach der Zahlung wirst Du automatisch zu einem Formular weitergeleitet, 
     in dem Du Deine Ziele, Vorlieben und eventuelle gesundheitliche Einschränkungen angibst.
   </p>
 
   <div class="text-3xl font-bold text-yellow-500 mb-6 text-center">nur 99€</div>
 
+  <!-- PayPal -->
   <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="mt-auto text-center">
     <input type="hidden" name="cmd" value="_s-xclick" />
     <input type="hidden" name="hosted_button_id" value="PV6WNVYUSV9NN" />
     <input type="hidden" name="currency_code" value="EUR" />
+
     <div class="flex items-center justify-center mb-4">
       <input id="check-premium" type="checkbox" class="mr-2" 
              onchange="togglePayPalButton('check-premium','paypal-premium')" />
       <label for="check-premium" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
     </div>
+
     <input id="paypal-premium" type="image" 
            src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" 
            alt="Jetzt kaufen" aria-label="Jetzt kaufen – Premium Individuell" disabled />
+
+    <!-- return URL do formularza -->
     <input type="hidden" name="return" value="https://echtwork.github.io/echtwork-website/premium-formular.html" />
     <input type="hidden" name="cancel_return" value="https://echtwork.github.io/echtwork-website/payment-cancel.html" />
   </form>
@@ -506,6 +514,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
