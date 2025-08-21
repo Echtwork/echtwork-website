@@ -171,30 +171,41 @@
         </p>
       </div>
 
-      <!-- Über mich --> 
-      <section class="relative bg-gray-900 py-16 px-6">
-        <div class="absolute top-6 left-1/2 transform -translate-x-1/2 w-full max-w-4xl h-0.5 bg-yellow-500"></div>
+     <!-- Über mich -->
+<section class="relative bg-gray-900 py-16 px-6">
+  <div class="absolute top-6 left-1/2 transform -translate-x-1/2 w-full max-w-4xl h-0.5 bg-yellow-500"></div>
 
-        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-stretch">
-          <div class="flex justify-center items-center">
-            <img src="images/dein_foto.jpg" alt="Trainer Bild" class="h-64 w-auto object-contain rounded-2xl shadow-xl">
-          </div>
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-stretch">
+    <!-- Zdjęcie po lewej -->
+    <div class="flex justify-center items-center">
+      <img src="images/dein_foto.jpg" alt="Trainer Bild" 
+           class="h-64 w-auto object-contain rounded-2xl shadow-xl">
+    </div>
 
-          <div class="flex flex-col justify-center">
-            <h2 class="text-3xl font-bold text-yellow-500 mb-6">Über mich</h2>
-            <p class="text-gray-300 leading-relaxed text-lg">
-              Sport hat mein Leben und mein Mindset verändert. 
-              Er hat mir Selbstvertrauen gegeben und mir gezeigt, 
-              dass <span class="text-yellow-500 font-semibold">Disziplin</span> der Schlüssel zu jedem Ziel ist.  
-              Mit dieser Energie gehe ich meinen Weg – und das kannst auch <span class="text-yellow-500 font-semibold">du</span>.  
-              Mit dem richtigen Plan, Klarheit und Konsequenz wirst auch du dein nächstes Level erreichen.
-            </p>
-          </div>
-        </div>
+    <!-- Tekst z dodatkowym zdjęciem profilowym po prawej -->
+    <div class="flex items-center">
+      <!-- Tekst -->
+      <div class="flex-1 pr-4">
+        <h2 class="text-3xl font-bold text-yellow-500 mb-6">Über mich</h2>
+        <p class="text-gray-300 leading-relaxed text-lg">
+          Sport hat mein Leben und mein Mindset verändert. 
+          Er hat mir Selbstvertrauen gegeben und mir gezeigt, 
+          dass <span class="text-yellow-500 font-semibold">Disziplin</span> der Schlüssel zu jedem Ziel ist.  
+          Mit dieser Energie gehe ich meinen Weg – und das kannst auch <span class="text-yellow-500 font-semibold">du</span>.  
+          Mit dem richtigen Plan, Klarheit und Konsequenz wirst auch du dein nächstes Level erreichen.
+        </p>
+      </div>
 
-        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 w-full max-w-4xl h-0.5 bg-yellow-500"></div>
-      </section>
-    </section>
+      <!-- Małe zdjęcie profilowe -->
+      <div class="flex-shrink-0">
+        <img src="images/profil.jpg" alt="Profil Bild" 
+             class="h-24 w-24 rounded-full border-4 border-yellow-500 shadow-xl">
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 w-full max-w-4xl h-0.5 bg-yellow-500"></div>
+</section>
 
     <!-- Wie es funktioniert -->
     <section class="py-16 px-6 bg-gradient-to-b from-gray-900 to-black">
@@ -610,4 +621,5 @@
   </script>
 </body>
 </html>
+
 
