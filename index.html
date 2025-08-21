@@ -171,39 +171,38 @@
         </p>
       </div>
 
-    <!-- Über mich -->
+   <!-- Über mich -->
 <section class="relative bg-gray-900 py-16 px-6">
+  <!-- Linia dekoracyjna u góry -->
   <div class="absolute top-6 left-1/2 transform -translate-x-1/2 w-full max-w-4xl h-0.5 bg-yellow-500"></div>
 
-  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-stretch">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 items-center text-center">
     <!-- Zdjęcie po lewej -->
-    <div class="flex justify-center items-center">
-      <img src="images/dein_foto.jpg" alt="Trainer Bild" 
-           class="h-64 w-auto object-contain rounded-2xl shadow-xl">
+    <div class="flex justify-center">
+      <img src="images/dein_foto.jpg" alt="Trainer Bild"
+           class="h-72 w-auto object-contain rounded-2xl shadow-xl">
     </div>
 
-    <!-- Tekst z dodatkowym zdjęciem profilowym po prawej -->
-    <div class="flex flex-col md:flex-row items-center justify-center text-center md:text-left">
-      <!-- Tekst -->
-      <div class="flex-1 md:pr-4">
-        <h2 class="text-3xl font-bold text-yellow-500 mb-6">Über mich</h2>
-        <p class="text-gray-300 leading-relaxed text-lg">
-          Sport hat mein Leben und mein Mindset verändert. 
-          Er hat mir Selbstvertrauen gegeben und mir gezeigt, 
-          dass <span class="text-yellow-500 font-semibold">Disziplin</span> der Schlüssel zu jedem Ziel ist.  
-          Mit dieser Energie gehe ich meinen Weg – und das kannst auch <span class="text-yellow-500 font-semibold">du</span>.  
-          Mit dem richtigen Plan, Klarheit und Konsequenz wirst auch du dein nächstes Level erreichen.
-        </p>
-      </div>
+    <!-- Tekst w środku -->
+    <div class="flex flex-col justify-center">
+      <h2 class="text-3xl font-bold text-yellow-500 mb-6">Über mich</h2>
+      <p class="text-gray-300 leading-relaxed text-lg">
+        Sport hat mein Leben und mein Mindset verändert. 
+        Er hat mir Selbstvertrauen gegeben und mir gezeigt, 
+        dass <span class="text-yellow-500 font-semibold">Disziplin</span> der Schlüssel zu jedem Ziel ist.  
+        Mit dieser Energie gehe ich meinen Weg – und das kannst auch <span class="text-yellow-500 font-semibold">du</span>.  
+        Mit dem richtigen Plan, Klarheit und Konsequenz wirst auch du dein nächstes Level erreichen.
+      </p>
+    </div>
 
-      <!-- Małe zdjęcie profilowe -->
-      <div class="flex-shrink-0 mt-6 md:mt-0">
-        <img src="images/profil.jpg" alt="Profil Bild" 
-             class="h-40 w-40 rounded-full border-4 border-yellow-500 shadow-xl">
-      </div>
+    <!-- Większe zdjęcie profilowe po prawej -->
+    <div class="flex justify-center">
+      <img src="images/profil.jpg" alt="Profil Bild"
+           class="h-56 w-56 rounded-full border-4 border-yellow-500 shadow-xl object-cover">
     </div>
   </div>
 
+  <!-- Linia dekoracyjna na dole -->
   <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 w-full max-w-4xl h-0.5 bg-yellow-500"></div>
 </section>
 
@@ -621,6 +620,7 @@
   </script>
 </body>
 </html>
+
 
 
 
