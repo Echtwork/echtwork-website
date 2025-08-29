@@ -38,13 +38,22 @@
       padding: 12px 15px;
       margin-bottom: 15px;
       border-radius: 6px;
-      border: 1px solid #ffd700;
+      border: 1px solid #ffd700 !important;
       font-size: 1rem;
-      background-color: #000;
-      color: #ffd700;
+      background-color: #000 !important;  /* czarne tło */
+      color: #ffd700 !important;          /* złoty tekst */
+      outline: none !important;
+      -webkit-appearance: none !important;
+      -moz-appearance: none !important;
+      appearance: none !important;
+    }
+    input:focus {
+      border-color: #ffd700 !important;
+      background-color: #000 !important;
+      color: #ffd700 !important;
     }
     input::placeholder {
-      color: #ffd700;
+      color: #ffd700 !important;
       opacity: 0.7;
     }
     button {
@@ -111,4 +120,3 @@
   </script>
 </body>
 </html>
-
