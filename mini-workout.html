@@ -109,47 +109,14 @@
     <p>Trage deine E-Mail ein und klicke auf den Button – danach bekommst du den PDF-Plan sofort!</p>
 
     <!-- Formular (Formspark) -->
-    <form id="miniWorkoutForm" action="https://submit.formspark.io/f/ey4GifD40" method="POST">
-      <div class="input-wrapper">
-        <input type="email" name="email" placeholder="Deine E-Mail" required>
-      </div>
-      <button type="submit">PDF jetzt erhalten</button>
-      <input type="hidden" name="_redirect" value="https://echtwork.de/mini-workout.pdf">
-    </form>
-
-    <div class="thank-you" id="thankYouMsg">
-      Danke! Dein PDF wird gleich heruntergeladen...
-    </div>
+    <form action="https://submit.formspark.io/f/ey4GifD40" method="POST">
+  <input type="email" name="email" placeholder="Deine E-Mail" required>
+  <button type="submit">PDF jetzt erhalten</button>
+  <input type="hidden" name="_redirect" value="https://echtwork.de/mini-workout.pdf">
+</form>
 
     <small>Keine Sorge, wir verschicken keinen Spam. Du kannst dich jederzeit abmelden.</small>
   </div>
-
-  <script>
-    const form = document.getElementById('miniWorkoutForm');
-    const thankYouMsg = document.getElementById('thankYouMsg');
-
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const formData = new FormData(form);
-
-      fetch(form.action, {
-        method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      }).then(response => {
-        if (response.ok) {
-          form.style.display = 'none';
-          thankYouMsg.style.display = 'block';
-          setTimeout(() => {
-            window.location.href = "https://echtwork.de/mini-workout.pdf";
-          }, 1500);
-        } else {
-          alert('Ups, etwas ist schiefgelaufen. Bitte versuche es erneut.');
-        }
-      }).catch(() => {
-        alert('Ups, etwas ist schiefgelaufen. Bitte versuche es erneut.');
-      });
-    });
-  </script>
 </body>
 </html>
+
