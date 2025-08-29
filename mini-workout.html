@@ -40,17 +40,13 @@
       border: 1px solid #ccc;
       font-size: 1rem;
     }
-    button, .download-btn {
+    button {
       width: 100%;
       padding: 12px;
       border: none;
       border-radius: 6px;
       font-size: 1rem;
       cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-    }
-    button {
       background-color: #ff3b3f;
       color: #fff;
       margin-bottom: 15px;
@@ -58,37 +54,63 @@
     button:hover {
       background-color: #e63236;
     }
-    .download-btn {
-      background-color: #222;
-      color: #fff;
-    }
-    .download-btn:hover {
-      background-color: #555;
-    }
     small {
       display: block;
       margin-top: 15px;
       font-size: 0.8rem;
       color: #666;
     }
+    .thank-you {
+      display: none;
+      font-size: 1.2rem;
+      color: #ff3b3f;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Dein 15-Minuten Mini-Workout Plan</h1>
-    <p>Trage deine E-Mail ein und erhalte den kompletten PDF-Plan direkt in dein Postfach!</p>
+    <p>Trage deine E-Mail ein und klicke auf den Button – danach bekommst du den PDF-Plan sofort!</p>
 
-    <!-- Formular (Formspree) -->
-    <form action="https://formspree.io/f/xwpnlebg" method="POST">
+    <!-- Formular (Formspree z przekierowaniem po komunikacie) -->
+    <form id="workoutForm" action="https://formspree.io/f/xwpnlebg" method="POST">
       <input type="email" name="email" placeholder="Deine E-Mail" required>
       <button type="submit">PDF jetzt erhalten</button>
     </form>
 
+    <div class="thank-you" id="thankYouMsg">
+      Danke! Dein PDF wird gleich heruntergeladen...
+    </div>
+
     <small>Keine Sorge, wir verschicken keinen Spam. Du kannst dich jederzeit abmelden.</small>
   </div>
+
+  <script>
+    const form = document.getElementById('workoutForm');
+    const thankYou = document.getElementById('thankYouMsg');
+    const pdfUrl = "https://echtwork.github.io/echtwork-website/mini-workout.pdf"; // <- zamień na swój PDF
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault(); // zatrzymaj standardowe wysłanie
+      // Pokaż komunikat
+      thankYou.style.display = 'block';
+      // Wyślij formularz do Formspree
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(response => {
+        // po 2 sekundach przekieruj do PDF
+        setTimeout(() => {
+          window.location.href = pdfUrl;
+        }, 2000);
+      }).catch(error => {
+        alert('Ups, etwas ist schiefgelaufen. Bitte versuche es erneut.');
+      });
+    });
+  </script>
 </body>
 </html>
-
-
-
-
