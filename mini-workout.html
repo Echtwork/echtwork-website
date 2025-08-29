@@ -17,12 +17,11 @@
     .container {
       max-width: 500px;
       margin: 50px auto;
-      background-color: #000; /* czarne tło kontenera */
+      background-color: #fff;
       padding: 30px;
       border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       text-align: center;
-      color: #ffd700; /* złoty tekst */
     }
     h1 {
       font-size: 1.8rem;
@@ -38,23 +37,8 @@
       padding: 12px 15px;
       margin-bottom: 15px;
       border-radius: 6px;
-      border: 1px solid #ffd700 !important;
+      border: 1px solid #ccc;
       font-size: 1rem;
-      background-color: #000 !important;  /* czarne tło */
-      color: #ffd700 !important;          /* złoty tekst */
-      outline: none !important;
-      -webkit-appearance: none !important;
-      -moz-appearance: none !important;
-      appearance: none !important;
-    }
-    input:focus {
-      border-color: #ffd700 !important;
-      background-color: #000 !important;
-      color: #ffd700 !important;
-    }
-    input::placeholder {
-      color: #ffd700 !important;
-      opacity: 0.7;
     }
     button {
       width: 100%;
@@ -63,32 +47,41 @@
       border-radius: 6px;
       font-size: 1rem;
       cursor: pointer;
-      background-color: #ffd700;
-      color: #000;
-      font-weight: bold;
-      transition: background-color 0.3s;
+      background-color: #ff3b3f;
+      color: #fff;
+      margin-bottom: 15px;
     }
     button:hover {
-      background-color: #e6c200;
+      background-color: #e63236;
     }
     small {
       display: block;
       margin-top: 15px;
       font-size: 0.8rem;
-      color: #ccc;
+      color: #666;
+    }
+    .thank-you {
+      display: none;
+      font-size: 1.2rem;
+      color: #ff3b3f;
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Dein 15-Minuten Mini-Workout Plan</h1>
-    <p>Trage deine E-Mail ein und erhalte den kompletten PDF-Plan direkt in dein Postfach!</p>
+    <p>Trage deine E-Mail ein und klicke auf den Button – danach bekommst du den PDF-Plan sofort!</p>
 
-    <!-- Formular (Formspark) -->
+     <!-- Formular (Formspark) -->
     <form action="https://submit.formspark.io/f/ey4GifD40" method="POST">
       <input type="email" name="email" placeholder="Deine E-Mail" required>
       <button type="submit">PDF jetzt erhalten</button>
     </form>
+
+    <div class="thank-you" id="thankYouMsg">
+      Danke! Dein PDF wird gleich heruntergeladen...
+    </div>
 
     <small>Keine Sorge, wir verschicken keinen Spam. Du kannst dich jederzeit abmelden.</small>
   </div>
