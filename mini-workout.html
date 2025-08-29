@@ -6,27 +6,28 @@
   <title>Mini-Workout Plan – Echtwork</title>
   <link rel="icon" href="https://echtwork.de/images/favicon.svg" type="image/svg+xml">
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
-   <style>
+  <style>
+    /* Ogólne style */
     body {
       font-family: 'Oswald', sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #000; /* czarne tło strony */
+      background-color: #000;
       color: #fff;
     }
     .container {
       max-width: 500px;
       margin: 50px auto;
-      background-color: #111; /* ciemny kontener */
+      background-color: #111;
       padding: 30px;
       border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3); /* złoty cień */
+      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
       text-align: center;
     }
     h1 {
       font-size: 1.8rem;
       margin-bottom: 20px;
-      color: #FFD700; /* złoty nagłówek */
+      color: #FFD700;
     }
     p {
       font-size: 1rem;
@@ -34,15 +35,25 @@
       line-height: 1.4;
       color: #fff;
     }
+    .input-wrapper {
+      background-color: #000;
+      border: 1px solid #FFD700;
+      border-radius: 6px;
+      padding: 2px;
+      margin-bottom: 15px;
+    }
     input[type="email"] {
       width: 100%;
       padding: 12px 15px;
-      margin-bottom: 15px;
-      border-radius: 6px;
-      border: 1px solid #FFD700; /* złote obramowanie */
-      background-color: #222;
-      color: #fff;
+      border: none;
+      background-color: transparent;
+      color: #FFD700;
       font-size: 1rem;
+      outline: none;
+    }
+    input::placeholder {
+      color: #FFD700;
+      opacity: 0.7;
     }
     button {
       width: 100%;
@@ -51,13 +62,14 @@
       border-radius: 6px;
       font-size: 1rem;
       cursor: pointer;
-      background-color: #FFD700; /* złoty przycisk */
-      color: #000; /* czarny tekst */
-      margin-bottom: 15px;
+      background-color: #FFD700;
+      color: #000;
       font-weight: bold;
+      margin-bottom: 15px;
+      transition: background-color 0.3s;
     }
     button:hover {
-      background-color: #e6c200; /* ciemniejszy złoty przy hover */
+      background-color: #e6c200;
     }
     small {
       display: block;
@@ -71,6 +83,24 @@
       color: #FFD700;
       margin-top: 20px;
     }
+
+    /* Responsywność */
+    @media (max-width: 600px) {
+      .container {
+        margin: 30px 15px;
+        padding: 20px;
+      }
+      h1 {
+        font-size: 1.5rem;
+      }
+      p {
+        font-size: 0.95rem;
+      }
+      button, input[type="email"] {
+        font-size: 0.95rem;
+        padding: 10px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -78,12 +108,14 @@
     <h1>Dein 15-Minuten Mini-Workout Plan</h1>
     <p>Trage deine E-Mail ein und klicke auf den Button – danach bekommst du den PDF-Plan sofort!</p>
 
-     <!-- Formular (Formspark) -->
-   <form action="https://submit.formspark.io/f/ey4GifD40" method="POST">
-  <input type="email" name="email" placeholder="Deine E-Mail" required>
-  <button type="submit">PDF jetzt erhalten</button>
-  <input type="hidden" name="_redirect" value="https://echtwork.de/mini-workout.pdf">
-</form>
+    <!-- Formular (Formspark) -->
+    <form id="miniWorkoutForm" action="https://submit.formspark.io/f/ey4GifD40" method="POST">
+      <div class="input-wrapper">
+        <input type="email" name="email" placeholder="Deine E-Mail" required>
+      </div>
+      <button type="submit">PDF jetzt erhalten</button>
+      <input type="hidden" name="_redirect" value="https://echtwork.de/mini-workout.pdf">
+    </form>
 
     <div class="thank-you" id="thankYouMsg">
       Danke! Dein PDF wird gleich heruntergeladen...
@@ -93,22 +125,24 @@
   </div>
 
   <script>
-    // Po wysłaniu formularza przekierowanie do PDF
-    const form = document.querySelector('form');
-    form.addEventListener('submit', (e) => {
+    const form = document.getElementById('miniWorkoutForm');
+    const thankYouMsg = document.getElementById('thankYouMsg');
+
+    form.addEventListener('submit', function(e) {
       e.preventDefault();
-      const action = form.getAttribute('action');
       const formData = new FormData(form);
 
-      fetch(action, {
+      fetch(form.action, {
         method: 'POST',
         body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
+        headers: { 'Accept': 'application/json' }
       }).then(response => {
         if (response.ok) {
-          window.location.href = "https://echtwork.de/mini-workout.pdf"; // PDF
+          form.style.display = 'none';
+          thankYouMsg.style.display = 'block';
+          setTimeout(() => {
+            window.location.href = "https://echtwork.de/mini-workout.pdf";
+          }, 1500);
         } else {
           alert('Ups, etwas ist schiefgelaufen. Bitte versuche es erneut.');
         }
@@ -119,5 +153,3 @@
   </script>
 </body>
 </html>
-
-
