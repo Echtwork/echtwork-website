@@ -6,38 +6,42 @@
   <title>Mini-Workout Plan – Echtwork</title>
   <link rel="icon" href="https://echtwork.de/images/favicon.svg" type="image/svg+xml">
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
-  <style>
+   <style>
     body {
       font-family: 'Oswald', sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #fafafa;
-      color: #222;
+      background-color: #000; /* czarne tło strony */
+      color: #fff;
     }
     .container {
       max-width: 500px;
       margin: 50px auto;
-      background-color: #fff;
+      background-color: #111; /* ciemny kontener */
       padding: 30px;
       border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3); /* złoty cień */
       text-align: center;
     }
     h1 {
       font-size: 1.8rem;
       margin-bottom: 20px;
+      color: #FFD700; /* złoty nagłówek */
     }
     p {
       font-size: 1rem;
       margin-bottom: 20px;
       line-height: 1.4;
+      color: #fff;
     }
     input[type="email"] {
       width: 100%;
       padding: 12px 15px;
       margin-bottom: 15px;
       border-radius: 6px;
-      border: 1px solid #ccc;
+      border: 1px solid #FFD700; /* złote obramowanie */
+      background-color: #222;
+      color: #fff;
       font-size: 1rem;
     }
     button {
@@ -47,23 +51,24 @@
       border-radius: 6px;
       font-size: 1rem;
       cursor: pointer;
-      background-color: #ff3b3f;
-      color: #fff;
+      background-color: #FFD700; /* złoty przycisk */
+      color: #000; /* czarny tekst */
       margin-bottom: 15px;
+      font-weight: bold;
     }
     button:hover {
-      background-color: #e63236;
+      background-color: #e6c200; /* ciemniejszy złoty przy hover */
     }
     small {
       display: block;
       margin-top: 15px;
       font-size: 0.8rem;
-      color: #666;
+      color: #ccc;
     }
     .thank-you {
       display: none;
       font-size: 1.2rem;
-      color: #ff3b3f;
+      color: #FFD700;
       margin-top: 20px;
     }
   </style>
@@ -113,3 +118,4 @@
   </script>
 </body>
 </html>
+
