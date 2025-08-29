@@ -11,38 +11,40 @@
       font-family: 'Oswald', sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #000; /* czarne tło strony */
-      color: #fff;
+      background-color: #000; /* czarne tło */
+      color: #ffd700; /* złoty tekst */
     }
     .container {
       max-width: 500px;
       margin: 50px auto;
-      background-color: #111; /* ciemny kontener */
+      background-color: #111;
       padding: 30px;
       border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3); /* złoty cień */
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       text-align: center;
     }
     h1 {
       font-size: 1.8rem;
       margin-bottom: 20px;
-      color: #FFD700; /* złoty nagłówek */
     }
     p {
       font-size: 1rem;
       margin-bottom: 20px;
       line-height: 1.4;
-      color: #fff;
     }
     input[type="email"] {
       width: 100%;
       padding: 12px 15px;
       margin-bottom: 15px;
       border-radius: 6px;
-      border: 1px solid #FFD700; /* złote obramowanie */
-      background-color: #222;
-      color: #fff;
+      border: 1px solid #ffd700;
       font-size: 1rem;
+      background-color: #222;
+      color: #ffd700;
+    }
+    input::placeholder {
+      color: #ffd700;
+      opacity: 0.7;
     }
     button {
       width: 100%;
@@ -51,13 +53,13 @@
       border-radius: 6px;
       font-size: 1rem;
       cursor: pointer;
-      background-color: #FFD700; /* złoty przycisk */
-      color: #000; /* czarny tekst */
-      margin-bottom: 15px;
+      background-color: #ffd700;
+      color: #000;
       font-weight: bold;
+      transition: background-color 0.3s;
     }
     button:hover {
-      background-color: #e6c200; /* ciemniejszy złoty przy hover */
+      background-color: #e6c200;
     }
     small {
       display: block;
@@ -65,54 +67,44 @@
       font-size: 0.8rem;
       color: #ccc;
     }
-    .thank-you {
-      display: none;
-      font-size: 1.2rem;
-      color: #FFD700;
-      margin-top: 20px;
-    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Dein 15-Minuten Mini-Workout Plan</h1>
-    <p>Trage deine E-Mail ein und klicke auf den Button – danach bekommst du den PDF-Plan sofort!</p>
+    <p>Trage deine E-Mail ein und erhalte den kompletten PDF-Plan direkt in dein Postfach!</p>
 
-    <!-- Formular (Formspree z przekierowaniem do PDF) -->
-    <form id="workoutForm" action="https://formspree.io/f/xwpnlebg" method="POST">
+    <!-- Formular (Formspark) -->
+    <form action="<form action="https://submit.formspark.io/f/ey4GifD40" method="POST">
+
       <input type="email" name="email" placeholder="Deine E-Mail" required>
       <button type="submit">PDF jetzt erhalten</button>
     </form>
-
-    <div class="thank-you" id="thankYouMsg">
-      Danke! Dein PDF wird gleich heruntergeladen...
-    </div>
 
     <small>Keine Sorge, wir verschicken keinen Spam. Du kannst dich jederzeit abmelden.</small>
   </div>
 
   <script>
-    const form = document.getElementById('workoutForm');
-    const thankYou = document.getElementById('thankYouMsg');
-    const pdfUrl = "https://echtwork.github.io/echtwork-website/mini-workout.pdf"; // <- zamień na swój PDF
+    // Po wysłaniu formularza przekierowanie do PDF
+    const form = document.querySelector('form');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const action = form.getAttribute('action');
+      const formData = new FormData(form);
 
-    form.addEventListener('submit', function(e) {
-      e.preventDefault(); // zatrzymaj standardowe wysłanie
-      // Pokaż komunikat
-      thankYou.style.display = 'block';
-      // Wyślij formularz do Formspree
-      fetch(form.action, {
+      fetch(action, {
         method: 'POST',
-        body: new FormData(form),
+        body: formData,
         headers: {
           'Accept': 'application/json'
         }
       }).then(response => {
-        // po 2 sekundach przekieruj do PDF
-        setTimeout(() => {
-          window.location.href = pdfUrl;
-        }, 2000);
-      }).catch(error => {
+        if (response.ok) {
+          window.location.href = "https://echtwork.de/mini-workout.pdf"; // PDF
+        } else {
+          alert('Ups, etwas ist schiefgelaufen. Bitte versuche es erneut.');
+        }
+      }).catch(() => {
         alert('Ups, etwas ist schiefgelaufen. Bitte versuche es erneut.');
       });
     });
