@@ -669,7 +669,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
     
-<!-- Cookie Banner Styles -->
+<!-- COOKIE CONSENT BANNER STYLES -->
 <style>
   #cookie-banner {
     display: none;
@@ -707,7 +707,7 @@ document.addEventListener('DOMContentLoaded', () => {
   #decline-cookies { background: #555; color: #fff; }
 </style>
 
-<!-- Cookie Banner HTML -->
+<!-- COOKIE CONSENT BANNER HTML -->
 <div id="cookie-banner">
   <span style="flex:1; min-width:200px; text-align:center; font-size:14px;">
     Wir verwenden Cookies, um unsere Website zu verbessern. Mehr Infos findest du in unserer 
@@ -719,7 +719,7 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 </div>
 
-<!-- Cookie Banner Script -->
+<!-- COOKIE CONSENT BANNER SCRIPT -->
 <script>
   function setCookie(name, value, days) {
     let expires = "";
@@ -735,58 +735,59 @@ document.addEventListener('DOMContentLoaded', () => {
     const value = "; " + document.cookie;
     const parts = value.split("; " + name + "=");
     if (parts.length === 2) return parts.pop().split(";").shift();
+    return null;
   }
 
   function showBanner() {
     const banner = document.getElementById('cookie-banner');
-    if(banner) banner.classList.add('show');
+    if (banner) banner.classList.add('show');
   }
 
   function hideBanner() {
     const banner = document.getElementById('cookie-banner');
-    if(banner) banner.classList.remove('show');
+    if (banner) banner.classList.remove('show');
   }
 
   function loadGA() {
-    const gaScript = document.createElement('script');
-    gaScript.async = true;
-    gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-DP2TNHLQQY";
-    document.head.appendChild(gaScript);
+    if (!window.gtagLoaded) {
+      const gaScript = document.createElement('script');
+      gaScript.async = true;
+      gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-DP2TNHLQQY";
+      document.head.appendChild(gaScript);
 
-    gaScript.onload = function() {
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-DP2TNHLQQY');
+      gaScript.onload = function() {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        window.gtag = gtag;
+        gtag('js', new Date());
+        gtag('config', 'G-DP2TNHLQQY');
+        window.gtagLoaded = true;
+      }
     }
   }
 
   document.addEventListener('DOMContentLoaded', function() {
     const consent = getCookie('cookieConsent');
-
-    if(!consent) {
-      showBanner();
-    } else if(consent === 'accepted') {
-      loadGA();
-    }
+    if (!consent) showBanner();
+    else if (consent === 'accepted') loadGA();
 
     document.getElementById('accept-cookies').addEventListener('click', function() {
       setCookie('cookieConsent', 'accepted', 365);
       hideBanner();
       loadGA();
-      console.log("Cookies akzeptiert");
     });
 
     document.getElementById('decline-cookies').addEventListener('click', function() {
       setCookie('cookieConsent', 'declined', 365);
       hideBanner();
-      console.log("Cookies abgelehnt");
     });
   });
 </script>
 
+
 </body>
 </html>
+
 
 
 
