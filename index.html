@@ -676,7 +676,8 @@ document.addEventListener('DOMContentLoaded', () => {
     wrapper.addEventListener('contextmenu', e => e.preventDefault());
   });
 });
-     <!-- Cookie Consent Banner -->
+    
+    <!-- Cookie Consent Banner -->
 <div id="cookie-banner" style="position:fixed;bottom:0;left:0;width:100%;background:#333;color:#fff;padding:15px;text-align:center;z-index:9999;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;">
   <span style="flex:1;min-width:200px;">Wir verwenden Cookies, um unsere Website zu verbessern, Inhalte zu personalisieren und die Nutzung zu analysieren.</span>
   <div style="flex-shrink:0; margin-left:10px;">
@@ -687,137 +688,87 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 </script>
   
- <!-- COOKIE BANNER -->
-<div id="cookie-banner" style="display:none; position:fixed; bottom:0; left:0; width:100%; background:#111; color:#fff; padding:15px; z-index:9999; display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:15px; box-shadow:0 -2px 10px rgba(0,0,0,0.5);">
-  <span style="flex:1; min-width:200px; text-align:center; font-size:14px;">
-    Wir verwenden Cookies, um unsere Website zu verbessern. Mehr Infos findest du in unserer 
-    <a href="/datenschutz" style="color:#facc15; text-decoration:underline;">Datenschutzerklärung</a>.
-  </span>
-  <div style="display:flex; gap:10px; flex-shrink:0;">
-    <button id="accept-all" style="padding:6px 14px; background:#facc15; border:none; border-radius:8px; cursor:pointer; font-weight:bold; color:#111;">Alle akzeptieren</button>
-    <button id="settings-btn" style="padding:6px 14px; background:#555; border:none; border-radius:8px; cursor:pointer; font-weight:bold; color:#fff;">Einstellungen</button>
-    <button id="decline-all" style="padding:6px 14px; background:#777; border:none; border-radius:8px; cursor:pointer; font-weight:bold; color:#fff;">Ablehnen</button>
-  </div>
-</div>
-
-<!-- MODAL FÜR EINSTELLUNGEN -->
-<div id="cookie-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:10000; justify-content:center; align-items:center;">
-  <div style="background:#fff; color:#111; padding:20px; border-radius:12px; max-width:400px; width:90%; box-shadow:0 5px 20px rgba(0,0,0,0.4);">
-    <h2 style="font-size:18px; font-weight:bold; margin-bottom:10px;">Cookie Einstellungen</h2>
-    <p style="font-size:14px; margin-bottom:15px;">Wähle aus, welche Cookies wir setzen dürfen:</p>
-
-    <label style="display:block; margin-bottom:8px;">
-      <input type="checkbox" checked disabled> Notwendig (immer aktiv)
-    </label>
-    <label style="display:block; margin-bottom:8px;">
-      <input type="checkbox" id="consent-statistik"> Statistik (z. B. Google Analytics)
-    </label>
-    <label style="display:block; margin-bottom:15px;">
-      <input type="checkbox" id="consent-marketing"> Marketing (z. B. Facebook Pixel)
-    </label>
-
-    <div style="display:flex; justify-content:space-between; gap:10px;">
-      <button id="save-settings" style="padding:6px 14px; background:#facc15; border:none; border-radius:8px; cursor:pointer; font-weight:bold; color:#111;">Speichern</button>
-      <button id="close-settings" style="padding:6px 14px; background:#eee; border:none; border-radius:8px; cursor:pointer; font-weight:bold; color:#111;">Schließen</button>
-    </div>
-  </div>
+<!-- Stylizowany Cookie Banner -->
+<div id="cookie-banner" style="
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #1a1a1a; /* ciemny pasek dopasowany do strony */
+    color: #fff;
+    padding: 15px 20px;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+    z-index: 9999;
+">
+  <span>Ta strona używa plików cookies, aby poprawić działanie strony. </span>
+  <button id="accept-cookies" style="
+      background-color: #FFD700; /* złoty przycisk */
+      color: #1a1a1a;
+      border: none;
+      padding: 10px 25px;
+      margin-left: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: 0.3s;
+  " onmouseover="this.style.backgroundColor='#FFC107';" onmouseout="this.style.backgroundColor='#FFD700';">
+    Akceptuję
+  </button>
 </div>
 
 <script>
-  // --- COOKIE HELPER ---
   function setCookie(name, value, days) {
-    const d = new Date();
-    d.setTime(d.getTime() + (days*24*60*60*1000));
-    document.cookie = name + "=" + value + "; expires=" + d.toUTCString() + "; path=/; SameSite=Lax";
+    let date = new Date();
+    date.setTime(date.getTime() + (days*24*60*60*1000));
+    document.cookie = name + "=" + value + "; expires=" + date.toUTCString() + "; path=/";
   }
+
   function getCookie(name) {
-    let value = "; " + document.cookie;
-    let parts = value.split("; " + name + "=");
-    if (parts.length === 2) return parts.pop().split(";").shift();
+    let nameEQ = name + "=";
+    let ca = document.cookie.split(';');
+    for(let i=0;i < ca.length;i++) {
+      let c = ca[i];
+      while (c.charAt(0)==' ') c = c.substring(1,c.length);
+      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
   }
 
-  // --- ELEMENTS ---
-  const banner = document.getElementById("cookie-banner");
-  const modal = document.getElementById("cookie-modal");
+  function loadGoogleAnalytics() {
+    if(!window.gtag) { // aby nie ładować GA dwa razy
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://www.googletagmanager.com/gtag/js?id=G-DP2TNHLQQY';
+      document.head.appendChild(script);
 
-  // --- BUTTONS ---
-  document.getElementById("accept-all").addEventListener("click", () => {
-    setCookie("consent", "all", 365);
-    banner.style.display = "none";
-    loadAnalytics();
-    console.log("Alle Cookies akzeptiert");
-  });
-
-  document.getElementById("decline-all").addEventListener("click", () => {
-    setCookie("consent", "none", 365);
-    banner.style.display = "none";
-    console.log("Alle Cookies abgelehnt");
-  });
-
-  document.getElementById("settings-btn").addEventListener("click", () => {
-    modal.style.display = "flex";
-  });
-
-  document.getElementById("close-settings").addEventListener("click", () => {
-    modal.style.display = "none";
-  });
-
-  document.getElementById("save-settings").addEventListener("click", () => {
-    let statistik = document.getElementById("consent-statistik").checked;
-    let marketing = document.getElementById("consent-marketing").checked;
-
-    let consent = { statistik, marketing };
-    setCookie("consent", JSON.stringify(consent), 365);
-
-    modal.style.display = "none";
-    banner.style.display = "none";
-
-    if(statistik) loadAnalytics();
-    if(marketing) loadMarketingPixel();
-
-    console.log("Einstellungen gespeichert:", consent);
-  });
-
-  // --- LOAD SCRIPTS ---
-  function loadAnalytics() {
-    if(document.getElementById("ga-script")) return;
-    var s = document.createElement("script");
-    s.id = "ga-script";
-    s.async = true;
-    s.src = "https://www.googletagmanager.com/gtag/js?id=G-DP2TNHLQQY";
-    document.head.appendChild(s);
-    s.onload = function() {
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
       gtag('js', new Date());
       gtag('config', 'G-DP2TNHLQQY');
     }
   }
 
-  function loadMarketingPixel() {
-    console.log("Marketing Pixel würde hier geladen werden.");
-    // hier könnte z.B. Facebook Pixel kommen
-  }
-
-  // --- INITIAL CHECK ---
-  window.onload = function() {
-    let consent = getCookie("consent");
-    if(!consent) {
-      banner.style.display = "flex";
-    } else {
-      try {
-        let obj = JSON.parse(consent);
-        if(obj.statistik) loadAnalytics();
-        if(obj.marketing) loadMarketingPixel();
-      } catch(e) {
-        if(consent === "all") loadAnalytics();
-      }
+  window.addEventListener('DOMContentLoaded', () => {
+    if(getCookie('cookies_accepted') === 'true') {
+      document.getElementById('cookie-banner').style.display = 'none';
+      loadGoogleAnalytics();
     }
-  }
+
+    document.getElementById('accept-cookies').addEventListener('click', () => {
+      setCookie('cookies_accepted', 'true', 365);
+      document.getElementById('cookie-banner').style.display = 'none';
+      loadGoogleAnalytics();
+    });
+  });
 </script>
-  
+
 </body>
 </html>
+
 
 
 
