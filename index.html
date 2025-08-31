@@ -669,66 +669,23 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
     
-<!-- Cookie Banner -->
-<div id="cookie-banner" style="display:none; position:fixed; bottom:0; left:0; width:100%; background:#111; color:#fff; padding:15px; z-index:9999; display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:15px;">
-  <span style="flex:1; min-width:200px; text-align:center; font-size:14px;">
-    Wir verwenden Cookies, um unsere Website zu verbessern. Mehr Infos in 
-    <a href="/datenschutz" style="color:#facc15; text-decoration:underline;">Datenschutzerklärung</a>.
-  </span>
-  <div style="display:flex; gap:10px; flex-shrink:0;">
-    <button id="accept-cookies" style="padding:6px 14px; background:#facc15; border:none; border-radius:8px; cursor:pointer; font-weight:bold; color:#111;">Akzeptieren</button>
-    <button id="decline-cookies" style="padding:6px 14px; background:#555; border:none; border-radius:8px; cursor:pointer; font-weight:bold; color:#fff;">Ablehnen</button>
-  </div>
+<div id="cookie-banner" style="display:none; position:fixed; bottom:0; left:0; width:100%; background:#111; color:#fff; padding:15px; z-index:9999;">
+  <span style="color:#fff;">Test Banner</span>
+  <button id="accept-cookies">Akzeptieren</button>
 </div>
 
 <script>
-(function(){
+document.addEventListener('DOMContentLoaded', function(){
   const banner = document.getElementById('cookie-banner');
-  if(!banner) return;
-
-  function getCookie(name) {
-    const value = "; " + document.cookie;
-    const parts = value.split("; " + name + "=");
-    if(parts.length === 2) return parts.pop().split(";").shift();
-  }
-
-  function setCookie(name, value, days) {
-    const d = new Date();
-    d.setTime(d.getTime() + (days*24*60*60*1000));
-    document.cookie = name + "=" + value + "; expires=" + d.toUTCString() + "; path=/; SameSite=Lax";
-  }
-
-  function loadGA() {
-    if(window.gtag) return;
-    const s = document.createElement('script');
-    s.async = true;
-    s.src = "https://www.googletagmanager.com/gtag/js?id=G-DP2TNHLQQY";
-    document.head.appendChild(s);
-    s.onload = function(){
-      window.dataLayer = window.dataLayer || [];
-      window.gtag = function(){dataLayer.push(arguments);};
-      window.gtag('js', new Date());
-      window.gtag('config', 'G-DP2TNHLQQY');
-    }
-  }
-
-  const consent = getCookie('cookieConsent');
-  if(!consent) banner.style.display = 'flex';
-  else if(consent === 'accepted') loadGA();
-
+  banner.style.display = 'flex';
   document.getElementById('accept-cookies').onclick = function(){
-    setCookie('cookieConsent','accepted',365);
-    banner.style.display = 'none';
-    loadGA();
-  };
-  document.getElementById('decline-cookies').onclick = function(){
-    setCookie('cookieConsent','declined',365);
     banner.style.display = 'none';
   };
-})();
+});
 </script>
 </body>
 </html>
+
 
 
 
