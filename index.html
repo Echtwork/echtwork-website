@@ -669,10 +669,10 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-<!-- Cookie Banner -->
-<div id="cookie-banner" style="position:fixed; bottom:0; left:0; width:100%; background:#111; color:#fff; padding:15px; z-index:9999; display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:15px; box-shadow:0 -2px 10px rgba(0,0,0,0.5);">
+<!-- Cookie Banner Debug -->
+<div id="cookie-banner" style="display:none; position:fixed; bottom:0; left:0; width:100%; background:#111; color:#fff; padding:15px; z-index:9999; display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:15px; box-shadow:0 -2px 10px rgba(0,0,0,0.5);">
   <span style="flex:1; min-width:200px; text-align:center; font-size:14px;">
-    Wir verwenden Cookies, um unsere Website zu verbessern. Mehr Infos in 
+    Wir verwenden Cookies. Debug-Test. 
     <a href="/datenschutz" style="color:#facc15; text-decoration:underline;">Datenschutzerklärung</a>.
   </span>
   <div style="display:flex; gap:10px; flex-shrink:0;">
@@ -682,15 +682,9 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 
 <script>
-  // pokaż banner natychmiast
+document.addEventListener('DOMContentLoaded', function() {
   const banner = document.getElementById('cookie-banner');
-  banner.style.display = 'flex';
-
-  function setCookie(name, value, days) {
-    const d = new Date();
-    d.setTime(d.getTime() + (days*24*60*60*1000));
-    document.cookie = name + "=" + value + ";expires=" + d.toUTCString() + ";path=/;SameSite=Lax";
-  }
+  console.log('Debug: DOMContentLoaded geladen'); // sprawdzenie
 
   function getCookie(name) {
     const value = "; " + document.cookie;
@@ -698,43 +692,68 @@ document.addEventListener('DOMContentLoaded', () => {
     if(parts.length === 2) return parts.pop().split(";").shift();
   }
 
-  // wczytaj GA tylko jeśli zgoda
+  function setCookie(name, value, days) {
+    let expires = "";
+    if(days) {
+      const date = new Date();
+      date.setTime(date.getTime() + (days*24*60*60*1000));
+      expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + value + expires + "; path=/; SameSite=Lax";
+    console.log(`Debug: Ustawiono ciasteczko ${name}=${value}`);
+  }
+
   function loadGA() {
-    if(window.gtag) return;
-    const s = document.createElement('script');
-    s.async = true;
-    s.src = "https://www.googletagmanager.com/gtag/js?id=G-DP2TNHLQQY";
-    document.head.appendChild(s);
-    s.onload = function() {
+    if(window.gtag) { console.log('Debug: GA już załadowany'); return; }
+    console.log('Debug: Ładuję GA');
+    const gaScript = document.createElement('script');
+    gaScript.async = true;
+    gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-DP2TNHLQQY"; 
+    document.head.appendChild(gaScript);
+
+    gaScript.onload = function() {
       window.dataLayer = window.dataLayer || [];
-      window.gtag = function(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-DP2TNHLQQY');
+      window.gtag = function(){dataLayer.push(arguments);};
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-DP2TNHLQQY');
+      console.log('Debug: GA załadowany');
     }
   }
 
+  function showBanner() { 
+    banner.style.display = "flex"; 
+    console.log('Debug: Banner pokazany'); 
+  }
+  function hideBanner() { 
+    banner.style.display = "none"; 
+    console.log('Debug: Banner ukryty'); 
+  }
+
   const consent = getCookie('cookieConsent');
-  if(consent === 'accepted') {
-    banner.style.display = 'none';
+  console.log('Debug: Zgoda cookie =', consent);
+
+  if(!consent) {
+    showBanner();
+  } else if(consent === 'accepted') {
     loadGA();
-  } else if(consent === 'declined') {
-    banner.style.display = 'none';
   }
 
-  document.getElementById('accept-cookies').onclick = function() {
+  document.getElementById('accept-cookies').addEventListener('click', function() {
     setCookie('cookieConsent', 'accepted', 365);
-    banner.style.display = 'none';
+    hideBanner();
     loadGA();
-  }
+  });
 
-  document.getElementById('decline-cookies').onclick = function() {
+  document.getElementById('decline-cookies').addEventListener('click', function() {
     setCookie('cookieConsent', 'declined', 365);
-    banner.style.display = 'none';
-  }
+    hideBanner();
+  });
+});
 </script>
 
 </body>
 </html>
+
 
 
 
