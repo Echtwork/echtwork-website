@@ -164,6 +164,62 @@ img {
 </head>
 
 <body class="bg-black text-white font-sans antialiased flex flex-col min-h-screen">
+
+   <!-- Cookie Consent Banner -->
+<div id="cookie-banner" style="position:fixed;bottom:0;left:0;width:100%;background:#333;color:#fff;padding:15px;text-align:center;z-index:9999;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;">
+  <span style="flex:1;min-width:200px;">Wir verwenden Cookies, um unsere Website zu verbessern, Inhalte zu personalisieren und die Nutzung zu analysieren.</span>
+  <div style="flex-shrink:0; margin-left:10px;">
+    <button id="accept-cookies" style="margin-right:5px;padding:5px 10px;">Akzeptieren</button>
+    <button id="decline-cookies" style="margin-right:5px;padding:5px 10px;">Ablehnen</button>
+    <button id="cookie-settings" style="padding:5px 10px;">Einstellungen</button>
+  </div>
+</div>
+
+<script>
+  // Sprawdzenie, czy użytkownik już podjął decyzję
+  function getCookie(name) {
+    let value = "; " + document.cookie;
+    let parts = value.split("; " + name + "=");
+    if (parts.length === 2) return parts.pop().split(";").shift();
+  }
+
+  function setCookie(name, value, days) {
+    let expires = "";
+    if (days) {
+      const date = new Date();
+      date.setTime(date.getTime() + (days*24*60*60*1000));
+      expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + value + expires + "; path=/; SameSite=Lax";
+  }
+
+  function hideBanner() {
+    document.getElementById('cookie-banner').style.display = 'none';
+  }
+
+  // Obsługa przycisków
+  document.getElementById('accept-cookies').addEventListener('click', function() {
+    setCookie('cookieConsent', 'all', 365);
+    hideBanner();
+    // Tutaj można włączyć np. Google Analytics
+    console.log("Cookies akzeptiert");
+  });
+
+  document.getElementById('decline-cookies').addEventListener('click', function() {
+    setCookie('cookieConsent', 'none', 365);
+    hideBanner();
+    console.log("Cookies abgelehnt");
+  });
+
+  document.getElementById('cookie-settings').addEventListener('click', function() {
+    alert("Hier können Nutzer spezifische Cookies auswählen (Beispiel: Analytics, Marketing, etc.)");
+    // Tutaj możesz wstawić własne okno ustawień
+  });
+
+  // Ukryj banner, jeśli decyzja już jest
+  if(getCookie('cookieConsent')) hideBanner();
+</script>
+
   <!-- Header -->
   <header class="flex flex-wrap items-center justify-between px-6 py-4 border-b border-yellow-600">
     <div class="text-2xl font-bold text-yellow-500">echtwork.de</div>
@@ -685,64 +741,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 </script>
-
-   <!-- Cookie Consent Banner -->
-<div id="cookie-banner" style="position:fixed;bottom:0;left:0;width:100%;background:#333;color:#fff;padding:15px;text-align:center;z-index:9999;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;">
-  <span style="flex:1;min-width:200px;">Wir verwenden Cookies, um unsere Website zu verbessern, Inhalte zu personalisieren und die Nutzung zu analysieren.</span>
-  <div style="flex-shrink:0; margin-left:10px;">
-    <button id="accept-cookies" style="margin-right:5px;padding:5px 10px;">Akzeptieren</button>
-    <button id="decline-cookies" style="margin-right:5px;padding:5px 10px;">Ablehnen</button>
-    <button id="cookie-settings" style="padding:5px 10px;">Einstellungen</button>
-  </div>
-</div>
-
-<script>
-  // Sprawdzenie, czy użytkownik już podjął decyzję
-  function getCookie(name) {
-    let value = "; " + document.cookie;
-    let parts = value.split("; " + name + "=");
-    if (parts.length === 2) return parts.pop().split(";").shift();
-  }
-
-  function setCookie(name, value, days) {
-    let expires = "";
-    if (days) {
-      const date = new Date();
-      date.setTime(date.getTime() + (days*24*60*60*1000));
-      expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + value + expires + "; path=/; SameSite=Lax";
-  }
-
-  function hideBanner() {
-    document.getElementById('cookie-banner').style.display = 'none';
-  }
-
-  // Obsługa przycisków
-  document.getElementById('accept-cookies').addEventListener('click', function() {
-    setCookie('cookieConsent', 'all', 365);
-    hideBanner();
-    // Tutaj można włączyć np. Google Analytics
-    console.log("Cookies akzeptiert");
-  });
-
-  document.getElementById('decline-cookies').addEventListener('click', function() {
-    setCookie('cookieConsent', 'none', 365);
-    hideBanner();
-    console.log("Cookies abgelehnt");
-  });
-
-  document.getElementById('cookie-settings').addEventListener('click', function() {
-    alert("Hier können Nutzer spezifische Cookies auswählen (Beispiel: Analytics, Marketing, etc.)");
-    // Tutaj możesz wstawić własne okno ustawień
-  });
-
-  // Ukryj banner, jeśli decyzja już jest
-  if(getCookie('cookieConsent')) hideBanner();
-</script>
-
 </body>
 </html>
+
 
 
 
