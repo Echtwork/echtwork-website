@@ -11,15 +11,6 @@
   <link rel="icon" type="image/png" sizes="192x192" href="https://echtwork.de/images/android-chrome-192x192.png">
   <link rel="icon" type="image/png" sizes="512x512" href="https://echtwork.de/images/android-chrome-512x512.png">
 
-  <!-- Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DP2TNHLQQY"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);} 
-    gtag('js', new Date());
-    gtag('config', 'G-DP2TNHLQQY');
-  </script>
-
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -695,36 +686,19 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 </div>
 </script>
+  
   <!-- Cookie Consent Banner -->
-<div id="cookie-banner" style="
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: #333;
-  color: #fff;
-  padding: 15px;
-  text-align: center;
-  z-index: 9999;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  font-family: Arial, sans-serif;
-">
-  <span style="flex:1; min-width:200px;">
+<div id="cookie-banner" style="position:fixed;bottom:0;left:0;width:100%;background:#333;color:#fff;padding:15px;text-align:center;z-index:9999;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;">
+  <span style="flex:1;min-width:200px;">
     Wir verwenden Cookies, um unsere Website zu verbessern, Inhalte zu personalisieren und die Nutzung zu analysieren.
   </span>
   <div style="flex-shrink:0; margin-left:10px;">
     <button id="accept-cookies" style="margin-right:5px;padding:5px 10px;">Akzeptieren</button>
     <button id="decline-cookies" style="margin-right:5px;padding:5px 10px;">Ablehnen</button>
-    <button id="cookie-settings" style="padding:5px 10px;">Einstellungen</button>
   </div>
 </div>
 
 <script>
-window.addEventListener('DOMContentLoaded', function() {
-
   function getCookie(name) {
     let value = "; " + document.cookie;
     let parts = value.split("; " + name + "=");
@@ -742,35 +716,44 @@ window.addEventListener('DOMContentLoaded', function() {
   }
 
   function hideBanner() {
-    const banner = document.getElementById('cookie-banner');
-    if(banner) banner.style.display = 'none';
+    document.getElementById('cookie-banner').style.display = 'none';
   }
 
+  // Obsługa przycisków
   document.getElementById('accept-cookies').addEventListener('click', function() {
     setCookie('cookieConsent', 'all', 365);
     hideBanner();
-    console.log("Cookies akzeptiert");
-    // Tutaj możesz włączyć np. Google Analytics
+    loadGoogleAnalytics();
   });
 
   document.getElementById('decline-cookies').addEventListener('click', function() {
     setCookie('cookieConsent', 'none', 365);
     hideBanner();
-    console.log("Cookies abgelehnt");
   });
 
-  document.getElementById('cookie-settings').addEventListener('click', function() {
-    alert("Hier können Nutzer spezifische Cookies auswählen (Beispiel: Analytics, Marketing, etc.)");
-  });
+  // Jeśli już jest zgoda → włącz GA
+  if (getCookie('cookieConsent') === 'all') {
+    loadGoogleAnalytics();
+    hideBanner();
+  }
 
-  // Ukryj banner, jeśli decyzja już została podjęta
-  if(getCookie('cookieConsent')) hideBanner();
+  // Funkcja ładująca GA tylko po akceptacji
+  function loadGoogleAnalytics() {
+    let script = document.createElement('script');
+    script.async = true;
+    script.src = "https://www.googletagmanager.com/gtag/js?id=G-DP2TNHLQQY";
+    document.head.appendChild(script);
 
-});
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} 
+    gtag('js', new Date());
+    gtag('config', 'G-DP2TNHLQQY');
+  }
 </script>
-
+  
 </body>
 </html>
+
 
 
 
