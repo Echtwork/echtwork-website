@@ -677,61 +677,61 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
     
-   <div id="cookie-banner" style="
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #1a1a1a;
-    color: #fff;
-    padding: 15px 20px;
-    text-align: center;
-    font-family: 'Arial', sans-serif;
-    font-size: 16px;
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
-    z-index: 9999;
-">
-  <span>Diese Website verwendet Cookies, um dir das beste Erlebnis zu bieten. Durch Klicken auf „Akzeptieren“ stimmst du der Verwendung von Cookies zu.</span>
-  <button id="accept-cookies" style="
-      background-color: #FFD700;
-      color: #1a1a1a;
-      border: none;
-      padding: 10px 25px;
-      margin-left: 10px;
-      font-weight: bold;
-      cursor: pointer;
-      border-radius: 5px;
-      transition: 0.3s;
-  " onmouseover="this.style.backgroundColor='#FFC107';" onmouseout="this.style.backgroundColor='#FFD700';">
-    Akzeptieren
-  </button>
+  <!-- Cookie Banner -->
+<div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #333; color: #fff; padding: 15px; text-align: center; font-family: Arial, sans-serif; z-index: 9999;">
+  <span>Ta strona używa plików cookies, aby poprawić działanie strony. </span>
+  <button id="accept-cookies" style="background-color: gold; color: #000; border: none; padding: 10px 20px; margin-left: 10px; font-weight: bold; cursor: pointer; border-radius: 5px;">Akceptuję</button>
 </div>
 
 <script>
-  // Sprawdzenie, czy ciasteczko już istnieje
-  if (!document.cookie.split('; ').find(row => row.startsWith('cookies_accepted='))) {
-      document.getElementById('cookie-banner').style.display = 'block';
-  } else {
-      document.getElementById('cookie-banner').style.display = 'none';
+  function setCookie(name, value, days) {
+    let date = new Date();
+    date.setTime(date.getTime() + (days*24*60*60*1000));
+    document.cookie = name + "=" + value + "; expires=" + date.toUTCString() + "; path=/";
   }
 
-  document.getElementById('accept-cookies').onclick = function() {
-      var d = new Date();
-      d.setFullYear(d.getFullYear() + 1); // zapis na 1 rok
-      document.cookie = "cookies_accepted=true; expires=" + d.toUTCString() + "; path=/";
-      document.getElementById('cookie-banner').style.display = 'none';
+  function getCookie(name) {
+    let nameEQ = name + "=";
+    let ca = document.cookie.split(';');
+    for(let i=0;i < ca.length;i++) {
+      let c = ca[i];
+      while (c.charAt(0)==' ') c = c.substring(1,c.length);
+      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+  }
 
-      // Tutaj możesz wywołać Google Analytics
-      if (typeof gtag === 'function') {
-          gtag('consent', 'update', {
-              'analytics_storage': 'granted'
-          });
-      }
-  };
+  // Funkcja do włączenia Google Analytics
+  function loadGoogleAnalytics() {
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-DP2TNHLQQY';
+    document.head.appendChild(script);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'G-DP2TNHLQQY');
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    if(getCookie('cookies_accepted') === 'true') {
+      document.getElementById('cookie-banner').style.display = 'none';
+      loadGoogleAnalytics(); // jeśli już zaakceptowano, od razu uruchamiamy GA
+    }
+
+    document.getElementById('accept-cookies').addEventListener('click', () => {
+      setCookie('cookies_accepted', 'true', 365); // zapis na 1 rok
+      document.getElementById('cookie-banner').style.display = 'none';
+      loadGoogleAnalytics(); // włączenie GA po zgodzie
+    });
+  });
 </script>
 
 </body>
 </html>
+
 
 
 
