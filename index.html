@@ -677,27 +677,30 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
    
-<!-- Cookie Consent Banner --> 
-<div id="cookie-banner" style="display:none; position:fixed; bottom:0; left:0; width:100%; background:#111; color:#fff; padding:15px; z-index:9999; display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:15px; box-shadow:0 -2px 10px rgba(0,0,0,0.5);">
+<!-- Cookie Banner -->
+<div id="cookie-banner" style="display:none; position:fixed; bottom:0; left:0; width:100%; background:#111; color:#fff; padding:15px; z-index:9999; justify-content:center; align-items:center; flex-wrap:wrap; gap:15px; box-shadow:0 -2px 10px rgba(0,0,0,0.5); display:flex;">
   <span style="flex:1; min-width:200px; text-align:center; font-size:14px;">
-    Wir verwenden Cookies, um unsere Website zu verbessern. Mehr Infos findest du in unserer <a href="/datenschutz" style="color:#facc15; text-decoration:underline;">Datenschutzerklärung</a>.
+    Wir verwenden Cookies, um unsere Website zu verbessern. Mehr Infos in <a href="/datenschutz" style="color:#facc15; text-decoration:underline;">Datenschutzerklärung</a>.
   </span>
   <div style="display:flex; gap:10px; flex-shrink:0;">
-    <button id="accept-cookies" style="padding:6px 14px; background:#facc15; border:none; border-radius:8px; cursor:pointer; font-weight:bold; color:#111; transition:0.3s;">Akzeptieren</button>
-    <button id="decline-cookies" style="padding:6px 14px; background:#555; border:none; border-radius:8px; cursor:pointer; font-weight:bold; color:#fff; transition:0.3s;">Ablehnen</button>
+    <button id="accept-cookies" style="padding:6px 14px; background:#facc15; border:none; border-radius:8px; cursor:pointer; font-weight:bold; color:#111;">Akzeptieren</button>
+    <button id="decline-cookies" style="padding:6px 14px; background:#555; border:none; border-radius:8px; cursor:pointer; font-weight:bold; color:#fff;">Ablehnen</button>
   </div>
 </div>
 
 <script>
+document.addEventListener('DOMContentLoaded', function() {
+  const banner = document.getElementById('cookie-banner');
+
   function getCookie(name) {
-    let value = "; " + document.cookie;
-    let parts = value.split("; " + name + "=");
-    if (parts.length === 2) return parts.pop().split(";").shift();
+    const value = "; " + document.cookie;
+    const parts = value.split("; " + name + "=");
+    if(parts.length === 2) return parts.pop().split(";").shift();
   }
 
   function setCookie(name, value, days) {
     let expires = "";
-    if (days) {
+    if(days) {
       const date = new Date();
       date.setTime(date.getTime() + (days*24*60*60*1000));
       expires = "; expires=" + date.toUTCString();
@@ -705,11 +708,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.cookie = name + "=" + value + expires + "; path=/; SameSite=Lax";
   }
 
-  function showBanner() { document.getElementById('cookie-banner').style.display = 'flex'; }
-  function hideBanner() { document.getElementById('cookie-banner').style.display = 'none'; }
-
   function loadGA() {
-    if(window.gtag) return; // zapobiega ponownemu ładowaniu
+    if(window.gtag) return;
     const gaScript = document.createElement('script');
     gaScript.async = true;
     gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-DP2TNHLQQY"; 
@@ -723,30 +723,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  document.addEventListener('DOMContentLoaded', function() {
-    const consent = getCookie('cookieConsent');
-    if(!consent) {
-      showBanner();
-    } else if(consent === 'accepted') {
-      loadGA();
-    }
+  function showBanner() { banner.style.display = "flex"; }
+  function hideBanner() { banner.style.display = "none"; }
 
-    document.getElementById('accept-cookies').addEventListener('click', function() {
-      setCookie('cookieConsent', 'accepted', 365);
-      hideBanner();
-      loadGA();
-      console.log("Cookies akzeptiert");
-    });
+  const consent = getCookie('cookieConsent');
+  if(!consent) {
+    showBanner();
+  } else if(consent === 'accepted') {
+    loadGA();
+  }
 
-    document.getElementById('decline-cookies').addEventListener('click', function() {
-      setCookie('cookieConsent', 'declined', 365);
-      hideBanner();
-      console.log("Cookies abgelehnt");
-    });
+  document.getElementById('accept-cookies').addEventListener('click', function() {
+    setCookie('cookieConsent', 'accepted', 365);
+    hideBanner();
+    loadGA();
   });
+
+  document.getElementById('decline-cookies').addEventListener('click', function() {
+    setCookie('cookieConsent', 'declined', 365);
+    hideBanner();
+  });
+});
 </script>
+
 </body>
 </html>
+
 
 
 
