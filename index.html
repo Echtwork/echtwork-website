@@ -677,10 +677,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
     
-  <!-- Cookie Banner -->
+ <!-- Cookie Banner -->
 <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #333; color: #fff; padding: 15px; text-align: center; font-family: Arial, sans-serif; z-index: 9999;">
-  <span>Ta strona używa plików cookies, aby poprawić działanie strony. </span>
-  <button id="accept-cookies" style="background-color: gold; color: #000; border: none; padding: 10px 20px; margin-left: 10px; font-weight: bold; cursor: pointer; border-radius: 5px;">Akceptuję</button>
+  <span>Diese Website verwendet Cookies, um dir das beste Erlebnis zu bieten.</span>
+  <button id="accept-cookies" style="background-color: gold; color: #000; border: none; padding: 10px 20px; margin-left: 10px; font-weight: bold; cursor: pointer; border-radius: 5px;">Akzeptieren</button>
+  <button id="decline-cookies" style="background-color: #555; color: #fff; border: none; padding: 10px 20px; margin-left: 5px; font-weight: bold; cursor: pointer; border-radius: 5px;">Ablehnen</button>
 </div>
 
 <script>
@@ -701,7 +702,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return null;
   }
 
-  // Funkcja do włączenia Google Analytics
   function loadGoogleAnalytics() {
     const script = document.createElement('script');
     script.async = true;
@@ -716,21 +716,33 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   window.addEventListener('DOMContentLoaded', () => {
-    if(getCookie('cookies_accepted') === 'true') {
-      document.getElementById('cookie-banner').style.display = 'none';
-      loadGoogleAnalytics(); // jeśli już zaakceptowano, od razu uruchamiamy GA
+    const banner = document.getElementById('cookie-banner');
+
+    const cookieConsent = getCookie('cookies_accepted');
+    if(cookieConsent === 'true') {
+      banner.style.display = 'none';
+      loadGoogleAnalytics();
+    } else if(cookieConsent === 'false') {
+      banner.style.display = 'none';
     }
 
     document.getElementById('accept-cookies').addEventListener('click', () => {
-      setCookie('cookies_accepted', 'true', 365); // zapis na 1 rok
-      document.getElementById('cookie-banner').style.display = 'none';
-      loadGoogleAnalytics(); // włączenie GA po zgodzie
+      setCookie('cookies_accepted', 'true', 365);
+      banner.style.display = 'none';
+      loadGoogleAnalytics();
+    });
+
+    document.getElementById('decline-cookies').addEventListener('click', () => {
+      setCookie('cookies_accepted', 'false', 365);
+      banner.style.display = 'none';
+      // GA nie jest włączane
     });
   });
 </script>
 
 </body>
 </html>
+
 
 
 
