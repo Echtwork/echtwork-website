@@ -677,25 +677,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-    
 <!-- Cookie Banner -->
-<div id="cookie-banner" style="
-    display:none;
-    position:fixed;
-    bottom:0;
-    left:0;
-    width:100%;
-    background:#111;
-    color:#fff;
-    padding:15px;
-    z-index:9999;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-wrap:wrap;
-    gap:15px;
-    box-shadow:0 -2px 10px rgba(0,0,0,0.5);
-">
+<div id="cookie-banner" style="display:none; position:fixed; bottom:0; left:0; width:100%; background:#111; color:#fff; padding:15px; z-index:9999; display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:15px; box-shadow:0 -2px 10px rgba(0,0,0,0.5);">
   <span style="flex:1; min-width:200px; text-align:center; font-size:14px;">
     Wir verwenden Cookies, um unsere Website zu verbessern. Mehr Infos in 
     <a href="/datenschutz" style="color:#facc15; text-decoration:underline;">Datenschutzerklärung</a>.
@@ -710,7 +693,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', function() {
   const banner = document.getElementById('cookie-banner');
 
-  // Funkcje do ciasteczek
+  // Funkcje ciasteczek
   function getCookie(name) {
     const value = "; " + document.cookie;
     const parts = value.split("; " + name + "=");
@@ -727,7 +710,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.cookie = name + "=" + value + expires + "; path=/; SameSite=Lax";
   }
 
-  // Ładowanie Google Analytics dopiero po akceptacji
+  // Funkcja ładowania GA
   function loadGA() {
     if(window.gtag) return;
     const gaScript = document.createElement('script');
@@ -743,10 +726,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
+  // Pokaż / ukryj baner
   function showBanner() { banner.style.display = "flex"; }
   function hideBanner() { banner.style.display = "none"; }
 
-  // Sprawdzenie, czy ciasteczko już istnieje
+  // Sprawdzenie zgody
   const consent = getCookie('cookieConsent');
   if(!consent) {
     showBanner();
@@ -754,14 +738,13 @@ document.addEventListener('DOMContentLoaded', function() {
     loadGA();
   }
 
-  // Kliknięcie Akzeptieren
+  // Kliknięcia przycisków
   document.getElementById('accept-cookies').addEventListener('click', function() {
     setCookie('cookieConsent', 'accepted', 365);
     hideBanner();
     loadGA();
   });
 
-  // Kliknięcie Ablehnen
   document.getElementById('decline-cookies').addEventListener('click', function() {
     setCookie('cookieConsent', 'declined', 365);
     hideBanner();
@@ -771,6 +754,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </body>
 </html>
+
 
 
 
