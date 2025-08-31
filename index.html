@@ -670,7 +670,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 <!-- Cookie Banner -->
-<div id="cookie-banner" style="display:none; position:fixed; bottom:0; left:0; width:100%; background:#111; color:#fff; padding:15px; z-index:9999; justify-content:center; align-items:center; flex-wrap:wrap; gap:15px; box-shadow:0 -2px 10px rgba(0,0,0,0.5);">
+<div id="cookie-banner" style="position:fixed; bottom:0; left:0; width:100%; background:#111; color:#fff; padding:15px; z-index:9999; display:none; justify-content:center; align-items:center; flex-wrap:wrap; gap:15px; box-shadow:0 -2px 10px rgba(0,0,0,0.5);">
   <span style="flex:1; min-width:200px; text-align:center; font-size:14px;">
     Wir verwenden Cookies, um unsere Website zu verbessern. Mehr Infos in 
     <a href="/datenschutz" style="color:#facc15; text-decoration:underline;">Datenschutzerklärung</a>.
@@ -682,10 +682,9 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+(function() {
   const banner = document.getElementById('cookie-banner');
 
-  // --- Funkcje ciasteczek ---
   function getCookie(name) {
     const value = "; " + document.cookie;
     const parts = value.split("; " + name + "=");
@@ -702,9 +701,8 @@ document.addEventListener('DOMContentLoaded', function() {
     document.cookie = name + "=" + value + expires + "; path=/; SameSite=Lax";
   }
 
-  // --- Funkcja ładowania Google Analytics ---
   function loadGA() {
-    if(window.gtag) return; // już załadowane
+    if(window.gtag) return;
     const gaScript = document.createElement('script');
     gaScript.async = true;
     gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-DP2TNHLQQY"; 
@@ -718,34 +716,33 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // --- Pokaż / ukryj baner ---
+  // pokaż/ukryj banner
   function showBanner() { banner.style.display = "flex"; }
   function hideBanner() { banner.style.display = "none"; }
 
-  // --- Sprawdzenie zgody ---
   const consent = getCookie('cookieConsent');
   if(!consent) {
-    showBanner(); // brak zgody → pokaż baner
+    showBanner();
   } else if(consent === 'accepted') {
-    loadGA(); // już zaakceptowane → wczytaj GA
+    loadGA();
   }
 
-  // --- Kliknięcia przycisków ---
-  document.getElementById('accept-cookies').addEventListener('click', function() {
+  document.getElementById('accept-cookies').onclick = function() {
     setCookie('cookieConsent', 'accepted', 365);
     hideBanner();
     loadGA();
-  });
+  };
 
-  document.getElementById('decline-cookies').addEventListener('click', function() {
+  document.getElementById('decline-cookies').onclick = function() {
     setCookie('cookieConsent', 'declined', 365);
     hideBanner();
-  });
-});
+  };
+})();
 </script>
 
 </body>
 </html>
+
 
 
 
