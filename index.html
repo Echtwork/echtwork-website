@@ -677,85 +677,83 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
    
- <!-- Cookie Banner -->
-<div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-gray-900 text-white p-4 flex flex-col sm:flex-row items-center justify-center gap-3 z-50 opacity-0 transition-opacity duration-500">
-  <span class="text-center sm:text-left">Diese Website verwendet Cookies, um dir das beste Erlebnis zu bieten.</span>
-  <div class="flex gap-2">
-    <button id="accept-cookies" class="bg-yellow-400 text-black px-4 py-2 rounded font-bold hover:bg-yellow-500 transition-colors">Akzeptieren</button>
-    <button id="decline-cookies" class="bg-gray-700 text-white px-4 py-2 rounded font-bold hover:bg-gray-600 transition-colors">Ablehnen</button>
+<!-- Cookie Consent Banner -->
+<div id="cookie-banner" style="
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #333;
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+  z-index: 9999;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Arial, sans-serif;
+">
+  <span style="flex:1; min-width:200px;">
+    Wir verwenden Cookies, um unsere Website zu verbessern, Inhalte zu personalisieren und die Nutzung zu analysieren.
+  </span>
+  <div style="flex-shrink:0; margin-left:10px;">
+    <button id="accept-cookies" style="margin-right:5px;padding:5px 10px;">Akzeptieren</button>
+    <button id="decline-cookies" style="margin-right:5px;padding:5px 10px;">Ablehnen</button>
+    <button id="cookie-settings" style="padding:5px 10px;">Einstellungen</button>
   </div>
 </div>
 
 <script>
-(function() {
-  const banner = document.getElementById('cookie-banner');
-
-  function setCookie(name, value, days) {
-    const date = new Date();
-    date.setTime(date.getTime() + days*24*60*60*1000);
-    document.cookie = name + "=" + value + "; expires=" + date.toUTCString() + "; path=/";
-  }
+window.addEventListener('DOMContentLoaded', function() {
 
   function getCookie(name) {
-    const nameEQ = name + "=";
-    const ca = document.cookie.split(';');
-    for(let c of ca) {
-      c = c.trim();
-      if(c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length);
+    let value = "; " + document.cookie;
+    let parts = value.split("; " + name + "=");
+    if (parts.length === 2) return parts.pop().split(";").shift();
+  }
+
+  function setCookie(name, value, days) {
+    let expires = "";
+    if (days) {
+      const date = new Date();
+      date.setTime(date.getTime() + (days*24*60*60*1000));
+      expires = "; expires=" + date.toUTCString();
     }
-    return null;
-  }
-
-  function loadGA() {
-    if(window.gtag) return; // unikamy wielokrotnego ładowania
-    const script = document.createElement('script');
-    script.async = true;
-    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-DP2TNHLQQY';
-    document.head.appendChild(script);
-
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    window.gtag = gtag;
-    gtag('js', new Date());
-    gtag('config', 'G-DP2TNHLQQY');
-  }
-
-  function showBanner() {
-    banner.classList.remove('opacity-0');
-    banner.classList.add('opacity-100');
+    document.cookie = name + "=" + value + expires + "; path=/; SameSite=Lax";
   }
 
   function hideBanner() {
-    banner.classList.remove('opacity-100');
-    banner.classList.add('opacity-0');
+    const banner = document.getElementById('cookie-banner');
+    if(banner) banner.style.display = 'none';
   }
 
-  const consent = getCookie('cookies_accepted');
-  if(consent === 'true') {
+  document.getElementById('accept-cookies').addEventListener('click', function() {
+    setCookie('cookieConsent', 'all', 365);
     hideBanner();
-    loadGA();
-  } else if(consent === 'false') {
-    hideBanner();
-  } else {
-    // pokaż banner jeśli brak zgody
-    showBanner();
-  }
-
-  document.getElementById('accept-cookies').addEventListener('click', () => {
-    setCookie('cookies_accepted', 'true', 365);
-    hideBanner();
-    loadGA();
+    console.log("Cookies akzeptiert");
+    // Tutaj możesz włączyć np. Google Analytics
   });
 
-  document.getElementById('decline-cookies').addEventListener('click', () => {
-    setCookie('cookies_accepted', 'false', 365);
+  document.getElementById('decline-cookies').addEventListener('click', function() {
+    setCookie('cookieConsent', 'none', 365);
     hideBanner();
+    console.log("Cookies abgelehnt");
   });
-})();
+
+  document.getElementById('cookie-settings').addEventListener('click', function() {
+    alert("Hier können Nutzer spezifische Cookies auswählen (Beispiel: Analytics, Marketing, etc.)");
+  });
+
+  // Ukryj banner, jeśli decyzja już została podjęta
+  if(getCookie('cookieConsent')) hideBanner();
+
+});
 </script>
 
 </body>
 </html>
+
 
 
 
