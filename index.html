@@ -669,7 +669,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
     
-<!-- Cookie Consent Banner -->
+<!-- Cookie Banner Styles -->
 <style>
   #cookie-banner {
     display: none;
@@ -681,6 +681,7 @@ document.addEventListener('DOMContentLoaded', () => {
     color: #fff;
     padding: 15px;
     z-index: 9999;
+    display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
@@ -706,6 +707,7 @@ document.addEventListener('DOMContentLoaded', () => {
   #decline-cookies { background: #555; color: #fff; }
 </style>
 
+<!-- Cookie Banner HTML -->
 <div id="cookie-banner">
   <span style="flex:1; min-width:200px; text-align:center; font-size:14px;">
     Wir verwenden Cookies, um unsere Website zu verbessern. Mehr Infos findest du in unserer 
@@ -717,6 +719,7 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 </div>
 
+<!-- Cookie Banner Script -->
 <script>
   function setCookie(name, value, days) {
     let expires = "";
@@ -745,7 +748,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function loadGA() {
-    // Google Analytics nur nach Zustimmung
     const gaScript = document.createElement('script');
     gaScript.async = true;
     gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-DP2TNHLQQY";
@@ -785,6 +787,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
+
 
 
 
