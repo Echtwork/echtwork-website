@@ -677,7 +677,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
    
-<!-- Cookie Consent Banner -->
+<!-- Cookie Consent Banner --> 
 <div id="cookie-banner" style="display:none; position:fixed; bottom:0; left:0; width:100%; background:#111; color:#fff; padding:15px; z-index:9999; display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:15px; box-shadow:0 -2px 10px rgba(0,0,0,0.5);">
   <span style="flex:1; min-width:200px; text-align:center; font-size:14px;">
     Wir verwenden Cookies, um unsere Website zu verbessern. Mehr Infos findest du in unserer <a href="/datenschutz" style="color:#facc15; text-decoration:underline;">Datenschutzerklärung</a>.
@@ -689,7 +689,6 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 
 <script>
-  // Cookie functions
   function getCookie(name) {
     let value = "; " + document.cookie;
     let parts = value.split("; " + name + "=");
@@ -706,63 +705,49 @@ document.addEventListener('DOMContentLoaded', () => {
     document.cookie = name + "=" + value + expires + "; path=/; SameSite=Lax";
   }
 
-  function showBanner() {
-    document.getElementById('cookie-banner').style.display = 'flex';
-  }
+  function showBanner() { document.getElementById('cookie-banner').style.display = 'flex'; }
+  function hideBanner() { document.getElementById('cookie-banner').style.display = 'none'; }
 
-  function hideBanner() {
-    document.getElementById('cookie-banner').style.display = 'none';
-  }
-
-  // Buttons
-  document.getElementById('accept-cookies').addEventListener('click', function() {
-    setCookie('cookieConsent', 'accepted', 365);
-    hideBanner();
-    console.log("Cookies akzeptiert");
-
-    // --- Google Analytics EINBINDEN NACH ZUSTIMMUNG ---
-    var gaScript = document.createElement('script');
+  function loadGA() {
+    if(window.gtag) return; // zapobiega ponownemu ładowaniu
+    const gaScript = document.createElement('script');
     gaScript.async = true;
     gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-DP2TNHLQQY"; 
     document.head.appendChild(gaScript);
 
     gaScript.onload = function() {
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-DP2TNHLQQY');
-    }
-  });
-
-  document.getElementById('decline-cookies').addEventListener('click', function() {
-    setCookie('cookieConsent', 'declined', 365);
-    hideBanner();
-    console.log("Cookies abgelehnt");
-  });
-
-  // Show only if no consent given
-  window.onload = function() {
-    if(!getCookie('cookieConsent')) {
-      showBanner();
-    } else if(getCookie('cookieConsent') === 'accepted') {
-      // Falls user schon akzeptiert hat -> Analytics laden
-      var gaScript = document.createElement('script');
-      gaScript.async = true;
-      gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-DP2TNHLQQY"; 
-      document.head.appendChild(gaScript);
-
-      gaScript.onload = function() {
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-DP2TNHLQQY');
-      }
+      window.gtag = function(){dataLayer.push(arguments);};
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-DP2TNHLQQY');
     }
   }
-</script>
 
+  document.addEventListener('DOMContentLoaded', function() {
+    const consent = getCookie('cookieConsent');
+    if(!consent) {
+      showBanner();
+    } else if(consent === 'accepted') {
+      loadGA();
+    }
+
+    document.getElementById('accept-cookies').addEventListener('click', function() {
+      setCookie('cookieConsent', 'accepted', 365);
+      hideBanner();
+      loadGA();
+      console.log("Cookies akzeptiert");
+    });
+
+    document.getElementById('decline-cookies').addEventListener('click', function() {
+      setCookie('cookieConsent', 'declined', 365);
+      hideBanner();
+      console.log("Cookies abgelehnt");
+    });
+  });
+</script>
 </body>
 </html>
+
 
 
 
