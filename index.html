@@ -72,78 +72,47 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  /* ---------------- Hamburger menu toggle ---------------- */
-  const btn = document.getElementById('menu-toggle');
-  const menu = document.getElementById('menu');
-  if (btn && menu) {
-    btn.addEventListener('click', function () {
-      const isHidden = menu.classList.toggle('hidden');
-      btn.setAttribute('aria-expanded', String(!isHidden));
-    });
-  }
-
-  /* ---------------- Trust badges injection ---------------- */
-  const tpl = document.getElementById('trust-badge-template');
-  if (tpl) {
-    document.querySelectorAll('form[action*="paypal"]').forEach(form => {
-      const clone = tpl.content.cloneNode(true);
-      form.appendChild(clone);
-    });
-  }
-
-  /* ---------------- Upewnij się, że mamy item_name w Workout ---------------- */
-  const workoutPayBtn = document.getElementById('paypal-standard');
-  if (workoutPayBtn && workoutPayBtn.form && !document.getElementById('paypal-item-name')) {
-    const hidden = document.createElement('input');
-    hidden.type = 'hidden';
-    hidden.name = 'item_name';
-    hidden.id = 'paypal-item-name';
-    workoutPayBtn.form.appendChild(hidden);
-  }
-
-  /* ---------------- Toggle logic ---------------- */
-  window.togglePayPalButton = function(checkboxId, buttonId) {
-    const cb  = document.getElementById(checkboxId);
-    const btn = document.getElementById(buttonId);
-    if (!cb || !btn) return;
-
-    if (buttonId === 'paypal-standard') {
-      const selectedPlan = document.querySelector('input[name="workout-plan"]:checked');
-      btn.disabled = !(cb.checked && selectedPlan);
-      const itemField = document.getElementById('paypal-item-name');
-      if (itemField && selectedPlan) itemField.value = selectedPlan.value;
-    } else {
-      btn.disabled = !cb.checked;
-    }
-  };
-
-  /* ---------------- Workout: nasłuch na radio ---------------- */
+  // --- Workout button logic ---
   function updateWorkoutButton() {
-    window.togglePayPalButton('check-standard', 'paypal-standard');
+    const checkbox = document.getElementById('check-standard');
+    const selectedPlan = document.querySelector('input[name="workout-plan"]:checked');
+    const button = document.getElementById('paypal-standard');
+    const itemField = document.getElementById('paypal-item-name');
+
+    if (!button || !checkbox) return;
+
+    // przycisk aktywny tylko gdy checkbox i radio są zaznaczone
+    button.disabled = !(checkbox.checked && selectedPlan);
+
+    if (itemField && selectedPlan) {
+      itemField.value = selectedPlan.value;
+    }
   }
+
+  // nasłuch na checkbox i wszystkie radio
+  const checkbox = document.getElementById('check-standard');
+  if (checkbox) checkbox.addEventListener('change', updateWorkoutButton);
+
   document.querySelectorAll('input[name="workout-plan"]').forEach(radio => {
     radio.addEventListener('change', updateWorkoutButton);
   });
 
-  // Inicjalizacja stanu po załadowaniu
+  // stan początkowy przy załadowaniu
   updateWorkoutButton();
 
-  /* ---------------- Pozostałe plany: tylko checkbox ---------------- */
+  // --- Pozostałe plany: tylko checkbox ---
   document.querySelectorAll('form[action*="paypal"]').forEach(form => {
-    if (workoutPayBtn && form === workoutPayBtn.form) return;
-
-    const checkbox = form.querySelector('input[type="checkbox"]');
-    const button   = form.querySelector('input[type="image"]');
-    if (checkbox && button) {
-      button.disabled = !checkbox.checked;
-      checkbox.addEventListener('change', () => {
-        button.disabled = !checkbox.checked;
-      });
+    if (form.querySelector('#paypal-standard')) return; // pomiń Workout
+    const cb = form.querySelector('input[type="checkbox"]');
+    const btn = form.querySelector('input[type="image"]');
+    if (cb && btn) {
+      btn.disabled = !cb.checked;
+      cb.addEventListener('change', () => btn.disabled = !cb.checked);
     }
   });
 });
 </script>
-  
+
   <style>
 /* Blokuje przeciąganie i zaznaczanie obrazów */
 img {
@@ -789,6 +758,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
+
 
 
 
