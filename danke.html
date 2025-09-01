@@ -8,35 +8,8 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-black text-white flex flex-col items-center justify-center min-h-screen">
-  <!-- Logo -->
-  <header class="absolute top-6 left-1/2 transform -translate-x-1/2">
-    <img src="https://echtwork.de/images/echtwork_logo_transparent.png" 
-     alt="Echtwork Logo – Fitness Trainingspläne" 
-     class="w-32 sm:w-40 md:w-56 mx-auto">
-  </header>
 
-  <!-- Content -->
-  <div class="text-center max-w-lg px-6 mt-20">
-    <h1 class="text-4xl font-bold text-yellow-500 mb-6">Vielen Dank für deinen Kauf!</h1>
-    <p class="text-gray-300 mb-4">
-      Dein Trainingsplan wird dir innerhalb kurzer Zeit per E-Mail als PDF zugesendet.
-    </p>
-    <p class="text-gray-400 mb-8">
-      Du wirst nun automatisch zur Startseite weitergeleitet.
-    </p>
-    <a href="https://echtwork.de" 
-       class="inline-block bg-yellow-500 text-black font-semibold py-2 px-6 rounded-xl shadow-lg hover:bg-yellow-400 transition">
-       Zur Startseite
-    </a>
-  </div>
-
-  <script>
-    setTimeout(() => {
-      window.location.href = "https://echtwork.de";
-    }, 7000);
-  </script>
-
-<!-- Kompaktowy Cookie Banner z przyciskami w osobnym wierszu -->
+  <!-- Kompaktowy Cookie Banner z przyciskami w osobnym wierszu -->
 <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-gray-900 text-gray-200 px-4 py-2 flex flex-col md:flex-row items-start md:items-center justify-between gap-2 shadow-lg z-50" style="display:none;">
   
   <!-- Tekst i checkboxy -->
@@ -104,8 +77,37 @@
     saveConsent({functional:true, statistics:statistics, marketing:marketing, custom:custom});
   });
 </script> 
+  
+  <!-- Logo -->
+  <header class="absolute top-6 left-1/2 transform -translate-x-1/2">
+    <img src="https://echtwork.de/images/echtwork_logo_transparent.png" 
+     alt="Echtwork Logo – Fitness Trainingspläne" 
+     class="w-32 sm:w-40 md:w-56 mx-auto">
+  </header>
+
+  <!-- Content -->
+  <div class="text-center max-w-lg px-6 mt-20">
+    <h1 class="text-4xl font-bold text-yellow-500 mb-6">Vielen Dank für deinen Kauf!</h1>
+    <p class="text-gray-300 mb-4">
+      Dein Trainingsplan wird dir innerhalb kurzer Zeit per E-Mail als PDF zugesendet.
+    </p>
+    <p class="text-gray-400 mb-8">
+      Du wirst nun automatisch zur Startseite weitergeleitet.
+    </p>
+    <a href="https://echtwork.de" 
+       class="inline-block bg-yellow-500 text-black font-semibold py-2 px-6 rounded-xl shadow-lg hover:bg-yellow-400 transition">
+       Zur Startseite
+    </a>
+  </div>
+
+  <script>
+    setTimeout(() => {
+      window.location.href = "https://echtwork.de";
+    }, 7000);
+  </script>
 </body>
 </html>
+
 
 
 
