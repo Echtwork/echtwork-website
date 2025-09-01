@@ -101,14 +101,17 @@ document.addEventListener('DOMContentLoaded', function() {
     workoutPayBtn.form.appendChild(hidden);
   }
 
-  /* ---------------- Toggle logic ---------------- */
+  /* ---------------- Nadpisz globalną togglePayPalButton ----------------
+     Zachowuje kompatybilność z atrybutami onchange="togglePayPalButton(...)".
+     - Dla Workout (paypal-standard): wymaga radio + checkbox i ustawia item_name.
+     - Dla innych planów: wymaga tylko checkboxa. */
   window.togglePayPalButton = function(checkboxId, buttonId) {
     const cb  = document.getElementById(checkboxId);
     const btn = document.getElementById(buttonId);
     if (!cb || !btn) return;
 
     if (buttonId === 'paypal-standard') {
-      const selectedPlan = document.querySelector('input[name="workout-plan"]:checked');
+      const selectedPlan = document.querySelector('input[name="std-plan"]:checked');
       btn.disabled = !(cb.checked && selectedPlan);
       const itemField = document.getElementById('paypal-item-name');
       if (itemField && selectedPlan) itemField.value = selectedPlan.value;
@@ -117,11 +120,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   };
 
-  /* ---------------- Workout: nasłuch na radio ---------------- */
+  /* ---------------- Workout: nasłuch na zmianę wariantu ---------------- */
   function updateWorkoutButton() {
     window.togglePayPalButton('check-standard', 'paypal-standard');
   }
-  document.querySelectorAll('input[name="workout-plan"]').forEach(radio => {
+  document.querySelectorAll('input[name="std-plan"]').forEach(radio => {
     radio.addEventListener('change', updateWorkoutButton);
   });
 
@@ -130,12 +133,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
   /* ---------------- Pozostałe plany: tylko checkbox ---------------- */
   document.querySelectorAll('form[action*="paypal"]').forEach(form => {
+    // Pomiń Workout, bo ma własną logikę
     if (workoutPayBtn && form === workoutPayBtn.form) return;
 
     const checkbox = form.querySelector('input[type="checkbox"]');
     const button   = form.querySelector('input[type="image"]');
     if (checkbox && button) {
+      // Ustaw stan początkowy
       button.disabled = !checkbox.checked;
+      // Aktualizuj przy zmianie
       checkbox.addEventListener('change', () => {
         button.disabled = !checkbox.checked;
       });
@@ -789,6 +795,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
+
 
 
 
