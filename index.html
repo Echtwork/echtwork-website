@@ -69,9 +69,51 @@
   </script>
 
   <script src="https://cdn.tailwindcss.com"></script>
+<!-- Workout -->
+<div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col card-hover transition-transform duration-200">
+  <h3 class="text-xl font-bold mb-2 text-yellow-500">Workout Pläne</h3>
+  <p class="text-gray-300 mb-3">
+    <span class="block">Für alle, die klare Strukturen und schnelle Resultate wollen – ohne Ratespiele oder ständiges Überlegen.</span>
+  </p>
+
+  <label class="flex items-center mb-2">
+    <input type="radio" name="workout-plan" value="Krafttraining → Kraft & Muskulöse Figur" class="mr-2">
+    Krafttraining → Kraft & Muskulöse Figur
+  </label>
+
+  <label class="flex items-center mb-2">
+    <input type="radio" name="workout-plan" value="Krafttraining → Push/Pull/Legs" class="mr-2">
+    Krafttraining → Push/Pull/Legs
+  </label>
+
+  <label class="flex items-center mb-2">
+    <input type="radio" name="workout-plan" value="Calisthenics → Body & Power – Eigengewicht" class="mr-2">
+    Calisthenics → Body & Power – Eigengewicht
+  </label>
+
+  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="mt-auto">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="hosted_button_id" value="96DX79QQS3QXS">
+    <input type="hidden" name="currency_code" value="EUR">
+    <input type="hidden" name="lc" value="DE">
+    <input type="hidden" name="item_name" id="paypal-item-name">
+
+    <div class="text-3xl font-bold text-yellow-500 mb-2 mt-4">49€</div>
+
+    <div class="flex items-start mb-4">
+      <input id="check-standard" type="checkbox" class="mt-1 mr-2">
+      <label for="check-standard" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
+    </div>
+
+    <input id="paypal-standard" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif"
+          alt="Jetzt kaufen" aria-label="Jetzt kaufen – Standard Plan" disabled>
+  </form>
+</div>
+
+<!-- Basic, Fit&Feminine i Premium pozostają bez zmian, tylko skrypt poniżej jest zaktualizowany -->
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-
   /* ---------------- Hamburger menu toggle ---------------- */
   const btn = document.getElementById('menu-toggle');
   const menu = document.getElementById('menu');
@@ -82,61 +124,65 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  /* ---------------- Inject trust badges ---------------- */
+  /* ---------------- Trust badges injection ---------------- */
   const tpl = document.getElementById('trust-badge-template');
   if (tpl) {
     document.querySelectorAll('form[action*="paypal"]').forEach(form => {
-      const badgeTarget = form.querySelector('input[type="image"]'); // przycisk PayPal
-      if (!badgeTarget) return;
-      const container = document.createElement('div');
-      container.classList.add('trust-badge-container', 'mt-2', 'flex', 'justify-center');
       const clone = tpl.content.cloneNode(true);
-      container.appendChild(clone);
-      form.insertBefore(container, badgeTarget); // wstrzyknięcie nad button
+      form.appendChild(clone);
     });
   }
 
-  /* ---------------- Workout button logic ---------------- */
-  const workoutCheckbox = document.getElementById('check-standard');
-  const workoutButton = document.getElementById('paypal-standard');
-
-  // hidden input item_name dla Workout
-  let itemField = document.getElementById('paypal-item-name');
-  if (!itemField && workoutButton && workoutButton.form) {
-    itemField = document.createElement('input');
-    itemField.type = 'hidden';
-    itemField.name = 'item_name';
-    itemField.id = 'paypal-item-name';
-    workoutButton.form.appendChild(itemField);
+  /* ---------------- Upewnij się, że mamy item_name w Workout ---------------- */
+  const workoutPayBtn = document.getElementById('paypal-standard');
+  if (workoutPayBtn && workoutPayBtn.form && !document.getElementById('paypal-item-name')) {
+    const hidden = document.createElement('input');
+    hidden.type = 'hidden';
+    hidden.name = 'item_name';
+    hidden.id = 'paypal-item-name';
+    workoutPayBtn.form.appendChild(hidden);
   }
 
+  /* ---------------- Toggle logic ---------------- */
+  window.togglePayPalButton = function(checkboxId, buttonId) {
+    const cb  = document.getElementById(checkboxId);
+    const btn = document.getElementById(buttonId);
+    if (!cb || !btn) return;
+
+    if (buttonId === 'paypal-standard') {
+      const selectedPlan = document.querySelector('input[name="workout-plan"]:checked');
+      btn.disabled = !(cb.checked && selectedPlan);
+      const itemField = document.getElementById('paypal-item-name');
+      if (itemField && selectedPlan) itemField.value = selectedPlan.value;
+    } else {
+      btn.disabled = !cb.checked;
+    }
+  };
+
+  /* ---------------- Workout: nasłuch na radio ---------------- */
   function updateWorkoutButton() {
-    const selectedPlan = document.querySelector('input[name="workout-plan"]:checked');
-    if (!workoutButton || !workoutCheckbox) return;
-
-    workoutButton.disabled = !(workoutCheckbox.checked && selectedPlan);
-    if (itemField && selectedPlan) itemField.value = selectedPlan.value;
+    window.togglePayPalButton('check-standard', 'paypal-standard');
   }
-
-  // nasłuch na checkbox i radio
-  if (workoutCheckbox) workoutCheckbox.addEventListener('change', updateWorkoutButton);
   document.querySelectorAll('input[name="workout-plan"]').forEach(radio => {
     radio.addEventListener('change', updateWorkoutButton);
   });
 
-  updateWorkoutButton(); // inicjalizacja stanu
+  // Inicjalizacja stanu po załadowaniu
+  updateWorkoutButton();
 
   /* ---------------- Pozostałe plany: tylko checkbox ---------------- */
   document.querySelectorAll('form[action*="paypal"]').forEach(form => {
-    if (form.querySelector('#paypal-standard')) return; // pomijamy Workout
-    const cb = form.querySelector('input[type="checkbox"]');
-    const btn = form.querySelector('input[type="image"]');
-    if (cb && btn) {
-      btn.disabled = !cb.checked;
-      cb.addEventListener('change', () => btn.disabled = !cb.checked);
+    if (workoutPayBtn && form === workoutPayBtn.form) return;
+
+    const checkbox = form.querySelector('input[type="checkbox"]');
+    const button   = form.querySelector('input[type="image"]');
+    if (checkbox && button) {
+      button.disabled = !checkbox.checked;
+      checkbox.addEventListener('change', () => {
+        button.disabled = !checkbox.checked;
+      });
     }
   });
-
 });
 </script>
 
@@ -785,6 +831,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
+
 
 
 
