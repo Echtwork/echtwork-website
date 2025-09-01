@@ -649,30 +649,28 @@ img {
 
   <script>
 document.addEventListener('DOMContentLoaded', () => {
-  // Znajdź wszystkie obrazy na stronie
   const images = document.querySelectorAll('img');
 
   images.forEach(img => {
-    // Stwórz wrapper
-    const wrapper = document.createElement('div');
-    wrapper.className = 'image-wrapper';
+    if (!img.parentNode.classList.contains('image-wrapper')) {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'image-wrapper';
 
-    // Wstaw wrapper przed obrazem
-    img.parentNode.insertBefore(wrapper, img);
+      img.parentNode.insertBefore(wrapper, img);
+      wrapper.appendChild(img);
 
-    // Przenieś obraz do wrappera
-    wrapper.appendChild(img);
+      const overlay = document.createElement('div');
+      overlay.className = 'image-overlay';
+      wrapper.appendChild(overlay);
 
-    // Dodaj overlay
-    const overlay = document.createElement('div');
-    overlay.className = 'image-overlay';
-    wrapper.appendChild(overlay);
-
-    // Blokuj przeciąganie i prawy klik
-    img.addEventListener('dragstart', e => e.preventDefault());
-    wrapper.addEventListener('contextmenu', e => e.preventDefault());
+      // Blokowanie przeciągania i prawego kliknięcia
+      img.addEventListener('dragstart', e => e.preventDefault());
+      wrapper.addEventListener('contextmenu', e => e.preventDefault());
+      img.addEventListener('contextmenu', e => e.preventDefault());
+    }
   });
 });
+
     
 #cookie-banner {
   display: none; /* default hidden */
@@ -789,6 +787,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
+
 
 
 
