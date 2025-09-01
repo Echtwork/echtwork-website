@@ -72,37 +72,63 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // --- Workout button logic ---
-  function updateWorkoutButton() {
-    const checkbox = document.getElementById('check-standard');
-    const selectedPlan = document.querySelector('input[name="workout-plan"]:checked');
-    const button = document.getElementById('paypal-standard');
-    const itemField = document.getElementById('paypal-item-name');
 
-    if (!button || !checkbox) return;
-
-    // przycisk aktywny tylko gdy checkbox i radio są zaznaczone
-    button.disabled = !(checkbox.checked && selectedPlan);
-
-    if (itemField && selectedPlan) {
-      itemField.value = selectedPlan.value;
-    }
+  /* ---------------- Hamburger menu toggle ---------------- */
+  const btn = document.getElementById('menu-toggle');
+  const menu = document.getElementById('menu');
+  if (btn && menu) {
+    btn.addEventListener('click', function () {
+      const isHidden = menu.classList.toggle('hidden');
+      btn.setAttribute('aria-expanded', String(!isHidden));
+    });
   }
 
-  // nasłuch na checkbox i wszystkie radio
-  const checkbox = document.getElementById('check-standard');
-  if (checkbox) checkbox.addEventListener('change', updateWorkoutButton);
+  /* ---------------- Inject trust badges ---------------- */
+  const tpl = document.getElementById('trust-badge-template');
+  if (tpl) {
+    document.querySelectorAll('form[action*="paypal"]').forEach(form => {
+      // dodajemy do osobnego kontenera, nie wprowadzamy dodatkowego marginesu
+      const container = document.createElement('div');
+      container.classList.add('trust-badge-container');
+      const clone = tpl.content.cloneNode(true);
+      container.appendChild(clone);
+      form.appendChild(container);
+    });
+  }
 
+  /* ---------------- Workout button logic ---------------- */
+  const workoutCheckbox = document.getElementById('check-standard');
+  const workoutButton = document.getElementById('paypal-standard');
+
+  // hidden input item_name dla Workout
+  let itemField = document.getElementById('paypal-item-name');
+  if (!itemField && workoutButton && workoutButton.form) {
+    itemField = document.createElement('input');
+    itemField.type = 'hidden';
+    itemField.name = 'item_name';
+    itemField.id = 'paypal-item-name';
+    workoutButton.form.appendChild(itemField);
+  }
+
+  function updateWorkoutButton() {
+    const selectedPlan = document.querySelector('input[name="workout-plan"]:checked');
+    if (!workoutButton || !workoutCheckbox) return;
+
+    workoutButton.disabled = !(workoutCheckbox.checked && selectedPlan);
+    if (itemField && selectedPlan) itemField.value = selectedPlan.value;
+  }
+
+  // nasłuch na checkbox i radio
+  if (workoutCheckbox) workoutCheckbox.addEventListener('change', updateWorkoutButton);
   document.querySelectorAll('input[name="workout-plan"]').forEach(radio => {
     radio.addEventListener('change', updateWorkoutButton);
   });
 
-  // stan początkowy przy załadowaniu
-  updateWorkoutButton();
+  updateWorkoutButton(); // inicjalizacja stanu
 
-  // --- Pozostałe plany: tylko checkbox ---
+  /* ---------------- Pozostałe plany: tylko checkbox ---------------- */
   document.querySelectorAll('form[action*="paypal"]').forEach(form => {
-    if (form.querySelector('#paypal-standard')) return; // pomiń Workout
+    if (form.querySelector('#paypal-standard')) return; // pomijamy Workout
     const cb = form.querySelector('input[type="checkbox"]');
     const btn = form.querySelector('input[type="image"]');
     if (cb && btn) {
@@ -110,6 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
       cb.addEventListener('change', () => btn.disabled = !cb.checked);
     }
   });
+
 });
 </script>
 
@@ -758,6 +785,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
+
 
 
 
