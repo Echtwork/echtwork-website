@@ -84,35 +84,64 @@
 
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <script>
-    // Uniwersalna funkcja do toggle przycisków PayPal
-    function togglePayPalButton(checkboxId, buttonId) {
-      const cb = document.getElementById(checkboxId);
-      const btn = document.getElementById(buttonId);
-      if (cb && btn) btn.disabled = !cb.checked;
+ <script>
+  // Uniwersalna funkcja do toggle przycisków PayPal (dla innych planów)
+  function togglePayPalButton(checkboxId, buttonId) {
+    const cb = document.getElementById(checkboxId);
+    const btn = document.getElementById(buttonId);
+    if (cb && btn) btn.disabled = !cb.checked;
+  }
+
+  // Funkcja specyficzna dla Workout Pläne (radio + checkbox)
+  function checkWorkoutUnlock() {
+    const radioChecked = document.querySelector('input[name="workout-plan"]:checked');
+    const termsChecked = document.getElementById('check-workout').checked;
+    const btn = document.getElementById('paypal-workout');
+    if (btn) btn.disabled = !(radioChecked && termsChecked);
+  }
+
+  // Ustawienie nazwy wybranego planu w PayPal
+  function updatePayPalPlan() {
+    const selected = document.querySelector('input[name="workout-plan"]:checked');
+    const planInput = document.getElementById('paypal-plan-name');
+    if (selected && planInput) {
+      planInput.value = selected.nextSibling.textContent.trim();
+    }
+  }
+
+  // Hamburger toggle + trust badge injection po załadowaniu DOM
+  document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.getElementById('menu-toggle');
+    const menu = document.getElementById('menu');
+    if (btn && menu) {
+      btn.addEventListener('click', function () {
+        const isHidden = menu.classList.toggle('hidden');
+        btn.setAttribute('aria-expanded', String(!isHidden));
+      });
     }
 
-    // Hamburger toggle + trust badge injection po załadowaniu DOM
-    document.addEventListener('DOMContentLoaded', function() {
-      const btn = document.getElementById('menu-toggle');
-      const menu = document.getElementById('menu');
-      if (btn && menu) {
-        btn.addEventListener('click', function () {
-          const isHidden = menu.classList.toggle('hidden');
-          btn.setAttribute('aria-expanded', String(!isHidden));
-        });
-      }
+    // Inject trust badges beneath each PayPal form button
+    const tpl = document.getElementById('trust-badge-template');
+    if (tpl) {
+      document.querySelectorAll('form[action*="paypal"]').forEach(form => {
+        const clone = tpl.content.cloneNode(true);
+        form.appendChild(clone);
+      });
+    }
 
-      // Inject trust badges beneath each PayPal form button
-      const tpl = document.getElementById('trust-badge-template');
-      if (tpl) {
-        document.querySelectorAll('form[action*="paypal"]').forEach(form => {
-          const clone = tpl.content.cloneNode(true);
-          form.appendChild(clone);
-        });
-      }
+    // Workout Pläne – nasłuch radio i checkbox
+    const workoutRadios = document.querySelectorAll('input[name="workout-plan"]');
+    workoutRadios.forEach(radio => {
+      radio.addEventListener('change', function() {
+        checkWorkoutUnlock();  // odblokowanie przycisku
+        updatePayPalPlan();    // ustawienie nazwy planu
+      });
     });
-  </script>
+
+    const workoutCheckbox = document.getElementById('check-workout');
+    if (workoutCheckbox) workoutCheckbox.addEventListener('change', checkWorkoutUnlock);
+  });
+</script>
 
   <style>
     /* złoty akcent dla checkboxów / radio */
@@ -338,17 +367,17 @@
         </p>
 
         <label class="flex items-center mb-2">
-          <input type="radio" name="std-plan" value="49" class="mr-2">
+          <input type="radio" name="workout-plan" value="49" class="mr-2">
           Krafttraining → Kraft & Muskulöse Figur
         </label>
 
         <label class="flex items-center mb-2">
-          <input type="radio" name="std-plan" value="49" class="mr-2">
+          <input type="radio" name="workout-plan" value="49" class="mr-2">
           Krafttraining → Push/Pull/Legs
         </label>
 
         <label class="flex items-center mb-2">
-          <input type="radio" name="std-plan" value="49" class="mr-2">
+          <input type="radio" name="workout-plan" value="49" class="mr-2">
           Calisthenics → Body & Power – Eigengewicht
         </label>
 
@@ -357,12 +386,16 @@
           <input type="hidden" name="hosted_button_id" value="96DX79QQS3QXS">
           <input type="hidden" name="currency_code" value="EUR">
 
+          <input type="hidden" name="on0" value="Gewählter Plan">
+          <input type="hidden" name="os0" id="paypal-plan-name" value="">
+
           <div class="text-3xl font-bold text-yellow-500 mb-2 mt-4">49€</div>
 
           <div class="flex items-start mb-4">
-            <input id="check-workout" type="checkbox" class="mt-1 mr-2" onchange="togglePayPalButton('check-workout','paypal-workout')">
-            <label for="check-workout" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
+          <input id="check-workout" type="checkbox" class="mt-1 mr-2">
+          <label for="check-workout" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
           </div>
+
 
           <input id="paypal-workout" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif"
                 alt="Jetzt kaufen" aria-label="Jetzt kaufen – Workout Pläne" disabled>
@@ -623,6 +656,7 @@
   </script>
 </body>
 </html>
+
 
 
 
