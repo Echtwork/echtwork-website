@@ -655,27 +655,28 @@
     }
   </script>
 
- <!-- Kompaktowy Cookie Banner -->
-<div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-gray-900 text-gray-200 px-4 py-2 flex flex-col md:flex-row items-center justify-between gap-3 shadow-lg z-50" style="display:none;">
-  <div class="flex-1 text-xs md:mr-4">
-    Wir verwenden Cookies, um unsere Website zu verbessern. 
-    <a href="datenschutz.html" class="underline text-yellow-500">Mehr Infos</a>.
-  <div class="flex flex-wrap items-center gap-2 mt-1 md:mt-0">
-  <label class="flex items-center gap-1 text-xs">
-    <input type="checkbox" id="statistics-cookies"> Statistische
-  </label>
-  <label class="flex items-center gap-1 text-xs">
-    <input type="checkbox" id="marketing-cookies"> Marketing
-  </label>
-  <label class="flex items-center gap-1 text-xs">
-    <input type="checkbox" id="custom-cookies"> Individuell
-  </label>
-</div>
-    </div>
+<!-- Kompaktowy Cookie Banner z przyciskami w osobnym wierszu -->
+<div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-gray-900 text-gray-200 px-4 py-2 flex flex-col md:flex-row items-start md:items-center justify-between gap-2 shadow-lg z-50" style="display:none;">
+  
+  <!-- Tekst i checkboxy -->
+  <div class="flex flex-col md:flex-row items-start md:items-center flex-wrap gap-2 flex-1 text-xs md:mr-4">
+    <span>Wir verwenden Cookies, um unsere Website zu verbessern. <a href="datenschutz.html" class="underline text-yellow-500">Mehr Infos</a>.</span>
+
+    <label class="flex items-center gap-1">
+      <input type="checkbox" id="statistics-cookies"> Statistische
+    </label>
+    <label class="flex items-center gap-1">
+      <input type="checkbox" id="marketing-cookies"> Marketing
+    </label>
+    <label class="flex items-center gap-1">
+      <input type="checkbox" id="custom-cookies"> Individuell
+    </label>
   </div>
-  <div class="flex flex-row gap-2 mt-2 md:mt-0">
-    <button id="accept-all" class="bg-yellow-500 text-gray-900 font-semibold px-3 py-1.5 rounded hover:bg-yellow-600 transition text-xs">Alle akzeptieren</button>
-    <button id="accept-selected" class="bg-gray-700 text-gray-200 font-semibold px-3 py-1.5 rounded hover:bg-gray-600 transition text-xs">Ausgewählte</button>
+
+  <!-- Przyciski zawsze widoczne -->
+  <div class="flex gap-2 mt-2 md:mt-0">
+    <button id="accept-all" class="bg-yellow-500 text-gray-900 font-semibold px-2 py-1.5 rounded hover:bg-yellow-600 transition text-xs">Alle akzeptieren</button>
+    <button id="accept-selected" class="bg-gray-700 text-gray-200 font-semibold px-2 py-1.5 rounded hover:bg-gray-600 transition text-xs">Ausgewählte</button>
   </div>
 </div>
 
@@ -712,17 +713,19 @@
   }
 
   document.getElementById('accept-all').addEventListener('click', function() {
-    saveConsent({functional:true, statistics:true, marketing:true});
+    saveConsent({functional:true, statistics:true, marketing:true, custom:true});
   });
 
   document.getElementById('accept-selected').addEventListener('click', function() {
     const statistics = document.getElementById('statistics-cookies').checked;
     const marketing = document.getElementById('marketing-cookies').checked;
-    saveConsent({functional:true, statistics:statistics, marketing:marketing});
+    const custom = document.getElementById('custom-cookies').checked;
+    saveConsent({functional:true, statistics:statistics, marketing:marketing, custom:custom});
   });
 </script>
 </body>
 </html>
+
 
 
 
