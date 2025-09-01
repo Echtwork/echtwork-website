@@ -295,32 +295,44 @@ img {
     <!-- Plans -->
     <section id="plaene" class="py-16 px-6 max-w-6xl mx-auto grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
 
-      <!-- Basic Ernährungsplan -->
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-  <input type="hidden" name="cmd" value="_s-xclick">
-  <input type="hidden" name="hosted_button_id" value="ZAC44DWYN8V3U">
-  <input type="hidden" name="currency_code" value="EUR">
-  <input type="hidden" name="lc" value="DE">
-  <input type="hidden" name="item_name" value="Basic Ernährungsplan">
+     <!-- Basic Ernährungsplan -->
+<div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col card-hover transition-transform duration-200">
+  <h3 class="text-xl font-bold mb-2 text-yellow-500">Basic Ernährungsplan</h3>
+  <p class="text-gray-300 mb-4">
+    <span class="block">7-Tage-Basic Plan, einfache Rezepte & Einkaufsliste.</span>
+    <span class="block">Perfekt als Turbo zu deinem Training – oder auch alleine nutzbar.</span>
+    <span class="block">Keine komplizierten Diäten, klare Struktur & alltagstauglich.</span>
+  </p>
 
-  <div class="text-3xl font-bold text-yellow-500 mb-2">14,99€</div>
-  <div class="flex items-start mb-4">
-    <input id="check-basic" type="checkbox" class="mt-1 mr-2">
-    <label for="check-basic" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
-  </div>
+  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="mt-auto">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="hosted_button_id" value="ZAC44DWYN8V3U">
+    <input type="hidden" name="currency_code" value="EUR">
+    <input type="hidden" name="lc" value="DE">
+    <!-- ważne: nazwa produktu -->
+    <input type="hidden" name="item_name" value="Basic Ernährungsplan">
 
-  <input id="paypal-basic" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" disabled>
-</form>
+    <div class="text-3xl font-bold text-yellow-500 mb-2">14,99€</div>
 
-        <p class="text-sm text-gray-400 mt-2">Hinweis zur E-Mail-Adresse</p>
-        <details class="text-sm text-gray-400">
-          <summary class="cursor-pointer text-yellow-500">Mehr Infos anzeigen</summary>
-          <p class="mt-2 text-gray-300">
-            Bitte geben Sie im Feld <em>„Nachricht an den Verkäufer“</em> bei PayPal Ihre aktuelle E-Mail-Adresse an, falls Sie den Plan an eine andere Adresse erhalten möchten.<br>
-            Falls keine Nachricht eingetragen wird, senden wir den Plan automatisch an die bei PayPal hinterlegte E-Mail-Adresse.
-          </p>
-        </details>
-      </div>
+    <div class="flex items-start mb-4">
+      <input id="check-basic" type="checkbox" class="mt-1 mr-2">
+      <label for="check-basic" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
+    </div>
+
+    <input id="paypal-basic" type="image"
+           src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif"
+           alt="Jetzt kaufen" aria-label="Jetzt kaufen – Basic Ernährungsplan" disabled>
+  </form>
+
+  <p class="text-sm text-gray-400 mt-2">Hinweis zur E-Mail-Adresse</p>
+  <details class="text-sm text-gray-400">
+    <summary class="cursor-pointer text-yellow-500">Mehr Infos anzeigen</summary>
+    <p class="mt-2 text-gray-300">
+      Bitte geben Sie im Feld <em>„Nachricht an den Verkäufer“</em> bei PayPal Ihre aktuelle E-Mail-Adresse an, falls Sie den Plan an eine andere Adresse erhalten möchten.<br>
+      Falls keine Nachricht eingetragen wird, senden wir den Plan automatisch an die bei PayPal hinterlegte E-Mail-Adresse.
+    </p>
+  </details>
+</div>
 
       <!-- Fit & Feminine -->
       <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col card-hover transition-transform duration-200">
@@ -790,6 +802,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
+
 
 
 
