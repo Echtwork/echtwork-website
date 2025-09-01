@@ -65,12 +65,12 @@
   }
   </script>
 
-  <script src="https://cdn.tailwindcss.com"></script>
+ <script src="https://cdn.tailwindcss.com"></script>
 
-<script>
+  <script>
 document.addEventListener('DOMContentLoaded', function() {
 
-  // Trust badges
+  // Trust badges - wstrzyknięcie dolnego paska
   const tpl = document.getElementById('trust-badge-template');
   if(tpl) {
     document.querySelectorAll('.trust-badge-container').forEach(container => {
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Workout logic
   const workoutCheckbox = document.getElementById('check-workout');
   const workoutButton   = document.getElementById('paypal-workout');
-  let itemField = document.getElementById('paypal-item-name');
+  const itemField       = document.getElementById('paypal-item-name');
 
   function updateWorkoutButton() {
     const selectedPlan = document.querySelector('input[name="workout-plan"]:checked');
@@ -95,15 +95,13 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('input[name="workout-plan"]').forEach(radio => {
     radio.addEventListener('change', updateWorkoutButton);
   });
-
   updateWorkoutButton();
 
-  // Other plans (checkbox only)
+  // Pozostałe plany - tylko checkbox
   document.querySelectorAll('form[action*="paypal"]').forEach(form => {
-    if(form.querySelector('#paypal-workout')) return;
-    const cb = form.querySelector('input[type="checkbox"]');
+    const cb  = form.querySelector('input[type="checkbox"]');
     const btn = form.querySelector('input[type="image"]');
-    if(cb && btn) {
+    if(cb && btn && btn !== workoutButton) {
       btn.disabled = !cb.checked;
       cb.addEventListener('change', () => btn.disabled = !cb.checked);
     }
@@ -277,10 +275,10 @@ img {
     </template>
 
     <!-- Plans -->
-   <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <section id="plaene" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
   <!-- Basic Ernährungsplan -->
-  <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col transition-transform duration-300 transform hover:scale-105 hover:shadow-lg">
+  <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col transition-transform duration-300 transform hover:scale-105 hover:shadow-lg max-w-md w-full mx-auto">
     <h3 class="text-xl font-bold mb-2 text-yellow-500">Basic Ernährungsplan</h3>
     <p class="text-gray-300 mb-4">
       7-Tage-Basic Plan, einfache Rezepte & Einkaufsliste.<br>
@@ -307,8 +305,8 @@ img {
     </form>
   </div>
 
-  <!-- Fit & Feminine - Home-Workout -->
-  <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col transition-transform duration-300 transform hover:scale-105 hover:shadow-lg">
+  <!-- Fit & Feminine -->
+  <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col transition-transform duration-300 transform hover:scale-105 hover:shadow-lg max-w-md w-full mx-auto">
     <h3 class="text-xl font-bold mb-2 text-yellow-500">Fit & Feminine - Home-Workout</h3>
     <p class="text-gray-300 mb-4">
       Fit & Feminine – Traumfigur in 6 Wochen.<br>
@@ -339,7 +337,7 @@ img {
   </div>
 
   <!-- Workout Pläne -->
-  <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col transition-transform duration-300 transform hover:scale-105 hover:shadow-lg">
+  <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col transition-transform duration-300 transform hover:scale-105 hover:shadow-lg max-w-md w-full mx-auto">
     <h3 class="text-xl font-bold mb-2 text-yellow-500">Workout Pläne</h3>
     <p class="text-gray-300 mb-3">
       Für alle, die klare Strukturen und schnelle Resultate wollen – ohne Ratespiele oder ständiges Überlegen.
@@ -380,7 +378,7 @@ img {
   </div>
 
   <!-- Premium Individuell -->
-  <div class="bg-gray-900 border-2 border-yellow-500 rounded-2xl p-8 flex flex-col shadow-[0_0_25px_rgba(255,215,0,0.2)] card-hover transition-transform duration-300 transform hover:scale-105 hover:shadow-lg mx-auto w-full max-w-4xl text-center lg:col-span-3 lg:max-w-2xl">
+  <div class="bg-gray-900 border-2 border-yellow-500 rounded-2xl p-8 flex flex-col shadow-[0_0_25px_rgba(255,215,0,0.2)] transition-transform duration-300 transform hover:scale-105 hover:shadow-lg max-w-md w-full mx-auto">
     <div class="px-4 py-1 rounded-full bg-yellow-500 text-black text-sm font-bold mb-4 inline-block">Premium</div>
     <h3 class="font-extrabold text-3xl mb-6">Premium Individuell</h3>
 
@@ -734,6 +732,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
+
 
 
 
