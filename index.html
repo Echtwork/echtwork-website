@@ -655,25 +655,27 @@
     }
   </script>
 
-  <!-- Cookie Banner HTML -->
-<div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-gray-900 text-gray-200 p-3 flex flex-col md:flex-row items-center justify-between gap-3 shadow-lg z-50" style="display:none;">
-  <div class="flex-1 text-xs">
-    Wir verwenden Cookies, um unsere Website zu verbessern und Inhalte zu personalisieren. Wählen Sie, welche Cookies Sie akzeptieren möchten:
-    <ul class="mt-1">
-      <li><label><input type="checkbox" id="functional-cookies" checked disabled> Funktionale Cookies (notwendig)</label></li>
-      <li><label><input type="checkbox" id="statistics-cookies"> Statistische Cookies</label></li>
-      <li><label><input type="checkbox" id="marketing-cookies"> Marketing Cookies</label></li>
-    </ul>
-    Mehr Infos in unserer <a href="/datenschutz" class="underline text-yellow-500">Datenschutzerklärung</a>.
+ <!-- Kompaktowy Cookie Banner -->
+<div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-gray-900 text-gray-200 px-4 py-2 flex flex-col md:flex-row items-center justify-between gap-3 shadow-lg z-50" style="display:none;">
+  <div class="flex-1 text-xs md:mr-4">
+    Wir verwenden Cookies, um unsere Website zu verbessern. 
+    <a href="datenschutz.html" class="underline text-yellow-500">Mehr Infos</a>.
+    <div class="flex items-center gap-2 mt-1 md:mt-0">
+      <label class="flex items-center gap-1 text-xs">
+        <input type="checkbox" id="statistics-cookies"> Statistische
+      </label>
+      <label class="flex items-center gap-1 text-xs">
+        <input type="checkbox" id="marketing-cookies"> Marketing
+      </label>
+    </div>
   </div>
-  <div class="flex flex-col md:flex-row gap-2">
-    <button id="accept-all" class="bg-yellow-500 text-gray-900 font-semibold px-3 py-1.5 rounded hover:bg-yellow-600 transition">Alle akzeptieren</button>
-    <button id="accept-selected" class="bg-gray-700 text-gray-200 font-semibold px-3 py-1.5 rounded hover:bg-gray-600 transition">Ausgewählte akzeptieren</button>
+  <div class="flex flex-row gap-2 mt-2 md:mt-0">
+    <button id="accept-all" class="bg-yellow-500 text-gray-900 font-semibold px-3 py-1.5 rounded hover:bg-yellow-600 transition text-xs">Alle akzeptieren</button>
+    <button id="accept-selected" class="bg-gray-700 text-gray-200 font-semibold px-3 py-1.5 rounded hover:bg-gray-600 transition text-xs">Ausgewählte</button>
   </div>
 </div>
 
 <script>
-  // Funkcja do inicjalizacji Google Analytics 4
   function initGA() {
     if (!window.gtagInitialized) {
       const gtagScript = document.createElement('script');
@@ -691,11 +693,9 @@
     }
   }
 
-  // Pokazujemy banner jeśli zgoda nie istnieje
   if (!localStorage.getItem('cookiesConsent')) {
     document.getElementById('cookie-banner').style.display = 'flex';
   } else {
-    // Jeśli zgoda już była, uruchamiamy GA jeśli były statystyczne cookies
     const savedConsent = JSON.parse(localStorage.getItem('cookiesConsent'));
     if(savedConsent.statistics) initGA();
   }
@@ -703,15 +703,8 @@
   function saveConsent(consent) {
     localStorage.setItem('cookiesConsent', JSON.stringify(consent));
     document.getElementById('cookie-banner').style.display = 'none';
-
-    if(consent.statistics) {
-      initGA();
-      console.log("Statistische Cookies aktiviert");
-    }
-    if(consent.marketing) {
-      console.log("Marketing Cookies aktiviert");
-      // tutaj możesz uruchomić np. Pixel Facebooka
-    }
+    if(consent.statistics) initGA();
+    if(consent.marketing) console.log("Marketing Cookies aktiviert");
   }
 
   document.getElementById('accept-all').addEventListener('click', function() {
@@ -726,6 +719,7 @@
 </script>
 </body>
 </html>
+
 
 
 
