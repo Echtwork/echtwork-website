@@ -69,64 +69,72 @@
 
  <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // --- Hamburger menu toggle ---
+
+  /* --- Hamburger menu toggle --- */
   const btn = document.getElementById('menu-toggle');
   const menu = document.getElementById('menu');
   if (btn && menu) {
-    btn.addEventListener('click', function () {
+    btn.addEventListener('click', () => {
       const isHidden = menu.classList.toggle('hidden');
       btn.setAttribute('aria-expanded', String(!isHidden));
     });
   }
 
-  // --- Inject trust badges beneath each PayPal form button ---
+  /* --- Inject trust badges --- */
   const tpl = document.getElementById('trust-badge-template');
   if (tpl) {
     document.querySelectorAll('form[action*="paypal"]').forEach(form => {
-      const clone = tpl.content.cloneNode(true);
-      form.appendChild(clone);
+      const btn = form.querySelector('input[type="image"]');
+      if (!btn) return;
+      const container = document.createElement('div');
+      container.classList.add('mt-2', 'flex', 'justify-center');
+      container.appendChild(tpl.content.cloneNode(true));
+      form.insertBefore(container, btn);
     });
   }
 
-  // --- Workout Plan: radio + checkbox ---
-  function updateWorkoutButton() {
-    const checkbox = document.getElementById('check-standard');
-    const selectedPlan = document.querySelector('input[name="std-plan"]:checked');
-    const button = document.getElementById('paypal-standard');
-    const itemNameField = document.getElementById('paypal-item-name');
+  /* --- Workout Plan: radio + checkbox logic --- */
+  const workoutCheckbox = document.getElementById('check-workout');
+  const workoutButton = document.getElementById('paypal-workout');
 
-    if (button && checkbox) {
-      button.disabled = !(checkbox.checked && selectedPlan);
-    }
-
-    if (itemNameField && selectedPlan) {
-      itemNameField.value = selectedPlan.value;
-    }
+  // hidden input for item_name
+  let itemField = document.getElementById('paypal-item-name');
+  if (!itemField && workoutButton && workoutButton.form) {
+    itemField = document.createElement('input');
+    itemField.type = 'hidden';
+    itemField.name = 'item_name';
+    itemField.id = 'paypal-item-name';
+    workoutButton.form.appendChild(itemField);
   }
 
-  const checkboxStd = document.getElementById('check-standard');
-  if (checkboxStd) checkboxStd.addEventListener('change', updateWorkoutButton);
-  document.querySelectorAll('input[name="std-plan"]').forEach(radio => {
+  function updateWorkoutButton() {
+    const selectedPlan = document.querySelector('input[name="workout-plan"]:checked');
+    if (!workoutButton || !workoutCheckbox) return;
+
+    workoutButton.disabled = !(workoutCheckbox.checked && selectedPlan);
+    if (itemField && selectedPlan) itemField.value = selectedPlan.value;
+  }
+
+  if (workoutCheckbox) workoutCheckbox.addEventListener('change', updateWorkoutButton);
+  document.querySelectorAll('input[name="workout-plan"]').forEach(radio => {
     radio.addEventListener('change', updateWorkoutButton);
   });
 
-  // --- Pozostałe plany: tylko checkbox ---
+  updateWorkoutButton();
+
+  /* --- Pozostałe plany: tylko checkbox --- */
   document.querySelectorAll('form[action*="paypal"]').forEach(form => {
-    const checkbox = form.querySelector('input[type="checkbox"]');
-    const button = form.querySelector('input[type="image"]');
-
-    // Workout Plan obsługujemy osobno powyżej
-    if (form.querySelector('input[name="workout-plan"]')) return;
-
-    if (checkbox && button) {
-      checkbox.addEventListener('change', () => {
-        button.disabled = !checkbox.checked;
-      });
+    const btn = form.querySelector('input[type="image"]');
+    if (btn === workoutButton) return; // Workout obsługiwany wyżej
+    const cb = form.querySelector('input[type="checkbox"]');
+    if (cb && btn) {
+      btn.disabled = !cb.checked;
+      cb.addEventListener('change', () => btn.disabled = !cb.checked);
     }
   });
+
 });
 </script>
-
 
   <style>
 /* Blokuje przeciąganie i zaznaczanie obrazów */
@@ -283,15 +291,18 @@ img {
       </div>
     </section>
 
-    <!-- Trust badge template -->
-    <template id="trust-badge-template">
-      <div class="mt-3 flex items-center gap-2 text-xs text-gray-400" aria-label="Sicher bezahlen mit PayPal">
-        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c-1.657 0-3 1.343-3 3v3h6v-3c0-1.657-1.343-3-3-3zM7 11V8a5 5 0 1110 0v3"/></svg>
-        <span>Sicher bezahlen mit PayPal </span>
-        <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg" alt="PayPal" class="h-4" loading="lazy">
-      </div>
-    </template>
-
+   <!-- Trust badge template -->
+<template id="trust-badge-template">
+  <div class="mt-3 flex items-center gap-2 text-xs text-gray-400" aria-label="Sicher bezahlen mit PayPal">
+    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M12 11c-1.657 0-3 1.343-3 3v3h6v-3c0-1.657-1.343-3-3-3zM7 11V8a5 5 0 1110 0v3"/>
+    </svg>
+    <span>Sicher bezahlen mit PayPal </span>
+    <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg" alt="PayPal" class="h-4" loading="lazy">
+  </div>
+</template>
+    
     <!-- Plans -->
   <section id="plaene" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
@@ -357,7 +368,7 @@ img {
   </form>
 </div>
 
-     <!-- Workout -->
+   <!-- Workout -->
 <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col card-hover transition-transform duration-200">
   <h3 class="text-xl font-bold mb-2 text-yellow-500">Workout Pläne</h3>
   <p class="text-gray-300 mb-3">
@@ -365,17 +376,17 @@ img {
   </p>
 
   <label class="flex items-center mb-2">
-    <input type="radio" name="std-plan" value="Krafttraining → Kraft & Muskulöse Figur" class="mr-2">
+    <input type="radio" name="workout-plan" value="Krafttraining → Kraft & Muskulöse Figur" class="mr-2">
     Krafttraining → Kraft & Muskulöse Figur
   </label>
 
   <label class="flex items-center mb-2">
-    <input type="radio" name="std-plan" value="Krafttraining → Push/Pull/Legs" class="mr-2">
+    <input type="radio" name="workout-plan" value="Krafttraining → Push/Pull/Legs" class="mr-2">
     Krafttraining → Push/Pull/Legs
   </label>
 
   <label class="flex items-center mb-2">
-    <input type="radio" name="std-plan" value="Calisthenics → Body & Power – Eigengewicht" class="mr-2">
+    <input type="radio" name="workout-plan" value="Calisthenics → Body & Power – Eigengewicht" class="mr-2">
     Calisthenics → Body & Power – Eigengewicht
   </label>
 
@@ -389,12 +400,12 @@ img {
     <div class="text-3xl font-bold text-yellow-500 mb-2 mt-4">49€</div>
 
     <div class="flex items-start mb-4">
-      <input id="check-standard" type="checkbox" class="mt-1 mr-2">
-      <label for="check-standard" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
+      <input id="check-workout" type="checkbox" class="mt-1 mr-2">
+      <label for="check-workout" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
     </div>
 
-    <input id="paypal-standard" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif"
-          alt="Jetzt kaufen" aria-label="Jetzt kaufen – Standard Plan" disabled>
+    <input id="paypal-workout" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif"
+          alt="Jetzt kaufen" aria-label="Jetzt kaufen – Workout Plan" disabled>
   </form>
 </div>
 
@@ -773,6 +784,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
+
 
 
 
