@@ -69,7 +69,6 @@
   </script>
 
   <script src="https://cdn.tailwindcss.com"></script>
-
 <script>
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -87,12 +86,13 @@ document.addEventListener('DOMContentLoaded', function() {
   const tpl = document.getElementById('trust-badge-template');
   if (tpl) {
     document.querySelectorAll('form[action*="paypal"]').forEach(form => {
-      // dodajemy do osobnego kontenera, nie wprowadzamy dodatkowego marginesu
+      const badgeTarget = form.querySelector('input[type="image"]'); // przycisk PayPal
+      if (!badgeTarget) return;
       const container = document.createElement('div');
-      container.classList.add('trust-badge-container');
+      container.classList.add('trust-badge-container', 'mt-2', 'flex', 'justify-center');
       const clone = tpl.content.cloneNode(true);
       container.appendChild(clone);
-      form.appendChild(container);
+      form.insertBefore(container, badgeTarget); // wstrzyknięcie nad button
     });
   }
 
@@ -785,6 +785,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
+
 
 
 
