@@ -69,7 +69,15 @@
 
   <script>
 document.addEventListener('DOMContentLoaded', function() {
-
+// --- Hamburger menu toggle ---
+  const btn = document.getElementById('menu-toggle');
+  const menu = document.getElementById('menu');
+  if (btn && menu) {
+    btn.addEventListener('click', function () {
+      const isHidden = menu.classList.toggle('hidden');
+      btn.setAttribute('aria-expanded', String(!isHidden));
+    });
+  }
   // Trust badges - wstrzyknięcie dolnego paska
   const tpl = document.getElementById('trust-badge-template');
   if(tpl) {
@@ -732,6 +740,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
+
 
 
 
