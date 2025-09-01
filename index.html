@@ -67,9 +67,9 @@
 
  <script src="https://cdn.tailwindcss.com"></script>
 
-  <script>
+ <script>
 document.addEventListener('DOMContentLoaded', function() {
-// --- Hamburger menu toggle ---
+  // --- Hamburger menu toggle ---
   const btn = document.getElementById('menu-toggle');
   const menu = document.getElementById('menu');
   if (btn && menu) {
@@ -78,45 +78,55 @@ document.addEventListener('DOMContentLoaded', function() {
       btn.setAttribute('aria-expanded', String(!isHidden));
     });
   }
-  // Trust badges - wstrzyknięcie dolnego paska
+
+  // --- Inject trust badges beneath each PayPal form button ---
   const tpl = document.getElementById('trust-badge-template');
-  if(tpl) {
-    document.querySelectorAll('.trust-badge-container').forEach(container => {
+  if (tpl) {
+    document.querySelectorAll('form[action*="paypal"]').forEach(form => {
       const clone = tpl.content.cloneNode(true);
-      container.appendChild(clone);
+      form.appendChild(clone);
     });
   }
 
-  // Workout logic
-  const workoutCheckbox = document.getElementById('check-workout');
-  const workoutButton   = document.getElementById('paypal-workout');
-  const itemField       = document.getElementById('paypal-item-name');
-
+  // --- Workout Plan: radio + checkbox ---
   function updateWorkoutButton() {
-    const selectedPlan = document.querySelector('input[name="workout-plan"]:checked');
-    if(!workoutButton || !workoutCheckbox) return;
-    workoutButton.disabled = !(workoutCheckbox.checked && selectedPlan);
-    if(itemField && selectedPlan) itemField.value = selectedPlan.value;
+    const checkbox = document.getElementById('check-standard');
+    const selectedPlan = document.querySelector('input[name="std-plan"]:checked');
+    const button = document.getElementById('paypal-standard');
+    const itemNameField = document.getElementById('paypal-item-name');
+
+    if (button && checkbox) {
+      button.disabled = !(checkbox.checked && selectedPlan);
+    }
+
+    if (itemNameField && selectedPlan) {
+      itemNameField.value = selectedPlan.value;
+    }
   }
 
-  if(workoutCheckbox) workoutCheckbox.addEventListener('change', updateWorkoutButton);
-  document.querySelectorAll('input[name="workout-plan"]').forEach(radio => {
+  const checkboxStd = document.getElementById('check-standard');
+  if (checkboxStd) checkboxStd.addEventListener('change', updateWorkoutButton);
+  document.querySelectorAll('input[name="std-plan"]').forEach(radio => {
     radio.addEventListener('change', updateWorkoutButton);
   });
-  updateWorkoutButton();
 
-  // Pozostałe plany - tylko checkbox
+  // --- Pozostałe plany: tylko checkbox ---
   document.querySelectorAll('form[action*="paypal"]').forEach(form => {
-    const cb  = form.querySelector('input[type="checkbox"]');
-    const btn = form.querySelector('input[type="image"]');
-    if(cb && btn && btn !== workoutButton) {
-      btn.disabled = !cb.checked;
-      cb.addEventListener('change', () => btn.disabled = !cb.checked);
+    const checkbox = form.querySelector('input[type="checkbox"]');
+    const button = form.querySelector('input[type="image"]');
+
+    // Workout Plan obsługujemy osobno powyżej
+    if (form.querySelector('input[name="workout-plan"]')) return;
+
+    if (checkbox && button) {
+      checkbox.addEventListener('change', () => {
+        button.disabled = !checkbox.checked;
+      });
     }
   });
-
 });
 </script>
+
 
   <style>
 /* Blokuje przeciąganie i zaznaczanie obrazów */
@@ -740,6 +750,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
+
 
 
 
