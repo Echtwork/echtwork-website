@@ -74,11 +74,8 @@
   </script>
 
   <script src="https://cdn.tailwindcss.com"></script>
-
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-
-  // --- Funkcja uniwersalna do odblokowania przycisku ---
   function updatePayPalButton(form) {
     const checkbox = form.querySelector('input[type="checkbox"]');
     const radioGroup = form.querySelectorAll('input[type="radio"]');
@@ -86,18 +83,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const os0 = form.querySelector('input[name="os0"]');
 
     if (!button) return;
-
     let enabled = true;
 
-    // Sprawdzenie checkboxa
     if (checkbox) enabled = enabled && checkbox.checked;
-
-    // Sprawdzenie radio (jeśli są)
     if (radioGroup.length > 0) {
       const selected = form.querySelector('input[type="radio"]:checked');
       if (selected) {
         enabled = enabled && true;
-        // ustawienie wartości os0 dla PayPal
         if (os0) os0.value = selected.value;
       } else {
         enabled = false;
@@ -108,50 +100,16 @@ document.addEventListener('DOMContentLoaded', function() {
     button.disabled = !enabled;
   }
 
-  // --- Nasłuchiwanie na zmiany w każdym formularzu ---
   document.querySelectorAll('form[action*="paypal"]').forEach(form => {
-    // Checkbox
     const checkbox = form.querySelector('input[type="checkbox"]');
     if (checkbox) checkbox.addEventListener('change', () => updatePayPalButton(form));
-
-    // Radio buttons
     form.querySelectorAll('input[type="radio"]').forEach(radio => {
       radio.addEventListener('change', () => updatePayPalButton(form));
     });
-
-    // Inicjalne ustawienie przycisku
     updatePayPalButton(form);
   });
-
-  // --- Hamburger toggle (jeśli potrzebne) ---
-  const btn = document.getElementById('menu-toggle');
-  const menu = document.getElementById('menu');
-  if (btn && menu) {
-    btn.addEventListener('click', function () {
-      const isHidden = menu.classList.toggle('hidden');
-      btn.setAttribute('aria-expanded', String(!isHidden));
-    });
-  }
-
-  // --- Inject trust badges ---
-  const tpl = document.getElementById('trust-badge-template');
-  if (tpl) {
-    document.querySelectorAll('form[action*="paypal"]').forEach(form => {
-      const clone = tpl.content.cloneNode(true);
-      form.appendChild(clone);
-    });
-  }
-
 });
 </script>
-
-  <script>
-    function togglePayPalButton(checkboxId, buttonId) {
-      const cb = document.getElementById(checkboxId);
-      const btn = document.getElementById(buttonId);
-      if (cb && btn) btn.disabled = !cb.checked;
-    }
-  </script>
 
   <style>
     /* złoty akcent dla checkboxów / radio */
@@ -319,7 +277,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="text-3xl font-bold text-yellow-500 mb-2">14,99€</div>
 
     <div class="flex items-start mb-4">
-      <input id="check-basic" type="checkbox" class="mt-1 mr-2" onchange="togglePayPalButton('check-basic','paypal-basic')">
+      <input id="check-basic" type="checkbox" class="mt-1 mr-2">
       <label for="check-basic" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
     </div>
 
@@ -327,15 +285,6 @@ document.addEventListener('DOMContentLoaded', function() {
           src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif"
           alt="Jetzt kaufen" aria-label="Jetzt kaufen – Basic Ernährungsplan" disabled>
   </form>
-
-  <p class="text-sm text-gray-400 mt-2">Hinweis zur E-Mail-Adresse</p>
-  <details class="text-sm text-gray-400">
-    <summary class="cursor-pointer text-yellow-500">Mehr Infos anzeigen</summary>
-    <p class="mt-2 text-gray-300">
-      Bitte geben Sie im Feld <em>„Nachricht an den Verkäufer“</em> bei PayPal Ihre aktuelle E-Mail-Adresse an, falls Sie den Plan an eine andere Adresse erhalten möchten.<br>
-      Falls keine Nachricht eingetragen wird, senden wir den Plan automatisch an die bei PayPal hinterlegte E-Mail-Adresse.
-    </p>
-  </details>
 </div>
 
 <!-- Fit & Feminine -->
@@ -362,7 +311,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="text-3xl font-bold text-yellow-500 mb-2">35€</div>
 
     <div class="flex items-start mb-4">
-      <input id="check-fhome" type="checkbox" class="mt-1 mr-2" onchange="togglePayPalButton('check-fhome','paypal-fhome')">
+      <input id="check-fhome" type="checkbox" class="mt-1 mr-2">
       <label for="check-fhome" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
     </div>
 
@@ -370,22 +319,12 @@ document.addEventListener('DOMContentLoaded', function() {
           src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif"
           alt="Jetzt kaufen" aria-label="Jetzt kaufen – Fit & Feminine" disabled>
   </form>
-
-  <p class="text-sm text-gray-400 mt-2">Hinweis zur E-Mail-Adresse</p>
-  <details class="text-sm text-gray-400">
-    <summary class="cursor-pointer text-yellow-500">Mehr Infos anzeigen</summary>
-    <p class="mt-2 text-gray-300">
-      Bitte geben Sie im Feld <em>„Nachricht an den Verkäufer“</em> bei PayPal Ihre aktuelle E-Mail-Adresse an, falls Sie den Plan an eine andere Adresse erhalten möchten.<br>
-      Falls keine Nachricht eingetragen wird, senden wir den Plan automatisch an die bei PayPal hinterlegte E-Mail-Adresse.
-    </p>
-  </details>
 </div>
 
 <!-- Workout Pläne -->
 <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col card-hover transition-transform duration-200 h-full">
   <div class="flex flex-col flex-grow">
     <h3 class="text-xl font-bold mb-2 text-yellow-500 text-center">Workout Pläne</h3>
-
     <p class="text-gray-300 mb-4">
       <span class="block">Für alle, die klare Strukturen und schnelle Resultate wollen – ohne Ratespiele oder ständiges Überlegen.</span>
       <span class="block">Wähle zwischen verschiedenen Trainingsarten: Krafttraining, Push/Pull/Legs oder Calisthenics.</span>
@@ -396,12 +335,10 @@ document.addEventListener('DOMContentLoaded', function() {
       <input type="radio" name="workout-plan" value="Krafttraining → Kraft & Muskulöse Figur" class="mr-2">
       Krafttraining → Kraft & Muskulöse Figur
     </label>
-
     <label class="flex items-center mb-2">
       <input type="radio" name="workout-plan" value="Krafttraining → Push/Pull/Legs" class="mr-2">
       Krafttraining → Push/Pull/Legs
     </label>
-
     <label class="flex items-center mb-2">
       <input type="radio" name="workout-plan" value="Calisthenics → Body & Power – Eigengewicht" class="mr-2">
       Calisthenics → Body & Power – Eigengewicht
@@ -428,20 +365,28 @@ document.addEventListener('DOMContentLoaded', function() {
           src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif"
           alt="Jetzt kaufen" aria-label="Jetzt kaufen – Workout Pläne" disabled>
   </form>
-
-  <p class="text-sm text-gray-400 mt-2">Hinweis zur E-Mail-Adresse</p>
-  <details class="text-sm text-gray-400">
-    <summary class="cursor-pointer text-yellow-500">Mehr Infos anzeigen</summary>
-    <p class="mt-2 text-gray-300">
-      Bitte geben Sie im Feld <em>„Nachricht an den Verkäufer“</em> bei PayPal Ihre aktuelle E-Mail-Adresse an, falls Sie den Plan an eine andere Adresse erhalten möchten.<br>
-      Falls keine Nachricht eingetragen wird, senden wir den Plan automatisch an die bei PayPal hinterlegte E-Mail-Adresse.
-    </p>
-  </details>
 </div>
 
 <!-- Premium Individuell -->
 <div class="bg-gray-900 border-2 border-yellow-500 rounded-2xl p-8 flex flex-col shadow-[0_0_25px_rgba(255,215,0,0.2)] card-hover transition-transform duration-200 w-full lg:col-span-3 max-w-2xl mx-auto">
-  <!-- Treść Premium tutaj ... -->
+  <h3 class="font-extrabold text-2xl sm:text-3xl mb-6 flex items-center justify-center gap-2 sm:gap-4 text-yellow-500">
+    <span class="text-center whitespace-nowrap">Premium Individuell</span>
+  </h3>
+
+  <p class="text-gray-300 mb-6 text-center">
+    <span class="block">Dein Plan - Dein Körper - Dein Erfolg.</span>
+    <span class="block">Trainingsplan nach Maß – 100 % individuell.</span>
+    <span class="block">Ernährung, die zu Dir passt & Ergebnisse liefert.</span>
+    <span class="block">Komplett angepasst an Ziele, Gesundheit & Alltag.</span>
+    <span class="block">Exklusiv - Persönlich - Effektiv.</span>
+  </p>
+
+  <p class="text-sm text-yellow-500 font-bold mb-6 text-center">
+    Nach der Zahlung wirst Du automatisch zu einem Formular weitergeleitet, 
+    in dem Du Deine Ziele, Vorlieben und eventuelle gesundheitliche Einschränkungen angibst.
+  </p>
+
+  <div class="text-3xl font-bold text-yellow-500 mb-4 text-center">nur 99€</div>
 
   <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="mt-auto flex flex-col items-center">
     <input type="hidden" name="cmd" value="_xclick">
@@ -451,13 +396,11 @@ document.addEventListener('DOMContentLoaded', function() {
     <input type="hidden" name="custom" value="premium">
 
     <div class="flex items-center justify-center mb-4">
-      <input id="check-premium" type="checkbox" class="mr-2" onchange="togglePayPalButton('check-premium','paypal-premium')">
+      <input id="check-premium" type="checkbox" class="mr-2">
       <label for="check-premium" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
     </div>
 
-    <input id="paypal-premium" type="image"
-           src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif"
-           alt="Jetzt kaufen" aria-label="Jetzt kaufen – Premium Individuell" disabled>
+    <input id="paypal-premium" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" alt="Jetzt kaufen" aria-label="Jetzt kaufen – Premium Individuell" disabled>
 
     <input type="hidden" name="return" value="https://echtwork.github.io/echtwork-website/premium-formular.html">
     <input type="hidden" name="cancel_return" value="https://echtwork.github.io/echtwork-website/payment-cancel.html">
@@ -731,6 +674,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+
 
 
 
