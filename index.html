@@ -415,62 +415,65 @@
   </div>
 
   <!-- Premium Individuell -->
-  <div class="bg-gray-900 border-2 border-yellow-500 rounded-2xl p-8 flex flex-col shadow-[0_0_25px_rgba(255,215,0,0.2)] card-hover transition-transform duration-200 h-full">
-    <div class="flex flex-col flex-grow">
-      <div class="px-4 py-1 rounded-full bg-yellow-500 text-black text-sm font-bold mb-4 inline-block">
-        Premium
-      </div>
+<div class="bg-gray-900 border-2 border-yellow-500 rounded-2xl p-8 flex flex-col shadow-[0_0_25px_rgba(255,215,0,0.2)] card-hover transition-transform duration-200 w-full lg:col-span-3 max-w-2xl mx-auto">
+  <div class="px-4 py-1 rounded-full bg-yellow-500 text-black text-sm font-bold mb-4 inline-block">
+    Premium
+  </div>
 
-      <h3 class="font-extrabold text-3xl mb-6 flex items-center justify-center gap-3">
-        <span class="text-yellow-500">Premium Individuell</span>
-      </h3>
+  <h3 class="font-extrabold text-3xl mb-6 flex items-center justify-center gap-3">
+    <!-- Lewa gwiazdka -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 drop-shadow-[0_0_12px_rgba(255,215,0,0.9)]" viewBox="0 0 24 24" fill="url(#gold)">
+      <defs>
+        <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#FFD700"/>
+          <stop offset="100%" stop-color="#FFA500"/>
+        </linearGradient>
+      </defs>
+      <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.85 1.507 8.281L12 18.896l-7.443 4.541 1.507-8.281-6.064-5.85 8.332-1.151z"/>
+    </svg>
 
-      <p class="text-gray-300 mb-6">
-        <span class="block">Dein Plan - Dein Körper - Dein Erfolg.</span>
-        <span class="block">Trainingsplan nach Maß – 100 % individuell.</span>
-        <span class="block">Ernährung, die zu Dir passt & Ergebnisse liefert.</span>
-        <span class="block">Komplett angepasst an Ziele, Gesundheit & Alltag.</span>
-        <span class="block">Exklusiv - Persönlich - Effektiv.</span>
-      </p>
+    <span class="text-yellow-500">Premium Individuell</span>
 
-      <p class="text-sm text-yellow-500 font-bold mb-6">
-        Nach der Zahlung wirst Du automatisch zu einem Formular weitergeleitet, 
-        in dem Du Deine Ziele, Vorlieben und eventuelle gesundheitliche Einschränkungen angibst.
-      </p>
+    <!-- Prawa gwiazdka -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 drop-shadow-[0_0_12px_rgba(255,215,0,0.9)]" viewBox="0 0 24 24" fill="url(#gold)">
+      <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.85 1.507 8.281L12 18.896l-7.443 4.541 1.507-8.281-6.064-5.85 8.332-1.151z"/>
+    </svg>
+  </h3>
 
-      <div class="text-3xl font-bold text-yellow-500 mb-2">nur 99€</div>
+  <!-- Treść Premium -->
+  <p class="text-gray-300 mb-6">
+    <span class="block">Dein Plan - Dein Körper - Dein Erfolg.</span>
+    <span class="block">Trainingsplan nach Maß – 100 % individuell.</span>
+    <span class="block">Ernährung, die zu Dir passt & Ergebnisse liefert.</span>
+    <span class="block">Komplett angepasst an Ziele, Gesundheit & Alltag.</span>
+    <span class="block">Exklusiv - Persönlich - Effektiv.</span>
+  </p>
+
+  <p class="text-sm text-yellow-500 font-bold mb-6">
+    Nach der Zahlung wirst Du automatisch zu einem Formular weitergeleitet, 
+    in dem Du Deine Ziele, Vorlieben und eventuelle gesundheitliche Einschränkungen angibst.
+  </p>
+
+  <div class="text-3xl font-bold text-yellow-500 mb-2">nur 99€</div>
+
+  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="mt-auto flex flex-col items-center">
+    <input type="hidden" name="cmd" value="_xclick">
+    <input type="hidden" name="item_name" value="Premium Individuell">
+    <input type="hidden" name="amount" value="99">
+    <input type="hidden" name="currency_code" value="EUR">
+    <input type="hidden" name="custom" value="premium">
+
+    <div class="flex items-center justify-center mb-4">
+      <input id="check-premium" type="checkbox" class="mr-2" onchange="togglePayPalButton('check-premium','paypal-premium')">
+      <label for="check-premium" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
     </div>
 
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="flex flex-col items-center">
-      <input type="hidden" name="cmd" value="_xclick">
-      <input type="hidden" name="item_name" value="Premium Individuell">
-      <input type="hidden" name="amount" value="99">
-      <input type="hidden" name="currency_code" value="EUR">
-      <input type="hidden" name="custom" value="premium">
+    <input id="paypal-premium" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" alt="Jetzt kaufen" aria-label="Jetzt kaufen – Premium Individuell" disabled>
 
-      <div class="flex items-center justify-center mb-4">
-        <input id="check-premium" type="checkbox" class="mr-2" onchange="togglePayPalButton('check-premium','paypal-premium')">
-        <label for="check-premium" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
-      </div>
-
-      <input id="paypal-premium" type="image"
-            src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif"
-            alt="Jetzt kaufen" aria-label="Jetzt kaufen – Premium Individuell" disabled>
-
-      <input type="hidden" name="return" value="https://echtwork.github.io/echtwork-website/premium-formular.html">
-      <input type="hidden" name="cancel_return" value="https://echtwork.github.io/echtwork-website/payment-cancel.html">
-    </form>
-  </div>
-</section>
-
-    <!-- Vergleich -->
-   <section id="vergleich" class="px-6 py-12 max-w-6xl mx-auto">
-      <div class="text-center mb-6">
-        <h2 class="text-3xl font-bold text-yellow-500">Welcher Plan passt zu dir?</h2>
-        <p class="text-gray-300 max-w-2xl mx-auto">
-          Wähle zwischen sofort startbaren PDF-Plänen oder einem vollständig personalisierten Premium-Paket.
-        </p>
-      </div>
+    <input type="hidden" name="return" value="https://echtwork.github.io/echtwork-website/premium-formular.html">
+    <input type="hidden" name="cancel_return" value="https://echtwork.github.io/echtwork-website/payment-cancel.html">
+  </form>
+</div>
 
       <!-- Desktop/Tablet: Tabelle -->
       <div class="hidden md:block overflow-x-auto">
@@ -726,6 +729,7 @@
 </script>
 </body>
 </html>
+
 
 
 
