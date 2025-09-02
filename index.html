@@ -386,22 +386,22 @@
 </section>
 
     <script>
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
   function updatePayPalButton(form) {
     const checkbox = form.querySelector('input[type="checkbox"]');
-    const radioGroup = form.querySelectorAll('input[type="radio"]');
+    const radios = form.querySelectorAll('input[type="radio"]');
     const button = form.querySelector('input[type="image"][id^="paypal"]');
     const os0 = form.querySelector('input[name="os0"]');
-
     if (!button) return;
+
     let enabled = true;
 
-    if (checkbox) enabled = enabled && checkbox.checked;
-    if (radioGroup.length > 0) {
-      const selected = form.querySelector('input[type="radio"]:checked');
-      if (selected) {
-        enabled = enabled && true;
-        if (os0) os0.value = selected.value;
+    if (checkbox) enabled = checkbox.checked;
+
+    const selectedRadio = form.querySelector('input[type="radio"]:checked');
+    if (radios.length > 0) {
+      if (selectedRadio) {
+        if (os0) os0.value = selectedRadio.value;
       } else {
         enabled = false;
         if (os0) os0.value = '';
@@ -412,10 +412,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   document.querySelectorAll('form[action*="paypal"]').forEach(form => {
-    const checkbox = form.querySelector('input[type="checkbox"]');
-    if (checkbox) checkbox.addEventListener('change', () => updatePayPalButton(form));
-    form.querySelectorAll('input[type="radio"]').forEach(radio => {
-      radio.addEventListener('change', () => updatePayPalButton(form));
+    form.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(el => {
+      el.addEventListener('change', () => updatePayPalButton(form));
     });
     updatePayPalButton(form);
   });
@@ -688,6 +686,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+
 
 
 
