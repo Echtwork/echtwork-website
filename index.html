@@ -145,6 +145,14 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+  <script>
+    function togglePayPalButton(checkboxId, buttonId) {
+      const cb = document.getElementById(checkboxId);
+      const btn = document.getElementById(buttonId);
+      if (cb && btn) btn.disabled = !cb.checked;
+    }
+  </script>
+
   <style>
     /* złoty akcent dla checkboxów / radio */
     input[type="checkbox"]:checked,
@@ -759,6 +767,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+
 
 
 
