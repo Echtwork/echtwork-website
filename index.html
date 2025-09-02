@@ -481,18 +481,26 @@
   </form>
 </div>
 
+<!-- Desktop/Tablet: Tabela pełnoekranowa -->
+<section id="vergleich" class="w-full bg-gray-900 py-12">
+  <style>
+    /* Nadpisujemy ograniczenia, żeby tabela była pełnoekranowa */
+    #vergleich {
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+  </style>
 
- <!-- Desktop/Tablet: Tabelle -->
-<section id="vergleich" class="w-full bg-gray-900 py-12 px-0">
-  <div class="text-center mb-6 w-full">
+  <div class="text-center mb-6">
     <h2 class="text-3xl font-bold text-yellow-500">Welcher Plan passt zu dir?</h2>
     <p class="text-gray-300 max-w-2xl mx-auto">
       Wähle zwischen sofort startbaren PDF-Plänen oder einem vollständig personalisierten Premium-Paket.
     </p>
   </div>
 
-  <div class="w-full overflow-x-auto px-0">
-    <table class="min-w-full border border-gray-700 text-sm md:text-base text-center">
+  <div class="w-full overflow-x-auto">
+    <table class="w-full table-fixed border border-gray-700 text-center text-sm md:text-base">
       <thead class="bg-gray-800">
         <tr>
           <th class="p-3 border border-gray-700 text-left">Feature / Plan</th>
@@ -503,35 +511,35 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="hover:bg-gray-800">
+        <tr>
           <td class="p-3 border border-gray-700 text-left">Email Support</td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td>
+          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
+          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
+          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
+          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
         </tr>
-        <tr class="hover:bg-gray-800">
+        <tr>
           <td class="p-3 border border-gray-700 text-left">Auswahl Trainingsarten</td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td>
+          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
+          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
+          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
+          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
         </tr>
-        <tr class="hover:bg-gray-800">
+        <tr>
           <td class="p-3 border border-gray-700 text-left">Individuelle Anpassung</td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td>
+          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
+          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
+          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
+          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
         </tr>
-        <tr class="hover:bg-gray-800">
+        <tr>
           <td class="p-3 border border-gray-700 text-left">Individueller Ernährungsplan</td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td>
+          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
+          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
+          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
+          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
         </tr>
-        <tr class="hover:bg-gray-800">
+        <tr>
           <td class="p-3 border border-gray-700 text-left">Lieferzeit</td>
           <td class="p-3 border border-gray-700">nach Zahlungseingang (PDF)</td>
           <td class="p-3 border border-gray-700">nach Zahlungseingang (PDF)</td>
@@ -542,6 +550,7 @@
     </table>
   </div>
 </section>
+
 
       <!-- Mobile: Karten -->
       <div class="grid gap-6 md:hidden">
@@ -746,6 +755,7 @@
 </script>
 </body>
 </html>
+
 
 
 
