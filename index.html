@@ -75,7 +75,7 @@
 
   <script src="https://cdn.tailwindcss.com"></script>
 
- <script>
+<script>
   // Uniwersalna funkcja do toggle przycisków PayPal (dla innych planów)
   function togglePayPalButton(checkboxId, buttonId) {
     const cb = document.getElementById(checkboxId);
@@ -96,7 +96,7 @@
     const selected = document.querySelector('input[name="workout-plan"]:checked');
     const planInput = document.getElementById('paypal-plan-name');
     if (selected && planInput) {
-      planInput.value = selected.nextSibling.textContent.trim();
+      planInput.value = selected.value; // <-- używamy value zamiast nextSibling
     }
   }
 
@@ -124,8 +124,8 @@
     const workoutRadios = document.querySelectorAll('input[name="workout-plan"]');
     workoutRadios.forEach(radio => {
       radio.addEventListener('change', function() {
-        checkWorkoutUnlock();  // odblokowanie przycisku
-        updatePayPalPlan();    // ustawienie nazwy planu
+        updatePayPalPlan();    // najpierw ustawiamy nazwę planu
+        checkWorkoutUnlock();  // potem odblokowujemy przycisk
       });
     });
 
@@ -748,6 +748,7 @@
 </script>
 </body>
 </html>
+
 
 
 
