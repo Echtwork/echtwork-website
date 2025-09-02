@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -8,6 +9,7 @@
   <link rel="icon" href="https://raw.githubusercontent.com/Echtwork/echtwork-website/main/images/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="https://raw.githubusercontent.com/Echtwork/echtwork-website/main/images/favicon.ico" type="image/x-icon">
 
+    
   <title>Dein Körper – Dein Plan – Dein Erfolg - Trainingspläne von Echtwork</title>
 
   <script type="application/ld+json">
@@ -73,16 +75,14 @@
   }
   </script>
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  
+ <script src="https://cdn.tailwindcss.com"></script>
+
 </head>
 
 <body class="bg-black text-white font-sans antialiased flex flex-col min-h-screen">
-  
   <!-- Header -->
   <header class="flex flex-wrap items-center justify-between px-6 py-4 border-b border-yellow-600">
     <div class="text-2xl font-bold text-yellow-500">echtwork.de</div>
-   
     <!-- Hamburger -->
     <button id="menu-toggle" class="md:hidden text-yellow-500 focus:outline-none text-2xl" aria-label="Menü umschalten" aria-controls="menu" aria-expanded="false">☰</button>
     <nav id="menu" class="hidden w-full md:flex md:w-auto md:space-x-6 mt-4 md:mt-0 flex-col md:flex-row space-y-2 md:space-y-0 text-center md:text-left">
@@ -208,9 +208,9 @@
     </template>
 
     <!-- Plans -->
-<section id="plaene" class="py-16 px-6 max-w-6xl mx-auto grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 items-stretch">
+    <section id="plaene" class="py-16 px-6 max-w-6xl mx-auto grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
 
- <!-- Basic Ernährungsplan -->
+      <!-- Basic Ernährungsplan -->
       <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col card-hover transition-transform duration-200">
         <h3 class="text-xl font-bold mb-2 text-yellow-500">Basic Ernährungsplan</h3>
         <p class="text-gray-300 mb-4">
@@ -219,22 +219,22 @@
           <span class="block">Keine komplizierten Diäten, klare Struktur & alltagstauglich.</span>
         </p>
 
-       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-      <input type="hidden" name="cmd" value="_xclick">
-      <input type="hidden" name="business" value="echtwork@gmail.com">
-      <input type="hidden" name="item_name" value="Basic Ernährungsplan 7 Tage">
-      <input type="hidden" name="amount" value="14.99">
-      <input type="hidden" name="currency_code" value="EUR">
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="mt-auto">
+          <input type="hidden" name="cmd" value="_s-xclick">
+          <input type="hidden" name="hosted_button_id" value="ZAC44DWYN8V3U">
+          <input type="hidden" name="currency_code" value="EUR">
 
-      <div class="flex items-start mb-4">
-        <input id="check-basic" type="checkbox" class="mt-1 mr-2">
-        <label for="check-basic" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
-      </div>
+          <div class="text-3xl font-bold text-yellow-500 mb-2">14,99€</div>
 
-      <input id="paypal-basic" type="image"
-            src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif"
-            alt="Jetzt kaufen – Basic Ernährungsplan" disabled>
-    </form>
+          <div class="flex items-start mb-4">
+            <input id="check-basic" type="checkbox" class="mt-1 mr-2" onchange="togglePayPalButton('check-basic','paypal-basic')">
+            <label for="check-basic" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
+          </div>
+
+          <input id="paypal-basic" type="image"
+                src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif"
+                alt="Jetzt kaufen" aria-label="Jetzt kaufen – Basic Ernährungsplan" disabled>
+        </form>
 
         <p class="text-sm text-gray-400 mt-2">Hinweis zur E-Mail-Adresse</p>
         <details class="text-sm text-gray-400">
@@ -259,22 +259,21 @@
           <span class="block">Turbo Burn HIIT – kurze, intensive Fatburn-Workouts für maximale Kalorienverbrennung.</span>
         </p>
 
-         <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-      <input type="hidden" name="cmd" value="_xclick">
-      <input type="hidden" name="business" value="echtwork@gmail.com">
-      <input type="hidden" name="item_name" value="Fit & Feminine Home-Workout">
-      <input type="hidden" name="amount" value="35.00">
-      <input type="hidden" name="currency_code" value="EUR">
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="mt-auto">
+          <input type="hidden" name="cmd" value="_s-xclick">
+          <input type="hidden" name="hosted_button_id" value="595QUMFN3TKQN">
+          <input type="hidden" name="currency_code" value="EUR">
 
-      <div class="flex items-start mb-4">
-        <input id="check-feminine" type="checkbox" class="mt-1 mr-2">
-        <label for="check-feminine" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
-      </div>
+          <div class="text-3xl font-bold text-yellow-500 mb-2">35€</div>
 
-      <input id="paypal-feminine" type="image"
-            src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif"
-            alt="Jetzt kaufen – Fit & Feminine" disabled>
-    </form>
+          <div class="flex items-start mb-4">
+            <input id="check-fhome" type="checkbox" class="mt-1 mr-2" onchange="togglePayPalButton('check-fhome','paypal-fhome')">
+            <label for="check-fhome" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
+          </div>
+
+          <input id="paypal-fhome" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif"
+                alt="Jetzt kaufen" aria-label="Jetzt kaufen – Fit & Feminine" disabled>
+        </form>
 
         <p class="text-sm text-gray-400 mt-2">Hinweis zur E-Mail-Adresse</p>
         <details class="text-sm text-gray-400">
@@ -294,34 +293,39 @@
         </p>
 
         <label class="flex items-center mb-2">
-      <input type="radio" name="workout-plan" value="Krafttraining -> Kraft & Muskulöse Figur" class="mr-2">
-      Krafttraining -> Kraft & Muskulöse Figur
-    </label>
-    <label class="flex items-center mb-2">
-      <input type="radio" name="workout-plan" value="Krafttraining -> Push/Pull/Legs" class="mr-2">
-      Krafttraining -> Push/Pull/Legs
-    </label>
-    <label class="flex items-center mb-2">
-      <input type="radio" name="workout-plan" value="Calisthenics -> Body & Power - Eigengewicht" class="mr-2">
-      Calisthenics -> Body & Power - Eigengewicht
-    </label>
+          <input type="radio" name="workout-plan" value="49" class="mr-2">
+          Krafttraining → Kraft & Muskulöse Figur
+        </label>
 
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-      <input type="hidden" name="cmd" value="_xclick">
-      <input type="hidden" name="business" value="echtwork@gmail.com">
-      <input type="hidden" name="item_name" id="workout-item-name" value="">
-      <input type="hidden" name="amount" value="49.00">
-      <input type="hidden" name="currency_code" value="EUR">
+        <label class="flex items-center mb-2">
+          <input type="radio" name="workout-plan" value="49" class="mr-2">
+          Krafttraining → Push/Pull/Legs
+        </label>
 
-      <div class="flex items-start mb-4">
-        <input id="check-workout" type="checkbox" class="mt-1 mr-2">
-        <label for="check-workout" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
-      </div>
+        <label class="flex items-center mb-2">
+          <input type="radio" name="workout-plan" value="49" class="mr-2">
+          Calisthenics → Body & Power – Eigengewicht
+        </label>
 
-      <input id="paypal-workout" type="image"
-            src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif"
-            alt="Jetzt kaufen – Workout Pläne" disabled>
-    </form>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="mt-auto">
+          <input type="hidden" name="cmd" value="_s-xclick">
+          <input type="hidden" name="hosted_button_id" value="96DX79QQS3QXS">
+          <input type="hidden" name="currency_code" value="EUR">
+
+          <input type="hidden" name="on0" value="Gewählter Plan">
+          <input type="hidden" name="os0" id="paypal-plan-name" value="">
+
+          <div class="text-3xl font-bold text-yellow-500 mb-2 mt-4">49€</div>
+
+          <div class="flex items-start mb-4">
+          <input id="check-workout" type="checkbox" class="mt-1 mr-2">
+          <label for="check-workout" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
+          </div>
+
+
+          <input id="paypal-workout" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif"
+                alt="Jetzt kaufen" aria-label="Jetzt kaufen – Workout Pläne" disabled>
+        </form>
 
         <p class="text-sm text-gray-400 mt-2">Hinweis zur E-Mail-Adresse</p>
         <details class="text-sm text-gray-400">
@@ -335,7 +339,10 @@
 
       <!-- Premium -->
       <div class="bg-gray-900 border-2 border-yellow-500 rounded-2xl p-8 flex flex-col shadow-[0_0_25px_rgba(255,215,0,0.2)] card-hover transition-transform duration-200 mx-auto w-full max-w-4xl text-center lg:col-span-3 lg:max-w-2xl">
-        
+        <div class="px-4 py-1 rounded-full bg-yellow-500 text-black text-sm font-bold mb-4 inline-block">
+          Premium
+        </div>
+
         <h3 class="font-extrabold text-3xl mb-6 flex items-center justify-center gap-3">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 drop-shadow-[0_0_12px_rgba(255,215,0,0.9)]" viewBox="0 0 24 24" fill="url(#gold)">
             <defs>
@@ -369,60 +376,92 @@
 
         <div class="text-3xl font-bold text-yellow-500 mb-2">nur 99€</div>
 
-       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-      <input type="hidden" name="cmd" value="_xclick">
-      <input type="hidden" name="business" value="echtwork@gmail.com">
-      <input type="hidden" name="item_name" value="Premium Individuell">
-      <input type="hidden" name="amount" value="99.00">
-      <input type="hidden" name="currency_code" value="EUR">
-      <input type="hidden" name="return" value="https://echtwork.github.io/echtwork-website/premium-formular.html">
-      <input type="hidden" name="cancel_return" value="https://echtwork.github.io/echtwork-website/payment-cancel.html">
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="mt-auto flex flex-col items-center">
+          <input type="hidden" name="cmd" value="_s-xclick">
+          <input type="hidden" name="hosted_button_id" value="PV6WNVYUSV9NN">
+          <input type="hidden" name="currency_code" value="EUR">
 
-      <div class="flex items-start mb-4">
-        <input id="check-premium" type="checkbox" class="mt-1 mr-2">
-        <label for="check-premium" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
-      </div>
+          <div class="flex items-center justify-center mb-4">
+            <input id="check-premium" type="checkbox" class="mr-2" onchange="togglePayPalButton('check-premium','paypal-premium')">
+            <label for="check-premium" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
+          </div>
 
-      <input id="paypal-premium" type="image"
-            src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif"
-            alt="Jetzt kaufen – Premium Individuell" disabled>
-    </form>
+          <input id="paypal-premium" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" alt="Jetzt kaufen" aria-label="Jetzt kaufen – Premium Individuell" disabled>
+
+          <input type="hidden" name="return" value="https://echtwork.github.io/echtwork-website/premium-formular.html">
+          <input type="hidden" name="cancel_return" value="https://echtwork.github.io/echtwork-website/payment-cancel.html">
+        </form>
       </div>
     </section>
 
-<script>
-  // Basic
-  document.getElementById('check-basic').addEventListener('change', function() {
-    document.getElementById('paypal-basic').disabled = !this.checked;
-  });
-
-  // Fit & Feminine
-  document.getElementById('check-feminine').addEventListener('change', function() {
-    document.getElementById('paypal-feminine').disabled = !this.checked;
-  });
-
-  // Premium Individuell
-  document.getElementById('check-premium').addEventListener('change', function() {
-    document.getElementById('paypal-premium').disabled = !this.checked;
-  });
-
-  // Workout Pläne
-  const workoutCheckbox = document.getElementById('check-workout');
-  const workoutButton = document.getElementById('paypal-workout');
-  const workoutItemName = document.getElementById('workout-item-name');
-  const radios = document.querySelectorAll('input[name="workout-plan"]');
-
-  function updateWorkoutButton() {
-    const selected = document.querySelector('input[name="workout-plan"]:checked');
-    workoutButton.disabled = !(workoutCheckbox.checked && selected);
-    workoutItemName.value = selected ? selected.value : '';
+     <script>
+  // Uniwersalna funkcja do toggle przycisków PayPal (dla innych planów)
+  function togglePayPalButton(checkboxId, buttonId) {
+    const cb = document.getElementById(checkboxId);
+    const btn = document.getElementById(buttonId);
+    if (cb && btn) btn.disabled = !cb.checked;
   }
 
-  workoutCheckbox.addEventListener('change', updateWorkoutButton);
-  radios.forEach(radio => radio.addEventListener('change', updateWorkoutButton));
+  // Funkcja specyficzna dla Workout Pläne (radio + checkbox)
+  function checkWorkoutUnlock() {
+    const radioChecked = document.querySelector('input[name="workout-plan"]:checked');
+    const termsChecked = document.getElementById('check-workout').checked;
+    const btn = document.getElementById('paypal-workout');
+    if (btn) btn.disabled = !(radioChecked && termsChecked);
+  }
+
+  // Ustawienie nazwy wybranego planu w PayPal
+  function updatePayPalPlan() {
+    const selected = document.querySelector('input[name="workout-plan"]:checked');
+    const planInput = document.getElementById('paypal-plan-name');
+    if (selected && planInput) {
+      planInput.value = selected.nextSibling.textContent.trim();
+    }
+  }
+
+  // Hamburger toggle + trust badge injection po załadowaniu DOM
+  document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.getElementById('menu-toggle');
+    const menu = document.getElementById('menu');
+    if (btn && menu) {
+      btn.addEventListener('click', function () {
+        const isHidden = menu.classList.toggle('hidden');
+        btn.setAttribute('aria-expanded', String(!isHidden));
+      });
+    }
+
+    // Inject trust badges beneath each PayPal form button
+    const tpl = document.getElementById('trust-badge-template');
+    if (tpl) {
+      document.querySelectorAll('form[action*="paypal"]').forEach(form => {
+        const clone = tpl.content.cloneNode(true);
+        form.appendChild(clone);
+      });
+    }
+
+    // Workout Pläne – nasłuch radio i checkbox
+    const workoutRadios = document.querySelectorAll('input[name="workout-plan"]');
+    workoutRadios.forEach(radio => {
+      radio.addEventListener('change', function() {
+        checkWorkoutUnlock();  // odblokowanie przycisku
+        updatePayPalPlan();    // ustawienie nazwy planu
+      });
+    });
+
+    const workoutCheckbox = document.getElementById('check-workout');
+    if (workoutCheckbox) workoutCheckbox.addEventListener('change', checkWorkoutUnlock);
+  });
 </script>
 
-    
+  <style>
+    /* złoty akcent dla checkboxów / radio */
+    input[type="checkbox"]:checked,
+    input[type="radio"]:checked { accent-color: #FFD700; }
+    /* delikatne poprawki estetyczne */
+    .card-hover:hover { transform: translateY(-6px); box-shadow: 0 18px 30px rgba(0,0,0,0.6); }
+    .gold-gradient { background: linear-gradient(90deg, rgba(255,215,0,0.95), rgba(220,180,0,0.9)); }
+  </style>
+
     <!-- Vergleich -->
     <section id="vergleich" class="px-6 max-w-6xl mx-auto mb-16">
       <div class="text-center mb-6">
@@ -436,55 +475,53 @@
       <div class="hidden md:block overflow-x-auto">
         <table class="min-w-full border border-gray-700 text-left text-sm md:text-base">
           <thead class="bg-gray-800">
-      <tr>
-      <th class="p-3 border border-gray-700 text-left">Feature / Plan</th>
-      <th class="p-3 border border-gray-700">Basic Ernährungsplan<br><span class="text-yellow-500 font-bold">14,99€</span></th>
-      <th class="p-3 border border-gray-700">Fit & Feminine<br><span class="text-yellow-500 font-bold">35€</span></th>
-      <th class="p-3 border border-gray-700">Workout Pläne<br><span class="text-yellow-500 font-bold">49€</span></th>
-      <th class="p-3 border border-gray-700 bg-yellow-500 text-black font-bold">Premium<br><span class="font-bold">99€</span></th>
-    </tr>
-  </thead>
-  <tbody class="bg-black text-gray-300">
-        <tr>
-          <td class="p-3 border border-gray-700 text-left">Email Support</td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
-        </tr>
-         <tr>
-          <td class="p-3 border border-gray-700 text-left">Auswahl Trainingsarten</td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
-        </tr>
-         <tr>
-          <td class="p-3 border border-gray-700 text-left">Individuelle Anpassung</td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
-        </tr>
-         <tr>
-          <td class="p-3 border border-gray-700 text-left">Individueller Ernährungsplan</td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
-          <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
-        </tr>
-         <tr>
-          <td class="p-3 border border-gray-700 text-left">Lieferzeit</td>
-          <td class="p-3 border border-gray-700">nach Zahlungseingang (PDF)</td>
-          <td class="p-3 border border-gray-700">nach Zahlungseingang (PDF)</td>
-          <td class="p-3 border border-gray-700">nach Zahlungseingang (PDF)</td>
-          <td class="p-3 border border-gray-700">1–5 Werktage (PDF)</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
+            <tr>
+              <th class="p-3 border border-gray-700">Feature / Plan</th>
+              <th class="p-3 border border-gray-700">Basic Ernährungsplan<br><span class="text-yellow-500 font-bold">14.99€</span></th>
+              <th class="p-3 border border-gray-700">Fit & Feminine<br><span class="text-yellow-500 font-bold">35€</span></th>
+              <th class="p-3 border border-gray-700">Workout Pläne<br><span class="text-yellow-500 font-bold">49€</span></th>
+              <th class="p-3 border border-gray-700 bg-yellow-500 text-black font-bold">Premium<br><span class="text-lg">99€</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="p-3 border border-gray-700">Email Support</td>
+              <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
+              <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
+              <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
+              <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
+            </tr>
+            <tr>
+              <td class="p-3 border border-gray-700">Auswahl Trainingsarten</td>
+              <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
+              <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
+              <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
+              <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
+            </tr>
+            <tr>
+              <td class="p-3 border border-gray-700">Individuelle Anpassung</td>
+              <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
+              <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
+              <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
+              <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
+            </tr>
+            <tr>
+              <td class="p-3 border border-gray-700">Individueller Ernährungsplan</td>
+              <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
+              <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
+              <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></td>
+              <td class="p-3 border border-gray-700"><svg class="w-6 h-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg></td>
+            </tr>
+            <tr>
+              <td class="p-3 border border-gray-700">Lieferzeit</td>
+              <td class="p-3 border border-gray-700">nach Zahlungseingang (PDF)</td>
+              <td class="p-3 border border-gray-700">nach Zahlungseingang (PDF)</td>
+              <td class="p-3 border border-gray-700">nach Zahlungseingang (PDF)</td>
+              <td class="p-3 border border-gray-700">1–5 Werktage (PDF)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <!-- Mobile: Karten -->
       <div class="grid gap-6 md:hidden">
@@ -535,8 +572,8 @@
     </section>
 
     <!-- FAQ -->
-    <section id="faq" class="py-12 px-6 bg-gradient-to-b from-black to-gray-900">
-      <div class="max-w-4xl mx-auto">
+    <section id="faq" class="py-16 px-6 bg-gradient-to-b from-black to-gray-900">
+      <div class="max-w-3xl mx-auto">
         <h2 class="text-3xl md:text-4xl font-bold text-yellow-500 text-center mb-8">FAQ</h2>
 
         <div class="space-y-4">
@@ -578,39 +615,32 @@
       </div>
     </section>
 
-   <!-- TRUST BAR (z gradientem, poprawione flex-shrink) -->
-<section aria-label="Sicher bezahlen mit PayPal" class="bg-gradient-to-b from-yellow-500 to-yellow-400 text-black">
-  <div class="max-w-6xl mx-auto px-6 py-3 flex flex-wrap items-center justify-center gap-3 text-sm md:text-base font-semibold">
-   
-    <!-- Ikona SSL -->
-    <svg class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c-1.657 0-3 1.343-3 3v3h6v-3c0-1.657-1.343-3-3-3zm5 3v3a2 2 0 01-2 2H9a2 2 0 01-2-2v-3a5 5 0 1110 0z"/>
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11V8a5 5 0 1110 0v3"/>
-    </svg>
+    <!-- TRUST BAR -->
+    <section aria-label="Sicher bezahlen mit PayPal" class="gold-gradient text-black">
+      <div class="max-w-6xl mx-auto px-6 py-3 flex flex-wrap items-center justify-center gap-3 text-sm md:text-base font-semibold">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c-1.657 0-3 1.343-3 3v3h6v-3c0-1.657-1.343-3-3-3zm5 3v3a2 2 0 01-2 2H9a2 2 0 01-2-2v-3a5 5 0 1110 0z"/>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11V8a5 5 0 1110 0v3"/>
+        </svg>
+        <span>SSL-gesichert · Sicher bezahlen mit PayPal ·</span>
+        <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg" alt="PayPal Logo" class="h-6 md:h-8" loading="lazy">
+      </div>
+    </section>
 
-    <span class="flex-shrink-0">SSL-gesichert · Sicher bezahlen mit PayPal ·</span>
-
-    <!-- Logo PayPal -->
-    <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg" 
-         alt="PayPal Logo" 
-         class="h-6 md:h-8 flex-shrink-0" 
-         loading="lazy">
-  </div>
-</section>
   </main>
 
- <!-- Footer (flush bottom via flex layout) -->
-<footer class="mt-auto bg-gray-900 text-gray-400 py-6">
-  <div class="max-w-6xl mx-auto px-6 flex flex-wrap justify-center items-center gap-4">
-    <p class="text-sm">&copy; 2025 Echtwork. Alle Rechte vorbehalten.</p>
-    <div class="flex flex-wrap justify-center gap-4">
-      <a href="impressum.html" class="hover:text-yellow-500 transition-colors">Impressum</a>
-      <a href="datenschutz.html" class="hover:text-yellow-500 transition-colors">Datenschutz</a>
-      <a href="agb.html" class="hover:text-yellow-500 transition-colors">AGB</a>
-      <a href="widerruf.html" class="hover:text-yellow-500 transition-colors">Widerrufsbelehrung</a>
+  <!-- Footer (flush bottom via flex layout) -->
+  <footer class="bg-gray-900 text-gray-400 py-6">
+    <div class="max-w-6xl mx-auto px-6 flex flex-wrap justify-center items-center gap-4">
+      <p class="text-sm">&copy; 2025 Echtwork. Alle Rechte vorbehalten.</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="impressum.html" class="hover:text-yellow-500 transition-colors">Impressum</a>
+        <a href="datenschutz.html" class="hover:text-yellow-500 transition-colors">Datenschutz</a>
+        <a href="agb.html" class="hover:text-yellow-500 transition-colors">AGB</a>
+        <a href="widerruf.html" class="hover:text-yellow-500 transition-colors">Widerrufsbelehrung</a>
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
   <!-- Skrypt do przewijania na górę -->
   <script>
@@ -689,85 +719,6 @@
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
