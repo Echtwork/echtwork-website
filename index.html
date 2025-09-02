@@ -278,6 +278,7 @@
 </div>
 
 <!-- Workout Pläne -->
+<!-- Workout Pläne -->
 <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col card-hover transition-transform duration-200 h-full">
   <div class="flex flex-col flex-grow">
     <h3 class="text-xl font-bold mb-2 text-yellow-500 text-center">Workout Pläne</h3>
@@ -287,6 +288,7 @@
       <span class="block">Ideal für Anfänger und Fortgeschrittene, die effizient ihre Ziele erreichen möchten.</span>
     </p>
 
+    <!-- Radiobuttony -->
     <label class="flex items-center mb-2">
       <input type="radio" name="workout-plan" value="Krafttraining → Kraft & Muskulöse Figur" class="mr-2">
       Krafttraining → Kraft & Muskulöse Figur
@@ -301,6 +303,7 @@
     </label>
   </div>
 
+  <!-- Formularz PayPal -->
   <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="flex flex-col items-center">
     <input type="hidden" name="cmd" value="_xclick">
     <input type="hidden" name="item_name" value="Workout Pläne">
@@ -313,7 +316,7 @@
     <div class="text-3xl font-bold text-yellow-500 mb-2 mt-4">49€</div>
 
     <div class="flex items-start mb-4">
-       <input id="check-workout" type="checkbox" class="mt-1 mr-2">
+      <input id="check-workout" type="checkbox" class="mt-1 mr-2">
       <label for="check-workout" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
     </div>
 
@@ -322,7 +325,7 @@
           alt="Jetzt kaufen" aria-label="Jetzt kaufen – Workout Pläne" disabled>
   </form>
 </div>
-
+  
 <!-- Premium Individuell -->
 <div class="bg-gray-900 border-2 border-yellow-500 rounded-2xl p-8 flex flex-col shadow-[0_0_25px_rgba(255,215,0,0.2)] card-hover transition-transform duration-200 w-full lg:col-span-3 max-w-2xl mx-auto">
 
@@ -385,47 +388,44 @@
 </div>
 </section>
 
-    <script>
+ <!-- Skrypt JS -->
+<script>
 document.addEventListener('DOMContentLoaded', () => {
-
   function updatePayPalButton(form) {
     const checkbox = form.querySelector('input[type="checkbox"]');
     const radios = form.querySelectorAll('input[type="radio"]');
     const button = form.querySelector('input[type="image"][id^="paypal"]');
     const os0 = form.querySelector('input[name="os0"]');
-
     if (!button) return;
 
-    // Sprawdź checkbox (wymagany)
-    let enabled = checkbox ? checkbox.checked : true;
+    let enabled = true;
 
-    // Sprawdź radiobuttony (jeśli są, to wymagany jeden wybór)
+    // Checkbox musi być zaznaczony
+    if (checkbox) enabled = checkbox.checked;
+
+    // Radiobutton musi być wybrany
     if (radios.length > 0) {
       const selectedRadio = form.querySelector('input[type="radio"]:checked');
       if (selectedRadio) {
-        if (os0) os0.value = selectedRadio.value; // ustaw wybraną opcję
+        if (os0) os0.value = selectedRadio.value;
       } else {
-        enabled = false; // brak zaznaczenia radio = przycisk nieaktywny
+        enabled = false;
         if (os0) os0.value = '';
       }
     }
 
-    button.disabled = !enabled; // włącz/wyłącz przycisk
+    button.disabled = !enabled;
   }
 
-  // Znajdź wszystkie formularze PayPal
   document.querySelectorAll('form[action*="paypal"]').forEach(form => {
-    // Aktualizuj przycisk przy każdej zmianie checkboxa lub radio
     form.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(el => {
       el.addEventListener('change', () => updatePayPalButton(form));
     });
-    // Inicjalne ustawienie przycisku po załadowaniu strony
     updatePayPalButton(form);
   });
-
 });
 </script>
-
+    
   <style>
     /* złoty akcent dla checkboxów / radio */
     input[type="checkbox"]:checked,
@@ -692,6 +692,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
+
 
 
 
