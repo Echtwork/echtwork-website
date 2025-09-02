@@ -75,51 +75,6 @@
 
   <script src="https://cdn.tailwindcss.com"></script>
   
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  function updatePayPalButton(form) {
-    const checkbox = form.querySelector('input[type="checkbox"]');
-    const radioGroup = form.querySelectorAll('input[type="radio"]');
-    const button = form.querySelector('input[type="image"][id^="paypal"]');
-    const os0 = form.querySelector('input[name="os0"]');
-
-    if (!button) return;
-    let enabled = true;
-
-    if (checkbox) enabled = enabled && checkbox.checked;
-    if (radioGroup.length > 0) {
-      const selected = form.querySelector('input[type="radio"]:checked');
-      if (selected) {
-        enabled = enabled && true;
-        if (os0) os0.value = selected.value;
-      } else {
-        enabled = false;
-        if (os0) os0.value = '';
-      }
-    }
-
-    button.disabled = !enabled;
-  }
-
-  document.querySelectorAll('form[action*="paypal"]').forEach(form => {
-    const checkbox = form.querySelector('input[type="checkbox"]');
-    if (checkbox) checkbox.addEventListener('change', () => updatePayPalButton(form));
-    form.querySelectorAll('input[type="radio"]').forEach(radio => {
-      radio.addEventListener('change', () => updatePayPalButton(form));
-    });
-    updatePayPalButton(form);
-  });
-});
-</script>
-
-  <style>
-    /* złoty akcent dla checkboxów / radio */
-    input[type="checkbox"]:checked,
-    input[type="radio"]:checked { accent-color: #FFD700; }
-    /* delikatne poprawki estetyczne */
-    .card-hover:hover { transform: translateY(-6px); box-shadow: 0 18px 30px rgba(0,0,0,0.6); }
-    .gold-gradient { background: linear-gradient(90deg, rgba(255,215,0,0.95), rgba(220,180,0,0.9)); }
-  </style>
 </head>
 
 <body class="bg-black text-white font-sans antialiased flex flex-col min-h-screen">
@@ -429,6 +384,52 @@ document.addEventListener('DOMContentLoaded', function() {
   </form>
 </div>
 </section>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+  function updatePayPalButton(form) {
+    const checkbox = form.querySelector('input[type="checkbox"]');
+    const radioGroup = form.querySelectorAll('input[type="radio"]');
+    const button = form.querySelector('input[type="image"][id^="paypal"]');
+    const os0 = form.querySelector('input[name="os0"]');
+
+    if (!button) return;
+    let enabled = true;
+
+    if (checkbox) enabled = enabled && checkbox.checked;
+    if (radioGroup.length > 0) {
+      const selected = form.querySelector('input[type="radio"]:checked');
+      if (selected) {
+        enabled = enabled && true;
+        if (os0) os0.value = selected.value;
+      } else {
+        enabled = false;
+        if (os0) os0.value = '';
+      }
+    }
+
+    button.disabled = !enabled;
+  }
+
+  document.querySelectorAll('form[action*="paypal"]').forEach(form => {
+    const checkbox = form.querySelector('input[type="checkbox"]');
+    if (checkbox) checkbox.addEventListener('change', () => updatePayPalButton(form));
+    form.querySelectorAll('input[type="radio"]').forEach(radio => {
+      radio.addEventListener('change', () => updatePayPalButton(form));
+    });
+    updatePayPalButton(form);
+  });
+});
+</script>
+
+  <style>
+    /* złoty akcent dla checkboxów / radio */
+    input[type="checkbox"]:checked,
+    input[type="radio"]:checked { accent-color: #FFD700; }
+    /* delikatne poprawki estetyczne */
+    .card-hover:hover { transform: translateY(-6px); box-shadow: 0 18px 30px rgba(0,0,0,0.6); }
+    .gold-gradient { background: linear-gradient(90deg, rgba(255,215,0,0.95), rgba(220,180,0,0.9)); }
+  </style>
     
   <!-- Kontener z ograniczoną szerokością i poziomym scroll -->
   <div class="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-auto">
@@ -687,6 +688,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+
 
 
 
