@@ -411,12 +411,21 @@ document.addEventListener('DOMContentLoaded', () => {
     .gold-gradient { background: linear-gradient(90deg, rgba(255,215,0,0.95), rgba(220,180,0,0.9)); }
   </style>
  
-  <section>
-  <!-- Kontener z ograniczoną szerokością i poziomym scroll -->
-  <div class="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-auto">
-   <table class="w-full table-fixed min-w-[600px] border border-gray-700 text-center text-sm md:text-base text-gray-300">
-  <thead class="bg-gray-800 text-gray-200">
-    <tr>
+ 
+ <!-- Vergleich -->
+    <section id="vergleich" class="px-6 max-w-6xl mx-auto mb-16">
+      <div class="text-center mb-6">
+        <h2 class="text-3xl font-bold text-yellow-500">Welcher Plan passt zu dir?</h2>
+        <p class="text-gray-300 max-w-2xl mx-auto">
+          Wähle zwischen sofort startbaren PDF-Plänen oder einem vollständig personalisierten Premium-Paket.
+        </p>
+      </div>
+      
+      <!-- Desktop/Tablet: Tabelle -->
+      <div class="hidden md:block overflow-x-auto">
+        <table class="min-w-full border border-gray-700 text-left text-sm md:text-base">
+          <thead class="bg-gray-800">
+      <tr>
       <th class="p-3 border border-gray-700 text-left">Feature / Plan</th>
       <th class="p-3 border border-gray-700">Basic Ernährungsplan<br><span class="text-yellow-500 font-bold">14,99€</span></th>
       <th class="p-3 border border-gray-700">Fit & Feminine<br><span class="text-yellow-500 font-bold">35€</span></th>
@@ -669,6 +678,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
+
 
 
 
