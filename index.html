@@ -76,62 +76,73 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
 <script>
-  // Uniwersalna funkcja do toggle przycisków PayPal (dla innych planów)
-  function togglePayPalButton(checkboxId, buttonId) {
-    const cb = document.getElementById(checkboxId);
-    const btn = document.getElementById(buttonId);
-    if (cb && btn) btn.disabled = !cb.checked;
-  }
+document.addEventListener('DOMContentLoaded', function() {
 
-  // Funkcja specyficzna dla Workout Pläne (radio + checkbox)
-  function checkWorkoutUnlock() {
-    const radioChecked = document.querySelector('input[name="workout-plan"]:checked');
-    const termsChecked = document.getElementById('check-workout').checked;
-    const btn = document.getElementById('paypal-workout');
-    if (btn) btn.disabled = !(radioChecked && termsChecked);
-  }
+  // --- Funkcja uniwersalna do odblokowania przycisku ---
+  function updatePayPalButton(form) {
+    const checkbox = form.querySelector('input[type="checkbox"]');
+    const radioGroup = form.querySelectorAll('input[type="radio"]');
+    const button = form.querySelector('input[type="image"][id^="paypal"]');
+    const os0 = form.querySelector('input[name="os0"]');
 
-  // Ustawienie nazwy wybranego planu w PayPal
-  function updatePayPalPlan() {
-    const selected = document.querySelector('input[name="workout-plan"]:checked');
-    const planInput = document.getElementById('paypal-plan-name');
-    if (selected && planInput) {
-      planInput.value = selected.value; // <-- używamy value zamiast nextSibling
-    }
-  }
+    if (!button) return;
 
-  // Hamburger toggle + trust badge injection po załadowaniu DOM
-  document.addEventListener('DOMContentLoaded', function() {
-    const btn = document.getElementById('menu-toggle');
-    const menu = document.getElementById('menu');
-    if (btn && menu) {
-      btn.addEventListener('click', function () {
-        const isHidden = menu.classList.toggle('hidden');
-        btn.setAttribute('aria-expanded', String(!isHidden));
-      });
+    let enabled = true;
+
+    // Sprawdzenie checkboxa
+    if (checkbox) enabled = enabled && checkbox.checked;
+
+    // Sprawdzenie radio (jeśli są)
+    if (radioGroup.length > 0) {
+      const selected = form.querySelector('input[type="radio"]:checked');
+      if (selected) {
+        enabled = enabled && true;
+        // ustawienie wartości os0 dla PayPal
+        if (os0) os0.value = selected.value;
+      } else {
+        enabled = false;
+        if (os0) os0.value = '';
+      }
     }
 
-    // Inject trust badges beneath each PayPal form button
-    const tpl = document.getElementById('trust-badge-template');
-    if (tpl) {
-      document.querySelectorAll('form[action*="paypal"]').forEach(form => {
-        const clone = tpl.content.cloneNode(true);
-        form.appendChild(clone);
-      });
-    }
+    button.disabled = !enabled;
+  }
 
-    // Workout Pläne – nasłuch radio i checkbox
-    const workoutRadios = document.querySelectorAll('input[name="workout-plan"]');
-    workoutRadios.forEach(radio => {
-      radio.addEventListener('change', function() {
-        updatePayPalPlan();    // najpierw ustawiamy nazwę planu
-        checkWorkoutUnlock();  // potem odblokowujemy przycisk
-      });
+  // --- Nasłuchiwanie na zmiany w każdym formularzu ---
+  document.querySelectorAll('form[action*="paypal"]').forEach(form => {
+    // Checkbox
+    const checkbox = form.querySelector('input[type="checkbox"]');
+    if (checkbox) checkbox.addEventListener('change', () => updatePayPalButton(form));
+
+    // Radio buttons
+    form.querySelectorAll('input[type="radio"]').forEach(radio => {
+      radio.addEventListener('change', () => updatePayPalButton(form));
     });
 
-    const workoutCheckbox = document.getElementById('check-workout');
-    if (workoutCheckbox) workoutCheckbox.addEventListener('change', checkWorkoutUnlock);
+    // Inicjalne ustawienie przycisku
+    updatePayPalButton(form);
   });
+
+  // --- Hamburger toggle (jeśli potrzebne) ---
+  const btn = document.getElementById('menu-toggle');
+  const menu = document.getElementById('menu');
+  if (btn && menu) {
+    btn.addEventListener('click', function () {
+      const isHidden = menu.classList.toggle('hidden');
+      btn.setAttribute('aria-expanded', String(!isHidden));
+    });
+  }
+
+  // --- Inject trust badges ---
+  const tpl = document.getElementById('trust-badge-template');
+  if (tpl) {
+    document.querySelectorAll('form[action*="paypal"]').forEach(form => {
+      const clone = tpl.content.cloneNode(true);
+      form.appendChild(clone);
+    });
+  }
+
+});
 </script>
 
   <style>
@@ -748,6 +759,7 @@
 </script>
 </body>
 </html>
+
 
 
 
