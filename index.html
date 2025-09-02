@@ -422,13 +422,16 @@
 
   <!-- Premium Individuell -->
 <div class="bg-gray-900 border-2 border-yellow-500 rounded-2xl p-8 flex flex-col shadow-[0_0_25px_rgba(255,215,0,0.2)] card-hover transition-transform duration-200 w-full lg:col-span-3 max-w-2xl mx-auto">
-  <div class="px-4 py-1 rounded-full bg-yellow-500 text-black text-sm font-bold mb-4 inline-block">
+  
+  <!-- Nagłówek Premium -->
+  <div class="px-4 py-1 rounded-full bg-yellow-500 text-black text-sm font-bold mb-6 inline-block">
     Premium
   </div>
 
-  <h3 class="font-extrabold text-3xl mb-6 flex items-center justify-center gap-3">
-    <!-- Lewa gwiazdka -->
-    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 drop-shadow-[0_0_12px_rgba(255,215,0,0.9)]" viewBox="0 0 24 24" fill="url(#gold)">
+  <!-- Gwiazdki + Nazwa -->
+  <div class="flex flex-col items-center mb-6">
+    <!-- Górna gwiazdka -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 drop-shadow-[0_0_12px_rgba(255,215,0,0.9)] mb-2" viewBox="0 0 24 24" fill="url(#gold)">
       <defs>
         <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stop-color="#FFD700"/>
@@ -438,16 +441,17 @@
       <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.85 1.507 8.281L12 18.896l-7.443 4.541 1.507-8.281-6.064-5.85 8.332-1.151z"/>
     </svg>
 
-    <span class="text-yellow-500">Premium Individuell</span>
+    <!-- Nazwa Premium -->
+    <span class="text-yellow-500 font-extrabold text-3xl">Premium Individuell</span>
 
-    <!-- Prawa gwiazdka -->
-    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 drop-shadow-[0_0_12px_rgba(255,215,0,0.9)]" viewBox="0 0 24 24" fill="url(#gold)">
+    <!-- Dolna gwiazdka -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 drop-shadow-[0_0_12px_rgba(255,215,0,0.9)] mt-2" viewBox="0 0 24 24" fill="url(#gold)">
       <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.85 1.507 8.281L12 18.896l-7.443 4.541 1.507-8.281-6.064-5.85 8.332-1.151z"/>
     </svg>
-  </h3>
+  </div>
 
   <!-- Treść Premium -->
-  <p class="text-gray-300 mb-6">
+  <p class="text-gray-300 mb-6 text-center">
     <span class="block">Dein Plan - Dein Körper - Dein Erfolg.</span>
     <span class="block">Trainingsplan nach Maß – 100 % individuell.</span>
     <span class="block">Ernährung, die zu Dir passt & Ergebnisse liefert.</span>
@@ -455,13 +459,14 @@
     <span class="block">Exklusiv - Persönlich - Effektiv.</span>
   </p>
 
-  <p class="text-sm text-yellow-500 font-bold mb-6">
+  <p class="text-sm text-yellow-500 font-bold mb-6 text-center">
     Nach der Zahlung wirst Du automatisch zu einem Formular weitergeleitet, 
     in dem Du Deine Ziele, Vorlieben und eventuelle gesundheitliche Einschränkungen angibst.
   </p>
 
-  <div class="text-3xl font-bold text-yellow-500 mb-2">nur 99€</div>
+  <div class="text-3xl font-bold text-yellow-500 mb-4 text-center">nur 99€</div>
 
+  <!-- Formular PayPal -->
   <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="mt-auto flex flex-col items-center">
     <input type="hidden" name="cmd" value="_xclick">
     <input type="hidden" name="item_name" value="Premium Individuell">
@@ -735,6 +740,7 @@
 </script>
 </body>
 </html>
+
 
 
 
