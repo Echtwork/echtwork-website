@@ -387,36 +387,42 @@
 
     <script>
 document.addEventListener('DOMContentLoaded', () => {
+
   function updatePayPalButton(form) {
     const checkbox = form.querySelector('input[type="checkbox"]');
     const radios = form.querySelectorAll('input[type="radio"]');
     const button = form.querySelector('input[type="image"][id^="paypal"]');
     const os0 = form.querySelector('input[name="os0"]');
+
     if (!button) return;
 
-    let enabled = true;
+    // Sprawdź checkbox (wymagany)
+    let enabled = checkbox ? checkbox.checked : true;
 
-    if (checkbox) enabled = checkbox.checked;
-
-    const selectedRadio = form.querySelector('input[type="radio"]:checked');
+    // Sprawdź radiobuttony (jeśli są, to wymagany jeden wybór)
     if (radios.length > 0) {
+      const selectedRadio = form.querySelector('input[type="radio"]:checked');
       if (selectedRadio) {
-        if (os0) os0.value = selectedRadio.value;
+        if (os0) os0.value = selectedRadio.value; // ustaw wybraną opcję
       } else {
-        enabled = false;
+        enabled = false; // brak zaznaczenia radio = przycisk nieaktywny
         if (os0) os0.value = '';
       }
     }
 
-    button.disabled = !enabled;
+    button.disabled = !enabled; // włącz/wyłącz przycisk
   }
 
+  // Znajdź wszystkie formularze PayPal
   document.querySelectorAll('form[action*="paypal"]').forEach(form => {
+    // Aktualizuj przycisk przy każdej zmianie checkboxa lub radio
     form.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(el => {
       el.addEventListener('change', () => updatePayPalButton(form));
     });
+    // Inicjalne ustawienie przycisku po załadowaniu strony
     updatePayPalButton(form);
   });
+
 });
 </script>
 
@@ -686,6 +692,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
+
 
 
 
