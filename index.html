@@ -210,165 +210,191 @@
     <!-- Plans -->
 <section id="plaene" class="py-16 px-6 max-w-6xl mx-auto grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 items-stretch">
 
-  <!-- Basic Ernährungsplan -->
-  <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col card-hover transition-transform duration-200 h-full">
-    <h3 class="text-xl font-bold mb-2 text-yellow-500 text-center">Basic Ernährungsplan (7 Tage)</h3>
-    <p class="text-gray-300 mb-4">
-      <span class="block">- Starte jetzt mit einfachen & leckeren Rezepten - ohne Verzicht.</span>
-      <span class="block">- Inklusive fertiger Einkaufsliste.</span>
-    </p>
+ <!-- Basic Ernährungsplan -->
+      <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col card-hover transition-transform duration-200">
+        <h3 class="text-xl font-bold mb-2 text-yellow-500">Basic Ernährungsplan</h3>
+        <p class="text-gray-300 mb-4">
+          <span class="block">7-Tage-Basic Plan, einfache Rezepte & Einkaufsliste.</span>
+          <span class="block">Perfekt als Turbo zu deinem Training – oder auch alleine nutzbar.</span>
+          <span class="block">Keine komplizierten Diäten, klare Struktur & alltagstauglich.</span>
+        </p>
 
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-      <input type="hidden" name="cmd" value="_xclick">
-      <input type="hidden" name="business" value="echtwork@gmail.com">
-      <input type="hidden" name="item_name" value="Basic Ernährungsplan 7 Tage">
-      <input type="hidden" name="amount" value="14.99">
-      <input type="hidden" name="currency_code" value="EUR">
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="mt-auto">
+          <input type="hidden" name="cmd" value="_s-xclick">
+          <input type="hidden" name="hosted_button_id" value="ZAC44DWYN8V3U">
+          <input type="hidden" name="currency_code" value="EUR">
 
-      <div class="flex items-start mb-4">
-        <input id="check-basic" type="checkbox" class="mt-1 mr-2">
-        <label for="check-basic" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
+          <div class="text-3xl font-bold text-yellow-500 mb-2">14,99€</div>
+
+          <div class="flex items-start mb-4">
+            <input id="check-basic" type="checkbox" class="mt-1 mr-2" onchange="togglePayPalButton('check-basic','paypal-basic')">
+            <label for="check-basic" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
+          </div>
+
+          <input id="paypal-basic" type="image"
+                src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif"
+                alt="Jetzt kaufen" aria-label="Jetzt kaufen – Basic Ernährungsplan" disabled>
+        </form>
+
+        <p class="text-sm text-gray-400 mt-2">Hinweis zur E-Mail-Adresse</p>
+        <details class="text-sm text-gray-400">
+          <summary class="cursor-pointer text-yellow-500">Mehr Infos anzeigen</summary>
+          <p class="mt-2 text-gray-300">
+            Bitte geben Sie im Feld <em>„Nachricht an den Verkäufer“</em> bei PayPal Ihre aktuelle E-Mail-Adresse an, falls Sie den Plan an eine andere Adresse erhalten möchten.<br>
+            Falls keine Nachricht eingetragen wird, senden wir den Plan automatisch an die bei PayPal hinterlegte E-Mail-Adresse.
+          </p>
+        </details>
       </div>
 
-      <input id="paypal-basic" type="image"
-            src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif"
-            alt="Jetzt kaufen – Basic Ernährungsplan" disabled>
-    </form>
-  </div>
+      <!-- Fit & Feminine -->
+      <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col card-hover transition-transform duration-200">
+        <h3 class="text-xl font-bold mb-2 text-yellow-500">Fit & Feminine - Home-Workout</h3>
+        <p class="text-gray-300 mb-4">
+          <span class="block">Fit & Feminine – Traumfigur in 6 Wochen. </span>
+          <span class="block">Kein Fitnessstudio nötig! </span>
+          <span class="block">Dein kompletter 6-Wochen-Plan für einen straffen & femininen Body.</span>
+          <span class="block">Bauch, Beine, Po & Arme – gezielte Workouts für Frauen.</span>
+          <span class="block">Sichtbare Ergebnisse in nur 6 Wochen.</span>
+          <span class="block text-yellow-500 font-semibold">GRATIS!!! dazu:</span>
+          <span class="block">Turbo Burn HIIT – kurze, intensive Fatburn-Workouts für maximale Kalorienverbrennung.</span>
+        </p>
 
-  <!-- Fit & Feminine -->
-  <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col card-hover transition-transform duration-200 h-full">
-    <h3 class="text-xl font-bold mb-2 text-yellow-500 text-center">Fit & Feminine - Home-Workout</h3>
-    <p class="text-gray-300 mb-4">
-      <span class="block">- Dein kompletter 6-Wochen-Plan für einen straffen & femininen Body.</span>
-      <span class="block">- Kein Fitnessstudio nötig.</span>
-    </p>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="mt-auto">
+          <input type="hidden" name="cmd" value="_s-xclick">
+          <input type="hidden" name="hosted_button_id" value="595QUMFN3TKQN">
+          <input type="hidden" name="currency_code" value="EUR">
 
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-      <input type="hidden" name="cmd" value="_xclick">
-      <input type="hidden" name="business" value="echtwork@gmail.com">
-      <input type="hidden" name="item_name" value="Fit & Feminine Home-Workout">
-      <input type="hidden" name="amount" value="35.00">
-      <input type="hidden" name="currency_code" value="EUR">
+          <div class="text-3xl font-bold text-yellow-500 mb-2">35€</div>
 
-      <div class="flex items-start mb-4">
-        <input id="check-feminine" type="checkbox" class="mt-1 mr-2">
-        <label for="check-feminine" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
+          <div class="flex items-start mb-4">
+            <input id="check-fhome" type="checkbox" class="mt-1 mr-2" onchange="togglePayPalButton('check-fhome','paypal-fhome')">
+            <label for="check-fhome" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
+          </div>
+
+          <input id="paypal-fhome" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif"
+                alt="Jetzt kaufen" aria-label="Jetzt kaufen – Fit & Feminine" disabled>
+        </form>
+
+        <p class="text-sm text-gray-400 mt-2">Hinweis zur E-Mail-Adresse</p>
+        <details class="text-sm text-gray-400">
+          <summary class="cursor-pointer text-yellow-500">Mehr Infos anzeigen</summary>
+          <p class="mt-2 text-gray-300">
+            Bitte geben Sie im Feld <em>„Nachricht an den Verkäufer“</em> bei PayPal Ihre aktuelle E-Mail-Adresse an, falls Sie den Plan an eine andere Adresse erhalten möchten.<br>
+            Falls keine Nachricht eingetragen wird, senden wir den Plan automatisch an die bei PayPal hinterlegte E-Mail-Adresse.
+          </p>
+        </details>
       </div>
 
-      <input id="paypal-feminine" type="image"
-            src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif"
-            alt="Jetzt kaufen – Fit & Feminine" disabled>
-    </form>
-  </div>
+      <!-- Workout -->
+      <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col card-hover transition-transform duration-200">
+        <h3 class="text-xl font-bold mb-2 text-yellow-500">Workout Pläne</h3>
+        <p class="text-gray-300 mb-3">
+          <span class="block">Für alle, die klare Strukturen und schnelle Resultate wollen – ohne Ratespiele oder ständiges Überlegen.</span>
+        </p>
 
-  <!-- Workout Pläne -->
-  <div class="bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col card-hover transition-transform duration-200 h-full">
-    <h3 class="text-xl font-bold mb-2 text-yellow-500 text-center">Workout Pläne</h3>
+        <label class="flex items-center mb-2">
+          <input type="radio" name="workout-plan" value="49" class="mr-2">
+          Krafttraining → Kraft & Muskulöse Figur
+        </label>
 
-    <label class="flex items-center mb-2">
-      <input type="radio" name="workout-plan" value="Krafttraining -> Kraft & Muskulöse Figur" class="mr-2">
-      Krafttraining -> Kraft & Muskulöse Figur
-    </label>
-    <label class="flex items-center mb-2">
-      <input type="radio" name="workout-plan" value="Krafttraining -> Push/Pull/Legs" class="mr-2">
-      Krafttraining -> Push/Pull/Legs
-    </label>
-    <label class="flex items-center mb-2">
-      <input type="radio" name="workout-plan" value="Calisthenics -> Body & Power - Eigengewicht" class="mr-2">
-      Calisthenics -> Body & Power - Eigengewicht
-    </label>
+        <label class="flex items-center mb-2">
+          <input type="radio" name="workout-plan" value="49" class="mr-2">
+          Krafttraining → Push/Pull/Legs
+        </label>
 
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-      <input type="hidden" name="cmd" value="_xclick">
-      <input type="hidden" name="business" value="echtwork@gmail.com">
-      <input type="hidden" name="item_name" id="workout-item-name" value="">
-      <input type="hidden" name="amount" value="49.00">
-      <input type="hidden" name="currency_code" value="EUR">
+        <label class="flex items-center mb-2">
+          <input type="radio" name="workout-plan" value="49" class="mr-2">
+          Calisthenics → Body & Power – Eigengewicht
+        </label>
 
-      <div class="flex items-start mb-4">
-        <input id="check-workout" type="checkbox" class="mt-1 mr-2">
-        <label for="check-workout" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="mt-auto">
+          <input type="hidden" name="cmd" value="_s-xclick">
+          <input type="hidden" name="hosted_button_id" value="96DX79QQS3QXS">
+          <input type="hidden" name="currency_code" value="EUR">
+
+          <input type="hidden" name="on0" value="Gewählter Plan">
+          <input type="hidden" name="os0" id="paypal-plan-name" value="">
+
+          <div class="text-3xl font-bold text-yellow-500 mb-2 mt-4">49€</div>
+
+          <div class="flex items-start mb-4">
+          <input id="check-workout" type="checkbox" class="mt-1 mr-2">
+          <label for="check-workout" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
+          </div>
+
+
+          <input id="paypal-workout" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif"
+                alt="Jetzt kaufen" aria-label="Jetzt kaufen – Workout Pläne" disabled>
+        </form>
+
+        <p class="text-sm text-gray-400 mt-2">Hinweis zur E-Mail-Adresse</p>
+        <details class="text-sm text-gray-400">
+          <summary class="cursor-pointer text-yellow-500">Mehr Infos anzeigen</summary>
+          <p class="mt-2 text-gray-300">
+            Bitte geben Sie im Feld <em>„Nachricht an den Verkäufer“</em> bei PayPal Ihre aktuelle E-Mail-Adresse an, falls Sie den Plan an eine andere Adresse erhalten möchten.<br>
+            Falls keine Nachricht eingetragen wird, senden wir den Plan automatisch an die bei PayPal hinterlegte E-Mail-Adresse.
+          </p>
+        </details>
       </div>
 
-      <input id="paypal-workout" type="image"
-            src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif"
-            alt="Jetzt kaufen – Workout Pläne" disabled>
-    </form>
-  </div>
+      <!-- Premium -->
+      <div class="bg-gray-900 border-2 border-yellow-500 rounded-2xl p-8 flex flex-col shadow-[0_0_25px_rgba(255,215,0,0.2)] card-hover transition-transform duration-200 mx-auto w-full max-w-4xl text-center lg:col-span-3 lg:max-w-2xl">
+        <div class="px-4 py-1 rounded-full bg-yellow-500 text-black text-sm font-bold mb-4 inline-block">
+          Premium
+        </div>
 
-  <!-- Premium Individuell -->
-  <div class="bg-gray-900 border-2 border-yellow-500 rounded-2xl p-6 flex flex-col card-hover transition-transform duration-200 h-full">
-    <h3 class="text-xl font-bold mb-2 text-yellow-500 text-center">Premium Individuell</h3>
+        <h3 class="font-extrabold text-3xl mb-6 flex items-center justify-center gap-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 drop-shadow-[0_0_12px_rgba(255,215,0,0.9)]" viewBox="0 0 24 24" fill="url(#gold)">
+            <defs>
+              <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FFD700"/>
+                <stop offset="100%" stop-color="#FFA500"/>
+              </linearGradient>
+            </defs>
+            <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.85 1.507 8.281L12 18.896l-7.443 4.541 1.507-8.281-6.064-5.85 8.332-1.151z"/>
+          </svg>
 
-    <p class="text-gray-300 mb-4">Nach der Zahlung wirst du automatisch zu einem Formular weitergeleitet.</p>
+          <span class="text-yellow-500">Premium Individuell</span>
 
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-      <input type="hidden" name="cmd" value="_xclick">
-      <input type="hidden" name="business" value="echtwork@gmail.com">
-      <input type="hidden" name="item_name" value="Premium Individuell">
-      <input type="hidden" name="amount" value="99.00">
-      <input type="hidden" name="currency_code" value="EUR">
-      <input type="hidden" name="return" value="https://echtwork.github.io/echtwork-website/premium-formular.html">
-      <input type="hidden" name="cancel_return" value="https://echtwork.github.io/echtwork-website/payment-cancel.html">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 drop-shadow-[0_0_12px_rgba(255,215,0,0.9)]" viewBox="0 0 24 24" fill="url(#gold)">
+            <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.85 1.507 8.281L12 18.896l-7.443 4.541 1.507-8.281-6.064-5.85 8.332-1.151z"/>
+          </svg>
+        </h3>
 
-      <div class="flex items-start mb-4">
-        <input id="check-premium" type="checkbox" class="mt-1 mr-2">
-        <label for="check-premium" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
+        <p class="text-gray-300 mb-6">
+          <span class="block">Dein Plan - Dein Körper - Dein Erfolg.</span>
+          <span class="block">Trainingsplan nach Maß – 100 % individuell.</span>
+          <span class="block">Ernährung, die zu Dir passt & Ergebnisse liefert.</span>
+          <span class="block">Komplett angepasst an Ziele, Gesundheit & Alltag.</span>
+          <span class="block">Exklusiv - Persönlich - Effektiv.</span>
+        </p>
+
+        <p class="text-sm text-yellow-500 font-bold mb-6">
+          Nach der Zahlung wirst Du automatisch zu einem Formular weitergeleitet, 
+          in dem Du Deine Ziele, Vorlieben und eventuelle gesundheitliche Einschränkungen angibst.
+        </p>
+
+        <div class="text-3xl font-bold text-yellow-500 mb-2">nur 99€</div>
+
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="mt-auto flex flex-col items-center">
+          <input type="hidden" name="cmd" value="_s-xclick">
+          <input type="hidden" name="hosted_button_id" value="PV6WNVYUSV9NN">
+          <input type="hidden" name="currency_code" value="EUR">
+
+          <div class="flex items-center justify-center mb-4">
+            <input id="check-premium" type="checkbox" class="mr-2" onchange="togglePayPalButton('check-premium','paypal-premium')">
+            <label for="check-premium" class="text-sm text-gray-300">Ich stimme den Bedingungen zu</label>
+          </div>
+
+          <input id="paypal-premium" type="image" src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif" alt="Jetzt kaufen" aria-label="Jetzt kaufen – Premium Individuell" disabled>
+
+          <input type="hidden" name="return" value="https://echtwork.github.io/echtwork-website/premium-formular.html">
+          <input type="hidden" name="cancel_return" value="https://echtwork.github.io/echtwork-website/payment-cancel.html">
+        </form>
       </div>
+    </section>
 
-      <input id="paypal-premium" type="image"
-            src="https://www.paypalobjects.com/de_DE/i/btn/btn_buynow_SM.gif"
-            alt="Jetzt kaufen – Premium Individuell" disabled>
-    </form>
-  </div>
-
-</div>
-
-<script>
-  // Basic
-  document.getElementById('check-basic').addEventListener('change', function() {
-    document.getElementById('paypal-basic').disabled = !this.checked;
-  });
-
-  // Fit & Feminine
-  document.getElementById('check-feminine').addEventListener('change', function() {
-    document.getElementById('paypal-feminine').disabled = !this.checked;
-  });
-
-  // Premium Individuell
-  document.getElementById('check-premium').addEventListener('change', function() {
-    document.getElementById('paypal-premium').disabled = !this.checked;
-  });
-
-  // Workout Pläne
-  const workoutCheckbox = document.getElementById('check-workout');
-  const workoutButton = document.getElementById('paypal-workout');
-  const workoutItemName = document.getElementById('workout-item-name');
-  const radios = document.querySelectorAll('input[name="workout-plan"]');
-
-  function updateWorkoutButton() {
-    const selected = document.querySelector('input[name="workout-plan"]:checked');
-    workoutButton.disabled = !(workoutCheckbox.checked && selected);
-    workoutItemName.value = selected ? selected.value : '';
-  }
-
-  workoutCheckbox.addEventListener('change', updateWorkoutButton);
-  radios.forEach(radio => radio.addEventListener('change', updateWorkoutButton));
-</script>
-
-  
-  <style>
-    /* złoty akcent dla checkboxów / radio */
-    input[type="checkbox"]:checked,
-    input[type="radio"]:checked { accent-color: #FFD700; }
-    /* delikatne poprawki estetyczne */
-    .card-hover:hover { transform: translateY(-6px); box-shadow: 0 18px 30px rgba(0,0,0,0.6); }
-    .gold-gradient { background: linear-gradient(90deg, rgba(255,215,0,0.95), rgba(220,180,0,0.9)); }
-  </style>
- 
- 
- <!-- Vergleich -->
+    <!-- Vergleich -->
     <section id="vergleich" class="px-6 max-w-6xl mx-auto mb-16">
       <div class="text-center mb-6">
         <h2 class="text-3xl font-bold text-yellow-500">Welcher Plan passt zu dir?</h2>
@@ -376,7 +402,7 @@
           Wähle zwischen sofort startbaren PDF-Plänen oder einem vollständig personalisierten Premium-Paket.
         </p>
       </div>
-      
+
       <!-- Desktop/Tablet: Tabelle -->
       <div class="hidden md:block overflow-x-auto">
         <table class="min-w-full border border-gray-700 text-left text-sm md:text-base">
@@ -634,6 +660,7 @@
 </script>
 </body>
 </html>
+
 
 
 
