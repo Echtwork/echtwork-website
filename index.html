@@ -622,18 +622,24 @@
       </div>
     </section>
 
-    <!-- TRUST BAR -->
-    <section aria-label="Sicher bezahlen mit PayPal" class="gold-gradient text-black">
-      <div class="max-w-6xl mx-auto px-6 py-3 flex flex-wrap items-center justify-center gap-3 text-sm md:text-base font-semibold">
-        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c-1.657 0-3 1.343-3 3v3h6v-3c0-1.657-1.343-3-3-3zm5 3v3a2 2 0 01-2 2H9a2 2 0 01-2-2v-3a5 5 0 1110 0z"/>
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11V8a5 5 0 1110 0v3"/>
-        </svg>
-        <span>SSL-gesichert · Sicher bezahlen mit PayPal ·</span>
-        <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg" alt="PayPal Logo" class="h-6 md:h-8" loading="lazy">
-      </div>
-    </section>
+   <!-- TRUST BAR (z gradientem, poprawione flex-shrink) -->
+<section aria-label="Sicher bezahlen mit PayPal" class="bg-gradient-to-b from-yellow-500 to-yellow-400 text-black">
+  <div class="max-w-6xl mx-auto px-6 py-3 flex flex-wrap items-center justify-center gap-3 text-sm md:text-base font-semibold">
+    <!-- Ikona SSL -->
+    <svg class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c-1.657 0-3 1.343-3 3v3h6v-3c0-1.657-1.343-3-3-3zm5 3v3a2 2 0 01-2 2H9a2 2 0 01-2-2v-3a5 5 0 1110 0z"/>
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11V8a5 5 0 1110 0v3"/>
+    </svg>
 
+    <span class="flex-shrink-0">SSL-gesichert · Sicher bezahlen mit PayPal ·</span>
+
+    <!-- Logo PayPal -->
+    <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg" 
+         alt="PayPal Logo" 
+         class="h-6 md:h-8 flex-shrink-0" 
+         loading="lazy">
+  </div>
+</section>
   </main>
 
  <!-- Footer (flush bottom via flex layout) -->
@@ -726,6 +732,7 @@
 </script>
 </body>
 </html>
+
 
 
 
