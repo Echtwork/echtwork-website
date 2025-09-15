@@ -463,6 +463,17 @@
     .gold-gradient { background: linear-gradient(90deg, rgba(255,215,0,0.95), rgba(220,180,0,0.9)); }
   </style>
 
+<label>
+  <input type="checkbox" id="myCheck" autocomplete="off">
+  Zgadzam się na warunki
+</label>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("myCheck").checked = false;
+  });
+</script>
+    
     <!-- Vergleich -->
     <section id="vergleich" class="px-6 max-w-6xl mx-auto mb-16">
       <div class="text-center mb-6">
@@ -720,6 +731,7 @@
 </script>
 </body>
 </html>
+
 
 
 
